@@ -38,9 +38,9 @@ class ResourcesController extends Controller
         $fields = $this->fields;
         $resource = $this->resource;
         $model = $this->modelsNamespace . config('laramanager.resources.' . $this->resource . '.model');
-        $resources = $model::all();
+        $entities = $model::all();
 
-        return view('laramanager::resource.index', compact('resource', 'resources', 'fields', 'title'));
+        return view('laramanager::resource.index', compact('resource', 'entities', 'fields', 'title'));
     }
 
     /**
