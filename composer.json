@@ -1,0 +1,21 @@
+{
+  "name": "philsquare/laramanager",
+  "description": "Manager for Laravel applications",
+  "keywords": ["laravel","admin"],
+  "homepage": "https://github.com/philsquare/LaraManager",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Philsquare LLC",
+      "email": "hello@philsquare.com",
+      "homepage": "http://philsquare.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Philsquare\\LaraManager\\": "src/"
+    }
+  },
+  "minimum-stability": "stable",
+  "require": {}
+}
