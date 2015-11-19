@@ -13,7 +13,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "Philsquare\\LaraManager\\": "src/"
+      "Philsquare\\LaraManager\\": "src/Philsquare/LaraManager"
     }
   },
   "minimum-stability": "stable",
