@@ -4,12 +4,22 @@ namespace Philsquare\LaraManager\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Support\Facades\Auth;
 
-class AdminMiddleware
+class RedirectIfAuthenticated
 {
+    /**
+     * The Guard implementation.
+     *
+     * @var Guard
+     */
     protected $auth;
 
+    /**
+     * Create a new filter instance.
+     *
+     * @param  Guard  $auth
+     * @return void
+     */
     public function __construct(Guard $auth)
     {
         $this->auth = $auth;
@@ -24,15 +34,9 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if ($this->auth->guest()) {
-            if ($request->ajax()) {
-                return response('Unauthorized.', 401);
-            } else {
-                return redirect()->guest('admin/auth/login');
-            }
+        if ($this->auth->check() && $this->auth->user()->is_admin === 1) {
+            return redirect('admin/dashboard');
         }
-
-        if ($this->auth->user()->is_admin !== 1) return redirect()->guest('admin/auth/login');
 
         return $next($request);
     }
