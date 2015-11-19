@@ -1,7 +1,7 @@
 @extends('laramanager::layouts.auth')
 
 @section('title')
-    {{ config('laramanager.site_title') }} | Login
+    Login
 @endsection
 
 @section('content')

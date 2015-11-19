@@ -8,18 +8,9 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], functio
 
     Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function()
     {
-
-        get('dashboard', function()
+        foreach(config('laramanager.resources') as $resource => $meta)
         {
-            return 'Dashboard';
-        });
-
-        foreach(['test', 'ing'] as $key)
-        {
-            get($key, function() use ($key) {
-                return 'route: ' . $key;
-            });
+            resource($resource, 'ResourcesController');
         }
-
     });
 });

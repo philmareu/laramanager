@@ -23,6 +23,10 @@ class LaraManagerServiceProvider extends ServiceProvider
             __DIR__.'/../database/migrations/' => database_path('migrations')
         ], 'migrations');
 
+        $this->publishes([
+            __DIR__.'/../config/laramanager.php' => config_path('laramanager.php'),
+        ], 'config');
+
         if (! $this->app->routesAreCached()) {
             require __DIR__.'/Http/routes.php';
         }

@@ -13,6 +13,8 @@
 </head>
 <body>
 
+@include('laramanager::navigations.primary.index')
+
 @yield('content')
 
 </body>
