@@ -22,3 +22,25 @@
     </form>
 
 @endsection
+
+@section('scripts')
+
+    @if($hasWysiwyg)
+        <script src="{{ asset('vendor/laramanager/js/ckeditor/ckeditor.js') }}"></script>
+    @endif
+
+    @foreach($fields as $field)
+
+        @if($field['type'] == 'wysiwyg')
+
+            <script>
+                CKEDITOR.replace( '{{ $field['id'] }}', {
+                    customConfig: '/vendor/laramanager/js/ckeditor.js'
+                });
+            </script>
+
+        @endif
+
+    @endforeach
+
+@endsection
