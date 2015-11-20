@@ -11,7 +11,7 @@
 
         @foreach($fields as $field)
 
-            @include('laraform::elements.form.' . $field['type'], ['name' => $field['slug']])
+            @include('laraform::elements.form.' . $field['type'], compact('field'))
 
         @endforeach
 

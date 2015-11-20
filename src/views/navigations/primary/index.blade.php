@@ -1,7 +1,7 @@
-<ul>
-    @foreach(config('laramanager.navigation') as $item)
+<ul class="uk-nav uk-nav-side">
+    @foreach(config('laramanager.navigation.primary') as $item)
 
-        <li><a href="{{ url('admin/' . $item['uri']) }}">{{ $item['title'] }}</a></li>
+        <li class="{{ $segments[1] == $item['uri'] ? 'uk-active' : '' }}"><a href="{{ url('admin/' . $item['uri']) }}">{{ $item['title'] }}</a></li>
 
     @endforeach
 </ul>

@@ -13,11 +13,20 @@
 </head>
 <body>
 
-    @include('laramanager::navigations.primary.index')
+    <div class="uk-grid uk-grid-collapse">
+        <div class="uk-width-1-5">
+            @include('laramanager::navigations.primary.index')
+        </div>
+        <div class="uk-width-4-5">
+            @include('laramanager::navigations.top.index')
 
-    @yield('content')
+            @include('laramanager::partials.session.alerts')
 
-    <footer></footer>
+            @yield('content')
+
+            @include('laramanager::partials.footer')
+        </div>
+    </div>
 
     <script src="{{ asset('vendor/laramanager/js/scripts.js') }}"></script>
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Philsquare\LaraManager;
+namespace Philsquare\LaraManager\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -13,7 +13,7 @@ class LaraManagerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__.'/../../views', 'laramanager');
+        $this->loadViewsFrom(__DIR__.'/../../../views', 'laramanager');
 
         $this->publishes([
             __DIR__.'/../assets/css/styles.css' => public_path('vendor/laramanager/css/styles.css'),
@@ -40,7 +40,7 @@ class LaraManagerServiceProvider extends ServiceProvider
         ], 'config');
 
         if (! $this->app->routesAreCached()) {
-            require __DIR__.'/Http/routes.php';
+            require __DIR__ . '/../Http/routes.php';
         }
     }
 
