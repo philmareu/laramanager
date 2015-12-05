@@ -128,9 +128,9 @@ class ResourcesController extends Controller
 
     private function validationRules($fields)
     {
-        foreach($fields as $name => $settings)
+        foreach($fields as $settings)
         {
-            $rules[$name] = $settings['validation'];
+            $rules[$settings['name']] = $settings['validation'];
         }
 
         return isset($rules) ? $rules : [];

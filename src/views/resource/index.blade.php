@@ -39,7 +39,7 @@
             <tr>
                 @foreach($fields as $field)
                     @unless(isset($field['list']) && $field['list'] === false)
-                        <td>{{ $entity->$field['slug'] }}</td>
+                        <td>{{ $entity->$field['name'] }}</td>
                     @endunless
                 @endforeach
 
