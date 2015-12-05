@@ -73,6 +73,8 @@ class ResourcesController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, $this->validationRules($this->fields));
+
+        return redirect()->back()->with('success', 'Added');
     }
 
     /**

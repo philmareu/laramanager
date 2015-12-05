@@ -13,16 +13,28 @@
 </head>
 <body>
 
+    @include('laramanager::navigations.top.index')
+
     <div class="uk-grid uk-grid-collapse">
-        <div class="uk-width-1-5">
+        <div class="uk-width-1-6">
             @include('laramanager::navigations.primary.index')
         </div>
-        <div class="uk-width-4-5">
-            @include('laramanager::navigations.top.index')
+        <div class="uk-width-5-6">
 
-            @include('laramanager::partials.session.alerts')
+            @include('laraform::alerts.default')
 
-            @yield('content')
+            <div class="title-bar uk-grid uk-grid-collapse uk-flex-middle">
+                <div class="uk-width-1-2">
+                    <h1>@yield('title')</h1>
+                </div>
+                <div class="uk-width-1-2">
+                    @yield('actions')
+                </div>
+            </div>
+
+            <div class="uk-container">
+                @yield('content')
+            </div>
 
             @include('laramanager::partials.footer')
         </div>

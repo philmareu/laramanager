@@ -8,16 +8,11 @@
     {{ $title }}
 @endsection
 
+@section('actions')
+    <a href="{{ route('admin.' . $resource . '.create') }}" class="uk-button uk-button-primary uk-float-right"><i class="uk-icon-plus"></i> Add</a>
+@endsection
+
 @section('content')
-
-    <h1>??</h1>
-
-    <div class="button-add">
-        <a href="{{ route('admin.' . $resource . '.create') }}" class="uk-button">
-            <i class="uk-icon-plus"></i>
-            Add
-        </a>
-    </div>
 
     <table id="data-table" class="stripe row-border">
         <thead>
@@ -43,18 +38,17 @@
                     @endunless
                 @endforeach
 
-                <td class="uk-text-right">
-                    <a href="{{ route('admin.' . $resource . '.edit', $entity->id) }}" class="uk-button">
-                        <i class="uk-icon-pencil"></i>
-                    </a>
+                <td>
+                    <div class="uk-grid uk-grid-medium">
+                        <div class="uk-width-1-2">
+                            <a href="{{ route('admin.' . $resource . '.edit', $entity->id) }}"><i class="uk-icon-pencil"></i></a>
+                        </div>
+                        <div class="uk-width-1-2">
+                            <a href="#" class="uk-text-danger"><i class="uk-icon-trash"></i></a>
+                        </div>
+                    </div>
 
-                    <form action="{{ route('admin.' . $resource . '.destroy', $entity->id) }}" method="POST" class="uk-form uk-display-inline-block">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <button type="submit" class="uk-button uk-button-danger warning">
-                            <i class="uk-icon-trash"></i>
-                        </button>
-                    </form>
+
                 </td>
             </tr>
         @endforeach
@@ -71,6 +65,10 @@
         $(function() {
             $('#data-table').DataTable({
                 "pageLength": 50
+            });
+
+            $('table').on('click', '.delete', function() {
+                alert('testing');
             });
         });
     </script>
