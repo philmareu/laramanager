@@ -9,6 +9,9 @@
 
     <link href="{{ asset("vendor/laramanager/css/styles.css") }}" rel="stylesheet" media="screen">
 
+    <script src="https://use.typekit.net/amf6sys.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+
     @yield('head')
 </head>
 <body>
@@ -16,10 +19,10 @@
     @include('laramanager::navigations.top.index')
 
     <div class="uk-grid uk-grid-collapse">
-        <div class="uk-width-1-6">
+        <div class="uk-width-1-6" id="sidebar">
             @include('laramanager::navigations.primary.index')
         </div>
-        <div class="uk-width-5-6">
+        <div class="uk-width-5-6" id="primary-content-area">
 
             @include('laraform::alerts.default')
 
@@ -35,10 +38,10 @@
             <div class="uk-container">
                 @yield('content')
             </div>
-
-            @include('laramanager::partials.footer')
         </div>
     </div>
+
+    @include('laramanager::partials.footer')
 
     <script src="{{ asset('vendor/laramanager/js/scripts.js') }}"></script>
 
