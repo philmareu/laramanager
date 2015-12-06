@@ -8,10 +8,10 @@
     <title>{{ config('laramanager.site_title') }} | @yield('title')</title>
 
     <link href="{{ asset("vendor/laramanager/css/styles.css") }}" rel="stylesheet" media="screen">
+    <link href="{{ asset("vendor/laramanager/css/datatables.css") }}" rel="stylesheet" media="screen">
 
-    <script src="https://use.typekit.net/amf6sys.js"></script>
-    <script>try{Typekit.load({ async: true });}catch(e){}</script>
-
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:300,500' rel='stylesheet' type='text/css'>
     @yield('head')
 </head>
 <body>
@@ -19,29 +19,29 @@
     @include('laramanager::navigations.top.index')
 
     <div class="uk-grid uk-grid-collapse">
-        <div class="uk-width-1-6" id="sidebar">
+        <div class="uk-width-1-6 uk-contrast uk-height-viewport" id="sidebar">
             @include('laramanager::navigations.primary.index')
         </div>
         <div class="uk-width-5-6" id="primary-content-area">
 
-            @include('laraform::alerts.default')
-
-            <div class="title-bar uk-grid uk-grid-collapse uk-flex-middle">
-                <div class="uk-width-1-2">
-                    <h1>@yield('title')</h1>
-                </div>
-                <div class="uk-width-1-2">
-                    @yield('actions')
+            <div class="title-bar uk-container" data-uk-sticky="{top:60}">
+                <div class="uk-grid uk-grid-collapse uk-flex-middle">
+                    <div class="uk-width-1-2">
+                        <span class="title">@yield('title')</span>
+                    </div>
+                    <div class="uk-width-1-2">
+                        @yield('actions')
+                    </div>
                 </div>
             </div>
 
-            <div class="uk-container">
+            <div class="uk-container" id="secondary-content-area">
+                @include('laraform::alerts.default')
+
                 @yield('content')
             </div>
         </div>
     </div>
-
-    @include('laramanager::partials.footer')
 
     <script src="{{ asset('vendor/laramanager/js/scripts.js') }}"></script>
 

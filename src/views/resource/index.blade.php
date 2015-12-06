@@ -9,7 +9,7 @@
 @endsection
 
 @section('actions')
-    <a href="{{ route('admin.' . $resource . '.create') }}" class="uk-button uk-button-primary uk-float-right"><i class="uk-icon-plus"></i> Add</a>
+    <a href="{{ route('admin.' . $resource . '.create') }}" class="uk-float-right"><i class="uk-icon-plus"></i> Add</a>
 @endsection
 
 @section('content')
