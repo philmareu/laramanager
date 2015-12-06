@@ -8,7 +8,6 @@
     <title>{{ config('laramanager.site_title') }} | @yield('title')</title>
 
     <link href="{{ asset("vendor/laramanager/css/styles.css") }}" rel="stylesheet" media="screen">
-    <link href="{{ asset("vendor/laramanager/css/datatables.css") }}" rel="stylesheet" media="screen">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway:300,500' rel='stylesheet' type='text/css'>
@@ -24,7 +23,7 @@
         </div>
         <div class="uk-width-5-6" id="primary-content-area">
 
-            <div class="title-bar uk-container" data-uk-sticky="{top:60}">
+            <div class="title-bar uk-container">
                 <div class="uk-grid uk-grid-collapse uk-flex-middle">
                     <div class="uk-width-1-2">
                         <span class="title">@yield('title')</span>
