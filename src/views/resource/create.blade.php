@@ -16,7 +16,9 @@
         @endforeach
 
         <div class="uk-form-row">
-            @include('laraform::elements.form.submit')
+            <div class="uk-width-1-6">
+                @include('laraform::elements.form.submit')
+            </div>
         </div>
 
     </form>
