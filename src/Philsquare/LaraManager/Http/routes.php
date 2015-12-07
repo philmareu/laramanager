@@ -14,9 +14,13 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], functio
     {
         get('/', function() { return redirect(config('laramanager.home_uri')); });
 
-        foreach(config('laramanager.resources') as $resource => $meta)
+        if(! is_null(config('laramanager.resources')))
         {
-            resource($resource, 'ResourcesController');
+            foreach(config('laramanager.resources') as $resource => $meta)
+            {
+                resource($resource, 'ResourcesController');
+            }
         }
+
     });
 });
