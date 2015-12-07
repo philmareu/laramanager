@@ -118,7 +118,14 @@ class ResourcesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, $this->validationRules($this->fields));
+
+        $model = $this->modelsNamespace . config('laramanager.resources.' . $this->resource . '.model');
+
+        $entity = (new $model)->findOrFail($id);
+        if($entity->update($request->all())) return redirect()->back()->with('success', 'Updated');
+
+        return redirect()->back()->with('failed', 'Unable to update.')->withInput();
     }
 
     /**
