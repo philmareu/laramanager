@@ -3,8 +3,9 @@
 namespace Philsquare\LaraManager\Http\Controllers\Auth;
 
 use Illuminate\Support\Facades\Password;
-use Laradev\Http\Controllers\Controller;
+
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Philsquare\LaraManager\Http\Controllers\Controller;
 
 class PasswordController extends Controller
 {

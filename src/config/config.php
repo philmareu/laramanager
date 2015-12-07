@@ -2,7 +2,7 @@
 
 return [
 
-    'site_title' => '',
+    'site_title' => 'Admin',
 
     'models_namespace' => 'App\\Models',
 
