@@ -32,6 +32,10 @@ class LaraManagerServiceProvider extends ServiceProvider
         ], 'public');
 
         $this->publishes([
+            __DIR__.'/../../../assets/fonts/' => public_path('vendor/laramanager/fonts/'),
+        ], 'public');
+
+        $this->publishes([
             __DIR__.'/../../../database/migrations/' => database_path('migrations')
         ], 'migrations');
 
