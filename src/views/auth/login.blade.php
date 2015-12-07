@@ -9,7 +9,7 @@
     <div class="uk-width-medium-1-5 uk-vertical-align-middle">
         <div id="login-box">
             <div class="title-bar"><i class="uk-icon-sign-in"></i> {{ config('laramanager.site_title') }} Admin</div>
-            <form class="uk-form uk-form-stacked uk-text-left" method="POST" action="{{ url('admin/auth/login') }}">
+            <form class="uk-form uk-text-left" method="POST" action="{{ url('admin/auth/login') }}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 <div class="uk-form-row">
@@ -42,7 +42,7 @@
                             <button type="submit" class="uk-button uk-button-primary">Login</button>
                         </div>
                         <div class="uk-width-medium-1-2">
-                            <a href="{{ url('/password/email') }}" class="forgot-password">Forgot Password?</a>
+                            <a href="{{ url('admin/auth/password/email') }}" class="forgot-password">Forgot Password?</a>
                         </div>
                     </div>
                 </div>
