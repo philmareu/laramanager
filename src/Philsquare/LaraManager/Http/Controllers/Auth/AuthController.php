@@ -5,11 +5,9 @@ namespace Philsquare\LaraManager\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
-use Laradev\User;
-use Validator;
-use Laradev\Http\Controllers\Controller;
+
 use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Philsquare\LaraManager\Http\Controllers\Controller;
 
 class AuthController extends Controller
 {

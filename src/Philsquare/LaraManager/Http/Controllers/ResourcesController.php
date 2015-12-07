@@ -2,10 +2,8 @@
 
 namespace Philsquare\LaraManager\Http\Controllers;
 
-use Illuminate\Http\Request;
 
-use Laradev\Http\Requests;
-use Laradev\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class ResourcesController extends Controller
 {
