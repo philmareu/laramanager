@@ -59,7 +59,7 @@
 
 @section('scripts')
 
-    <script src="{{ asset('vendor/laramanager/js/datatables.min.js') }}"></script>
+    <script src="{{ asset('vendor/laramanager/js/datatables.js') }}"></script>
 
     <script>
         $(function() {
