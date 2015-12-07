@@ -136,7 +136,12 @@ class ResourcesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $model = $this->modelsNamespace . config('laramanager.resources.' . $this->resource . '.model');
+
+        $entity = (new $model)->findOrFail($id);
+        if($entity->delete()) return response()->json(['status' => 'ok']);
+
+        return response()->json(['status' => 'failed']);
     }
 
     private function validationRules($fields)

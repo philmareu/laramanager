@@ -44,7 +44,7 @@
                             <a href="{{ route('admin.' . $resource . '.edit', $entity->id) }}"><i class="uk-icon-pencil"></i></a>
                         </div>
                         <div class="uk-width-1-2">
-                            <a href="#" class="uk-text-danger"><i class="uk-icon-trash"></i></a>
+                            <a href="#" class="uk-text-danger delete" data-granada-id="{{ $entity->id }}"><i class="uk-icon-trash"></i></a>
                         </div>
                     </div>
 
@@ -62,13 +62,37 @@
     <script src="{{ asset('vendor/laramanager/js/datatables.js') }}"></script>
 
     <script>
+
+        var resource = "{{ $resource }}";
+
         $(function() {
             $('#data-table').DataTable({
                 "pageLength": 50
             });
 
-            $('table').on('click', '.delete', function() {
-                alert('testing');
+            $('table').on('click', '.delete', function(event) {
+                var r = confirm("Are you sure?");
+
+                event.preventDefault();
+
+                if (r == true) {
+                    var element = $(this);
+                    var id = element.attr('data-granada-id');
+                    var td = element.parents('td');
+                    var row = element.parents('tr');
+
+                    $.ajax({
+                        url: SITE_URL + '/admin/' + resource + '/' + id,
+                        type: 'POST',
+                        data: {_method: 'DELETE', _token: csrf},
+                        success: function(response) {
+                            if(response.status == 'ok') {
+                                row.addClass('uk-text-muted');
+                                td.html('Deleted');
+                            }
+                        }
+                    });
+                }
             });
         });
     </script>
