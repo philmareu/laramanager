@@ -1,16 +1,17 @@
 @extends('laramanager::layouts.auth')
 
 @section('title')
-    Login
+    Reset Password
 @endsection
 
 @section('content')
 
     <div class="uk-width-medium-1-5 uk-vertical-align-middle">
         <div id="login-box">
-            <div class="title-bar"><i class="uk-icon-sign-in"></i> {{ config('laramanager.site_title') }} Admin</div>
-            <form class="uk-form uk-text-left" method="POST" action="{{ url('admin/auth/login') }}">
+            <div class="title-bar"><i class="uk-icon-lock"></i> Reset Password</div>
+            <form class="uk-form uk-text-left" method="POST" action="{{ url('admin/auth/password/reset') }}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="token" value="{{ $token }}">
 
                 <div class="uk-form-row">
                     <div class="uk-form-controls">
@@ -33,17 +34,18 @@
                 </div>
 
                 <div class="uk-form-row">
-                    <input type="checkbox" value="1"> Remember
+                    <div class="uk-form-controls">
+                        <span class="errors uk-text-danger">{{ $errors->first('password') }}</span>
+                        <div class="uk-form-icon uk-form-controls">
+                            <i class="uk-icon-lock"></i>
+                            <input type="password" placeholder="Confirm Password" name="password_confirmation" class="uk-form-width-large">
+                        </div>
+                    </div>
                 </div>
 
                 <div class="uk-form-row">
-                    <div class="uk-grid uk-grid-collapse uk-flex-middle">
-                        <div class="uk-width-medium-1-2">
-                            <button type="submit" class="uk-button uk-button-primary">Login</button>
-                        </div>
-                        <div class="uk-width-medium-1-2">
-                            <a href="{{ url('admin/auth/password/email') }}" class="forgot-password">Forgot Password?</a>
-                        </div>
+                    <div class="uk-width-1-1">
+                        @include('laraform::elements.form.submit', ['value' => 'Reset Password'])
                     </div>
                 </div>
             </form>

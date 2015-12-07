@@ -19,9 +19,9 @@ class PasswordController extends Controller
     |
     */
 
-    public $emailView = 'testing';
-
     use ResetsPasswords;
+
+    protected $redirectTo;
 
     /**
      * Create a new password controller instance.
@@ -32,6 +32,7 @@ class PasswordController extends Controller
     {
         $this->middleware('guest');
         config(['auth.password.email' => 'laramanager::emails.password']);
+        $this->redirectTo = config('laramanager.home_uri');
     }
 
     /**
@@ -42,5 +43,20 @@ class PasswordController extends Controller
     public function getEmail()
     {
         return view('laramanager::auth.password');
+    }
+
+    /**
+     * Display the password reset view for the given token.
+     *
+     * @param  string  $token
+     * @return \Illuminate\Http\Response
+     */
+    public function getReset($token = null)
+    {
+        if (is_null($token)) {
+            throw new NotFoundHttpException;
+        }
+
+        return view('laramanager::auth.reset')->with('token', $token);
     }
 }

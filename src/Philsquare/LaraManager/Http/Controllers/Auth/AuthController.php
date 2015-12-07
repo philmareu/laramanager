@@ -4,6 +4,7 @@ namespace Philsquare\LaraManager\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Lang;
 use Laradev\User;
 use Validator;
 use Laradev\Http\Controllers\Controller;

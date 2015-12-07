@@ -11,7 +11,7 @@
         @include('laraform::alerts.default')
 
         <div id="login-box">
-            <div class="title-bar"><i class="uk-icon-lock"></i> Reset Password</div>
+            <div class="title-bar"><i class="uk-icon-lock"></i> Request Password Reset</div>
 
             <form class="uk-form uk-text-left" role="form" method="POST" action="{{ url('admin/auth/password/email') }}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
