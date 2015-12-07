@@ -17,6 +17,8 @@ class ResourcesController extends Controller
 
     protected $modelsNamespace;
 
+    protected $model;
+
     public function __construct(Request $request)
     {
         $this->resource = $request->segment(2);
@@ -72,7 +74,11 @@ class ResourcesController extends Controller
     {
         $this->validate($request, $this->validationRules($this->fields));
 
-        return redirect()->back()->with('success', 'Added');
+        $model = $this->modelsNamespace . config('laramanager.resources.' . $this->resource . '.model');
+
+        if((new $model)->create($request->all())) return redirect('admin/' . $this->resource)->with('success', 'Added');
+
+        return redirect()->back()->with('failed', 'Unable to save.')->withInput();
     }
 
     /**
