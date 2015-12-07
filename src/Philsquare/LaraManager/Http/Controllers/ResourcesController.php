@@ -17,6 +17,8 @@ class ResourcesController extends Controller
 
     protected $modelsNamespace;
 
+    protected $model;
+
     public function __construct(Request $request)
     {
         $this->resource = $request->segment(2);
@@ -72,7 +74,11 @@ class ResourcesController extends Controller
     {
         $this->validate($request, $this->validationRules($this->fields));
 
-        return redirect()->back()->with('success', 'Added');
+        $model = $this->modelsNamespace . config('laramanager.resources.' . $this->resource . '.model');
+
+        if((new $model)->create($request->all())) return redirect('admin/' . $this->resource)->with('success', 'Added');
+
+        return redirect()->back()->with('failed', 'Unable to save.')->withInput();
     }
 
     /**
@@ -112,7 +118,14 @@ class ResourcesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, $this->validationRules($this->fields));
+
+        $model = $this->modelsNamespace . config('laramanager.resources.' . $this->resource . '.model');
+
+        $entity = (new $model)->findOrFail($id);
+        if($entity->update($request->all())) return redirect()->back()->with('success', 'Updated');
+
+        return redirect()->back()->with('failed', 'Unable to update.')->withInput();
     }
 
     /**
@@ -123,7 +136,12 @@ class ResourcesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $model = $this->modelsNamespace . config('laramanager.resources.' . $this->resource . '.model');
+
+        $entity = (new $model)->findOrFail($id);
+        if($entity->delete()) return response()->json(['status' => 'ok']);
+
+        return response()->json(['status' => 'failed']);
     }
 
     private function validationRules($fields)

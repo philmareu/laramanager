@@ -11,6 +11,12 @@
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway:300,500' rel='stylesheet' type='text/css'>
+
+    <script type="text/javascript" charset="utf-8">
+        var SITE_URL = "{{ url() }}";
+        var csrf = "{{ csrf_token() }}";
+    </script>
+
     @yield('head')
 </head>
 <body>
