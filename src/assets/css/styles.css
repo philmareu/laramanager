@@ -8,13 +8,13 @@
  */
 html {
   /* 1 */
-  font: normal 14px / 20px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: 300 14px / 20px "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
   /* 2 */
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   /* 3 */
-  background: #fff;
-  color: #444;
+  background: #E5914E;
+  color: #5C4E46;
 }
 /*
  * Removes default margin.
@@ -206,8 +206,8 @@ h4,
 h5,
 h6 {
   margin: 0 0 15px 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: normal;
+  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
   color: #444;
   text-transform: none;
 }
@@ -1394,7 +1394,7 @@ ul.uk-nav-sub {
 }
 /* Active */
 .uk-nav-side > li.uk-active > a {
-  background: #00a8e6;
+  background: rgba(0, 0, 0, 0.25);
   color: #fff;
 }
 /*
@@ -1465,7 +1465,7 @@ ul.uk-nav-sub {
  * Items
  */
 .uk-nav-navbar > li > a {
-  color: #444;
+  color: #fff;
 }
 /*
  * Hover
@@ -1474,7 +1474,7 @@ ul.uk-nav-sub {
  */
 .uk-nav-navbar > li > a:hover,
 .uk-nav-navbar > li > a:focus {
-  background: #00a8e6;
+  background: rgba(255, 255, 255, 0.1);
   color: #fff;
   /* 2 */
   outline: none;
@@ -1557,7 +1557,7 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
    Component: Navbar
  ========================================================================== */
 .uk-navbar {
-  background: #eee;
+  background: #2d1807;
   color: #444;
 }
 /*
@@ -1596,13 +1596,13 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
   box-sizing: border-box;
   text-decoration: none;
   /* 1 */
-  height: 40px;
+  height: 60px;
   padding: 0 15px;
-  line-height: 40px;
+  line-height: 60px;
   /* 2 */
-  color: #444;
+  color: #fff;
   font-size: 14px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: normal;
 }
 /* Appear not as link */
@@ -1618,15 +1618,15 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
 .uk-navbar-nav > li:hover > a,
 .uk-navbar-nav > li > a:focus,
 .uk-navbar-nav > li.uk-open > a {
-  background-color: #f5f5f5;
-  color: #444;
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.5);
   /* 3 */
   outline: none;
 }
 /* OnClick */
 .uk-navbar-nav > li > a:active {
-  background-color: #ddd;
-  color: #444;
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.5);
 }
 /* Active */
 .uk-navbar-nav > li.uk-active > a {
@@ -1636,10 +1636,10 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
 /* Sub-objects: `uk-navbar-nav-subtitle`
  ========================================================================== */
 .uk-navbar-nav .uk-navbar-nav-subtitle {
-  line-height: 28px;
+  line-height: 48px;
 }
 .uk-navbar-nav-subtitle > div {
-  margin-top: -6px;
+  margin-top: -16px;
   font-size: 10px;
   line-height: 12px;
 }
@@ -1653,7 +1653,7 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
 .uk-navbar-toggle {
   box-sizing: border-box;
   display: block;
-  height: 40px;
+  height: 60px;
   padding: 0 15px;
   float: left;
 }
@@ -1688,8 +1688,8 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
 /* Sub-objects: `uk-navbar-brand`
  ========================================================================== */
 .uk-navbar-brand {
-  font-size: 18px;
-  color: #444;
+  font-size: 22px;
+  color: #fff;
   text-decoration: none;
 }
 /*
@@ -1698,7 +1698,7 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
  */
 .uk-navbar-brand:hover,
 .uk-navbar-brand:focus {
-  color: #444;
+  color: rgba(255, 255, 255, 0.5);
   text-decoration: none;
   /* 2 */
   outline: none;
@@ -2328,8 +2328,8 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
   padding: 4px 6px;
   /* 4 */
   border: 1px solid #ddd;
-  background: #fff;
-  color: #444;
+  background: rgba(255, 255, 255, 0.9);
+  color: #5C4E46;
   transition: all linear 0.2s;
 }
 .uk-form select:focus,
@@ -2349,9 +2349,9 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
 .uk-form input[type="search"]:focus,
 .uk-form input[type="tel"]:focus,
 .uk-form input[type="color"]:focus {
-  border-color: #99baca;
+  border-color: rgba(229, 145, 78, 0.8);
   outline: 0;
-  background: #f5fbfe;
+  background: rgba(255, 255, 255, 0.3);
   color: #444;
 }
 .uk-form select:disabled,
@@ -2564,7 +2564,7 @@ select.uk-form-width-mini {
 .uk-form-stacked .uk-form-label {
   display: block;
   margin-bottom: 5px;
-  font-weight: bold;
+  font-weight: 500;
 }
 /* Modifier: `uk-form-horizontal`
  * Requires sub-objects: `uk-form-label`, `uk-form-controls`
@@ -2575,7 +2575,7 @@ select.uk-form-width-mini {
   .uk-form-horizontal .uk-form-label {
     display: block;
     margin-bottom: 5px;
-    font-weight: bold;
+    font-weight: 500;
   }
 }
 /* Desktop and bigger */
@@ -6221,7 +6221,7 @@ a.uk-thumbnail:focus {
  */
 .uk-dropdown {
   padding: 15px;
-  background: #f5f5f5;
+  background: #2d1807;
   color: #444;
   /* 1 */
   font-size: 1rem;
@@ -6361,12 +6361,12 @@ a.uk-thumbnail:focus {
  ========================================================================== */
 .uk-dropdown-navbar {
   margin-top: 0;
-  background: #f5f5f5;
-  color: #444;
+  background: #2d1807;
+  color: #fff;
 }
 .uk-open > .uk-dropdown-navbar {
-  -webkit-animation: uk-slide-top-fixed 0.2s ease-in-out;
-  animation: uk-slide-top-fixed 0.2s ease-in-out;
+  -webkit-animation: none 0.2s ease-in-out;
+  animation: none 0.2s ease-in-out;
 }
 /* Modifier `uk-dropdown-scrollable`
  ========================================================================== */
@@ -7520,6 +7520,75 @@ a.uk-thumbnail:focus {
 }
 .uk-contrast .uk-text-primary {
   color: #2d7091 !important;
+}
+/***** Additional Uikit Components *****/
+/* ========================================================================
+   Component: Sticky
+ ========================================================================== */
+/*
+ * 1. More robust if padding and border are used
+ */
+[data-uk-sticky].uk-active {
+  z-index: 980;
+  /* 1 */
+  box-sizing: border-box;
+}
+/*
+ * 1. Resolve frame-rate issues on devices with lower frame-rates. Forces hardware acceleration
+ */
+.uk-sticky-placeholder > * {
+  /* 1 */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+/*
+ * Faster animations
+ */
+[data-uk-sticky][class*='uk-animation-'] {
+  -webkit-animation-duration: 0.2s;
+  animation-duration: 0.2s;
+}
+[data-uk-sticky].uk-animation-reverse {
+  -webkit-animation-duration: 0.2s;
+  animation-duration: 0.2s;
+}
+/***** Colors *****/
+/***** Uikit *****/
+/***** Styles *****/
+.title-bar {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #ffffff;
+  border-bottom: 4px solid #e1e1e1;
+}
+footer {
+  padding: 10px;
+  background-color: #eeeeee;
+}
+#sidebar {
+  background-color: #E5914E;
+  font-family: 'Open Sans', sans-serif;
+}
+#sidebar .uk-nav > li > a {
+  padding: 20px 15px;
+}
+#sidebar .uk-icon-justify {
+  width: 2em;
+}
+#top-navigation .uk-navbar-brand {
+  font-family: 'Open Sans', sans-serif;
+}
+#primary-content-area,
+#login-box {
+  background-color: #f0f0f0;
+  background-image: url("../images/bg-1.png");
+}
+#secondary-content-area {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+#login-box form {
+  padding: 10px;
 }
 
 /*# sourceMappingURL=styles.css.map */
