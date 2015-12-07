@@ -19,9 +19,9 @@
         <tr>
             @foreach($fields as $field)
 
-                @unless(isset($field['list']) && $field['list'] === false)
+                @if(isset($field['list']) && $field['list'] === true)
                     <td>{{ $field['title'] }}</td>
-                @endunless
+                @endif
 
             @endforeach
 
@@ -33,9 +33,9 @@
         @foreach($entities as $entity)
             <tr>
                 @foreach($fields as $field)
-                    @unless(isset($field['list']) && $field['list'] === false)
+                    @if(isset($field['list']) && $field['list'] === true)
                         <td>{{ $entity->$field['name'] }}</td>
-                    @endunless
+                    @endif
                 @endforeach
 
                 <td>
