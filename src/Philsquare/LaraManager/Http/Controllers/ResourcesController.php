@@ -129,7 +129,17 @@ class ResourcesController extends Controller
         $model = $this->modelsNamespace . config('laramanager.resources.' . $this->resource . '.model');
 
         $entity = (new $model)->findOrFail($id);
-        if($entity->update($request->all())) return redirect()->back()->with('success', 'Updated');
+
+        $attributes = $request->all();
+        foreach($this->fields as $field)
+        {
+            if($field['type'] == 'checkbox')
+            {
+                if(! $request->has($field['name'])) $attributes[$field['name']] = 0;
+            }
+        }
+        
+        if($entity->update($attributes)) return redirect()->back()->with('success', 'Updated');
 
         return redirect()->back()->with('failed', 'Unable to update.')->withInput();
     }
