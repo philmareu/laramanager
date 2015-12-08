@@ -34,7 +34,9 @@
             <tr>
                 @foreach($fields as $field)
                     @if(isset($field['list']) && $field['list'] === true)
-                        <td>{{ $entity->$field['name'] }}</td>
+                        <td>
+                            @include('laramanager::resource.displays.fields.' . $field['type'])
+                        </td>
                     @endif
                 @endforeach
 

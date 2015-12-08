@@ -72,7 +72,7 @@ class ResourcesController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, $this->validationRules($this->fields));
+        $this->validate($request, $this->validationRules($this->fields, 'store'));
 
         $model = $this->modelsNamespace . config('laramanager.resources.' . $this->resource . '.model');
 
@@ -100,13 +100,19 @@ class ResourcesController extends Controller
      */
     public function edit($resourceId)
     {
+        $hasWysiwyg = false;
         $title = $this->title;
         $fields = $this->fields;
         $resource = $this->resource;
         $model = $this->modelsNamespace . config('laramanager.resources.' . $this->resource . '.model');
         $entity = $model::find($resourceId);
 
-        return view('laramanager::resource.edit', compact('title', 'fields', 'resource', 'entity'));
+        foreach($fields as $field)
+        {
+            if($field['type'] == 'wysiwyg') $hasWysiwyg = true;
+        }
+
+        return view('laramanager::resource.edit', compact('title', 'fields', 'resource', 'entity', 'hasWysiwyg'));
     }
 
     /**
@@ -118,12 +124,22 @@ class ResourcesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, $this->validationRules($this->fields));
+        $this->validate($request, $this->validationRules($this->fields, 'update'));
 
         $model = $this->modelsNamespace . config('laramanager.resources.' . $this->resource . '.model');
 
         $entity = (new $model)->findOrFail($id);
-        if($entity->update($request->all())) return redirect()->back()->with('success', 'Updated');
+
+        $attributes = $request->all();
+        foreach($this->fields as $field)
+        {
+            if($field['type'] == 'checkbox')
+            {
+                if(! $request->has($field['name'])) $attributes[$field['name']] = 0;
+            }
+        }
+        
+        if($entity->update($attributes)) return redirect()->back()->with('success', 'Updated');
 
         return redirect()->back()->with('failed', 'Unable to update.')->withInput();
     }
@@ -144,11 +160,11 @@ class ResourcesController extends Controller
         return response()->json(['status' => 'failed']);
     }
 
-    private function validationRules($fields)
+    private function validationRules($fields, $operation)
     {
         foreach($fields as $settings)
         {
-            $rules[$settings['name']] = $settings['validation'];
+            $rules[$settings['name']] = $settings['validation'][$operation];
         }
 
         return isset($rules) ? $rules : [];

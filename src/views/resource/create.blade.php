@@ -33,14 +33,8 @@
 
     @foreach($fields as $field)
 
-        @if($field['type'] == 'wysiwyg')
-
-            <script>
-                CKEDITOR.replace( '{{ $field['id'] }}', {
-                    customConfig: '/vendor/laramanager/js/ckeditor.js'
-                });
-            </script>
-
+        @if(view()->exists('laramanager::resource.scripts.fields.' . $field['type']))
+            @include('laramanager::resource.scripts.fields.' . $field['type'], $field)
         @endif
 
     @endforeach
