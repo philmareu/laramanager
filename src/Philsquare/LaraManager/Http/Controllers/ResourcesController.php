@@ -72,7 +72,7 @@ class ResourcesController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, $this->validationRules($this->fields));
+        $this->validate($request, $this->validationRules($this->fields, 'store'));
 
         $model = $this->modelsNamespace . config('laramanager.resources.' . $this->resource . '.model');
 
@@ -124,7 +124,7 @@ class ResourcesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, $this->validationRules($this->fields));
+        $this->validate($request, $this->validationRules($this->fields, 'update'));
 
         $model = $this->modelsNamespace . config('laramanager.resources.' . $this->resource . '.model');
 
@@ -150,11 +150,11 @@ class ResourcesController extends Controller
         return response()->json(['status' => 'failed']);
     }
 
-    private function validationRules($fields)
+    private function validationRules($fields, $operation)
     {
         foreach($fields as $settings)
         {
-            $rules[$settings['name']] = $settings['validation'];
+            $rules[$settings['name']] = $settings['validation'][$operation];
         }
 
         return isset($rules) ? $rules : [];
