@@ -164,7 +164,7 @@ class ResourcesController extends Controller
     {
         foreach($fields as $settings)
         {
-            $rules[$settings['name']] = $settings['validation'][$operation];
+            $rules[$settings['name']] = is_array($settings['validation']) ? $settings['validation'][$operation] : $settings['validation'];
         }
 
         return isset($rules) ? $rules : [];
