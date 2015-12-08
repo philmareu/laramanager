@@ -14,25 +14,19 @@ class LaraManagerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if (! $this->app->routesAreCached()) {
+            require __DIR__ . '/../Http/routes.php';
+        }
+
         $this->loadViewsFrom(__DIR__.'/../../../views', 'laramanager');
 
         $this->assetsToPublish();
 
         $this->setViewComposers();
 
-        $this->loadTranslationsFrom(
-            __DIR__.'/../../../lang',
-            'laramanager'
-        );
+        $this->loadTranslationsFrom(__DIR__.'/../../../lang', 'laramanager');
 
-        Validator::extend(
-            'unique_except_this_id', 'Philsquare\LaraManager\Validators\Validator@validateUniqueExceptThisId',
-            trans('laramanager::validation.unique_except_this_id')
-        );
-
-        if (! $this->app->routesAreCached()) {
-            require __DIR__ . '/../Http/routes.php';
-        }
+        $this->setCustomValidation();
     }
 
     /**
@@ -80,5 +74,13 @@ class LaraManagerServiceProvider extends ServiceProvider
     {
         view()->composer('laramanager::navigations.top.index', 'Philsquare\LaraManager\ViewComposers\NavigationComposer');
         view()->composer('laramanager::navigations.primary.*', 'Philsquare\LaraManager\ViewComposers\NavigationComposer');
+    }
+
+    private function setCustomValidation()
+    {
+        Validator::extend(
+            'unique_except_this_id', 'Philsquare\LaraManager\Validators\Validator@validateUniqueExceptThisId',
+            trans('laramanager::validation.unique_except_this_id')
+        );
     }
 }
