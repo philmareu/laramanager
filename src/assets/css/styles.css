@@ -7552,6 +7552,162 @@ a.uk-thumbnail:focus {
   -webkit-animation-duration: 0.2s;
   animation-duration: 0.2s;
 }
+/* ========================================================================
+   Component: Form select
+ ========================================================================== */
+/*
+ * 1. Behave like form elements
+ * 2. Create position context for dropdowns
+ * 3. Clip content
+ */
+.uk-form-select {
+  /* 1 */
+  display: inline-block;
+  vertical-align: middle;
+  /* 2 */
+  position: relative;
+  /* 3 */
+  overflow: hidden;
+}
+/*
+ * 1. Required for Firefox
+ * 1. Required for Webkit to make `height` work
+ */
+.uk-form-select select {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  /* 1 */
+  left: 0;
+  /* 2 */
+  -webkit-appearance: none;
+}
+/* ========================================================================
+   Component: Datepicker
+ ========================================================================== */
+/*
+ * 1. Highest z-index
+ * 2. Reset dropdown width
+ * 3. Set animation
+ * 4. Needed for scale animation
+ */
+.uk-datepicker {
+  /* 1 */
+  z-index: 1050;
+  /* 2 */
+  width: auto;
+  /* 3 */
+  -webkit-animation: uk-fade 0.2s ease-in-out;
+  animation: uk-fade 0.2s ease-in-out;
+  /* 4 */
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+/* Sub-object: `uk-datepicker-nav`
+========================================================================== */
+.uk-datepicker-nav {
+  margin-bottom: 15px;
+  text-align: center;
+  line-height: 20px;
+}
+/*
+ * Micro clearfix
+ */
+.uk-datepicker-nav:before,
+.uk-datepicker-nav:after {
+  content: "";
+  display: table;
+}
+.uk-datepicker-nav:after {
+  clear: both;
+}
+/*
+ * Previous and next navigation
+ */
+.uk-datepicker-nav a {
+  color: #fff;
+  text-decoration: none;
+}
+.uk-datepicker-nav a:hover {
+  color: #444;
+}
+.uk-datepicker-previous {
+  float: left;
+}
+.uk-datepicker-next {
+  float: right;
+}
+.uk-datepicker-previous:after,
+.uk-datepicker-next:after {
+  width: 20px;
+  font-family: FontAwesome;
+}
+.uk-datepicker-previous:after {
+  content: "\f053";
+}
+.uk-datepicker-next:after {
+  content: "\f054";
+}
+/* Sub-object: `uk-datepicker-heading`
+========================================================================== */
+/* Sub-object: `uk-datepicker-table`
+========================================================================== */
+/* Block element behavior */
+.uk-datepicker-table {
+  width: 100%;
+}
+.uk-datepicker-table th,
+.uk-datepicker-table td {
+  padding: 2px;
+}
+.uk-datepicker-table th {
+  font-size: 12px;
+}
+/*
+ * Item
+ */
+.uk-datepicker-table a {
+  display: block;
+  width: 26px;
+  line-height: 24px;
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+}
+/*
+ * Sub-object: `uk-datepicker-table-muted`
+ */
+a.uk-datepicker-table-muted {
+  color: #999;
+}
+/*
+ * Hover
+ * 1. Apply hover style also to focus state
+ * 2. Remove default focus style
+ */
+.uk-datepicker-table a:hover,
+.uk-datepicker-table a:focus {
+  background-color: #ddd;
+  color: #444;
+  /* 2 */
+  outline: none;
+}
+/* OnClick */
+.uk-datepicker-table a:active {
+  background-color: #ccc;
+  color: #444;
+}
+/*
+ * Active
+ */
+.uk-datepicker-table a.uk-active {
+  background: #2d1807;
+  color: #fff;
+}
 /***** Colors *****/
 /***** Uikit *****/
 /***** Styles *****/
@@ -7589,6 +7745,9 @@ footer {
 }
 #login-box form {
   padding: 10px;
+}
+.uk-datepicker {
+  background-color: #E5914E;
 }
 
 /*# sourceMappingURL=styles.css.map */

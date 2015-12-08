@@ -100,13 +100,19 @@ class ResourcesController extends Controller
      */
     public function edit($resourceId)
     {
+        $hasWysiwyg = false;
         $title = $this->title;
         $fields = $this->fields;
         $resource = $this->resource;
         $model = $this->modelsNamespace . config('laramanager.resources.' . $this->resource . '.model');
         $entity = $model::find($resourceId);
 
-        return view('laramanager::resource.edit', compact('title', 'fields', 'resource', 'entity'));
+        foreach($fields as $field)
+        {
+            if($field['type'] == 'wysiwyg') $hasWysiwyg = true;
+        }
+
+        return view('laramanager::resource.edit', compact('title', 'fields', 'resource', 'entity', 'hasWysiwyg'));
     }
 
     /**

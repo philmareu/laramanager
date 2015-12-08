@@ -12,7 +12,7 @@
 
         @foreach($fields as $field)
 
-            @include('laraform::elements.form.' . $field['type'], ['field' => ['name' => $field['name'], 'value' => $entity->$field['name']]])
+            @include('laraform::elements.form.' . $field['type'], ['field' => array_merge($field, ['value' => $entity->$field['name']])])
 
         @endforeach
 
@@ -23,5 +23,21 @@
         </div>
 
     </form>
+
+@endsection
+
+@section('scripts')
+
+    @if($hasWysiwyg)
+        <script src="{{ asset('vendor/laramanager/js/ckeditor/ckeditor.js') }}"></script>
+    @endif
+
+    @foreach($fields as $field)
+
+        @if(view()->exists('laramanager::resource.scripts.fields.' . $field['type']))
+            @include('laramanager::resource.scripts.fields.' . $field['type'], $field)
+        @endif
+
+    @endforeach
 
 @endsection
