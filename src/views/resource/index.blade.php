@@ -64,10 +64,13 @@
     <script>
 
         var resource = "{{ $resource }}";
+        var orderColumn = "{{ config('laramanager.resources.' . $resource . '.orderColumn') }}";
+        var orderDirection = "{{ config('laramanager.resources.' . $resource . '.orderDirection') }}";
 
         $(function() {
             $('#data-table').DataTable({
-                "pageLength": 50
+                "pageLength": 50,
+                "order": [[orderColumn, orderDirection]]
             });
 
             $('table').on('click', '.delete', function(event) {
