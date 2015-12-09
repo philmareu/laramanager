@@ -4,6 +4,7 @@ namespace Philsquare\LaraManager\Http\Controllers;
 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Philsquare\LaraForm\Services\FormProcessor;
 
@@ -171,12 +172,31 @@ class ResourcesController extends Controller
             'file' => $request->validation
         ]);
 
-        return response()->json(['status' => $validator->passes()]);
+        if($validator->fails()) return response()->json(['status' => 'failed']);
 
-//        if($this->round->uploadPhoto($request, $round, $user)) return json_encode(['message' => 'Photo uploaded']);
-//        else return json_encode(['message' => 'Unable to upload photo']);
+        $model = $this->modelsNamespace . config('laramanager.resources.' . $request->resource . '.model');
+        $reference = $request->name;
 
+        $filename = $this->form->processFile($request->file('file'), 'files');
 
+        $file = $this->modelsNamespace . 'File';
+        $file = (new $file)->create(['filename' => $filename]);
+
+        $entity = (new $model)->findOrFail($request->entityId);
+        $entity->$reference()->save($file);
+
+        return response()->json(view('laraform::elements.form.displays.file', compact('file'))->render());
+    }
+
+    public function deleteFile(Request $request)
+    {
+        $model = $this->modelsNamespace . 'File';
+        $file = (new $model)->findOrFail($request->id);
+        $file->delete();
+
+        if(Storage::delete('files/' . $file->filename)) return response()->json(['status' => 'ok']);
+
+        return response()->json(['status' => 'failed']);
     }
 
     private function validationRules($fields, $operation)
