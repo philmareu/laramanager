@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="uk-form-row">
-                    <input type="checkbox" value="1"> Remember
+                    <input type="checkbox" value="1" name="remember"> Remember
                 </div>
 
                 <div class="uk-form-row">
