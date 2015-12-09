@@ -18,7 +18,7 @@
 
         <div class="uk-form-row">
             <div class="uk-width-1-6">
-                @include('laraform::elements.form.submit')
+                @include('laraform::elements.form.submit', ['value' => 'Update'])
             </div>
         </div>
 
