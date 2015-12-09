@@ -4,6 +4,8 @@ namespace Philsquare\LaraManager\Http\Controllers;
 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Philsquare\LaraForm\Services\FormProcessor;
 
 class ResourcesController extends Controller
 {
@@ -19,12 +21,15 @@ class ResourcesController extends Controller
 
     protected $model;
 
-    public function __construct(Request $request)
+    protected $form;
+
+    public function __construct(Request $request, FormProcessor $form)
     {
         $this->resource = $request->segment(2);
         $this->fields = config('laramanager.resources.' . $this->resource . '.fields');
         $this->title = config('laramanager.resources.' . $this->resource . '.title');
         $this->modelsNamespace = config('laramanager.models_namespace') . '\\';
+        $this->form = $form;
     }
 
     /**
@@ -158,6 +163,20 @@ class ResourcesController extends Controller
         if($entity->delete()) return response()->json(['status' => 'ok']);
 
         return response()->json(['status' => 'failed']);
+    }
+
+    public function uploads(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'file' => $request->validation
+        ]);
+
+        return response()->json(['status' => $validator->passes()]);
+
+//        if($this->round->uploadPhoto($request, $round, $user)) return json_encode(['message' => 'Photo uploaded']);
+//        else return json_encode(['message' => 'Unable to upload photo']);
+
+
     }
 
     private function validationRules($fields, $operation)
