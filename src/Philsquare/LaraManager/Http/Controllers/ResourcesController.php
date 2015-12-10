@@ -42,9 +42,15 @@ class ResourcesController extends Controller
     {
         $title = $this->title;
         $fields = $this->fields;
+
+        foreach($this->fields as $field)
+        {
+            if(isset($field['list']) && $field['list'] === true) $select[] = $field['name'];
+        }
+
         $resource = $this->resource;
         $model = $this->modelsNamespace . config('laramanager.resources.' . $this->resource . '.model');
-        $entities = $model::all();
+        $entities = $model::select($select)->get();
 
         return view('laramanager::resource.index', compact('resource', 'entities', 'fields', 'title'));
     }
