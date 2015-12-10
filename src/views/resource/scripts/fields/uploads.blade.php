@@ -62,9 +62,6 @@
             type: 'POST',
             data: {_token: csrf, id: fileId},
             success: function(response) {
-
-                console.log(response);
-
                 if(response.status == 'ok') {
                     file.remove();
                 }
