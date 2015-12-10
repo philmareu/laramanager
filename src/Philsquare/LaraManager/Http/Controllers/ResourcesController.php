@@ -4,6 +4,9 @@ namespace Philsquare\LaraManager\Http\Controllers;
 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use Philsquare\LaraForm\Services\FormProcessor;
 
 class ResourcesController extends Controller
 {
@@ -19,12 +22,15 @@ class ResourcesController extends Controller
 
     protected $model;
 
-    public function __construct(Request $request)
+    protected $form;
+
+    public function __construct(Request $request, FormProcessor $form)
     {
         $this->resource = $request->segment(2);
         $this->fields = config('laramanager.resources.' . $this->resource . '.fields');
         $this->title = config('laramanager.resources.' . $this->resource . '.title');
         $this->modelsNamespace = config('laramanager.models_namespace') . '\\';
+        $this->form = $form;
     }
 
     /**
@@ -156,6 +162,42 @@ class ResourcesController extends Controller
 
         $entity = (new $model)->findOrFail($id);
         if($entity->delete()) return response()->json(['status' => 'ok']);
+
+        return response()->json(['status' => 'failed']);
+    }
+
+    public function uploads(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'file' => $request->validation
+        ]);
+
+        if($validator->fails()) return response()->json(['status' => 'failed']);
+
+        $model = $this->modelsNamespace . config('laramanager.resources.' . $request->resource . '.model');
+        $reference = $request->name;
+
+        $filename = $this->form->processFile($request->file('file'), 'files');
+
+        $file = $this->modelsNamespace . 'File';
+        $file = (new $file)->create(['filename' => $filename]);
+
+        $entity = (new $model)->findOrFail($request->entityId);
+        $entity->$reference()->save($file);
+
+        $output['status'] = 'ok';
+        $output['data']['html'] = view('laraform::elements.form.displays.file', compact('file'))->render();
+
+        return response()->json($output);
+    }
+
+    public function deleteFile(Request $request)
+    {
+        $model = $this->modelsNamespace . 'File';
+        $file = (new $model)->findOrFail($request->id);
+        $file->delete();
+
+        if(Storage::delete('files/' . $file->filename)) return response()->json(['status' => 'ok']);
 
         return response()->json(['status' => 'failed']);
     }

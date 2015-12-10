@@ -20,6 +20,9 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], functio
             {
                 resource($resource, 'ResourcesController');
             }
+
+            post('uploads/resource', 'ResourcesController@uploads');
+            post('delete-file', 'ResourcesController@deleteFile');
         }
 
     });

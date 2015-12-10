@@ -39,4 +39,10 @@
 
     @endforeach
 
+    <script>
+        $(function(){
+            $('#upload-drop').before('Files can be added after saving.').hide();
+        });
+    </script>
+
 @endsection
