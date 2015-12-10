@@ -42,23 +42,7 @@ class LaraManagerServiceProvider extends ServiceProvider
     private function assetsToPublish()
     {
         $this->publishes([
-            __DIR__.'/../../../assets/css/styles.css' => public_path('vendor/laramanager/css/styles.css'),
-        ], 'public');
-
-        $this->publishes([
-            __DIR__ . '/../../../assets/css/datatables.css' => public_path('vendor/laramanager/css/datatables.css'),
-        ], 'public');
-
-        $this->publishes([
-            __DIR__ . '/../../../assets/js/scripts.js' => public_path('vendor/laramanager/js/scripts.js'),
-        ], 'public');
-
-        $this->publishes([
-            __DIR__ . '/../../../assets/js/datatables.js' => public_path('vendor/laramanager/js/datatables.js'),
-        ], 'public');
-
-        $this->publishes([
-            __DIR__ . '/../../../assets/fonts/' => public_path('vendor/laramanager/fonts/'),
+            __DIR__ . '/../../../assets/' => public_path('vendor/laramanager/'),
         ], 'public');
 
         $this->publishes([
