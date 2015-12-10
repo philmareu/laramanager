@@ -185,7 +185,10 @@ class ResourcesController extends Controller
         $entity = (new $model)->findOrFail($request->entityId);
         $entity->$reference()->save($file);
 
-        return response()->json(view('laraform::elements.form.displays.file', compact('file'))->render());
+        $output['status'] = 'ok';
+        $output['data']['html'] = view('laraform::elements.form.displays.file', compact('file'))->render();
+
+        return response()->json($output);
     }
 
     public function deleteFile(Request $request)

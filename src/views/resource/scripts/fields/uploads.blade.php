@@ -28,9 +28,11 @@
                 },
 
                 complete: function(response, xhr) {
+
+                    response = $.parseJSON(response);
+
                     if(response.status == 'ok') {
-                        console.log('adding photo');
-                        $('#file-gallery').append(response);
+                        $('#file-gallery').append(response.data.html);
                     }
                 },
 
@@ -49,7 +51,7 @@
     var select = UIkit.uploadSelect($("#upload-select"), settings),
             drop   = UIkit.uploadDrop($("#upload-drop"), settings);
 
-    $('.delete-file').on('click', function(event) {
+    $('#file-gallery').on('click', '.delete-file', function(event) {
         event.preventDefault();
 
         var file = $(this).parents('.file');
@@ -60,6 +62,9 @@
             type: 'POST',
             data: {_token: csrf, id: fileId},
             success: function(response) {
+
+                console.log(response);
+
                 if(response.status == 'ok') {
                     file.remove();
                 }
