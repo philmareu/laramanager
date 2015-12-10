@@ -41,7 +41,7 @@
 
     <script>
         $(function(){
-            $('#upload-drop').before('Files can be added after saving.').hide();
+            $('#upload-drop').before('Files can be added after saving this entry.').hide();
         });
     </script>
 

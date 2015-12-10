@@ -35,7 +35,7 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next)
     {
         if ($this->auth->check() && $this->auth->user()->is_admin === 1) {
-            return redirect('admin/dashboard');
+            return redirect(config('laramanager.home_uri'));
         }
 
         return $next($request);
