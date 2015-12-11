@@ -88,8 +88,22 @@ class ResourcesController extends Controller
         $this->validate($request, $this->validationRules($this->fields, 'store'));
 
         $model = $this->modelsNamespace . config('laramanager.resources.' . $this->resource . '.model');
+        $entity = new $model;
+        $attr = $request->all();
 
-        if((new $model)->create($request->all())) return redirect('admin/' . $this->resource)->with('success', 'Added');
+        foreach($this->fields as $field)
+        {
+            if($field['type'] == 'image')
+            {
+                if($request->hasFile($field['name']))
+                {
+                    $filename = $this->form->processFile($request->file($field['name']), 'images');
+                    $attr[$field['name']] = $filename;
+                }
+            }
+        }
+
+        if($entity->create($attr)) return redirect('admin/' . $this->resource)->with('success', 'Added');
 
         return redirect()->back()->with('failed', 'Unable to save.')->withInput();
     }
@@ -144,14 +158,24 @@ class ResourcesController extends Controller
         $entity = (new $model)->findOrFail($id);
 
         $attributes = $request->all();
+
         foreach($this->fields as $field)
         {
             if($field['type'] == 'checkbox')
             {
                 if(! $request->has($field['name'])) $attributes[$field['name']] = 0;
             }
+
+            if($field['type'] == 'image')
+            {
+                if($request->hasFile($field['name']))
+                {
+                    $filename = $this->form->processFile($request->file($field['name']), 'images', $entity->$field['name']);
+                    $attributes[$field['name']] = $filename;
+                }
+            }
         }
-        
+
         if($entity->update($attributes)) return redirect()->back()->with('success', 'Updated');
 
         return redirect()->back()->with('failed', 'Unable to update.')->withInput();
