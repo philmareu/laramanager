@@ -43,6 +43,7 @@ class ResourcesController extends Controller
         $title = $this->title;
         $fields = $this->fields;
 
+        $select = ['id'];
         foreach($this->fields as $field)
         {
             if(isset($field['list']) && $field['list'] === true) $select[] = $field['name'];
