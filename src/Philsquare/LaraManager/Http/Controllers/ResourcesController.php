@@ -101,6 +101,11 @@ class ResourcesController extends Controller
                     $attr[$field['name']] = $filename;
                 }
             }
+
+            if($field['type'] == 'password')
+            {
+                $attr[$field['name']] = bcrypt($request->get($field['name']));
+            }
         }
 
         if($entity->create($attr)) return redirect('admin/' . $this->resource)->with('success', 'Added');
@@ -173,6 +178,11 @@ class ResourcesController extends Controller
                     $filename = $this->form->processFile($request->file($field['name']), 'images', $entity->$field['name']);
                     $attributes[$field['name']] = $filename;
                 }
+            }
+
+            if($field['type'] == 'password')
+            {
+                $attributes[$field['name']] = bcrypt($request->get($field['name']));
             }
         }
 
