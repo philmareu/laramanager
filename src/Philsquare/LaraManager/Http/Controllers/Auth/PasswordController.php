@@ -33,6 +33,7 @@ class PasswordController extends Controller
     {
         $this->middleware('guest.admin');
         config(['auth.password.email' => 'laramanager::emails.password']);
+        $this->redirectTo = config('laramanager.home_uri');
     }
 
     /**
