@@ -22,7 +22,7 @@ class PasswordController extends Controller
 
     use ResetsPasswords;
 
-    protected $redirectTo;
+    protected $redirectTo = 'admin';
 
     /**
      * Create a new password controller instance.
@@ -31,9 +31,8 @@ class PasswordController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest.admin');
         config(['auth.password.email' => 'laramanager::emails.password']);
-        $this->redirectTo = config('laramanager.home_uri');
     }
 
     /**
