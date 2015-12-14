@@ -175,7 +175,7 @@ class ResourcesController extends Controller
             {
                 if($request->hasFile($field['name']))
                 {
-                    $filename = $this->form->processFile($request->file($field['name']), 'images', $entity->$field['name']);
+                    $filename = $this->form->processFile($request->file($field['name']), 'images', ($entity->$field)['name']);
                     $attributes[$field['name']] = $filename;
                 }
             }
