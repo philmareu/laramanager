@@ -12,7 +12,7 @@
 
         @foreach($fields as $field)
 
-            @include('laraform::elements.form.' . $field['type'], ['field' => array_merge($field, ['value' => $entity->$field['name']])])
+            @include('laraform::elements.form.' . $field['type'], ['field' => array_merge($field, ['value' => $entity->{$field['name']}])])
 
         @endforeach
 
