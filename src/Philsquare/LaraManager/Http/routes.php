@@ -12,7 +12,7 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], functio
 
     Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function()
     {
-        get('/', function() { return redirect(config('laramanager.home_uri')); });
+        get('/', 'AdminController@findHome');
 
         if(! is_null(config('laramanager.resources')))
         {
