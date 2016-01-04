@@ -17,5 +17,7 @@
     }
   },
   "minimum-stability": "stable",
-  "require": {}
+  "require": {
+    "philsquare/laraform": "^1.0"
+  }
 }

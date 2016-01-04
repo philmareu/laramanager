@@ -1,0 +1,58 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "295c5867fe1ced2849709717089a52f7",
+    "content-hash": "825fd59651b003a7ced96f4e82f6689c",
+    "packages": [
+        {
+            "name": "philsquare/laraform",
+            "version": "1.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/philsquare/LaraForm.git",
+                "reference": "4f2520475146f69d782deb15fc64551eaa8fa3ec"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/philsquare/LaraForm/zipball/4f2520475146f69d782deb15fc64551eaa8fa3ec",
+                "reference": "4f2520475146f69d782deb15fc64551eaa8fa3ec",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Philsquare\\LaraForm\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Philsquare LLC",
+                    "email": "hello@philsquare.com",
+                    "homepage": "http://philsquare.com"
+                }
+            ],
+            "description": "Form helper for Laravel applications using UIKit (getuikit.com)",
+            "homepage": "https://github.com/philsquare/LaraForm",
+            "keywords": [
+                "form",
+                "laravel"
+            ],
+            "time": "2015-12-11 16:21:02"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
