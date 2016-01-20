@@ -46,6 +46,26 @@
 
 <script src="{{ asset('vendor/laramanager/js/scripts.js') }}"></script>
 
+<script>
+
+    var funcNum = {{ $funcNum }};
+
+    $(function(){
+
+        $('.select-image').on('click', function(event) {
+
+            event.preventDefault();
+
+            file = $(this);
+            fileUrl = file.attr('href');
+
+            window.opener.CKEDITOR.tools.callFunction(funcNum, fileUrl, '');
+            window.close();
+
+        });
+
+    });
+</script>
 @yield('scripts')
 
 </body>

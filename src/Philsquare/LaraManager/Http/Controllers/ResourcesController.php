@@ -74,7 +74,10 @@ class ResourcesController extends Controller
             if($field['type'] == 'wysiwyg') $hasWysiwyg = true;
         }
 
-        return view('laramanager::resource.create', compact('resource', 'title', 'fields', 'hasWysiwyg'));
+        $model = $this->modelsNamespace . config('laramanager.resources.' . $this->resource . '.model');
+        $entity = (new $model)->create();
+
+        return view('laramanager::resource.create', compact('resource', 'title', 'fields', 'hasWysiwyg', 'entity'));
     }
 
     /**
