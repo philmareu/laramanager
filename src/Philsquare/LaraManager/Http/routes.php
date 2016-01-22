@@ -19,6 +19,12 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], functio
             foreach(config('laramanager.resources') as $resource => $meta)
             {
                 Route::resource($resource, 'ResourcesController');
+
+                Route::get('objects/{resource}/{resourceId}/{objects}/create', 'ObjectsController@create');
+                Route::post('objects/{resource}/{resourceId}/{objects}', 'ObjectsController@store');
+                Route::get('objects/{id}/edit', 'ObjectsController@edit');
+                Route::put('objects/{id}', 'ObjectsController@update');
+                Route::delete('objects/{id}', ['before' => 'ajax', 'uses' => 'ObjectsController@destroy']);
             }
 
 //            Route::post('uploads/resource', 'ResourcesController@uploads');

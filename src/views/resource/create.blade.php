@@ -27,22 +27,22 @@
 
 @section('scripts')
 
-    @if($hasWysiwyg)
-        <script src="{{ asset('vendor/laramanager/js/ckeditor/ckeditor.js') }}"></script>
-    @endif
+    {{--@if($hasWysiwyg)--}}
+        {{--<script src="{{ asset('vendor/laramanager/js/ckeditor/ckeditor.js') }}"></script>--}}
+    {{--@endif--}}
 
-    @foreach($fields as $field)
+    {{--@foreach($fields as $field)--}}
 
-        @if(view()->exists('laramanager::resource.scripts.fields.' . $field['type']))
-            @include('laramanager::resource.scripts.fields.' . $field['type'], $field)
-        @endif
+        {{--@if(view()->exists('laramanager::resource.scripts.fields.' . $field['type']))--}}
+            {{--@include('laramanager::resource.scripts.fields.' . $field['type'], $field)--}}
+        {{--@endif--}}
 
-    @endforeach
+    {{--@endforeach--}}
 
-    <script>
-        $(function(){
-            $('#upload-drop').before('Files can be added after saving this entry.').hide();
-        });
-    </script>
+    {{--<script>--}}
+        {{--$(function(){--}}
+            {{--$('#upload-drop').before('Files can be added after saving this entry.').hide();--}}
+        {{--});--}}
+    {{--</script>--}}
 
 @endsection

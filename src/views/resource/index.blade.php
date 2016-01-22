@@ -43,7 +43,7 @@
                 <td>
                     <div class="uk-grid uk-grid-medium">
                         <div class="uk-width-1-2">
-                            <a href="{{ route('admin.' . $resource . '.edit', $entity->id) }}"><i class="uk-icon-pencil"></i></a>
+                            <a href="{{ route('admin.' . $resource . '.show', $entity->id) }}"><i class="uk-icon-pencil"></i></a>
                         </div>
                         <div class="uk-width-1-2">
                             <a href="#" class="uk-text-danger delete" data-granada-id="{{ $entity->id }}"><i class="uk-icon-trash"></i></a>
