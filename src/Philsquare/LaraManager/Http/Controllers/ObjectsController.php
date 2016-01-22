@@ -1,6 +1,7 @@
 <?php namespace Philsquare\LaraManager\Http\Controllers; 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Philsquare\LaraManager\Models\Object;
 
 class ObjectsController extends Controller {
@@ -57,9 +58,11 @@ class ObjectsController extends Controller {
         return view('laramanager::objects.' . $object->slug . '.edit', compact('resource', 'entity', 'object', 'data'));
     }
 
-    public function update()
+    public function update(Request $request, $resource, $resourceId, $objectableId)
     {
+        DB::table('objectables')->where('id', $objectableId)->update(['data' => serialize($request->only(['text']))]);
 
+        return redirect('admin/' . $resource . '/' . $resourceId);
     }
 
     public function destroy()
