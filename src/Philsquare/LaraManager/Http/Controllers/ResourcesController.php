@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Philsquare\LaraForm\Services\FormProcessor;
+use Philsquare\LaraManager\Models\Object;
 
 class ResourcesController extends Controller
 {
@@ -74,10 +75,7 @@ class ResourcesController extends Controller
             if($field['type'] == 'wysiwyg') $hasWysiwyg = true;
         }
 
-        $model = $this->modelsNamespace . config('laramanager.resources.' . $this->resource . '.model');
-        $entity = (new $model)->create();
-
-        return view('laramanager::resource.create', compact('resource', 'title', 'fields', 'hasWysiwyg', 'entity'));
+        return view('laramanager::resource.create', compact('resource', 'title', 'fields', 'hasWysiwyg'));
     }
 
     /**
@@ -111,9 +109,16 @@ class ResourcesController extends Controller
             }
         }
 
-        if($entity->create($attr)) return redirect('admin/' . $this->resource)->with('success', 'Added');
+        $entity = $entity->create($attr);
 
-        return redirect()->back()->with('failed', 'Unable to save.')->withInput();
+        foreach(config('laramanager.resources.' . $this->resource . '.objects') as $defaultObject)
+        {
+            $object = Object::where('slug', $defaultObject['type'])->first();
+
+            $entity->objects()->attach($object->id, ['label' => $defaultObject['label']]);
+        }
+
+        return redirect('admin/' . $this->resource . '/' . $entity->id)->with('success', 'Added');
     }
 
     /**
@@ -122,9 +127,16 @@ class ResourcesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($resourceId)
     {
-        //
+        $title = $this->title;
+        $fields = $this->fields;
+        $resource = $this->resource;
+        $model = $this->modelsNamespace . config('laramanager.resources.' . $this->resource . '.model');
+        $entity = $model::with('objects')->where('id', $resourceId)->first();
+        $objects = Object::all();
+
+        return view('laramanager::resource.show', compact('title', 'fields', 'resource', 'entity', 'objects'));
     }
 
     /**
