@@ -10,6 +10,8 @@
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <input type="hidden" name="_method" value="PUT">
 
+        @include('laraform::elements.form.text', ['field' => ['name' => 'label', 'value' => $object->pivot->label]])
+
         @yield('form')
 
         <div class="uk-form-row">

@@ -27,12 +27,12 @@
 
         <div class="panel-default" id="item_{{ $object->pivot->id }}">
             <h3 class="uk-panel-title">
-                {{ $object->title }} - Title?
+                {{ $object->pivot->label }}
             </h3>
             <div id="object-{{ $object->pivot->id }}">
                 <div class="panel-body">
                     <div class="btn-group">
-                        <a href="{{ url('admin/objects/' . $resource . '/' . $entity->id . '/' . $object->pivot->id . '/edit') }}" class="btn btn-warning">Edit Object</a>
+                        <a href="{{ url('admin/objects/' . $resource . '/' . $entity->id . '/' . $object->pivot->id . '/edit') }}" class="btn btn-warning">Edit</a>
                     </div>
 
                     <hr>
@@ -55,8 +55,9 @@
 
         <div class="uk-dropdown uk-dropdown-small">
             <ul class="uk-nav uk-nav-dropdown">
-                <li><a href="{{ url('admin/objects/' . $resource . '/' . $entity->id . '/1/create') }}">Text</a></li>
-                <li><a href="">WYSIWYG</a></li>
+                @foreach($objects as $object)
+                    <li><a href="{{ url('admin/objects/' . $resource . '/' . $entity->id . '/' . $object->id . '/create') }}">Text</a></li>
+                @endforeach
             </ul>
         </div>
 

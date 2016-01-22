@@ -1,4 +1,4 @@
-@extends('laramanager::objects.create.wrapper')
+@extends('laramanager::objects.wrappers.create')
 
 @section('form')
 

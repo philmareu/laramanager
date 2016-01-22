@@ -111,11 +111,11 @@ class ResourcesController extends Controller
 
         $entity = $entity->create($attr);
 
-        foreach(config('laramanager.resources.' . $this->resource . '.objects') as $object)
+        foreach(config('laramanager.resources.' . $this->resource . '.objects') as $defaultObject)
         {
-            $object = Object::where('slug', $object['type'])->first();
+            $object = Object::where('slug', $defaultObject['type'])->first();
 
-            $entity->objects()->attach($object->id);
+            $entity->objects()->attach($object->id, ['label' => $defaultObject['label']]);
         }
 
         return redirect('admin/' . $this->resource . '/' . $entity->id)->with('success', 'Added');
@@ -134,8 +134,9 @@ class ResourcesController extends Controller
         $resource = $this->resource;
         $model = $this->modelsNamespace . config('laramanager.resources.' . $this->resource . '.model');
         $entity = $model::with('objects')->where('id', $resourceId)->first();
+        $objects = Object::all();
 
-        return view('laramanager::resource.show', compact('title', 'fields', 'resource', 'entity'));
+        return view('laramanager::resource.show', compact('title', 'fields', 'resource', 'entity', 'objects'));
     }
 
     /**
