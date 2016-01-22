@@ -22,6 +22,18 @@ class AddObjectData extends Migration
             'description' => 'Basic text field'
         ]);
 
+        Object::create([
+            'title' => 'WYSIWYG',
+            'slug' => 'wysiwyg',
+            'description' => 'Full editor'
+        ]);
+
+        Object::create([
+            'title' => 'Photo Gallery',
+            'slug' => 'photo_gallery',
+            'description' => 'Capture photos for the use in a gallery, slider, etc.'
+        ]);
+
         Model::reguard();
     }
 

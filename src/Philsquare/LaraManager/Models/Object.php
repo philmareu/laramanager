@@ -9,7 +9,8 @@ class Object extends Model {
     public function data($key)
     {
         $data = unserialize($this->pivot->data);
-        return isset($data[$key]) ? $data[$key] : '';
+
+        return isset($data['data'][$key]) ? $data['data'][$key] : '';
     }
 
 }

@@ -17,6 +17,7 @@ class CreateObjectableTable extends Migration
             $table->unsignedInteger('object_id');
             $table->unsignedInteger('objectable_id');
             $table->string('objectable_type');
+            $table->string('label');
             $table->tinyInteger('ordinal');
             $table->text('data');
             $table->timestamps();

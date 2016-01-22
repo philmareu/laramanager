@@ -2,10 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Laradev\Models\File;
 use Philsquare\LaraForm\Services\FormProcessor;
 use Philsquare\LaraManager\Http\Requests\UploadFileRequest;
 use Philsquare\LaraManager\Http\Requests\UploadImageRequest;
+use Philsquare\LaraManager\Models\File;
 
 class FilesController extends Controller {
 
@@ -28,13 +28,13 @@ class FilesController extends Controller {
     {
         $filename = $this->formProcessor->processFile($request->file('file'), 'files');
 
-        $file = config('laramanager.models_namespace') . '\\' . 'File';
-        $file = (new $file)->create(['filename' => $filename, 'type' => 'image']);
-
-        Log::info($file);
+        $file = File::create(['filename' => $filename, 'type' => 'image']);
 
         $output['status'] = 'ok';
-        $output['data']['html'] = view('laramanager::browser.file', compact('file'))->render();
+        $output['data'] = [
+            'html' => view('laramanager::browser.file', compact('file'))->render(),
+            'image' => $file
+        ];
 
         return response()->json($output);
     }

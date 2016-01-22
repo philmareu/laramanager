@@ -33,6 +33,5 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], functio
 
         Route::get('images/browser', 'FilesController@imageBrowser');
         Route::post('files/upload', 'FilesController@upload');
-
     });
 });

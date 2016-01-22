@@ -38,7 +38,7 @@ class ObjectsController extends Controller {
 
         $object = Object::find($objectId);
 
-        $entity->objects()->attach($object->id, ['label' => $request->label, 'ordinal' => 1, 'data' => serialize($request->only(['text']))]);
+        $entity->objects()->attach($object->id, ['label' => $request->label, 'ordinal' => 1, 'data' => serialize($request->only(['data']))]);
 
         return redirect('admin/' . $resource . '/' . $resourceId);
     }
@@ -60,7 +60,7 @@ class ObjectsController extends Controller {
 
     public function update(Request $request, $resource, $resourceId, $objectableId)
     {
-        DB::table('objectables')->where('id', $objectableId)->update(['label' => $request->label, 'data' => serialize($request->only(['text']))]);
+        DB::table('objectables')->where('id', $objectableId)->update(['label' => $request->label, 'data' => serialize($request->only(['data']))]);
 
         return redirect('admin/' . $resource . '/' . $resourceId);
     }

@@ -2,6 +2,6 @@
 
 @section('form')
 
-    @include('laraform::elements.form.text', ['field' => ['name' => 'text']])
+    @include('laraform::elements.form.text', ['field' => ['name' => 'data[text]', 'label' => 'Text']])
 
 @endsection
