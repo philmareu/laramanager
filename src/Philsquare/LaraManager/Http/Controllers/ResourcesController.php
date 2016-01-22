@@ -129,7 +129,7 @@ class ResourcesController extends Controller
      */
     public function show($resourceId)
     {
-        $title = $this->title;
+        $title = $this->title . ' > View';
         $fields = $this->fields;
         $resource = $this->resource;
         $model = $this->modelsNamespace . config('laramanager.resources.' . $this->resource . '.model');
