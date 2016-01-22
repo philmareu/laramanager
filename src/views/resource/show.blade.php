@@ -32,7 +32,7 @@
             <div id="object-{{ $object->pivot->id }}">
                 <div class="panel-body">
                     <div class="btn-group">
-                        <a href="{{ url('admin/objects/' . $object->id . '/edit') }}" class="btn btn-warning">Edit Object</a>
+                        <a href="{{ url('admin/objects/' . $resource . '/' . $entity->id . '/' . $object->pivot->id . '/edit') }}" class="btn btn-warning">Edit Object</a>
                     </div>
 
                     <hr>

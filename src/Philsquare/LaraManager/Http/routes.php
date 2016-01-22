@@ -22,8 +22,8 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], functio
 
                 Route::get('objects/{resource}/{resourceId}/{objects}/create', 'ObjectsController@create');
                 Route::post('objects/{resource}/{resourceId}/{objects}', 'ObjectsController@store');
-                Route::get('objects/{id}/edit', 'ObjectsController@edit');
-                Route::put('objects/{id}', 'ObjectsController@update');
+                Route::get('objects/{resource}/{resourceId}/{id}/edit', 'ObjectsController@edit');
+                Route::put('objects/{resource}/{resourceId}/{id}', 'ObjectsController@update');
                 Route::delete('objects/{id}', ['before' => 'ajax', 'uses' => 'ObjectsController@destroy']);
             }
 

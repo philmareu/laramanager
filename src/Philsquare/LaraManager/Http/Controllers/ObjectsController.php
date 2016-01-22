@@ -12,7 +12,12 @@ class ObjectsController extends Controller {
 
         $object = Object::find($objectId);
 
-        return view('laramanager::objects.create.' . $object->slug, compact('resource', 'entity', 'object'));
+        if(view()->exists('vendor/laramanager/objects/' . $object->slug . '/create'))
+        {
+            return view('vendor/laramanager/objects/' . $object->slug . '/create', compact('resource', 'entity', 'object'));
+        }
+
+        return view('laramanager::objects.' . $object->slug . '.create', compact('resource', 'entity', 'object'));
     }
 
     public function store(Request $request, $resource, $resourceId, $objectId)
@@ -37,9 +42,19 @@ class ObjectsController extends Controller {
         return redirect('admin/' . $resource . '/' . $resourceId);
     }
 
-    public function edit()
+    public function edit($resource, $resourceId, $objectableId)
     {
+        $model = config('laramanager.models_namespace') . '\\' . config('laramanager.resources.' . $resource . '.model');
+        $entity = $model::find($resourceId);
 
+        $object = $entity->objects()->where('objectables.id', 6)->first();
+
+        if(view()->exists('vendor/laramanager/objects/' . $object->slug . '/edit'))
+        {
+            return view('vendor/laramanager/objects/' . $object->slug . '/edit', compact('resource', 'entity', 'object'));
+        }
+
+        return view('laramanager::objects.' . $object->slug . '.edit', compact('resource', 'entity', 'object', 'data'));
     }
 
     public function update()
