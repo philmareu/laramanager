@@ -9,8 +9,11 @@
 
     <div id="file-gallery" class="uk-grid">
         @foreach($object->data('images') as $image)
-            <img src="{{ url('images/small/' . $image) }}" alt=""/>
-            <input type="hidden" name="data[images][]" value="{{ $image }}">
+            <div class="file">
+                <img src="{{ url('images/small/' . $image) }}" alt=""/>
+                <input type="hidden" name="data[images][]" value="{{ $image }}">
+                <button class="delete-file">Delete</button>
+            </div>
         @endforeach
     </div>
 
