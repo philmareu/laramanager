@@ -18,10 +18,15 @@ File Browser
     <div id="file-gallery" class="uk-grid">
         @each('laramanager::browser.file', $files, 'file')
     </div>
+
+    {!! $files->render() !!}
 @endsection
 
 @section('scripts')
     <script>
+
+        $('.pagination').attr('class', 'uk-pagination');
+
         var progressbar = $("#progressbar"),
                 bar         = progressbar.find('.uk-progress-bar'),
                 settings    = {
