@@ -33,7 +33,7 @@ class FilesController extends Controller {
         $output['status'] = 'ok';
         $output['data'] = [
             'html' => view('laramanager::browser.file', compact('file'))->render(),
-            'image' => $file
+            'file' => $file
         ];
 
         return response()->json($output);
