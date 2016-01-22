@@ -21,24 +21,23 @@
 </head>
 <body>
 
-<div class="uk-grid uk-grid-collapse">
-    <div class="uk-width-1-6 uk-contrast uk-height-viewport" id="sidebar">
-        @yield('sidebar', '<p>&nbsp;</p>')
-    </div>
-    <div class="uk-width-5-6" id="primary-content-area">
+<div class="uk-grid">
+    <div class="uk-width-1-1" id="primary-content-area">
 
-        <div class="title-bar uk-container">
-            <div class="uk-grid uk-grid-collapse uk-flex-middle">
-                <div class="uk-width-1-2">
-                    <span class="title">@yield('title')</span>
-                </div>
-                <div class="uk-width-1-2">
-                    @yield('actions')
+        <div class="title-bar">
+            <div class="uk-container uk-container-center">
+                <div class="uk-grid uk-grid-collapse uk-flex-middle">
+                    <div class="uk-width-1-2">
+                        <span class="title">@yield('title')</span>
+                    </div>
+                    <div class="uk-width-1-2">
+                        @yield('actions')
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="uk-container" id="secondary-content-area">
+        <div class="uk-container uk-container-center" id="secondary-content-area">
             @yield('content')
         </div>
     </div>

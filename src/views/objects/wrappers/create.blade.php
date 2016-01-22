@@ -21,3 +21,13 @@
     </form>
 
 @endsection
+
+@section('scripts')
+
+    @if(view()->exists('vendor.laramanager.objects.' . $object->slug . '/scripts'))
+        @include('vendor.laramanager.objects.' . $object->slug . '/scripts')
+    @elseif(view()->exists('laramanager::objects.' . $object->slug . '/scripts'))
+        @include('laramanager::objects.' . $object->slug . '/scripts')
+    @endif
+
+@endsection

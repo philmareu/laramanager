@@ -56,7 +56,7 @@
         <div class="uk-dropdown uk-dropdown-small">
             <ul class="uk-nav uk-nav-dropdown">
                 @foreach($objects as $object)
-                    <li><a href="{{ url('admin/objects/' . $resource . '/' . $entity->id . '/' . $object->id . '/create') }}">Text</a></li>
+                    <li><a href="{{ url('admin/objects/' . $resource . '/' . $entity->id . '/' . $object->id . '/create') }}">{{ $object->title }}</a></li>
                 @endforeach
             </ul>
         </div>

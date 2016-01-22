@@ -1,7 +1,7 @@
 @extends('laramanager::layouts.browser')
 
 @section('title')
-Image Browser
+File Browser
 @endsection
 
 @section('content')
@@ -15,7 +15,7 @@ Image Browser
         <div class="uk-progress-bar" style="width: 0%;">...</div>
     </div>
 
-    <div id="file-gallery">
+    <div id="file-gallery" class="uk-grid">
         @each('laramanager::browser.file', $files, 'file')
     </div>
 @endsection
