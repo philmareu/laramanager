@@ -16,6 +16,7 @@
 
         <div class="uk-form-row">
             @include('laraform::elements.form.submit')
+            <a href="{{ url('admin/' . $resource . '/' . $entity->id) }}">Cancel</a>
         </div>
     </form>
 	
