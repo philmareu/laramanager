@@ -48,7 +48,7 @@ class ObjectsController extends Controller {
         $model = config('laramanager.models_namespace') . '\\' . config('laramanager.resources.' . $resource . '.model');
         $entity = $model::find($resourceId);
 
-        $object = $entity->objects()->where('objectables.id', 6)->first();
+        $object = $entity->objects()->where('objectables.id', $objectableId)->first();
 
         if(view()->exists('vendor/laramanager/objects/' . $object->slug . '/edit'))
         {
