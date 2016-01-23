@@ -13,7 +13,7 @@ CKEDITOR.editorConfig = function( config ) {
         { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
         { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl' ] },
         { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
-        { name: 'insert', items: [ 'Table', 'HorizontalRule', 'Iframe' ] },
+        { name: 'insert', items: [ 'Image', 'Table', 'HorizontalRule', 'Iframe' ] },
         { name: 'styles', items: [ 'Format' ] },
         { name: 'tools', items: [ 'Maximize', 'ShowBlocks' ] }
     ];
