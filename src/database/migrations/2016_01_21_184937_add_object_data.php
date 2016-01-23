@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\DB;
 use Philsquare\LaraManager\Models\Object;
