@@ -7,11 +7,9 @@
 @section('content')
 
     @foreach($fields as $field)
-        @if(isset($field['list']) && $field['list'] === true)
-            <td>
-                @include('laramanager::resource.displays.fields.' . $field['type'])
-            </td>
-        @endif
+        <td>
+            @include('laramanager::resource.displays.fields.' . $field['type'])
+        </td>
     @endforeach
 
     <form action="{{ url('admin/' . $resource . '/' . $entity->id) }}" method="POST">
