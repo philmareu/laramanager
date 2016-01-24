@@ -34,6 +34,12 @@ class AddObjectData extends Migration
             'description' => 'Capture photos for the use in a gallery, slider, etc.'
         ]);
 
+        Object::create([
+            'title' => 'Embed',
+            'slug' => 'embed',
+            'description' => 'Embed something...'
+        ]);
+
         Model::reguard();
     }
 

@@ -27,7 +27,7 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], functio
                 Route::delete('objects/{id}', ['before' => 'ajax', 'uses' => 'ObjectsController@destroy']);
             }
 
-//            Route::post('uploads/resource', 'ResourcesController@uploads');
+            Route::post('uploads/resource', 'ResourcesController@uploads');
             Route::post('delete-file', 'ResourcesController@deleteFile');
         }
 
