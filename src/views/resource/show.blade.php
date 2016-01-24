@@ -7,9 +7,9 @@
 @section('content')
 
     @foreach($fields as $field)
-        <td>
+        <div class="uk-margin-bottom">
             @include('laramanager::resource.displays.fields.' . $field['type'])
-        </td>
+        </div>
     @endforeach
 
     <form action="{{ url('admin/' . $resource . '/' . $entity->id) }}" method="POST">
