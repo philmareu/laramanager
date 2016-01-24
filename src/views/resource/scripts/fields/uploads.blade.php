@@ -60,7 +60,7 @@
         $.ajax({
             url: SITE_URL + '/admin/delete-file',
             type: 'POST',
-            data: {_token: csrf, id: fileId},
+            data: {_token: csrf, id: fileId, resource: resource, entityId: entityId},
             success: function(response) {
                 if(response.status == 'ok') {
                     file.remove();
