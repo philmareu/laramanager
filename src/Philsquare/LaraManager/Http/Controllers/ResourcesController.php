@@ -119,6 +119,8 @@ class ResourcesController extends Controller
             $entity->objects()->attach($object->id, ['label' => $defaultObject['label']]);
         }
 
+        if(method_exists($model, 'objects')) return redirect('admin/' . $this->resource . '/' . $entity->id)->with('success', 'Added');
+
         return redirect('admin/' . $this->resource . '/' . $entity->id)->with('success', 'Added');
     }
 
@@ -175,7 +177,6 @@ class ResourcesController extends Controller
         $this->validate($request, $this->validationRules($this->fields, 'update'));
 
         $model = $this->modelsNamespace . config('laramanager.resources.' . $this->resource . '.model');
-
         $entity = (new $model)->findOrFail($id);
 
         $attributes = $request->all();
@@ -201,6 +202,8 @@ class ResourcesController extends Controller
                 $attributes[$field['name']] = bcrypt($request->get($field['name']));
             }
         }
+
+        if(method_exists($model, 'objects')) return redirect('admin/' . $this->resource . '/' . $entity->id)->with('success', 'Updated');
 
         if($entity->update($attributes)) return redirect()->back()->with('success', 'Updated');
 
