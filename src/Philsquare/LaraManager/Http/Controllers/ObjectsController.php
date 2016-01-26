@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Philsquare\LaraManager\Models\File;
 use Philsquare\LaraManager\Models\Object;
 
 class ObjectsController extends Controller {
