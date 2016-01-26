@@ -12,7 +12,7 @@
 
         @foreach($fields as $field)
 
-            @include('laraform::elements.form.' . $field['type'], ['field' => array_merge($field, ['value' => $entity->{$field['name']}])])
+            @include('laramanager::fields.' . $field['type'] . '.field', ['field' => array_merge($field, ['value' => $entity->{$field['name']}])])
 
         @endforeach
 
@@ -23,6 +23,8 @@
         </div>
 
     </form>
+
+    @include('laramanager::browser.modals.single')
 
 @endsection
 
@@ -39,5 +41,27 @@
         @endif
 
     @endforeach
+
+    <script>
+        $('#modal-image-browser-multiple').on('click', 'img.select-image', function(event) {
+
+            var img = $(this).parent().addClass('selected-file');
+
+            $('#image-list .uk-grid').append(img);
+
+        });
+
+        $('#modal-image-browser-single').on('click', 'img.select-image', function(event) {
+
+            var img = $(this).clone();
+            var field = $('.field-image');
+
+            field.find('.image').html(img);
+            field.find('.file_id').attr('value', img.attr('data-laramanager-file-id'));
+
+            UIkit.modal("#modal-image-browser-single").hide();
+
+        });
+    </script>
 
 @endsection

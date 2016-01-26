@@ -8,7 +8,7 @@
 
     @foreach($fields as $field)
         <div class="uk-margin-bottom">
-            @include('laramanager::resource.displays.fields.' . $field['type'])
+            @include('laramanager::fields.' . $field['type'] . '.display')
         </div>
     @endforeach
 
