@@ -164,7 +164,9 @@ class ResourcesController extends Controller
             if($field['type'] == 'wysiwyg') $hasWysiwyg = true;
         }
 
-        return view('laramanager::resource.edit', compact('title', 'fields', 'resource', 'entity', 'hasWysiwyg'));
+        $files = File::latest()->get();
+
+        return view('laramanager::resource.edit', compact('title', 'fields', 'resource', 'entity', 'hasWysiwyg', 'files'));
     }
 
     /**
@@ -205,11 +207,11 @@ class ResourcesController extends Controller
             }
         }
 
+        $entity->update($attributes);
+
         if(method_exists($model, 'objects')) return redirect('admin/' . $this->resource . '/' . $entity->id)->with('success', 'Updated');
 
-        if($entity->update($attributes)) return redirect()->back()->with('success', 'Updated');
-
-        return redirect()->back()->with('failed', 'Unable to update.')->withInput();
+        return redirect()->back()->with('success', 'Updated');
     }
 
     /**
