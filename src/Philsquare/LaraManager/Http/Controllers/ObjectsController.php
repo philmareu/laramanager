@@ -13,12 +13,14 @@ class ObjectsController extends Controller {
 
         $object = Object::find($objectId);
 
+        $files = File::latest()->get();
+
         if(view()->exists('vendor/laramanager/objects/' . $object->slug . '/create'))
         {
-            return view('vendor/laramanager/objects/' . $object->slug . '/create', compact('resource', 'entity', 'object'));
+            return view('vendor/laramanager/objects/' . $object->slug . '/create', compact('resource', 'entity', 'object', 'files'));
         }
 
-        return view('laramanager::objects.' . $object->slug . '.create', compact('resource', 'entity', 'object'));
+        return view('laramanager::objects.' . $object->slug . '.create', compact('resource', 'entity', 'object', 'files'));
     }
 
     public function store(Request $request, $resource, $resourceId, $objectId)
@@ -50,12 +52,14 @@ class ObjectsController extends Controller {
 
         $object = $entity->objects()->where('objectables.id', $objectableId)->first();
 
+        $files = File::latest()->get();
+
         if(view()->exists('vendor/laramanager/objects/' . $object->slug . '/edit'))
         {
-            return view('vendor/laramanager/objects/' . $object->slug . '/edit', compact('resource', 'entity', 'object'));
+            return view('vendor/laramanager/objects/' . $object->slug . '/edit', compact('resource', 'entity', 'object', 'files'));
         }
 
-        return view('laramanager::objects.' . $object->slug . '.edit', compact('resource', 'entity', 'object', 'data'));
+        return view('laramanager::objects.' . $object->slug . '.edit', compact('resource', 'entity', 'object', 'data', 'files'));
     }
 
     public function update(Request $request, $resource, $resourceId, $objectableId)
