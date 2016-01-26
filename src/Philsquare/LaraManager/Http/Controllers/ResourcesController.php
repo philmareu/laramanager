@@ -76,7 +76,7 @@ class ResourcesController extends Controller
             if($field['type'] == 'wysiwyg') $hasWysiwyg = true;
         }
 
-        $files = File::all();
+        $files = File::latest()->get();
 
         return view('laramanager::resource.create', compact('resource', 'title', 'fields', 'hasWysiwyg', 'files'));
     }

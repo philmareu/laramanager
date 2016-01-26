@@ -30,7 +30,7 @@
                     response = $.parseJSON(response);
 
                     if(response.status == 'ok') {
-                        $('#file-gallery').append(response.data.html);
+                        $('#file-gallery').prepend(response.data.html);
                     }
                 },
 
