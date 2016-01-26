@@ -1,0 +1,1 @@
+@include('laraform::elements.form.password', compact('field'))

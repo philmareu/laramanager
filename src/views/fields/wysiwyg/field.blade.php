@@ -1,0 +1,1 @@
+@include('laraform::elements.form.wysiwyg', compact('field'))
