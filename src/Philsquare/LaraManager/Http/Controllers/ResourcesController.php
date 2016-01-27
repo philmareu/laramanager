@@ -55,7 +55,10 @@ class ResourcesController extends Controller
         $model = $this->modelsNamespace . config('laramanager.resources.' . $this->resource . '.model');
         $entities = $model::select($select)->get();
 
-        return view('laramanager::resource.index', compact('resource', 'entities', 'fields', 'title'));
+        $hasObjects = false;
+        if(method_exists($model, 'objects')) $hasObjects = true;
+
+        return view('laramanager::resource.index', compact('resource', 'entities', 'fields', 'title', 'hasObjects'));
     }
 
     /**
@@ -123,7 +126,7 @@ class ResourcesController extends Controller
 
         if(method_exists($model, 'objects')) return redirect('admin/' . $this->resource . '/' . $entity->id)->with('success', 'Added');
 
-        return redirect('admin/' . $this->resource . '/' . $entity->id)->with('success', 'Added');
+        return redirect('admin/' . $this->resource)->with('success', 'Added');
     }
 
     /**
