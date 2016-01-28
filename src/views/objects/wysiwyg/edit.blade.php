@@ -2,6 +2,6 @@
 
 @section('form')
 
-    @include('laraform::elements.form.wysiwyg', ['field' => ['name' => 'text', 'id' => 'editor', 'value' => $object->data('text')]])
+    @include('laraform::elements.form.wysiwyg', ['field' => ['name' => 'data[text]', 'id' => 'editor', 'value' => $object->data('text')]])
 
 @endsection
