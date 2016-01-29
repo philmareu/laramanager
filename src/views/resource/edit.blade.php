@@ -36,32 +36,32 @@
 
     @foreach($fields as $field)
 
-        @if(view()->exists('laramanager::resource.scripts.fields.' . $field['type']))
-            @include('laramanager::resource.scripts.fields.' . $field['type'], $field)
+        @if(view()->exists('laramanager::fields.' . $field['type'] . '/scripts'))
+            @include('laramanager::fields.' . $field['type'] . '/scripts', $field)
         @endif
 
     @endforeach
 
-    <script>
-        $('#modal-image-browser-multiple').on('click', 'img.select-image', function(event) {
+    {{--<script>--}}
+        {{--$('#modal-image-browser-multiple').on('click', 'img.select-image', function(event) {--}}
 
-            var img = $(this).parent().addClass('selected-file');
+            {{--var img = $(this).parent().addClass('selected-file');--}}
 
-            $('#image-list .uk-grid').append(img);
+            {{--$('#image-list .uk-grid').append(img);--}}
 
-        });
+        {{--});--}}
 
-        $('#modal-image-browser-single').on('click', 'img.select-image', function(event) {
+        {{--$('#modal-image-browser-single').on('click', 'img.select-image', function(event) {--}}
 
-            var img = $(this).clone();
-            var field = $('.field-image');
+            {{--var img = $(this).clone();--}}
+            {{--var field = $('.field-image');--}}
 
-            field.find('.image').html(img);
-            field.find('.file_id').attr('value', img.attr('data-laramanager-file-id'));
+            {{--field.find('.image').html(img);--}}
+            {{--field.find('.file_id').attr('value', img.attr('data-laramanager-file-id'));--}}
 
-            UIkit.modal("#modal-image-browser-single").hide();
+            {{--UIkit.modal("#modal-image-browser-single").hide();--}}
 
-        });
-    </script>
+        {{--});--}}
+    {{--</script>--}}
 
 @endsection
