@@ -52,7 +52,7 @@ class ResourcesController extends Controller
         }
 
         $resource = $this->resource;
-        $model = $this->modelsNamespace . config('laramanager.resources.' . $this->resource . '.model');
+        $model = config('laramanager.resources.' . $this->resource . '.model');
         $entities = $model::select($select)->get();
 
         $hasObjects = false;
@@ -94,7 +94,7 @@ class ResourcesController extends Controller
     {
         $this->validate($request, $this->validationRules($this->fields, 'store'));
 
-        $model = $this->modelsNamespace . config('laramanager.resources.' . $this->resource . '.model');
+        $model = config('laramanager.resources.' . $this->resource . '.model');
         $entity = new $model;
         $attr = $request->all();
 
@@ -140,7 +140,7 @@ class ResourcesController extends Controller
         $title = $this->title . ' > View';
         $fields = $this->fields;
         $resource = $this->resource;
-        $model = $this->modelsNamespace . config('laramanager.resources.' . $this->resource . '.model');
+        $model = config('laramanager.resources.' . $this->resource . '.model');
         $entity = $model::with('objects')->where('id', $resourceId)->first();
         $objects = Object::all();
 
@@ -159,7 +159,7 @@ class ResourcesController extends Controller
         $title = $this->title;
         $fields = $this->fields;
         $resource = $this->resource;
-        $model = $this->modelsNamespace . config('laramanager.resources.' . $this->resource . '.model');
+        $model = config('laramanager.resources.' . $this->resource . '.model');
         $entity = $model::find($resourceId);
 
         foreach($fields as $field)
@@ -183,7 +183,7 @@ class ResourcesController extends Controller
     {
         $this->validate($request, $this->validationRules($this->fields, 'update'));
 
-        $model = $this->modelsNamespace . config('laramanager.resources.' . $this->resource . '.model');
+        $model = config('laramanager.resources.' . $this->resource . '.model');
         $entity = (new $model)->findOrFail($id);
 
         $attributes = $request->all();
@@ -225,7 +225,7 @@ class ResourcesController extends Controller
      */
     public function destroy($id)
     {
-        $model = $this->modelsNamespace . config('laramanager.resources.' . $this->resource . '.model');
+        $model = config('laramanager.resources.' . $this->resource . '.model');
 
         $entity = (new $model)->findOrFail($id);
         if($entity->delete()) return response()->json(['status' => 'ok']);
@@ -241,7 +241,7 @@ class ResourcesController extends Controller
 
         if($validator->fails()) return response()->json(['status' => 'failed']);
 
-        $model = $this->modelsNamespace . config('laramanager.resources.' . $request->resource . '.model');
+        $model = config('laramanager.resources.' . $request->resource . '.model');
         $reference = $request->name;
 
         $filename = $this->form->processFile($request->file('file'), 'files');
@@ -259,7 +259,7 @@ class ResourcesController extends Controller
 
     public function deleteFile(Request $request)
     {
-        $model = $this->modelsNamespace . config('laramanager.resources.' . $request->resource . '.model');
+        $model = config('laramanager.resources.' . $request->resource . '.model');
         $entity = (new $model)->findOrFail($request->entityId);
 
         $entity->photos()->detach($request->id);

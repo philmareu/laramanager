@@ -10,6 +10,11 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], functio
     Route::get('admin/auth/password/reset/{token}', 'Auth\PasswordController@getReset');
     Route::post('admin/auth/password/reset', 'Auth\PasswordController@postReset');
 
+    foreach(\Philsquare\LaraManager\Models\Redirect::all() as $redirect)
+    {
+        Route::get($redirect->from, 'RedirectsController@redirect');
+    }
+
     Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function()
     {
         Route::get('/', 'AdminController@findHome');

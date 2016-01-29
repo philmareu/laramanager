@@ -9,7 +9,7 @@ class ObjectsController extends Controller {
 
     public function create($resource, $resourceId, $objectId)
     {
-        $model = config('laramanager.models_namespace') . '\\' . config('laramanager.resources.' . $resource . '.model');
+        $model = config('laramanager.resources.' . $resource . '.model');
         $entity = $model::find($resourceId);
 
         $object = Object::find($objectId);
@@ -36,7 +36,7 @@ class ObjectsController extends Controller {
 //            return Redirect::back()->withErrors($this->validator->getErrors())->withInput();
 //        }
 
-        $model = config('laramanager.models_namespace') . '\\' . config('laramanager.resources.' . $resource . '.model');
+        $model = config('laramanager.resources.' . $resource . '.model');
         $entity = $model::find($resourceId);
 
         $object = Object::find($objectId);
@@ -48,7 +48,7 @@ class ObjectsController extends Controller {
 
     public function edit($resource, $resourceId, $objectableId)
     {
-        $model = config('laramanager.models_namespace') . '\\' . config('laramanager.resources.' . $resource . '.model');
+        $model = config('laramanager.resources.' . $resource . '.model');
         $entity = $model::find($resourceId);
 
         $object = $entity->objects()->where('objectables.id', $objectableId)->first();
