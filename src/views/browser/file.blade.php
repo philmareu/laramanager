@@ -2,5 +2,5 @@
     <img src="{{ url('images/medium/' . $file->filename) }}" alt=""
          data-laramanager-file-id="{{ $file->id }}"
          data-laramanager-filename="{{ $file->filename }}"
-         class="select-image">
+         class="unselected-image">
 </div>

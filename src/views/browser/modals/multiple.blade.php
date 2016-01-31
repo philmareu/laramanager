@@ -21,11 +21,11 @@
 
         <div class="uk-modal-footer uk-text-right">
             <div id="image-list" class="uk-placeholder">
-                <div class="uk-grid">
+                <div class="uk-grid uk-sortable images" data-uk-sortable>
                 </div>
             </div>
-            <button type="button" class="uk-button">Cancel</button>
-            <button type="button" class="uk-button uk-button-primary">Done</button>
+            <button type="button" class="uk-button cancel">Cancel</button>
+            <button type="button" class="uk-button uk-button-primary done">Done</button>
         </div>
     </div>
 </div>

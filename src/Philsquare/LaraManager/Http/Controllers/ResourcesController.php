@@ -208,6 +208,11 @@ class ResourcesController extends Controller
             {
                 $attributes[$field['name']] = bcrypt($request->get($field['name']));
             }
+
+            if($field['type'] == 'uploads')
+            {
+                $attributes[$field['name']] = serialize($request->get($field['name']));
+            }
         }
 
         $entity->update($attributes);
