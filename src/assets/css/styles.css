@@ -2668,14 +2668,14 @@ select.uk-form-width-mini {
   overflow: visible;
   /* 5 */
   font: inherit;
-  color: #444;
+  color: #5C4E46;
   /* 6 */
   text-transform: none;
   /* 7 */
   display: inline-block;
   box-sizing: border-box;
   padding: 0 12px;
-  background: #eee;
+  background: rgba(229, 145, 78, 0.3);
   vertical-align: middle;
   /* 8 */
   line-height: 30px;
@@ -2698,8 +2698,8 @@ select.uk-form-width-mini {
  */
 .uk-button:hover,
 .uk-button:focus {
-  background-color: #f5f5f5;
-  color: #444;
+  background-color: rgba(229, 145, 78, 0.5);
+  color: #5C4E46;
   /* 2 */
   outline: none;
   /* 3 */
