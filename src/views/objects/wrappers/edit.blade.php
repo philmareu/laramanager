@@ -1,7 +1,7 @@
 @extends('laramanager::layouts.default')
 
 @section('title')
-    ** Need Title **
+    Edit Object
 @stop
 
 @section('content')
