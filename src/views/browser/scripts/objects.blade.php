@@ -97,13 +97,12 @@
 
     });
 
-    $('#modal-image-browser-single').on('click', 'img.select-image', function(event) {
+    $('#modal-image-browser-single').on('click', 'img.unselected-image', function(event) {
 
         var img = $(this).clone();
-        var field = $('.field-image');
 
-        field.find('.image').html(img);
-        field.find('.file_id').attr('value', img.attr('data-laramanager-file-id'));
+        $('.image').html(img);
+        $('.file_id').attr('value', img.attr('data-laramanager-file-id'));
 
         UIkit.modal("#modal-image-browser-single").hide();
 
