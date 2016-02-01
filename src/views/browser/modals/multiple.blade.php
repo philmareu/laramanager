@@ -14,13 +14,13 @@
         </div>
 
         <div class="uk-overflow-container">
-            <div id="file-gallery" class="uk-grid">
-                @each('laramanager::browser.file', $files, 'file')
+            <div id="image-browser" class="uk-grid">
+                @each('laramanager::browser.file', $images, 'file')
             </div>
         </div>
 
         <div class="uk-modal-footer uk-text-right">
-            <div id="image-list" class="uk-placeholder">
+            <div id="selected-images" class="uk-placeholder">
                 <div class="uk-grid uk-sortable images" data-uk-sortable>
                 </div>
             </div>

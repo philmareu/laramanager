@@ -15,7 +15,7 @@
 
         <div class="uk-overflow-container">
             <div id="file-gallery" class="uk-grid">
-                @each('laramanager::browser.file', $files, 'file')
+                @each('laramanager::browser.file', $images, 'file')
             </div>
         </div>
     </div>

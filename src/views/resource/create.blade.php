@@ -26,6 +26,8 @@
 
     @include('laramanager::browser.modals.single')
 
+    @include('laramanager::browser.modals.multiple')
+
 @endsection
 
 @section('scripts')
@@ -43,33 +45,5 @@
     @endforeach
 
     @include('laramanager::browser.scripts')
-
-    {{--<script>--}}
-        {{--$(function(){--}}
-            {{--$('#upload-drop').before('Files can be added after saving this entry.').hide();--}}
-        {{--});--}}
-    {{--</script>--}}
-
-    {{--<script>--}}
-        {{--$('#modal-image-browser-multiple').on('click', 'img.select-image', function(event) {--}}
-
-            {{--var img = $(this).parent().addClass('selected-file');--}}
-
-            {{--$('#image-list .uk-grid').append(img);--}}
-
-        {{--});--}}
-
-        {{--$('#modal-image-browser-single').on('click', 'img.select-image', function(event) {--}}
-
-            {{--var img = $(this).clone();--}}
-            {{--var field = $('.field-image');--}}
-
-            {{--field.find('.image').html(img);--}}
-            {{--field.find('.file_id').attr('value', img.attr('data-laramanager-file-id'));--}}
-
-            {{--UIkit.modal("#modal-image-browser-single").hide();--}}
-
-        {{--});--}}
-    {{--</script>--}}
 
 @endsection

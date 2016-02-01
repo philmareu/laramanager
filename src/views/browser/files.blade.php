@@ -16,7 +16,7 @@ File Browser
     </div>
 
     <div id="file-gallery" class="uk-grid" data-uk-grid-margin>
-        @each('laramanager::browser.file', $files, 'file')
+        @each('laramanager::browser.file', $images, 'file')
     </div>
 
     {!! $files->render() !!}

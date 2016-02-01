@@ -2,11 +2,6 @@
 
 @section('form')
 
-    <div id="upload-drop" class="uk-placeholder uk-text-center">
-        <i class="uk-icon-cloud-upload uk-icon-medium uk-text-muted uk-margin-small-right"></i>
-        Drag files here or <a class="uk-form-file">selecting one<input id="upload-select" type="file"></a>. (10Mb Max)
-    </div>
-
     @if($object->data('images') == "")
 
         No images
