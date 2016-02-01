@@ -19,9 +19,9 @@ File Browser
         @each('laramanager::browser.file', $images, 'file')
     </div>
 
-    {!! $files->render() !!}
+    {!! $images->render() !!}
 @endsection
 
 @section('scripts')
-    @include('browser.scripts')
+    @include('laramanager::browser.scripts')
 @endsection

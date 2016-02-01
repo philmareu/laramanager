@@ -55,7 +55,7 @@
 
         var i = $('#images').html();
 
-        ImageBrowserMultiple.find('#image-list .images').html(i);
+        ImageBrowserMultiple.find('#selected-images .images').html(i);
 
 
     });
