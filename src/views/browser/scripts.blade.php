@@ -100,7 +100,7 @@
 
     });
 
-    $('#modal-image-browser-single').on('click', 'img.select-image', function(event) {
+    $('#modal-image-browser-single').on('click', 'img.unselected-image', function(event) {
 
         var img = $(this).clone();
         var field = $('.field-image');
