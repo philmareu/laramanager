@@ -19,7 +19,7 @@ class ObjectsController extends Controller {
 
         if(view()->exists('vendor/laramanager/objects/' . $object->slug . '/create'))
         {
-            return view('vendor/laramanager/objects/' . $object->slug . '/create', compact('resource', 'entity', 'object', 'files'));
+            return view('vendor/laramanager/objects/' . $object->slug . '/create', compact('resource', 'entity', 'object', 'files', 'resourceTitle'));
         }
 
         return view('laramanager::objects.' . $object->slug . '.create', compact('resource', 'entity', 'object', 'files', 'resourceTitle'));
@@ -59,7 +59,7 @@ class ObjectsController extends Controller {
 
         if(view()->exists('vendor/laramanager/objects/' . $object->slug . '/edit'))
         {
-            return view('vendor/laramanager/objects/' . $object->slug . '/edit', compact('resource', 'entity', 'object', 'files'));
+            return view('vendor/laramanager/objects/' . $object->slug . '/edit', compact('resource', 'entity', 'object', 'files', 'resourceTitle'));
         }
 
         return view('laramanager::objects.' . $object->slug . '.edit', compact('resource', 'entity', 'object', 'data', 'files', 'resourceTitle'));
