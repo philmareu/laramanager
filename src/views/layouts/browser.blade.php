@@ -51,12 +51,12 @@
 
     $(function(){
 
-        $('.select-image').on('click', function(event) {
+        $('.unselected-image').on('click', function(event) {
 
             event.preventDefault();
 
             file = $(this);
-            fileUrl = file.attr('href');
+            fileUrl = file.attr('src');
 
             window.opener.CKEDITOR.tools.callFunction(funcNum, fileUrl, '');
             window.close();

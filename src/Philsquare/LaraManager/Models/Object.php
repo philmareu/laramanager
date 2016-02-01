@@ -3,6 +3,7 @@
 namespace Philsquare\LaraManager\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Object extends Model {
 
@@ -24,7 +25,13 @@ class Object extends Model {
     {
         $ids = $this->data($key);
 
-        return File::whereIn('id', $ids)->get();
+        $idsOrdered = implode(',', $ids);
+
+        return File::whereIn('id', $ids)
+            ->orderByRaw(DB::raw("FIELD(id, $idsOrdered)"))
+            ->get();
+
+//        return File::whereIn('id', $ids)->get();
     }
 
 }

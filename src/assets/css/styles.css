@@ -1220,27 +1220,27 @@ iframe {
  * Sub-modifier: `uk-panel-box-primary`
  */
 .uk-panel-box-primary {
-  background-color: #ebf7fd;
-  color: #2d7091;
+  background-color: rgba(229, 145, 78, 0.3);
+  color: #5C4E46;
 }
 .uk-panel-box-primary-hover:hover {
-  color: #2d7091;
+  color: #5C4E46;
 }
 .uk-panel-box-primary .uk-panel-title {
-  color: #2d7091;
+  color: #5C4E46;
 }
 /*
  * Sub-modifier: `uk-panel-box-secondary`
  */
 .uk-panel-box-secondary {
-  background-color: #eee;
-  color: #444;
+  background-color: rgba(229, 145, 78, 0.1);
+  color: #5C4E46;
 }
 .uk-panel-box-secondary-hover:hover {
-  color: #444;
+  color: #5C4E46;
 }
 .uk-panel-box-secondary .uk-panel-title {
-  color: #444;
+  color: #5C4E46;
 }
 /* Modifier: `uk-panel-hover`
  ========================================================================== */
@@ -2668,14 +2668,14 @@ select.uk-form-width-mini {
   overflow: visible;
   /* 5 */
   font: inherit;
-  color: #444;
+  color: #5C4E46;
   /* 6 */
   text-transform: none;
   /* 7 */
   display: inline-block;
   box-sizing: border-box;
   padding: 0 12px;
-  background: #eee;
+  background: rgba(229, 145, 78, 0.3);
   vertical-align: middle;
   /* 8 */
   line-height: 30px;
@@ -2698,8 +2698,8 @@ select.uk-form-width-mini {
  */
 .uk-button:hover,
 .uk-button:focus {
-  background-color: #f5f5f5;
-  color: #444;
+  background-color: rgba(229, 145, 78, 0.5);
+  color: #5C4E46;
   /* 2 */
   outline: none;
   /* 3 */
@@ -2717,19 +2717,19 @@ select.uk-form-width-mini {
  * Modifier: `uk-button-primary`
  */
 .uk-button-primary {
-  background-color: #00a8e6;
+  background-color: #E5914E;
   color: #fff;
 }
 /* Hover */
 .uk-button-primary:hover,
 .uk-button-primary:focus {
-  background-color: #35b3ee;
-  color: #fff;
+  background-color: #E5914E;
+  color: fff;
 }
 /* Active */
 .uk-button-primary:active,
 .uk-button-primary.uk-active {
-  background-color: #0091ca;
+  background-color: #E5914E;
   color: #fff;
 }
 /*
@@ -8069,6 +8069,105 @@ a.uk-datepicker-table-muted {
 .uk-dragover {
   box-shadow: 0 0 20px rgba(100, 100, 100, 0.3);
 }
+/* ========================================================================
+   Component: Sortable
+ ========================================================================== */
+.uk-sortable {
+  position: relative;
+}
+/*
+ * Deactivate browser touch actions in IE11
+ */
+.uk-sortable > * {
+  -ms-touch-action: none;
+  touch-action: none;
+}
+/*
+ * Disables the default callout shown when you touch and hold a touch target
+ * Currently only works in Webkit
+ */
+.uk-sortable a,
+.uk-sortable img {
+  -webkit-touch-callout: none;
+}
+/*
+ * Remove margin from the last-child
+ */
+.uk-sortable > :last-child {
+  margin-bottom: 0;
+}
+/* Sub-modifier `uk-sortable-dragged`
+ ========================================================================== */
+.uk-sortable-dragged {
+  position: absolute;
+  z-index: 1050;
+  pointer-events: none;
+}
+/* Sub-modifier `uk-sortable-placeholder`
+ ========================================================================== */
+.uk-sortable-placeholder {
+  opacity: 0;
+}
+/* Empty List
+ ========================================================================== */
+.uk-sortable-empty {
+  min-height: 30px;
+}
+/* Sub-object `uk-sortable-handle`
+ ========================================================================== */
+/*
+ * Deactivate browser touch actions in IE11
+ */
+.uk-sortable-handle {
+  -ms-touch-action: none;
+  touch-action: none;
+}
+/* Hover */
+.uk-sortable-handle:hover {
+  cursor: move;
+}
+/* Sub-object `uk-sortable-moving`
+ ========================================================================== */
+.uk-sortable-moving,
+.uk-sortable-moving * {
+  cursor: move;
+}
+/* ========================================================================
+   Component: Accordion
+ ========================================================================== */
+/* Sub-object: `uk-accordion-title`
+ ========================================================================== */
+.uk-accordion-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 5px 0;
+  background: transparent;
+  font-size: 18px;
+  line-height: 24px;
+  cursor: pointer;
+}
+/* Sub-object: `uk-accordion-content`
+ ========================================================================== */
+.uk-accordion-content {
+  padding: 0 0 0 0;
+}
+/*
+ * Micro clearfix to make panels more robust
+ */
+.uk-accordion-content:before,
+.uk-accordion-content:after {
+  content: "";
+  display: table;
+}
+.uk-accordion-content:after {
+  clear: both;
+}
+/*
+ * Remove margin from the last-child
+ */
+.uk-accordion-content > :last-child {
+  margin-bottom: 0;
+}
 /***** Colors *****/
 /***** Uikit *****/
 /***** Styles *****/
@@ -8126,6 +8225,12 @@ footer {
   margin: 15px -20px -20px -20px;
   padding: 20px;
   border-top: 4px solid #e1e1e1;
+}
+.uk-panel-box {
+  border-bottom: 2px solid #E5914E;
+}
+.uk-panel-box-secondary {
+  border-bottom: 1px solid rgba(229, 145, 78, 0.5);
 }
 
 /*# sourceMappingURL=styles.css.map */

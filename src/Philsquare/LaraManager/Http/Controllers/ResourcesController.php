@@ -79,9 +79,7 @@ class ResourcesController extends Controller
             if($field['type'] == 'wysiwyg') $hasWysiwyg = true;
         }
 
-        $files = File::latest()->get();
-
-        return view('laramanager::resource.create', compact('resource', 'title', 'fields', 'hasWysiwyg', 'files'));
+        return view('laramanager::resource.create', compact('resource', 'title', 'fields', 'hasWysiwyg'));
     }
 
     /**
@@ -100,6 +98,11 @@ class ResourcesController extends Controller
 
         foreach($this->fields as $field)
         {
+            if($field['type'] == 'checkbox')
+            {
+                if(! $request->has($field['name'])) $attributes[$field['name']] = 0;
+            }
+
             if($field['type'] == 'image')
             {
                 if($request->hasFile($field['name']))
@@ -112,6 +115,11 @@ class ResourcesController extends Controller
             if($field['type'] == 'password')
             {
                 $attr[$field['name']] = bcrypt($request->get($field['name']));
+            }
+
+            if($field['type'] == 'uploads')
+            {
+                $attr[$field['name']] = serialize($request->get($field['name']));
             }
         }
 
@@ -167,9 +175,7 @@ class ResourcesController extends Controller
             if($field['type'] == 'wysiwyg') $hasWysiwyg = true;
         }
 
-        $files = File::latest()->get();
-
-        return view('laramanager::resource.edit', compact('title', 'fields', 'resource', 'entity', 'hasWysiwyg', 'files'));
+        return view('laramanager::resource.edit', compact('title', 'fields', 'resource', 'entity', 'hasWysiwyg'));
     }
 
     /**
@@ -207,6 +213,11 @@ class ResourcesController extends Controller
             if($field['type'] == 'password')
             {
                 $attributes[$field['name']] = bcrypt($request->get($field['name']));
+            }
+
+            if($field['type'] == 'uploads')
+            {
+                $attributes[$field['name']] = serialize($request->get($field['name']));
             }
         }
 

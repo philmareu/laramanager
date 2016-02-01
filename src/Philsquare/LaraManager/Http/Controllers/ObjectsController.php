@@ -11,6 +11,7 @@ class ObjectsController extends Controller {
     {
         $model = config('laramanager.resources.' . $resource . '.model');
         $entity = $model::find($resourceId);
+        $resourceTitle = config('laramanager.resources.' . $resource . '.title');
 
         $object = Object::find($objectId);
 
@@ -21,7 +22,7 @@ class ObjectsController extends Controller {
             return view('vendor/laramanager/objects/' . $object->slug . '/create', compact('resource', 'entity', 'object', 'files'));
         }
 
-        return view('laramanager::objects.' . $object->slug . '.create', compact('resource', 'entity', 'object', 'files'));
+        return view('laramanager::objects.' . $object->slug . '.create', compact('resource', 'entity', 'object', 'files', 'resourceTitle'));
     }
 
     public function store(Request $request, $resource, $resourceId, $objectId)

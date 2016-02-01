@@ -1,7 +1,15 @@
 <div id="modal-image-browser-multiple" class="uk-modal">
     <div class="uk-modal-dialog uk-modal-dialog-blank uk-modal-dialog-large">
         <div class="uk-modal-header">
-            <span class="title">File Browser</span>
+            <div class="uk-grid uk-flex uk-flex-middle">
+                <div class="uk-width-1-1 uk-width-medium-1-2">
+                    <span class="title">File Browser</span>
+                </div>
+                <div class="uk-width-1-1 uk-width-medium-1-2 uk-text-right">
+                    <button type="button" class="uk-button cancel">Cancel</button>
+                    <button type="button" class="uk-button uk-button-primary done">Done</button>
+                </div>
+            </div>
 
             <div id="upload-drop" class="uk-placeholder uk-text-center">
                 <i class="uk-icon-cloud-upload uk-icon-medium uk-text-muted uk-margin-small-right"></i>
@@ -14,18 +22,16 @@
         </div>
 
         <div class="uk-overflow-container">
-            <div id="file-gallery" class="uk-grid">
-                @each('laramanager::browser.file', $files, 'file')
+            <div id="image-browser" class="uk-grid">
+                @each('laramanager::browser.file', $images, 'file')
             </div>
         </div>
 
         <div class="uk-modal-footer uk-text-right">
-            <div id="image-list" class="uk-placeholder">
-                <div class="uk-grid">
+            <div id="selected-images" class="uk-placeholder">
+                <div class="uk-grid uk-sortable images" data-uk-sortable>
                 </div>
             </div>
-            <button type="button" class="uk-button">Cancel</button>
-            <button type="button" class="uk-button uk-button-primary">Done</button>
         </div>
     </div>
 </div>

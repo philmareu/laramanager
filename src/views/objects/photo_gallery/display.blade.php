@@ -1,14 +1,14 @@
-@if($object->data('images') == "")
+@if($object->data('file_ids') == "")
 
     <p>No Images</p>
 
 @else
 
     <div class="uk-grid uk-margin-bottom" data-uk-grid>
-        @foreach($object->data('images') as $filename)
+        @foreach($object->files('file_ids') as $file)
             <div class="uk-width-1-2 uk-width-medium-1-3 uk-width-large-1-4 uk-margin-large-bottom">
-                <a href="{{ url('images/large/' . $filename) }}" data-uk-lightbox="{group:'post'}">
-                    <img src="{{ url('images/small/' . $filename) }}" alt="">
+                <a href="{{ url('images/large/' . $file->filename) }}" data-uk-lightbox="{group:'post'}">
+                    <img src="{{ url('images/small/' . $file->filename) }}" alt="">
                 </a>
             </div>
         @endforeach

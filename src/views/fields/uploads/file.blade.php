@@ -3,4 +3,5 @@
          data-laramanager-file-id="{{ $file->id }}"
          data-laramanager-filename="{{ $file->filename }}"
          class="unselected-image">
+    <input type="hidden" name="{{ $field['name'] }}[]" value="{{ $file->id }}">
 </div>

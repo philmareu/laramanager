@@ -4,4 +4,4 @@
 
     @include('laraform::elements.form.text', ['field' => ['name' => 'data[text]', 'label' => 'Text', 'value' => $object->data('text')]])
 
-@stop
+@endsection

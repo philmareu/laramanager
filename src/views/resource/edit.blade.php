@@ -6,6 +6,13 @@
 
 @section('content')
 
+    @if(session()->has('errors'))
+        <div class="uk-alert uk-alert-danger" data-uk-alert>
+            Oops. It looks like a few fields were not completed properly.
+            <a href="#" class="uk-alert-close uk-close"></a>
+        </div>
+    @endif
+
     <form action="{{ route('admin.' . $resource . '.update', $entity->id) }}" enctype="multipart/form-data" method="POST" class="uk-form uk-form-stacked">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <input type="hidden" name="_method" value="PUT">
@@ -17,14 +24,14 @@
         @endforeach
 
         <div class="uk-form-row">
-            <div class="uk-width-1-6">
-                @include('laraform::elements.form.submit', ['value' => 'Update'])
-            </div>
+            <button type="submit" class="uk-button uk-button-primary uk-width-1-1 uk-width-medium-1-3 uk-width-large-1-6">Save</button>
         </div>
 
     </form>
 
     @include('laramanager::browser.modals.single')
+
+    @include('laramanager::browser.modals.multiple')
 
 @endsection
 
@@ -36,32 +43,12 @@
 
     @foreach($fields as $field)
 
-        @if(view()->exists('laramanager::resource.scripts.fields.' . $field['type']))
-            @include('laramanager::resource.scripts.fields.' . $field['type'], $field)
+        @if(view()->exists('laramanager::fields.' . $field['type'] . '/scripts'))
+            @include('laramanager::fields.' . $field['type'] . '/scripts', $field)
         @endif
 
     @endforeach
 
-    <script>
-        $('#modal-image-browser-multiple').on('click', 'img.select-image', function(event) {
-
-            var img = $(this).parent().addClass('selected-file');
-
-            $('#image-list .uk-grid').append(img);
-
-        });
-
-        $('#modal-image-browser-single').on('click', 'img.select-image', function(event) {
-
-            var img = $(this).clone();
-            var field = $('.field-image');
-
-            field.find('.image').html(img);
-            field.find('.file_id').attr('value', img.attr('data-laramanager-file-id'));
-
-            UIkit.modal("#modal-image-browser-single").hide();
-
-        });
-    </script>
+    @include('laramanager::browser.scripts')
 
 @endsection

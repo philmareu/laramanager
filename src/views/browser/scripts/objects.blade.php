@@ -57,12 +57,9 @@
 
         ImageBrowserMultiple.find('#selected-images .images').html(i);
 
-
     });
 
     ImageBrowserMultiple.on('click', 'img.unselected-image', function(event) {
-
-        console.log(name);
 
         var wrapper = $('<div>', {
             class: 'uk-width-1-2 uk-width-medium-1-4 uk-width-large-1-6 uk-margin-bottom'
@@ -73,7 +70,7 @@
 
         var input = $('<input>', {
             type: 'hidden',
-            name: 'photos[]',
+            name: 'data[file_ids][]',
             value: img.attr('data-laramanager-file-id')
         }).appendTo(wrapper);
 

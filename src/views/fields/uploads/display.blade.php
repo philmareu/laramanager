@@ -1,5 +1,8 @@
-@foreach($entity->photos as $file)
+<div id="images" class="uk-grid uk-grid-small">
+    @if(isset($entity->{$field['name']}) && $entity->{$field['name']} != "")
+        @foreach(unserialize($entity->{$field['name']}) as $fileId)
+            @include('laramanager::fields.uploads.file', ['file' => \Philsquare\LaraManager\Models\File::find($fileId)])
 
-    <img src="{{ url('images/small/' . $file->filename) }}" alt="">
-
-@endforeach
+        @endforeach
+    @endif
+</div>
