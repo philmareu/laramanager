@@ -6,8 +6,6 @@
 
 @section('content')
 
-
-
     <h2>Primary Field Information</h2>
     <div class="uk-panel uk-panel-box uk-panel-box-primary uk-margin-bottom">
         @foreach($fields as $key => $field)
@@ -36,7 +34,7 @@
                     <h3 class="uk-accordion-title uk-panel-title">
                         <i class="uk-icon-bars"></i> {{ $object->title }} - {{ $object->pivot->label }}
                     </h3>
-                    <div class="uk-accordion-content uk-margin-top">
+                    <div class="uk-accordion-content uk-margin-top uk-margin-bottom">
                         <div id="object-{{ $object->pivot->id }}">
                             <div class="admin-objects">
                                 @if(view()->exists('vendor/laramanager/objects/' . $object->slug . '/display'))
