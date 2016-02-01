@@ -95,7 +95,7 @@ class ResourcesController extends Controller
         $model = config('laramanager.resources.' . $this->resource . '.model');
         $entity = new $model;
         $attr = $request->all();
-
+        
         foreach($this->fields as $field)
         {
             if($field['type'] == 'checkbox')

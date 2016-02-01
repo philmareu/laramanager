@@ -2,26 +2,23 @@
 
 @section('form')
 
-    @if($object->data('images') == "")
+    @if($object->data('file_ids') == "")
 
         No images
 
     @else
 
-        <div id="file-gallery" class="uk-grid">
-            @foreach($object->data('images') as $image)
-                <div class="file">
-                    <img src="{{ url('images/small/' . $image) }}" alt=""/>
-                    <input type="hidden" name="data[images][]" value="{{ $image }}">
-                    <button class="delete-file">Delete</button>
+        <div id="images" class="uk-grid uk-grid-small uk-sortable" data-uk-sortable>
+            @foreach($object->files('file_ids') as $file)
+                <div class="uk-width-1-1">
+                    <img src="{{ url('images/small/' . $file->filename) }}" alt=""/>
+                    <input type="hidden" name="data[file_ids][]" value="{{ $file->id }}">
                 </div>
             @endforeach
         </div>
 
     @endif
 
-    <div id="progressbar" class="uk-progress uk-hidden">
-        <div class="uk-progress-bar" style="width: 0%;">...</div>
-    </div>
+    <button type="button" class="uk-button" data-uk-modal="{target:'#modal-image-browser-multiple'}">Browse</button>
 
 @endsection

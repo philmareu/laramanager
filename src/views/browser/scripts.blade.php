@@ -73,7 +73,7 @@
 
         var input = $('<input>', {
             type: 'hidden',
-            name: name + '[]',
+            name: 'photos[]',
             value: img.attr('data-laramanager-file-id')
         }).appendTo(wrapper);
 

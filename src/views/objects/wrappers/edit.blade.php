@@ -19,6 +19,9 @@
             <a href="{{ url('admin/' . $resource . '/' . $entity->id) }}">Cancel</a>
         </div>
     </form>
+
+    @include('laramanager::browser.modals.single')
+    @include('laramanager::browser.modals.multiple')
 	
 @endsection
 
@@ -29,5 +32,7 @@
     @elseif(view()->exists('laramanager::objects.' . $object->slug . '/scripts'))
         @include('laramanager::objects.' . $object->slug . '/scripts')
     @endif
+
+    @include('laramanager::browser.scripts.objects')
 
 @endsection
