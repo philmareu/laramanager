@@ -51,6 +51,7 @@ class ObjectsController extends Controller {
     {
         $model = config('laramanager.resources.' . $resource . '.model');
         $entity = $model::find($resourceId);
+        $resourceTitle = config('laramanager.resources.' . $resource . '.title');
 
         $object = $entity->objects()->where('objectables.id', $objectableId)->first();
 
@@ -61,7 +62,7 @@ class ObjectsController extends Controller {
             return view('vendor/laramanager/objects/' . $object->slug . '/edit', compact('resource', 'entity', 'object', 'files'));
         }
 
-        return view('laramanager::objects.' . $object->slug . '.edit', compact('resource', 'entity', 'object', 'data', 'files'));
+        return view('laramanager::objects.' . $object->slug . '.edit', compact('resource', 'entity', 'object', 'data', 'files', 'resourceTitle'));
     }
 
     public function update(Request $request, $resource, $resourceId, $objectableId)
