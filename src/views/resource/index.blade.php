@@ -40,7 +40,7 @@
                     @endif
                 @endforeach
 
-                <td>
+                <td width="50">
                     <div class="uk-grid uk-grid-medium">
                         <div class="uk-width-1-2">
                             @if($hasObjects)
@@ -53,8 +53,6 @@
                             <a href="#" class="uk-text-danger delete" data-granada-id="{{ $entity->id }}"><i class="uk-icon-trash"></i></a>
                         </div>
                     </div>
-
-
                 </td>
             </tr>
         @endforeach
