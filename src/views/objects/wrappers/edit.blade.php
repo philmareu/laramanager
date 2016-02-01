@@ -15,8 +15,14 @@
         @yield('form')
 
         <div class="uk-form-row">
-            @include('laraform::elements.form.submit')
-            <a href="{{ url('admin/' . $resource . '/' . $entity->id) }}">Cancel</a>
+            <div class="uk-grid uk-flex uk-flex-middle">
+                <div class="uk-width-1-2 uk-width-medium-1-4">
+                    @include('laraform::elements.form.submit')
+                </div>
+                <div class="uk-width-1-2 uk-width-medium-1-4">
+                    <a href="{{ url('admin/' . $resource . '/' . $entity->id) }}">Cancel</a>
+                </div>
+            </div>
         </div>
     </form>
 

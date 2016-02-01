@@ -12,6 +12,7 @@
     <div class="uk-panel uk-panel-box uk-panel-box-primary uk-margin-bottom">
         @foreach($fields as $key => $field)
             <div class="uk-margin-bottom">
+                <div class="label uk-text-bold uk-margin-small-bottom">{!! isset($field['label']) ? $field['label'] : ucwords(str_replace('_', ' ', $field['name'])) !!}</div>
                 @include('laramanager::fields.' . $field['type'] . '.display')
             </div>
         @endforeach
