@@ -36,7 +36,7 @@
                     <h3 class="uk-accordion-title uk-panel-title">
                         <i class="uk-icon-bars"></i> {{ $object->title }} - {{ $object->pivot->label }}
                     </h3>
-                    <div class="uk-accordion-content">
+                    <div class="uk-accordion-content uk-margin-top">
                         <div id="object-{{ $object->pivot->id }}">
                             <div class="admin-objects">
                                 @if(view()->exists('vendor/laramanager/objects/' . $object->slug . '/display'))
