@@ -6,41 +6,52 @@
 
 @section('content')
 
-    @foreach($fields as $field)
-        <div class="uk-margin-bottom">
-            @include('laramanager::fields.' . $field['type'] . '.display')
-        </div>
-    @endforeach
 
-    <form action="{{ url('admin/' . $resource . '/' . $entity->id) }}" method="POST">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        <input type="hidden" name="_method" value="DELETE">
 
-        <a href="{{ URL::to('admin/' . $resource . '/' . $entity->id . '/edit') }}" class="btn btn-primary">Edit</a>
-        <a href="#" class="btn btn-danger confirm" title="Are you sure? This will delete all related objects." class="btn btn-primary">Delete</a>
-    </form>
-
-    <hr/>
-
-    @foreach($entity->objects as $object)
-
-        <div class="uk-panel uk-panel-box uk-margin-bottom" id="item_{{ $object->pivot->id }}">
-            <h3 class="uk-panel-title">
-                {{ $object->pivot->label }}
-            </h3>
-            <div id="object-{{ $object->pivot->id }}">
-                <a href="{{ url('admin/objects/' . $resource . '/' . $entity->id . '/' . $object->pivot->id . '/edit') }}" class="uk-button">Edit</a>
-
-                <div class="admin-objects">
-                    @if(view()->exists('vendor/laramanager/objects/' . $object->slug . '/display'))
-                        @include('vendor/laramanager/objects/' . $object->slug . '/display')
-                    @else
-                        @include('laramanager::objects/' . $object->slug . '/display')
-                    @endif
-                </div>
+    <h2>Primary Field Information</h2>
+    <div class="uk-panel uk-panel-box uk-panel-box-primary uk-margin-bottom">
+        @foreach($fields as $key => $field)
+            <div class="uk-margin-bottom">
+                @include('laramanager::fields.' . $field['type'] . '.display')
             </div>
+        @endforeach
+
+        <form action="{{ url('admin/' . $resource . '/' . $entity->id) }}" method="POST">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="_method" value="DELETE">
+
+            <a href="{{ URL::to('admin/' . $resource . '/' . $entity->id . '/edit') }}" class="uk-button uk-button-primary">Edit</a>
+            <a href="#" title="Are you sure? This will delete all related objects." class="uk-button uk-button-danger confirm">Delete</a>
+        </form>
+    </div>
+
+    <h2>Objects</h2>
+
+    <div class="uk-accordion" data-uk-accordion="{showfirst: false}">
+
+        <div class="uk-sortable" data-uk-sortable>
+            @foreach($entity->objects as $object)
+                <div class="uk-panel uk-panel-box uk-panel-box-secondary uk-margin-bottom">
+                    <h3 class="uk-accordion-title uk-panel-title">
+                        <i class="uk-icon-bars"></i> {{ $object->title }} - {{ $object->pivot->label }}
+                    </h3>
+                    <div class="uk-accordion-content">
+                        <div id="object-{{ $object->pivot->id }}">
+                            <div class="admin-objects">
+                                @if(view()->exists('vendor/laramanager/objects/' . $object->slug . '/display'))
+                                    @include('vendor/laramanager/objects/' . $object->slug . '/display')
+                                @else
+                                    @include('laramanager::objects/' . $object->slug . '/display')
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    <a href="{{ url('admin/objects/' . $resource . '/' . $entity->id . '/' . $object->pivot->id . '/edit') }}" class="uk-float-rigdht"><i class="uk-icon-pencil"></i> Edit</a>
+                </div>
+            @endforeach
         </div>
-    @endforeach
+    </div>
+
 
     <div class="uk-button-dropdown" data-uk-dropdown>
 
@@ -55,7 +66,6 @@
         </div>
 
     </div>
-
 @endsection
 
 @section('scripts')
