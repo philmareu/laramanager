@@ -20,7 +20,7 @@ class FilesController extends Controller {
     {
         $funcNum = $request->get('CKEditorFuncNum');
 
-        $images = File::paginate(20);
+        $images = File::latest()->paginate(10);
         return view('laramanager::browser.files', compact('images', 'funcNum'));
     }
 

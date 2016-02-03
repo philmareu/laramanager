@@ -19,7 +19,7 @@ File Browser
         @each('laramanager::browser.file', $images, 'file')
     </div>
 
-    {!! $images->render() !!}
+    {!! $images->appends(['CKEditorFuncNum' => $funcNum])->render() !!}
 @endsection
 
 @section('scripts')

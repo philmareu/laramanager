@@ -29,7 +29,7 @@
 
     </form>
 
-    @include('laramanager::browser.modals.single')
+    {{--@include('laramanager::browser.modals.single')--}}
 
     @include('laramanager::browser.modals.multiple')
 

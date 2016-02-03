@@ -46,8 +46,8 @@
                 }
             };
 
-    var select = UIkit.uploadSelect($("#upload-select"), settings),
-            drop   = UIkit.uploadDrop($("#upload-drop"), settings);
+    var selectSingle = UIkit.uploadSelect($("#upload-select"), settings),
+            dropSingle   = UIkit.uploadDrop($("#upload-drop"), settings);
 
     var ImageBrowserMultiple = $('#modal-image-browser-multiple');
 
