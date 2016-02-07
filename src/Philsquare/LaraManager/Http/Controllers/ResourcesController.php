@@ -9,30 +9,25 @@ use Illuminate\Support\Facades\Validator;
 use Philsquare\LaraForm\Services\FormProcessor;
 use Philsquare\LaraManager\Models\File;
 use Philsquare\LaraManager\Models\Object;
+use Philsquare\LaraManager\Models\Resource;
 
 class ResourcesController extends Controller
 {
     protected $request;
 
-    protected $resource;
-
-    protected $fields;
+    protected $slug;
 
     protected $title;
 
-    protected $modelsNamespace;
-
-    protected $model;
-
     protected $form;
 
-    public function __construct(Request $request, FormProcessor $form)
+    protected $resource;
+
+    public function __construct(Request $request, FormProcessor $form, Resource $resource)
     {
-        $this->resource = $request->segment(2);
-        $this->fields = config('laramanager.resources.' . $this->resource . '.fields');
-        $this->title = config('laramanager.resources.' . $this->resource . '.title');
-        $this->modelsNamespace = config('laramanager.models_namespace') . '\\';
+        $this->slug = $request->segment(2);
         $this->form = $form;
+        $this->resource = $resource;
     }
 
     /**
@@ -42,23 +37,21 @@ class ResourcesController extends Controller
      */
     public function index()
     {
-        $title = $this->title;
-        $fields = $this->fields;
+        $resource = $this->resource->with('fields')->where('slug', $this->slug)->first();
 
         $select = ['id'];
-        foreach($this->fields as $field)
+        foreach($resource->fields as $field)
         {
-            if(isset($field['list']) && $field['list'] === true) $select[] = $field['name'];
+            if($field->list) $select[] = $field->slug;
         }
 
-        $resource = $this->resource;
-        $model = config('laramanager.resources.' . $this->resource . '.model');
+        $model = $this->getModel($resource);
         $entities = $model::select($select)->get();
 
         $hasObjects = false;
         if(method_exists($model, 'objects')) $hasObjects = true;
 
-        return view('laramanager::resource.index', compact('resource', 'entities', 'fields', 'title', 'hasObjects'));
+        return view('laramanager::resource.index', compact('resource', 'entities', 'hasObjects'));
     }
 
     /**
@@ -68,18 +61,16 @@ class ResourcesController extends Controller
      */
     public function create()
     {
-        $title = $this->title;
-        $fields = $this->fields;
-        $resource = $this->resource;
+        $resource = $this->resource->with('fields')->where('slug', $this->slug)->first();
 
         $hasWysiwyg = false;
 
-        foreach($fields as $field)
+        foreach($resource->fields as $field)
         {
             if($field['type'] == 'wysiwyg') $hasWysiwyg = true;
         }
 
-        return view('laramanager::resource.create', compact('resource', 'title', 'fields', 'hasWysiwyg'));
+        return view('laramanager::resource.create', compact('resource', 'hasWysiwyg'));
     }
 
     /**
@@ -90,51 +81,53 @@ class ResourcesController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, $this->validationRules($this->fields, 'store'));
+        $resource = $this->resource->with('fields')->where('slug', $this->slug)->first();
 
-        $model = config('laramanager.resources.' . $this->resource . '.model');
+        $this->validate($request, $this->validationRules($resource));
+
+        $model = $this->getModel($resource);
         $entity = new $model;
-        $attr = $request->all();
+        $attributes= $request->all();
 
-        foreach($this->fields as $field)
+        foreach($resource->fields as $field)
         {
-            if($field['type'] == 'checkbox')
+            if($field->type == 'checkbox')
             {
-                if(! $request->has($field['name'])) $attributes[$field['name']] = 0;
+                if(! $request->has($field->slug)) $attributes[$field->slug] = 0;
             }
 
             if($field['type'] == 'image')
             {
-                if($request->hasFile($field['name']))
+                if($request->hasFile($field->slug))
                 {
-                    $filename = $this->form->processFile($request->file($field['name']), 'images');
-                    $attr[$field['name']] = $filename;
+                    $filename = $this->form->processFile($request->file($field->slug), 'images');
+                    $attr[$field->slug] = $filename;
                 }
             }
 
-            if($field['type'] == 'password')
+            if($field->type == 'password')
             {
-                $attr[$field['name']] = bcrypt($request->get($field['name']));
+                $attr[$field->slug] = bcrypt($request->get($field->slug));
             }
 
-            if($field['type'] == 'uploads')
+            if($field->type == 'uploads')
             {
-                $attr[$field['name']] = serialize($request->get($field['name']));
+                $attr[$field->slug] = serialize($request->get($field->slug));
             }
         }
 
-        $entity = $entity->create($attr);
+        $entity = $entity->create($attributes);
 
-        foreach(config('laramanager.resources.' . $this->resource . '.objects') as $defaultObject)
-        {
-            $object = Object::where('slug', $defaultObject['type'])->first();
+//        foreach(config('laramanager.resources.' . $this->resource . '.objects') as $defaultObject)
+//        {
+//            $object = Object::where('slug', $defaultObject['type'])->first();
+//
+//            $entity->objects()->attach($object->id, ['label' => $defaultObject['label']]);
+//        }
 
-            $entity->objects()->attach($object->id, ['label' => $defaultObject['label']]);
-        }
+        if(method_exists($model, 'objects')) return redirect('admin/' . $resource->slug . '/' . $entity->id)->with('success', 'Added');
 
-        if(method_exists($model, 'objects')) return redirect('admin/' . $this->resource . '/' . $entity->id)->with('success', 'Added');
-
-        return redirect('admin/' . $this->resource)->with('success', 'Added');
+        return redirect('admin/' . $resource->slug)->with('success', 'Added');
     }
 
     /**
@@ -278,13 +271,34 @@ class ResourcesController extends Controller
         return response()->json(['status' => 'ok']);
     }
 
-    private function validationRules($fields, $operation)
+    private function validationRules($resource, $entity = null)
     {
-        foreach($fields as $settings)
+        foreach($resource->fields as $field)
         {
-            $rules[$settings['name']] = is_array($settings['validation']) ? $settings['validation'][$operation] : $settings['validation'];
+            $rule = $field->validation;
+
+            if($field->is_unique)
+            {
+                $rule .= '|unique:' . $resource->slug . ',' . $field->slug;
+                
+                if($entity) $rule .=  ',' . $entity->id;
+            }
+            
+            if($field->is_required) $rule .= '|required';
+            
+            $rules[$field->slug] = $rule;
         }
 
         return isset($rules) ? $rules : [];
+    }
+
+    /**
+     * @param $resource
+     * @return string
+     */
+    private function getModel($resource)
+    {
+        $model = $resource->namespace . '\\' . $resource->model;
+        return $model;
     }
 }

@@ -20,7 +20,7 @@ class CreateResourceFieldsTable extends Migration
             $table->string('type');
             $table->string('validation');
             $table->boolean('is_unique');
-            $table->boolean('is_required');
+            $table->boolean('list');
             $table->text('data');
             $table->timestamps();
         });

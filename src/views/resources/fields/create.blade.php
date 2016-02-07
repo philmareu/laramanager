@@ -20,7 +20,7 @@
         @include('laraform::elements.form.slug', ['field' => ['name' => 'slug', 'id' => 'slug', 'target' => 'title']])
         @include('laraform::elements.form.slug', ['field' => ['name' => 'validation']])
         @include('laraform::elements.form.checkbox', ['field' => ['name' => 'is_unique', 'checked' => false]])
-        @include('laraform::elements.form.checkbox', ['field' => ['name' => 'is_required', 'checked' => false]])
+        @include('laraform::elements.form.checkbox', ['field' => ['name' => 'list', 'checked' => false]])
 
         @include('laraform::elements.form.select', ['field' => ['name' => 'type', 'options' => $fields, 'id' => 'type']])
 

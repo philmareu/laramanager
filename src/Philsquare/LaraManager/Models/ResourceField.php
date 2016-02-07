@@ -13,7 +13,8 @@ class ResourceField extends Model {
         'validation',
         'is_required',
         'is_unique',
-        'data'
+        'data',
+        'list'
     ];
 
     public function resource()

@@ -10,7 +10,15 @@ class ResourceFieldController extends Controller {
         '0' => 'Select Field',
         'text' => 'Text',
         'email' => 'Email',
-        'slug' => 'Slug'
+        'slug' => 'Slug',
+        'password' => 'Password',
+        'image' => 'Image',
+        'images' => 'Images',
+        'checkbox' => 'Checkbox',
+        'textarea' => 'Textarea',
+        'wysiwyg' => 'WYSIWYG',
+        'select' => 'Select',
+        'date' => 'Date'
     ];
 
     protected $resource;
@@ -63,11 +71,13 @@ class ResourceFieldController extends Controller {
             'validation' => '',
             'is_unique' => 'boolean',
             'is_required' => 'boolean',
-            'type' => 'required',
+            'type' => 'required|not_in:0',
             'data' => 'array'
         ]);
 
-        $resource->fields()->create($request->all());
+        $attributes = $this->serializeData($request);
+
+        $resource->fields()->create($attributes);
 
         return redirect('admin/resources/' . $resourceId . '/fields')->with('success', 'Field added');
     }
@@ -118,13 +128,13 @@ class ResourceFieldController extends Controller {
             'validation' => '',
             'is_unique' => 'boolean',
             'is_required' => 'boolean',
-            'type' => 'required',
+            'type' => 'required|not_in:0',
             'data' => 'array'
         ]);
 
-        $attributes = $request->all();
-        $attributes['is_required'] = $request->has('is_required') ? 1 : 0;
+        $attributes = $this->serializeData($request);
         $attributes['is_unique'] = $request->has('is_unique') ? 1 : 0;
+        $attributes['list'] = $request->has('list') ? 1 : 0;
 
         $field->update($attributes);
 
@@ -153,6 +163,15 @@ class ResourceFieldController extends Controller {
         if(view()->exists('laramanager::fields.' . $type . '.options')) $view = view('laramanager::fields.' . $type . '.options')->render();
 
         return response()->json(['data' => ['html' => $view]]);
+    }
+
+    public function serializeData(Request $request)
+    {
+        $attributes = $request->all();
+
+        if($request->has('data')) $attributes['data'] = serialize($request->data);
+
+        return $attributes;
     }
 
 }

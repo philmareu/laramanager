@@ -5,11 +5,11 @@
 @endsection
 
 @section('title')
-    {{ $title }}
+    {{ $resource->title }}
 @endsection
 
 @section('actions')
-    <a href="{{ route('admin.' . $resource . '.create') }}" class="uk-float-right"><i class="uk-icon-plus"></i> Add</a>
+    <a href="{{ route('admin.' . $resource->slug . '.create') }}" class="uk-float-right"><i class="uk-icon-plus"></i> Add</a>
 @endsection
 
 @section('content')
@@ -17,10 +17,10 @@
     <table id="data-table" class="stripe row-border">
         <thead>
         <tr>
-            @foreach($fields as $field)
+            @foreach($resource->fields as $field)
 
-                @if(isset($field['list']) && $field['list'] === true)
-                    <td>{{ $field['title'] }}</td>
+                @if($field->list)
+                    <td>{{ $field->title }}</td>
                 @endif
 
             @endforeach
@@ -32,10 +32,10 @@
         <tbody>
         @foreach($entities as $entity)
             <tr>
-                @foreach($fields as $field)
-                    @if(isset($field['list']) && $field['list'] === true)
+                @foreach($resource->fields as $field)
+                    @if($field->list)
                         <td>
-                            @include('laramanager::fields.' . $field['type'] . '.display')
+                            @include('laramanager::fields.' . $field->type . '.display')
                         </td>
                     @endif
                 @endforeach
@@ -44,9 +44,9 @@
                     <div class="uk-grid uk-grid-medium">
                         <div class="uk-width-1-2">
                             @if($hasObjects)
-                                <a href="{{ route('admin.' . $resource . '.show', $entity->id) }}"><i class="uk-icon-pencil"></i></a>
+                                <a href="{{ route('admin.' . $resource->slug . '.show', $entity->id) }}"><i class="uk-icon-pencil"></i></a>
                             @else
-                                <a href="{{ route('admin.' . $resource . '.edit', $entity->id) }}"><i class="uk-icon-pencil"></i></a>
+                                <a href="{{ route('admin.' . $resource->slug . '.edit', $entity->id) }}"><i class="uk-icon-pencil"></i></a>
                             @endif
                         </div>
                         <div class="uk-width-1-2">
@@ -67,9 +67,9 @@
 
     <script>
 
-        var resource = "{{ $resource }}";
-        var orderColumn = "{{ config('laramanager.resources.' . $resource . '.orderColumn') }}";
-        var orderDirection = "{{ config('laramanager.resources.' . $resource . '.orderDirection') }}";
+        var resource = "{{ $resource->slug }}";
+        var orderColumn = "{{ $resource->order_column }}";
+        var orderDirection = "{{ $resource->order_direction }}";
 
         $(function() {
             $('#data-table').DataTable({

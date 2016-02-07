@@ -1,1 +1,1 @@
-@include('laraform::elements.form.text', compact('field'))
+@include('laraform::elements.form.text', ['field' => ['name' => $field->slug]])
