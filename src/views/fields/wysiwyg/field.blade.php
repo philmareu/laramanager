@@ -1,1 +1,1 @@
-@include('laraform::elements.form.wysiwyg', compact('field'))
+@include('laraform::elements.form.wysiwyg', ['field' => ['name' => $field->slug, 'id' => 'editor']])

@@ -37,9 +37,9 @@
 
 @section('scripts')
 
-    {{--@if($hasWysiwyg)--}}
-        {{--<script src="{{ asset('vendor/laramanager/js/ckeditor/ckeditor.js') }}"></script>--}}
-    {{--@endif--}}
+    @if($hasWysiwyg)
+        <script src="{{ asset('vendor/laramanager/js/ckeditor/ckeditor.js') }}"></script>
+    @endif
 
     @foreach($resource->fields as $field)
 

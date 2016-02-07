@@ -1,1 +1,1 @@
-@include('laraform::elements.form.password', compact('field'))
+@include('laraform::elements.form.password', ['field' => ['name' => $field->slug]])

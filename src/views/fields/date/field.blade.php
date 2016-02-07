@@ -1,1 +1,1 @@
-@include('laraform::elements.form.date', compact('field'))
+@include('laraform::elements.form.date', ['field' => ['name' => $field->slug, 'id' => 'date']])
