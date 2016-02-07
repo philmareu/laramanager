@@ -37,4 +37,11 @@ class ResourceField extends Model {
         return $options;
     }
 
+    public function data($key)
+    {
+        $data = unserialize($this->data);
+
+        return isset($data[$key]) ? $data[$key] : '';
+    }
+
 }
