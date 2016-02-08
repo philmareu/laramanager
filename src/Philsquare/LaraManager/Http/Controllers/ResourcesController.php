@@ -169,11 +169,12 @@ class ResourcesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($entityId)
     {
-        $model = config('laramanager.resources.' . $this->resource . '.model');
-
-        $entity = (new $model)->findOrFail($id);
+        $resource = $this->resource->with('fields')->where('slug', $this->slug)->first();
+        $model = $this->getModel($resource);
+        $entity = $model::findOrFail($entityId);
+        
         if($entity->delete()) return response()->json(['status' => 'ok']);
 
         return response()->json(['status' => 'failed']);
