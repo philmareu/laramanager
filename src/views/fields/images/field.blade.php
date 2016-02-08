@@ -1,9 +1,9 @@
-<div class="uk-form-row">
-    <span class="errors">{{ $errors->first($field['name']) }}</span>
+<div class="uk-form-row field-images">
+    <label for="{{ $field->slug }}" class="uk-form-label">{{ $field->title }}</label>
     <label for="{{ $field['name'] }}" class="uk-form-label">{!! isset($field['label']) ? $field['label'] : ucwords(str_replace('_', ' ', $field['name'])) !!}</label>
 
     <div class="uk-placeholder {{ $errors->has($field['name']) ? 'uk-form-danger' : '' }}">
-        <div id="images" class="uk-grid uk-grid-small uk-sortable" data-uk-sortable>
+        <div class="uk-grid uk-grid-small uk-sortable images-container" data-uk-sortable>
 
             @if(null !== old('photos'))
                 @foreach(old('photos') as $fileId)
@@ -19,5 +19,5 @@
         </div>
     </div>
 
-    <button type="button" class="uk-button" data-uk-modal="{target:'#modal-image-browser-multiple'}"><i class="uk-icon-photo"></i> Browse</button>
+    <button type="button" class="uk-button opens-image-browser" data-limit="3"><i class="uk-icon-photo"></i> Browse</button>
 </div>

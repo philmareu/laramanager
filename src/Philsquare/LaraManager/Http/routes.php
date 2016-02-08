@@ -26,6 +26,7 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], functio
     {
         Route::get('/', 'AdminController@index');
         Route::get('dashboard', 'AdminController@dashboard');
+        Route::post('files/upload', 'FilesController@upload');
 
         if(Schema::hasTable('resources'))
         {
@@ -53,7 +54,7 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], functio
 //        }
 
 //        Route::get('images/browser', 'FilesController@imageBrowser');
-//        Route::post('files/upload', 'FilesController@upload');
+
 
 
         Route::get('resources/fields/getOptions/{type}', 'ResourceFieldController@getOptions');

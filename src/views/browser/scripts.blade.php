@@ -49,20 +49,38 @@
     var selectSingle = UIkit.uploadSelect($("#upload-select"), settings),
             dropSingle   = UIkit.uploadDrop($("#upload-drop"), settings);
 
-    var ImageBrowserMultiple = $('#modal-image-browser-multiple');
+    var ImageBrowser = $('#modal-image-browser');
 
-    ImageBrowserMultiple.on('show.uk.modal', function() {
+    $('.opens-image-browser').on('click', function(event) {
 
-        var i = $('#images').html();
+        var button = $(this);
+        var limit = button.data('limit');
+        var imagesContainer = button.parents('.field-images').find('.images-container');
 
-        ImageBrowserMultiple.find('#selected-images .images').html(i);
+        if(limit == 1) {
+            $('.uk-modal-footer').hide();
+            setOneClick(imagesContainer);
+        } else {
+            var currentlySelectedImages = imagesContainer.html();
+            ImageBrowser.find('#selected-images .images').html(currentlySelectedImages);
+            setDoneButton(imagesContainer);
+            $('.uk-modal-footer').show();
+        }
 
+        showImageBrowser();
 
     });
 
-    ImageBrowserMultiple.on('click', 'img.unselected-image', function(event) {
+    function hideImageBrowser() {
+        ImageBrowser.find('#selected-images .images').html('');
+        UIkit.modal(ImageBrowser).hide();
+    }
 
-        console.log(name);
+    function showImageBrowser() {
+        UIkit.modal(ImageBrowser).show();
+    }
+
+    ImageBrowser.on('click', 'img.unselected-image', function(event) {
 
         var wrapper = $('<div>', {
             class: 'uk-width-1-2 uk-width-medium-1-4 uk-width-large-1-6 uk-margin-bottom'
@@ -81,34 +99,32 @@
 
     });
 
-    ImageBrowserMultiple.on('click', '.cancel', function() {
-        UIkit.modal(ImageBrowserMultiple).hide();
-        $('#selected-images .images').html('');
+    ImageBrowser.on('click', '.cancel', function() {
+        ImageBrowser.off('click', '.done');
+        hideImageBrowser();
     });
 
-    ImageBrowserMultiple.on('click', '.done', function() {
-        UIkit.modal(ImageBrowserMultiple).hide();
+    function setDoneButton(imagesContainer) {
+        ImageBrowser.one('click', '.done', function() {
+            var selectedImages = ImageBrowser.find('#selected-images .images').html();
+            imagesContainer.html(selectedImages);
+            hideImageBrowser();
+        });
+    }
 
-        var selectedImages = ImageBrowserMultiple.find('#selected-images .images').html();
-        $('#images').html(selectedImages);
-        $('#selected-images .images').html('');
-    });
+    function setOneClick(imagesContainer) {
+        ImageBrowser.on('click', 'img.unselected-image', function(event) {
+            var img = $(this).clone();
+            imagesContainer.html(img);
+            imagesContainer.find('.file_id').attr('value', img.attr('data-laramanager-file-id'));
+            hideImageBrowser();
+        });
+    }
 
-    ImageBrowserMultiple.find('#selected-images').on('click', 'img', function(event) {
+
+    ImageBrowser.find('#selected-images').on('click', 'img', function(event) {
 
         $(this).parent().remove();
-
-    });
-
-    $('#modal-image-browser-single').on('click', 'img.unselected-image', function(event) {
-
-        var img = $(this).clone();
-        var field = $('.field-image');
-
-        field.find('.image').html(img);
-        field.find('.file_id').attr('value', img.attr('data-laramanager-file-id'));
-
-        UIkit.modal("#modal-image-browser-single").hide();
 
     });
 

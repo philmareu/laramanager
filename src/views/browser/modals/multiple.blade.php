@@ -1,4 +1,4 @@
-<div id="modal-image-browser-multiple" class="uk-modal">
+<div id="modal-image-browser" class="uk-modal">
     <div class="uk-modal-dialog uk-modal-dialog-blank uk-modal-dialog-large">
         <div class="uk-modal-header">
             <div class="uk-grid uk-flex uk-flex-middle">
