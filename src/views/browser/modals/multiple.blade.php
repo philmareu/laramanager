@@ -22,7 +22,7 @@
         </div>
 
         <div class="uk-overflow-container">
-            <div id="image-browser" class="uk-grid">
+            <div id="image-browser-images" class="uk-grid">
                 @each('laramanager::browser.file', $images, 'file')
             </div>
         </div>

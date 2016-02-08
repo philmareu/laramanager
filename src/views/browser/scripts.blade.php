@@ -30,7 +30,7 @@
                     response = $.parseJSON(response);
 
                     if(response.status == 'ok') {
-                        $('#file-gallery').prepend(response.data.html);
+                        $('#image-browser-images').prepend(response.data.html);
                     }
                 },
 
@@ -56,6 +56,7 @@
         var button = $(this);
         var limit = button.data('limit');
         var imagesContainer = button.parents('.field-images').find('.images-container');
+        var fieldName = button.parents('.field-images').find('input[name="images_field_name"]').val();
 
         if(limit == 1) {
             $('.uk-modal-footer').hide();
@@ -64,6 +65,7 @@
             var currentlySelectedImages = imagesContainer.html();
             ImageBrowser.find('#selected-images .images').html(currentlySelectedImages);
             setDoneButton(imagesContainer);
+            setMultipleClicks(fieldName);
             $('.uk-modal-footer').show();
         }
 
@@ -80,27 +82,30 @@
         UIkit.modal(ImageBrowser).show();
     }
 
-    ImageBrowser.on('click', 'img.unselected-image', function(event) {
+    function setMultipleClicks(fieldName) {
+        ImageBrowser.on('click', 'img.unselected-image', function(event) {
 
-        var wrapper = $('<div>', {
-            class: 'uk-width-1-2 uk-width-medium-1-4 uk-width-large-1-6 uk-margin-bottom'
+            var wrapper = $('<div>', {
+                class: 'uk-width-1-2 uk-width-medium-1-4 uk-width-large-1-6 uk-margin-bottom'
+            });
+
+            var img = $(this);
+            img.clone().appendTo(wrapper).toggleClass('unselected-image').toggleClass('selected-image');
+
+            var input = $('<input>', {
+                type: 'hidden',
+                name: fieldName +'[]',
+                value: img.attr('data-laramanager-file-id')
+            }).appendTo(wrapper);
+
+            $('#selected-images .images').append(wrapper);
+
         });
-
-        var img = $(this);
-        img.clone().appendTo(wrapper).toggleClass('unselected-image').toggleClass('selected-image');
-
-        var input = $('<input>', {
-            type: 'hidden',
-            name: 'photos[]',
-            value: img.attr('data-laramanager-file-id')
-        }).appendTo(wrapper);
-
-        $('#selected-images .images').append(wrapper);
-
-    });
+    }
 
     ImageBrowser.on('click', '.cancel', function() {
         ImageBrowser.off('click', '.done');
+        ImageBrowser.off('click', 'img.unselected-image');
         hideImageBrowser();
     });
 
@@ -113,10 +118,10 @@
     }
 
     function setOneClick(imagesContainer) {
-        ImageBrowser.on('click', 'img.unselected-image', function(event) {
+        ImageBrowser.one('click', 'img.unselected-image', function(event) {
             var img = $(this).clone();
             imagesContainer.html(img);
-            imagesContainer.find('.file_id').attr('value', img.attr('data-laramanager-file-id'));
+            imagesContainer.parents('.field-images').find('.file_id').attr('value', img.attr('data-laramanager-file-id'));
             hideImageBrowser();
         });
     }

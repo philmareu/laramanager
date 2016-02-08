@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Philsquare\LaraForm\Services\FormProcessor;
+use Philsquare\LaraManager\Fields\FieldProcessor;
 use Philsquare\LaraManager\Models\File;
 use Philsquare\LaraManager\Models\Object;
 use Philsquare\LaraManager\Models\Resource;
@@ -82,39 +83,13 @@ class ResourcesController extends Controller
     public function store(Request $request)
     {
         $resource = $this->resource->with('fields')->where('slug', $this->slug)->first();
+        $fieldProcessor = new FieldProcessor($request, $resource);
 
         $this->validate($request, $this->validationRules($resource));
 
         $model = $this->getModel($resource);
         $entity = new $model;
-        $attributes= $request->all();
-
-        foreach($resource->fields as $field)
-        {
-            if($field->type == 'checkbox')
-            {
-                if(! $request->has($field->slug)) $attributes[$field->slug] = 0;
-            }
-
-            if($field['type'] == 'image')
-            {
-                if($request->hasFile($field->slug))
-                {
-                    $filename = $this->form->processFile($request->file($field->slug), 'images');
-                    $attr[$field->slug] = $filename;
-                }
-            }
-
-            if($field->type == 'password')
-            {
-                $attr[$field->slug] = bcrypt($request->get($field->slug));
-            }
-
-            if($field->type == 'uploads')
-            {
-                $attr[$field->slug] = serialize($request->get($field->slug));
-            }
-        }
+        $attributes = $fieldProcessor->processAttributes();
 
         $entity = $entity->create($attributes);
 
