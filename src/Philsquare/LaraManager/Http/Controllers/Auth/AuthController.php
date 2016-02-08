@@ -11,7 +11,7 @@ use Philsquare\LaraManager\Http\Controllers\Controller;
 
 class AuthController extends Controller
 {
-    protected $redirectTo = 'admin';
+    protected $redirectTo = 'admin/dashboard';
 
     protected $loginPath = 'admin/auth/login';
 

@@ -13,13 +13,13 @@
         </div>
     @endif
 
-    <form action="{{ route('admin.' . $resource . '.update', $entity->id) }}" enctype="multipart/form-data" method="POST" class="uk-form uk-form-stacked">
+    <form action="{{ route('admin.' . $resource->slug . '.update', $entity->id) }}" enctype="multipart/form-data" method="POST" class="uk-form uk-form-stacked">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <input type="hidden" name="_method" value="PUT">
 
-        @foreach($fields as $field)
+        @foreach($resource->fields as $field)
 
-            @include('laramanager::fields.' . $field['type'] . '.field', ['field' => array_merge($field, ['value' => $entity->{$field['name']}])])
+            @include('laramanager::fields.' . $field->type . '.field', ['field' => $field, 'entity' => $entity])
 
         @endforeach
 
@@ -28,8 +28,6 @@
         </div>
 
     </form>
-
-    @include('laramanager::browser.modals.single')
 
     @include('laramanager::browser.modals.multiple')
 
@@ -41,7 +39,7 @@
         <script src="{{ asset('vendor/laramanager/js/ckeditor/ckeditor.js') }}"></script>
     @endif
 
-    @foreach($fields as $field)
+    @foreach($resource->fields as $field)
 
         @if(view()->exists('laramanager::fields.' . $field['type'] . '/scripts'))
             @include('laramanager::fields.' . $field['type'] . '/scripts', $field)

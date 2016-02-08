@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Schema;
+use Philsquare\LaraManager\Models\Redirect;
+use Philsquare\LaraManager\Models\Resource;
 
 Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], function()
 {
@@ -14,7 +16,7 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], functio
 
     if(Schema::hasTable('redirects'))
     {
-        foreach(\Philsquare\LaraManager\Models\Redirect::all() as $redirect)
+        foreach(Redirect::all() as $redirect)
         {
             Route::get($redirect->from, 'RedirectsController@redirect');
         }
@@ -22,13 +24,15 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], functio
 
     Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function()
     {
-        Route::get('/', 'AdminController@findHome');
+        Route::get('/', 'AdminController@index');
+        Route::get('dashboard', 'AdminController@dashboard');
+        Route::post('files/upload', 'FilesController@upload');
 
-        if(! is_null(config('laramanager.resources')))
+        if(Schema::hasTable('resources'))
         {
-            foreach(config('laramanager.resources') as $resource => $meta)
+            foreach(Resource::all() as $resource)
             {
-                Route::resource($resource, 'ResourcesController');
+                Route::resource($resource->slug, 'ResourcesController');
 
                 Route::get('objects/{resource}/{resourceId}/{objects}/create', 'ObjectsController@create');
                 Route::post('objects/{resource}/{resourceId}/{objects}', 'ObjectsController@store');
@@ -36,12 +40,30 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], functio
                 Route::put('objects/{resource}/{resourceId}/{id}', 'ObjectsController@update');
                 Route::delete('objects/{id}', ['before' => 'ajax', 'uses' => 'ObjectsController@destroy']);
             }
-
-            Route::post('uploads/resource', 'ResourcesController@uploads');
-            Route::post('delete-file', 'ResourcesController@deleteFile');
         }
 
-        Route::get('images/browser', 'FilesController@imageBrowser');
-        Route::post('files/upload', 'FilesController@upload');
+//        if(! is_null(config('laramanager.resources')))
+//        {
+//            foreach(config('laramanager.resources') as $resource => $meta)
+            {
+
+            }
+//
+            Route::post('uploads/resource', 'ResourcesController@uploads');
+//            Route::post('delete-file', 'ResourcesController@deleteFile');
+//        }
+
+//        Route::get('images/browser', 'FilesController@imageBrowser');
+
+
+
+        Route::get('resources/fields/getOptions/{type}', 'ResourceFieldController@getOptions');
+        Route::get('resources/{resources}/fields/{fields}/edit', 'ResourceFieldController@edit');
+        Route::put('resources/{resources}/fields/{fields}/edit', 'ResourceFieldController@update');
+        Route::get('resources/{resources}/fields', 'ResourceFieldController@index');
+        Route::get('resources/{resources}/fields/create', 'ResourceFieldController@create');
+        Route::post('resources/{resources}/fields/create', 'ResourceFieldController@store');
+        Route::delete('resources/{resources}/fields/{fields}', 'ResourceFieldController@destroy');
+        Route::resource('resources', 'ResourceManagerController');
     });
 });

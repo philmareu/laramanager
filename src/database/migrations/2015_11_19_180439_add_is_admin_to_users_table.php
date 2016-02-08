@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
 
 class AddIsAdminToUsersTable extends Migration
 {
@@ -15,6 +16,13 @@ class AddIsAdminToUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->boolean('is_admin');
         });
+
+        DB::table('users')->insert([
+            'name' => 'Admin',
+            'email' => 'admin@admin.com',
+            'password' => bcrypt('password'),
+            'is_admin' => 1
+        ]);
     }
 
     /**

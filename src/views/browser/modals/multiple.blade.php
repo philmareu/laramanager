@@ -1,4 +1,4 @@
-<div id="modal-image-browser-multiple" class="uk-modal">
+<div id="modal-image-browser" class="uk-modal">
     <div class="uk-modal-dialog uk-modal-dialog-blank uk-modal-dialog-large">
         <div class="uk-modal-header">
             <div class="uk-grid uk-flex uk-flex-middle">
@@ -22,7 +22,7 @@
         </div>
 
         <div class="uk-overflow-container">
-            <div id="image-browser" class="uk-grid">
+            <div id="image-browser-images" class="uk-grid">
                 @each('laramanager::browser.file', $images, 'file')
             </div>
         </div>

@@ -1,9 +1,7 @@
 <script>
-    var target = "#" + "{{ $target }}";
-    var slug = "#" + "{{ $id }}";
-    var type = "{{ $delimiter or "-" }}";
+    var target = "{{ $field->data('target') }}";
 
     $(function() {
-        $(target).slugify({ slug: slug, type: type });
+        $('input[name="' + target + '"]').slugify({ slug: '#slug', type: "-" });
     });
 </script>

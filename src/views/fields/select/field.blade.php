@@ -1,1 +1,1 @@
-@include('laraform::elements.form.select', compact('field'))
+@include('laraform::elements.form.select', ['field' => ['name' => $field->slug, 'options' => $field->selectArray(), 'value' => isset($entity) ? $entity->{$field->slug} : null]])

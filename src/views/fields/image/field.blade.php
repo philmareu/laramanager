@@ -1,13 +1,21 @@
-<div class="field-image">
-    <div class="image">
-        @if(isset($field['value']))
-            {{ $field['value'] }}
-            {{--<img src="{{ url('images/small/' . $field['value']) }}">--}}
-        @endif
+@inject('file', 'Philsquare\LaraManager\Models\File')
+
+<div class="uk-form-row field-images">
+    <label for="{{ $field->slug }}" class="uk-form-label">{{ $field->title }}</label>
+
+    <div class="uk-placeholder {{ $errors->has($field->slug) ? 'uk-form-danger' : '' }}">
+        <div class="uk-grid uk-grid-small uk-sortable images-container" data-uk-sortable>
+
+            @if(null !== old($field->slug))
+                @include('laramanager::browser.file', ['file' => $file->find(old($field->slug))])
+            @elseif(isset($entity) && is_int($entity->{$field->slug}))
+                @include('laramanager::browser.file', ['file' => $file->find($entity->{$field->slug})])
+            @endif
+
+        </div>
     </div>
 
+    <input type="hidden" name="{{ $field->slug }}" value="{{ $entity->{$field->slug} or ''}}" id="{{ $field->id }}" class="file_id">
+    <button type="button" class="uk-button opens-image-browser" data-limit="1"><i class="uk-icon-photo"></i> Browse</button>
 
-    <input type="hidden" name="{{ $field['name'] }}" value="{{ $field['value'] or ''}}" id="{{ $field['id'] }}" class="file_id">
-
-    <button type="button" class="uk-button" data-uk-modal="{target:'#modal-image-browser-single'}">Browse</button>
 </div>
