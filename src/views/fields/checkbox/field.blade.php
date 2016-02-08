@@ -1,1 +1,1 @@
-@include('laraform::elements.form.checkbox', ['field' => ['name' => $field->slug, 'checked' => false]])
+@include('laraform::elements.form.checkbox', ['field' => ['name' => $field->slug, 'checked' => isset($entity) ? $entity->{$field->slug} : 0]])

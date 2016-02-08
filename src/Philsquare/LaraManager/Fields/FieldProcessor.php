@@ -11,7 +11,6 @@ class FieldProcessor {
 
     protected $resource;
 
-
     public function __construct(Request $request, Resource $resource)
     {
         $this->request = $request;
@@ -20,46 +19,35 @@ class FieldProcessor {
 
     public function processAttributes()
     {
-        $attributes = $this->request->all();
         foreach($this->resource->fields as $field)
         {
             if(method_exists($this, $field->type))
             {
-                $attributes[$field->slug] = $this->{$field->type}($field->slug);
+                $this->{$field->type}($field->slug);
             }
 
         }
 
-        return $attributes;
+        return $this->request;
     }
 
     public function password($slug)
     {
-        if($this->hasValue($slug)) return null;
+        $value = $this->request->get($slug);
 
-        return bcrypt($this->request->get($slug));
+        if($value == "") $this->request->offsetUnset($slug);
+
+        else $this->request->offsetSet($slug, bcrypt($value));
     }
 
     public function checkbox($slug)
     {
-        if($this->hasValue($slug)) return null;
-
-        return $this->request->has($slug) ? 1 : 0;
+        if($this->request->has($slug)) $this->request->offsetSet($slug, 1);
+        else $this->request->offsetSet($slug, 0);
     }
 
     public function images($slug)
     {
-        if($this->hasValue($slug)) return null;
-
-        return serialize($this->request->get($slug));
-    }
-
-    /**
-     * @param $slug
-     * @return bool
-     */
-    private function hasValue($slug)
-    {
-        return !$this->request->has($slug);
+        $this->request->offsetSet($slug, serialize($this->request->get($slug)));
     }
 }

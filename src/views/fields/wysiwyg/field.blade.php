@@ -1,1 +1,1 @@
-@include('laraform::elements.form.wysiwyg', ['field' => ['name' => $field->slug, 'id' => 'editor']])
+@include('laraform::elements.form.wysiwyg', ['field' => ['name' => $field->slug, 'id' => 'editor', 'value' => isset($entity) ? $entity->{$field->slug} : null]])

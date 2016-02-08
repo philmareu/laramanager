@@ -1,1 +1,1 @@
-@include('laraform::elements.form.slug', ['field' => ['name' => $field->slug, 'id' => 'slug']])
+@include('laraform::elements.form.slug', ['field' => ['name' => $field->slug, 'id' => 'slug', 'value' => isset($entity) ? $entity->{$field->slug} : null]])

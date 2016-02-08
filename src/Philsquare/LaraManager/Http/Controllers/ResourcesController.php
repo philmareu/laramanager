@@ -89,16 +89,9 @@ class ResourcesController extends Controller
 
         $model = $this->getModel($resource);
         $entity = new $model;
-        $attributes = $fieldProcessor->processAttributes();
+        $request = $fieldProcessor->processAttributes();
 
-        $entity = $entity->create($attributes);
-
-//        foreach(config('laramanager.resources.' . $this->resource . '.objects') as $defaultObject)
-//        {
-//            $object = Object::where('slug', $defaultObject['type'])->first();
-//
-//            $entity->objects()->attach($object->id, ['label' => $defaultObject['label']]);
-//        }
+        $entity = $entity->create($request->all());
 
         if(method_exists($model, 'objects')) return redirect('admin/' . $resource->slug . '/' . $entity->id)->with('success', 'Added');
 
@@ -129,21 +122,19 @@ class ResourcesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($resourceId)
+    public function edit($entityId)
     {
+        $resource = $this->resource->with('fields')->where('slug', $this->slug)->first();
+        $model = $this->getModel($resource);
+        $entity = $model::find($entityId);
         $hasWysiwyg = false;
-        $title = $this->title;
-        $fields = $this->fields;
-        $resource = $this->resource;
-        $model = config('laramanager.resources.' . $this->resource . '.model');
-        $entity = $model::find($resourceId);
 
-        foreach($fields as $field)
+        foreach($resource->fields as $field)
         {
             if($field['type'] == 'wysiwyg') $hasWysiwyg = true;
         }
 
-        return view('laramanager::resource.edit', compact('title', 'fields', 'resource', 'entity', 'hasWysiwyg'));
+        return view('laramanager::resource.edit', compact('resource', 'hasWysiwyg', 'entity'));
     }
 
     /**
@@ -153,43 +144,19 @@ class ResourcesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $entityId)
     {
-        $this->validate($request, $this->validationRules($this->fields, 'update'));
+        $resource = $this->resource->with('fields')->where('slug', $this->slug)->first();
+        $fieldProcessor = new FieldProcessor($request, $resource);
+        $model = $this->getModel($resource);
 
-        $model = config('laramanager.resources.' . $this->resource . '.model');
-        $entity = (new $model)->findOrFail($id);
+        $entity = $model::findOrFail($entityId);
 
-        $attributes = $request->all();
+        $this->validate($request, $this->validationRules($resource, $entity));
 
-        foreach($this->fields as $field)
-        {
-            if($field['type'] == 'checkbox')
-            {
-                if(! $request->has($field['name'])) $attributes[$field['name']] = 0;
-            }
+        $request = $fieldProcessor->processAttributes();
 
-            if($field['type'] == 'image')
-            {
-                if($request->hasFile($field['name']))
-                {
-                    $filename = $this->form->processFile($request->file($field['name']), 'images', $entity->{$field['name']});
-                    $attributes[$field['name']] = $filename;
-                }
-            }
-
-            if($field['type'] == 'password')
-            {
-                $attributes[$field['name']] = bcrypt($request->get($field['name']));
-            }
-
-            if($field['type'] == 'uploads')
-            {
-                $attributes[$field['name']] = serialize($request->get($field['name']));
-            }
-        }
-
-        $entity->update($attributes);
+        $entity->update($request->all());
 
         if(method_exists($model, 'objects')) return redirect('admin/' . $this->resource . '/' . $entity->id)->with('success', 'Updated');
 
