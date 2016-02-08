@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFilesTable extends Migration
+class CreateResourcesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,15 @@ class CreateFilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('files', function (Blueprint $table) {
+        Schema::create('resources', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('filename', 110);
             $table->string('title');
-            $table->string('description');
-            $table->enum('type', ['doc', 'image', 'pdf']);
-            $table->string('original_filename');
-            $table->string('alt');
+            $table->string('slug');
+            $table->string('namespace');
+            $table->string('model');
+            $table->unsignedTinyInteger('order_column');
+            $table->enum('order_direction', ['asc', 'desc']);
+            $table->string('icon', 50);
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ class CreateFilesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('files');
+        Schema::drop('resources');
     }
 }

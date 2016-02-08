@@ -1,1 +1,1 @@
-@include('laraform::elements.form.textarea', compact('field'))
+@include('laraform::elements.form.textarea', ['field' => ['name' => $field->slug, 'value' => isset($entity) ? $entity->{$field->slug} : null]])
