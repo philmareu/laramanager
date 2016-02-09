@@ -156,7 +156,7 @@ class ResourcesController extends Controller
 
         $entity->update($request->all());
 
-        if(method_exists($model, 'objects')) return redirect('admin/' . $this->resource . '/' . $entity->id)->with('success', 'Updated');
+        if(method_exists($model, 'objects')) return redirect('admin/' . $resource->slug . '/' . $entity->id)->with('success', 'Updated');
 
         return redirect()->back()->with('success', 'Updated');
     }

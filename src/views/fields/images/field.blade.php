@@ -10,7 +10,7 @@
                 @foreach(old($field->slug) as $fileId)
                     @include('laramanager::fields.images.file', ['file' => $file->find($fileId)])
                 @endforeach
-            @elseif(isset($entity) && $entity->{$field->slug} != "")
+            @elseif(isset($entity) && $entity->{$field->slug} != "" && is_array(unserialize($entity->{$field->slug})))
                 @foreach(unserialize($entity->{$field->slug}) as $fileId)
                     @include('laramanager::fields.images.file', ['file' => $file->find($fileId)])
                 @endforeach
