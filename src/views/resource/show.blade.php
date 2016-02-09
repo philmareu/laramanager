@@ -1,25 +1,25 @@
 @extends('laramanager::layouts.default')
 
 @section('title')
-    {{ $title }}
+    {{ $resource->title . '> View' }}
 @endsection
 
 @section('content')
 
     <h2>Primary Field Information</h2>
     <div class="uk-panel uk-panel-box uk-panel-box-primary uk-margin-bottom">
-        @foreach($fields as $key => $field)
+        @foreach($resource->fields as $key => $field)
             <div class="uk-margin-bottom">
-                <div class="label uk-text-bold uk-margin-small-bottom">{!! isset($field['label']) ? $field['label'] : ucwords(str_replace('_', ' ', $field['name'])) !!}</div>
-                @include('laramanager::fields.' . $field['type'] . '.display')
+                <div class="label uk-text-bold uk-margin-small-bottom">{{ $field->title }}</div>
+                @include('laramanager::fields.' . $field->type . '.display')
             </div>
         @endforeach
 
-        <form action="{{ url('admin/' . $resource . '/' . $entity->id) }}" method="POST">
+        <form action="{{ url('admin/' . $resource->slug . '/' . $entity->id) }}" method="POST">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <input type="hidden" name="_method" value="DELETE">
 
-            <a href="{{ URL::to('admin/' . $resource . '/' . $entity->id . '/edit') }}" class="uk-button uk-button-primary">Edit</a>
+            <a href="{{ URL::to('admin/' . $resource->slug . '/' . $entity->id . '/edit') }}" class="uk-button uk-button-primary">Edit</a>
             <a href="#" title="Are you sure? This will delete all related objects." class="uk-button uk-button-danger confirm">Delete</a>
         </form>
     </div>
@@ -58,7 +58,7 @@
 
         <div class="uk-dropdown uk-dropdown-small">
             <ul class="uk-nav uk-nav-dropdown">
-                @foreach($objects as $object)
+                @foreach($entity->objects as $object)
                     <li><a href="{{ url('admin/objects/' . $resource . '/' . $entity->id . '/' . $object->id . '/create') }}">{{ $object->title }}</a></li>
                 @endforeach
             </ul>

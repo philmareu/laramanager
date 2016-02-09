@@ -106,14 +106,11 @@ class ResourcesController extends Controller
      */
     public function show($resourceId)
     {
-        $title = $this->title . ' > View';
-        $fields = $this->fields;
-        $resource = $this->resource;
-        $model = config('laramanager.resources.' . $this->resource . '.model');
+        $resource = $this->resource->with('fields')->where('slug', $this->slug)->first();
+        $model = $this->getModel($resource);
         $entity = $model::with('objects')->where('id', $resourceId)->first();
-        $objects = Object::all();
 
-        return view('laramanager::resource.show', compact('title', 'fields', 'resource', 'entity', 'objects'));
+        return view('laramanager::resource.show', compact('resource', 'entity'));
     }
 
     /**
