@@ -113,6 +113,7 @@
         ImageBrowser.one('click', '.done', function() {
             var selectedImages = ImageBrowser.find('#selected-images .images').html();
             imagesContainer.html(selectedImages);
+            ImageBrowser.off('click', 'img.unselected-image');
             hideImageBrowser();
         });
     }

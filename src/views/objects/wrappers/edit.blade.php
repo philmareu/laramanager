@@ -38,6 +38,6 @@
         @include('laramanager::objects.' . $object->slug . '/scripts')
     @endif
 
-    @include('laramanager::browser.scripts.objects')
+    @include('laramanager::browser.scripts')
 
 @endsection

@@ -2,19 +2,17 @@
 
 @section('form')
 
-    <div class="uk-form-row">
-        <span class="errors">{{ $errors->first('photos') }}</span>
-        <label for="photos" class="uk-form-label">Photos</label>
+    <div class="uk-form-row field-images">
 
-        <div class="uk-placeholder {{ $errors->has('photos') ? 'uk-form-danger' : '' }}">
-            <div id="images" class="uk-grid uk-grid-small uk-sortable" data-uk-sortable>
-                @if(null !== old('photos'))
+        <label for="data[photos]" class="uk-form-label">Photos</label>
 
-                @endif
+        <div class="uk-placeholder {{ $errors->has('data[file_ids]') ? 'uk-form-danger' : '' }}">
+            <div class="uk-grid uk-grid-small uk-sortable images-container" data-uk-sortable>
             </div>
         </div>
 
-        <button type="button" class="uk-button" data-uk-modal="{target:'#modal-image-browser-multiple'}"><i class="uk-icon-photo"></i> Browse</button>
+        <input type="hidden" name="images_field_name" value="data[file_ids]">
+        <button type="button" class="uk-button opens-image-browser" data-limit="3"><i class="uk-icon-photo"></i> Browse</button>
     </div>
 
 @endsection

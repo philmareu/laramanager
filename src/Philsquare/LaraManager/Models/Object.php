@@ -30,8 +30,6 @@ class Object extends Model {
         return File::whereIn('id', $ids)
             ->orderByRaw(DB::raw("FIELD(id, $idsOrdered)"))
             ->get();
-
-//        return File::whereIn('id', $ids)->get();
     }
 
 }
