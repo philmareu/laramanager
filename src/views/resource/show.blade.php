@@ -45,7 +45,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="{{ url('admin/objects/' . $resource . '/' . $entity->id . '/' . $object->pivot->id . '/edit') }}" class="uk-float-rigdht"><i class="uk-icon-pencil"></i> Edit</a>
+                    <a href="{{ url('admin/objects/' . $resource->slug . '/' . $entity->id . '/' . $object->pivot->id . '/edit') }}" class="uk-float-rigdht"><i class="uk-icon-pencil"></i> Edit</a>
                 </div>
             @endforeach
         </div>
@@ -58,8 +58,8 @@
 
         <div class="uk-dropdown uk-dropdown-small">
             <ul class="uk-nav uk-nav-dropdown">
-                @foreach($entity->objects as $object)
-                    <li><a href="{{ url('admin/objects/' . $resource . '/' . $entity->id . '/' . $object->id . '/create') }}">{{ $object->title }}</a></li>
+                @foreach($objects as $object)
+                    <li><a href="{{ url('admin/objects/' . $resource->slug . '/' . $entity->id . '/' . $object->id . '/create') }}">{{ $object->title }}</a></li>
                 @endforeach
             </ul>
         </div>

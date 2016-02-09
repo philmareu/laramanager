@@ -6,7 +6,7 @@
 
 @section('content')
 
-    <form action="{{ url('admin/objects/' . $resource . '/' . $entity->id . '/' . $object->pivot->id) }}" method="POST" class="uk-form uk-form-stacked">
+    <form action="{{ url('admin/objects/' . $resource->slug . '/' . $entity->id . '/' . $object->pivot->id) }}" method="POST" class="uk-form uk-form-stacked">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <input type="hidden" name="_method" value="PUT">
 
@@ -20,13 +20,12 @@
                     @include('laraform::elements.form.submit')
                 </div>
                 <div class="uk-width-1-2 uk-width-medium-1-4">
-                    <a href="{{ url('admin/' . $resource . '/' . $entity->id) }}">Cancel</a>
+                    <a href="{{ url('admin/' . $resource->slug . '/' . $entity->id) }}">Cancel</a>
                 </div>
             </div>
         </div>
     </form>
 
-    @include('laramanager::browser.modals.single')
     @include('laramanager::browser.modals.multiple')
 	
 @endsection

@@ -1,14 +1,14 @@
 @extends('laramanager::layouts.default')
 
 @section('title')
-    {{ $resourceTitle }} > Add Object
+    {{ $resource->title }} > Add Object
 @stop
 
 @section('content')
 
 	<h2>Add {{ $object->title }} object</h2>
 
-    <form action="{{ url('admin/objects/' . $resource . '/' . $entity->id . '/' . $object->id) }}" method="POST" class="uk-form uk-form-stacked">
+    <form action="{{ url('admin/objects/' . $resource->slug . '/' . $entity->id . '/' . $object->id) }}" method="POST" class="uk-form uk-form-stacked">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
         @include('laraform::elements.form.text', ['field' => ['name' => 'label']])
@@ -21,13 +21,12 @@
                     @include('laraform::elements.form.submit')
                 </div>
                 <div class="uk-width-1-2 uk-width-medium-1-4">
-                    <a href="{{ url('admin/' . $resource . '/' . $entity->id) }}">Cancel</a>
+                    <a href="{{ url('admin/' . $resource->slug . '/' . $entity->id) }}">Cancel</a>
                 </div>
             </div>
         </div>
     </form>
 
-    @include('laramanager::browser.modals.single')
     @include('laramanager::browser.modals.multiple')
 
 

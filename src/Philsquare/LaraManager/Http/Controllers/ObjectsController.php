@@ -4,25 +4,31 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Philsquare\LaraManager\Models\File;
 use Philsquare\LaraManager\Models\Object;
+use Philsquare\LaraManager\Models\Resource;
 
 class ObjectsController extends Controller {
 
+    protected $resource;
+
+    public function __construct(Resource $resource)
+    {
+        $this->resource = $resource;
+    }
+
     public function create($resource, $resourceId, $objectId)
     {
-        $model = config('laramanager.resources.' . $resource . '.model');
+        $resource = $this->resource->with('fields')->where('slug', $resource)->first();
+        $model = $this->getModel($resource);
         $entity = $model::find($resourceId);
-        $resourceTitle = config('laramanager.resources.' . $resource . '.title');
-
         $object = Object::find($objectId);
-
         $files = File::latest()->get();
 
         if(view()->exists('vendor/laramanager/objects/' . $object->slug . '/create'))
         {
-            return view('vendor/laramanager/objects/' . $object->slug . '/create', compact('resource', 'entity', 'object', 'files', 'resourceTitle'));
+            return view('vendor/laramanager/objects/' . $object->slug . '/create', compact('resource', 'entity', 'object', 'files'));
         }
 
-        return view('laramanager::objects.' . $object->slug . '.create', compact('resource', 'entity', 'object', 'files', 'resourceTitle'));
+        return view('laramanager::objects.' . $object->slug . '.create', compact('resource', 'entity', 'object', 'files'));
     }
 
     public function store(Request $request, $resource, $resourceId, $objectId)
@@ -37,32 +43,31 @@ class ObjectsController extends Controller {
 //            return Redirect::back()->withErrors($this->validator->getErrors())->withInput();
 //        }
 
-        $model = config('laramanager.resources.' . $resource . '.model');
+        $resource = $this->resource->with('fields')->where('slug', $resource)->first();
+        $model = $this->getModel($resource);
         $entity = $model::find($resourceId);
-
         $object = Object::find($objectId);
 
         $entity->objects()->attach($object->id, ['label' => $request->label, 'ordinal' => 1, 'data' => serialize($request->only(['data']))]);
 
-        return redirect('admin/' . $resource . '/' . $resourceId);
+        return redirect('admin/' . $resource->slug . '/' . $resourceId);
     }
 
     public function edit($resource, $resourceId, $objectableId)
     {
-        $model = config('laramanager.resources.' . $resource . '.model');
+        $resource = $this->resource->with('fields')->where('slug', $resource)->first();
+        $model = $this->getModel($resource);
         $entity = $model::find($resourceId);
-        $resourceTitle = config('laramanager.resources.' . $resource . '.title');
 
         $object = $entity->objects()->where('objectables.id', $objectableId)->first();
-
         $files = File::latest()->get();
 
         if(view()->exists('vendor/laramanager/objects/' . $object->slug . '/edit'))
         {
-            return view('vendor/laramanager/objects/' . $object->slug . '/edit', compact('resource', 'entity', 'object', 'files', 'resourceTitle'));
+            return view('vendor/laramanager/objects/' . $object->slug . '/edit', compact('resource', 'entity', 'object', 'files'));
         }
 
-        return view('laramanager::objects.' . $object->slug . '.edit', compact('resource', 'entity', 'object', 'data', 'files', 'resourceTitle'));
+        return view('laramanager::objects.' . $object->slug . '.edit', compact('resource', 'entity', 'object', 'data', 'files'));
     }
 
     public function update(Request $request, $resource, $resourceId, $objectableId)
@@ -75,5 +80,15 @@ class ObjectsController extends Controller {
     public function destroy()
     {
 
+    }
+
+    /**
+     * @param $resource
+     * @return string
+     */
+    private function getModel($resource)
+    {
+        $model = $resource->namespace . '\\' . $resource->model;
+        return $model;
     }
 }
