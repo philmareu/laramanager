@@ -42,18 +42,8 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], functio
             }
         }
 
-//        if(! is_null(config('laramanager.resources')))
-//        {
-//            foreach(config('laramanager.resources') as $resource => $meta)
-            {
-
-            }
-//
-            Route::post('uploads/resource', 'ResourcesController@uploads');
-//            Route::post('delete-file', 'ResourcesController@deleteFile');
-//        }
-
-//        Route::get('images/browser', 'FilesController@imageBrowser');
+        Route::post('uploads/resource', 'ResourcesController@uploads');
+        Route::get('images/browser', 'FilesController@imageBrowser');
 
 
 
