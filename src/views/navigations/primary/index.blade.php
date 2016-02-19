@@ -9,7 +9,7 @@
 {{--    @each('laramanager::navigations.primary.items', config('laramanager.navigation.primary'), 'item')--}}
 
     <li class="uk-parent {{ in_array($segments[1], ['resources']) ? 'uk-active' : '' }}">
-        <a href="#" class="uk-text-large"><i class="uk-icon-gears uk-icon-justify"></i>System</a>
+        <a href="#" class="uk-text-large"><i class="uk-icon-gears uk-icon-justify"></i></a>
         <ul class="uk-nav-sub">
             <li class="{{ $segments[1] == 'resources' ? 'uk-active' : '' }}">
                 <a href="{{ url('admin/resources') }}">Resources</a>
