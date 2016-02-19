@@ -38,13 +38,13 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], functio
                 Route::post('objects/{resource}/{resourceId}/{objects}', 'ObjectsController@store');
                 Route::get('objects/{resource}/{resourceId}/{id}/edit', 'ObjectsController@edit');
                 Route::put('objects/{resource}/{resourceId}/{id}', 'ObjectsController@update');
+                Route::put('objects/reorder', 'ObjectsController@reorder');
                 Route::delete('objects/{id}', ['before' => 'ajax', 'uses' => 'ObjectsController@destroy']);
             }
         }
 
         Route::post('uploads/resource', 'ResourcesController@uploads');
         Route::get('images/browser', 'FilesController@imageBrowser');
-
 
 
         Route::get('resources/fields/getOptions/{type}', 'ResourceFieldController@getOptions');

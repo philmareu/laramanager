@@ -28,9 +28,9 @@
 
     <div class="uk-accordion" data-uk-accordion="{showfirst: false}">
 
-        <div class="uk-sortable" data-uk-sortable>
+        <div id="objects" class="uk-sortable" data-uk-sortable>
             @foreach($entity->objects as $object)
-                <div class="uk-panel uk-panel-box uk-panel-box-secondary uk-margin-bottom">
+                <div class="uk-panel uk-panel-box uk-panel-box-secondary uk-margin-bottom object" data-laramanager-objectable-id="{{ $object->pivot->id }}">
                     <h3 class="uk-accordion-title uk-panel-title">
                         <i class="uk-icon-bars"></i> {{ $object->title }} - {{ $object->pivot->label }}
                     </h3>
@@ -82,6 +82,24 @@
             {
                 form.submit();
             }
+        });
+
+        $('#objects').on('change.uk.sortable', function(event, object, element, action) {
+            var ids = [];
+
+            $('.object').each(function(index) {
+                var object = $(this);
+                ids.push(object.attr('data-laramanager-objectable-id'));
+            });
+
+            $.ajax({
+                url: SITE_URL + '/admin/objects/reorder',
+                type: 'PUT',
+                data: {ids: ids, _token: csrf},
+                success: function(response) {
+                    console.log('reordered');
+                }
+            });
         });
     </script>
 

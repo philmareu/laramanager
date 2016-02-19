@@ -82,6 +82,16 @@ class ObjectsController extends Controller {
 
     }
 
+    public function reorder(Request $request)
+    {
+        foreach($request->get('ids') as $ordinal => $id)
+        {
+            DB::table('objectables')->where('id', $id)->update([
+                'ordinal' => $ordinal
+            ]);
+        }
+    }
+
     /**
      * @param $resource
      * @return string
