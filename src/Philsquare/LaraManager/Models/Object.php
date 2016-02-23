@@ -25,6 +25,8 @@ class Object extends Model {
     {
         $ids = $this->data($key);
 
+        if(! is_array($ids)) return [];
+
         $idsOrdered = implode(',', $ids);
 
         return File::whereIn('id', $ids)
