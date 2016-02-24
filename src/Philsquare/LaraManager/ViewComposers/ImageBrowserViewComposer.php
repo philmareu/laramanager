@@ -15,7 +15,7 @@ class ImageBrowserViewComposer
 
     public function compose(View $view)
     {
-        $images = $this->file->where('type', 'image')->get();
+        $images = $this->file->latest()->where('type', 'image')->get();
 
         $view->with(compact('images'));
     }
