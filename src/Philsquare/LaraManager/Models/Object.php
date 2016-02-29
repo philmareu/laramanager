@@ -7,6 +7,12 @@ use Illuminate\Support\Facades\DB;
 
 class Object extends Model {
 
+    protected $fillable = [
+        'title',
+        'slug',
+        'description'
+    ];
+
     public function data($key)
     {
         $data = unserialize($this->pivot->data);

@@ -19,6 +19,11 @@
         <li class="uk-nav-header">System</li>
         <li class="{{ $segments[1] == 'resources' ? 'uk-active' : '' }}">
             <a href="{{ url('admin/resources') }}"><i class="uk-icon-cubes uk-icon-justify"></i> Resources</a>
+
+        </li>
+
+        <li class="{{ $segments[1] == 'objects' ? 'uk-active' : '' }}">
+            <a href="{{ url('admin/objects') }}"><i class="uk-icon-cube uk-icon-justify"></i> Objects</a>
         </li>
         <li class="uk-nav-divider"></li>
 

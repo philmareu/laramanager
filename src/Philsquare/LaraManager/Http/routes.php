@@ -56,5 +56,7 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], functio
         Route::post('resources/{resources}/fields/create', 'ResourceFieldController@store');
         Route::delete('resources/{resources}/fields/{fields}', 'ResourceFieldController@destroy');
         Route::resource('resources', 'ResourceManagerController');
+
+        Route::resource('objects', 'ObjectsController');
     });
 });

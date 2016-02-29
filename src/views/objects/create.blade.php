@@ -1,7 +1,7 @@
 @extends('laramanager::layouts.default')
 
 @section('title')
-    Create Resource
+    Create Object
 @endsection
 
 @section('content')
@@ -13,16 +13,12 @@
         </div>
     @endif
 
-    <form action="{{ route('admin.resources.store') }}" enctype="multipart/form-data" method="POST" class="uk-form uk-form-stacked">
+    <form action="{{ route('admin.objects.store') }}" enctype="multipart/form-data" method="POST" class="uk-form uk-form-stacked">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
         @include('laraform::elements.form.text', ['field' => ['name' => 'title', 'id' => 'title']])
         @include('laraform::elements.form.slug', ['field' => ['name' => 'slug', 'id' => 'slug', 'target' => 'title']])
-        @include('laraform::elements.form.text', ['field' => ['name' => 'namespace']])
-        @include('laraform::elements.form.text', ['field' => ['name' => 'model']])
-        @include('laraform::elements.form.text', ['field' => ['name' => 'order_column', 'value' => 0]])
-        @include('laraform::elements.form.select', ['field' => ['name' => 'order_direction', 'options' => ['asc' => 'asc', 'desc' => 'desc']]])
-        @include('laraform::elements.form.text', ['field' => ['name' => 'icon', 'value' => 'uk-icon-']])
+        @include('laraform::elements.form.text', ['field' => ['name' => 'description']])
 
         <div class="uk-form-row">
             <button type="submit" class="uk-button uk-button-primary uk-width-1-1 uk-width-medium-1-3 uk-width-large-1-6">Save</button>
