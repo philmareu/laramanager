@@ -49,10 +49,6 @@ class LaraManagerServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../../database/migrations/' => database_path('migrations')
         ], 'migrations');
-
-        $this->publishes([
-            __DIR__ . '/../../../config/config.php' => config_path('laramanager.php'),
-        ], 'config');
     }
 
     private function setViewComposers()
