@@ -1,0 +1,1 @@
+<img src="{{ url('images/image-browser/' . $file->filename) }}" alt="{{ $file->alt }}">

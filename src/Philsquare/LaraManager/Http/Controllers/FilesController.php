@@ -11,14 +11,33 @@ class FilesController extends Controller {
 
     protected $formProcessor;
 
-    public function __construct(FormProcessor $formProcessor)
+    protected $file;
+
+    public function __construct(FormProcessor $formProcessor, File $file)
     {
         $this->formProcessor = $formProcessor;
+        $this->file = $file;
+    }
+
+    public function index()
+    {
+        $files = File::latest()->paginate(30);
+        return view('laramanager::files.index', compact('files'));
+    }
+
+    public function edit()
+    {
+
+    }
+
+    public function update()
+    {
+
     }
 
     public function imageBrowser(Request $request)
     {
-        $funcNum = $request->get('CKEditorFuncNum');
+        $funcNum = $request->has('CKEditorFuncNum') ? $request->get('CKEditorFuncNum') : '';
 
         $images = File::latest()->paginate(10);
         return view('laramanager::browser.files', compact('images', 'funcNum'));

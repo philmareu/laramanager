@@ -27,6 +27,7 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], functio
         Route::get('/', 'AdminController@index');
         Route::get('dashboard', 'AdminController@dashboard');
         Route::post('files/upload', 'FilesController@upload');
+        Route::resource('files', 'FilesController', ['except' => ['create', 'store', 'destroy']]);
 
         if(Schema::hasTable('resources'))
         {

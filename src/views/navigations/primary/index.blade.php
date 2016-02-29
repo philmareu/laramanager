@@ -11,6 +11,7 @@
         @foreach($resources as $resource)
             <li class="{{ $segments[1] == $resource->slug ? 'uk-active' : '' }}"><a href="{{ url('admin/' . $resource->slug) }}"><i class="{{ $resource->icon }} uk-icon-justify"></i> {{ $resource->title }}</a></li>
         @endforeach
+        <li class="{{ $segments[1] == 'files' ? 'uk-active' : '' }}"><a href="{{ url('admin/files') }}"><i class="uk-icon-file uk-icon-justify"></i> Files</a></li>
         <li class="uk-nav-divider"></li>
 
         {{--    @each('laramanager::navigations.primary.items', config('laramanager.navigation.primary'), 'item')--}}
