@@ -6,7 +6,7 @@ use Philsquare\LaraManager\Models\File;
 use Philsquare\LaraManager\Models\Object;
 use Philsquare\LaraManager\Models\Resource;
 
-class ObjectsController extends Controller {
+class ResourceObjectsController extends Controller {
 
     protected $resource;
 
@@ -48,7 +48,7 @@ class ObjectsController extends Controller {
         $entity = $model::find($resourceId);
         $object = Object::find($objectId);
 
-        $entity->objects()->attach($object->id, ['label' => $request->label, 'ordinal' => 1, 'data' => serialize($request->only(['data']))]);
+        $entity->objects()->attach($object->id, ['label' => $request->label, 'ordinal' => 100, 'data' => serialize($request->only(['data']))]);
 
         return redirect('admin/' . $resource->slug . '/' . $resourceId);
     }

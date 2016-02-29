@@ -2,7 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Philsquare\LaraForm\Services\FormProcessor;
+use Philsquare\LaraManager\Http\Requests\UpdateFileRequest;
 use Philsquare\LaraManager\Http\Requests\UploadFileRequest;
 use Philsquare\LaraManager\Http\Requests\UploadImageRequest;
 use Philsquare\LaraManager\Models\File;
@@ -25,14 +27,31 @@ class FilesController extends Controller {
         return view('laramanager::files.index', compact('files'));
     }
 
-    public function edit()
+    public function edit($fileId)
     {
-
+        $file = $this->file->findOrFail($fileId);
+        $output['data']['html'] = view('laramanager::files.edit', compact('file'))->render();
+        return response()->json($output);
     }
 
-    public function update()
+    public function update(UpdateFileRequest $request, $fileId)
     {
+        $file = $this->file->findOrFail($fileId);
+        if($file->filename != $request->get('filename'))
+        {
+            if(Storage::has('files/' . $file->filename)) return response()->json(['errors' => ['Filename Exists']]);
 
+            Storage::move('files/' . $file->filename, 'files/' . $request->get('filename'));
+        }
+
+        $file->update($request->all());
+
+        $output['data'] = [
+            'file' => $file,
+            'url' => url('images/original/' . $file->filename)
+        ];
+
+        return response()->json($output);
     }
 
     public function imageBrowser(Request $request)

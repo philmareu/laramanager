@@ -11,7 +11,8 @@ class File extends Model {
         'title',
         'description',
         'type',
-        'original_filename'
+        'original_filename',
+        'alt'
     ];
 
 }
