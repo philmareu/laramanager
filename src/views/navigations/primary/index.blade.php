@@ -5,6 +5,7 @@
 
         <li class="uk-nav-header">Reporting</li>
         <li class="{{ $segments[1] == 'dashboard' ? 'uk-active' : '' }}"><a href="{{ url('admin/dashboard') }}"><i class="uk-icon-dashboard uk-icon-justify"></i> Dashboard</a></li>
+        <li class="{{ $segments[1] == 'not-founds' ? 'uk-active' : '' }}"><a href="{{ url('admin/not-founds') }}"><i class="uk-icon-exclamation uk-icon-justify"></i> 404s</a></li>
         <li class="uk-nav-divider"></li>
 
         <li class="uk-nav-header">Resources</li>

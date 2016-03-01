@@ -20,8 +20,8 @@ class CreateObjectRequest extends Request {
     public function rules()
     {
         return [
-            'title' => 'unique:objects|max:255',
-            'slug' => 'unique:objects|max:255',
+            'title' => 'required|unique',
+            'slug' => 'required|unique:objects|max:255',
             'description' => 'max:255'
         ];
     }
