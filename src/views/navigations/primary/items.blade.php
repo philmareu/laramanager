@@ -9,6 +9,9 @@
 @foreach($resources as $resource)
     <li class="{{ $segments[1] == $resource->slug ? 'uk-active' : '' }}"><a href="{{ url('admin/' . $resource->slug) }}"><i class="{{ $resource->icon }} uk-icon-justify"></i> {{ $resource->title }}</a></li>
 @endforeach
+<li class="uk-nav-divider"></li>
+
+<li class="uk-nav-header">Uploads</li>
 <li class="{{ $segments[1] == 'images' ? 'uk-active' : '' }}"><a href="{{ url('admin/images') }}"><i class="uk-icon-file-picture-o uk-icon-justify"></i> Images</a></li>
 <li class="uk-nav-divider"></li>
 
@@ -27,12 +30,12 @@
 <li class="{{ $segments[1] == 'objects' ? 'uk-active' : '' }}">
     <a href="{{ url('admin/objects') }}"><i class="uk-icon-cube uk-icon-justify"></i> Objects</a>
 </li>
-<li class="uk-nav-divider"></li>
+{{--<li class="uk-nav-divider"></li>--}}
 
-<li class="uk-nav-header">Support</li>
-<li class="{{ $segments[1] == 'resources' ? 'uk-active' : '' }}">
-    <a href="{{ url('admin/resources') }}"><i class="uk-icon-life-bouy uk-icon-justify"></i> Report Issue</a>
-</li>
+{{--<li class="uk-nav-header">Support</li>--}}
+{{--<li class="{{ $segments[1] == 'resources' ? 'uk-active' : '' }}">--}}
+    {{--<a href="{{ url('admin/resources') }}"><i class="uk-icon-life-bouy uk-icon-justify"></i> Report Issue</a>--}}
+{{--</li>--}}
 
 {{--<li class="uk-parent {{ in_array($segments[1], ['resources']) ? 'uk-active' : '' }}">--}}
 {{--<a href="#" class="uk-text-large"><i class="uk-icon-gears uk-icon-justify"></i>System</a>--}}
