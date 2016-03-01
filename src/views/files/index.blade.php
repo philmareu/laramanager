@@ -10,14 +10,6 @@
 
 @section('content')
 
-    <div id="file-modal" class="uk-modal">
-        <div class="uk-modal-dialog uk-modal-dialog-large">
-            <a class="uk-modal-close uk-close"></a>
-            <div class="modal-content">
-            </div>
-        </div>
-    </div>
-
     <div id="upload-drop" class="uk-placeholder uk-text-center">
         <i class="uk-icon-cloud-upload uk-icon-medium uk-text-muted uk-margin-small-right"></i>
         Drag files here or <a class="uk-form-file">selecting one<input id="upload-select" type="file"></a>. (5Mb Max)
@@ -27,8 +19,16 @@
         <div class="uk-progress-bar" style="width: 0%;">...</div>
     </div>
 
-    <div class="uk-grid-width-small-1-2 uk-grid-width-medium-1-4 uk-grid-width-large-1-6" id="files" data-uk-grid="{gutter: 10}">
+    <div class="uk-grid-width-small-1-2 uk-grid-width-medium-1-4 uk-grid-width-large-1-6" id="files">
         @each('laramanager::files.file', $files, 'file')
+    </div>
+
+    <div id="file-modal" class="uk-modal">
+        <div class="uk-modal-dialog uk-modal-dialog-large">
+            <a class="uk-modal-close uk-close"></a>
+            <div class="modal-content">
+            </div>
+        </div>
     </div>
 
 @endsection
@@ -37,7 +37,7 @@
     <script>
         var FileBrowserModal = $('#file-modal');
         var spinnerHTML = '<i class="uk-icon-spinner uk-icon-spin"></i>';
-
+        UIkit.grid('#files', {gutter: 10});
         function getModal(uri) {
 
             updateModal('<div class="modal-spinner uk-text-center"><i class="uk-icon-spinner uk-icon-spin uk-icon-large"></i>');
@@ -97,5 +97,52 @@
             });
 
         });
+
+        var progressbar = $("#progressbar"),
+                bar         = progressbar.find('.uk-progress-bar'),
+                settings    = {
+
+                    action: SITE_URL + '/admin/files/upload', // upload url
+
+                    allow : '*.(jpg|jpeg|gif|png)', // allow only pngs
+
+                    param: 'file',
+
+                    params: {_token: csrf, view: 'files.file'},
+
+                    loadstart: function() {
+                        bar.css("width", "0%").text("0%");
+                        progressbar.removeClass("uk-hidden");
+                    },
+
+                    progress: function(percent) {
+                        percent = Math.ceil(percent);
+                        bar.css("width", percent+"%").text(percent+"%");
+                    },
+
+                    complete: function(response, xhr) {
+
+                        bar.css("width", "0%").text("0%");
+                        response = $.parseJSON(response);
+
+                        if(response.status == 'ok') {
+
+                        }
+                    },
+
+                    allcomplete: function(response) {
+
+                        bar.css("width", "100%").text("100%");
+
+                        setTimeout(function(){
+                            progressbar.addClass("uk-hidden");
+                        }, 250);
+
+                    location.reload(true);
+                    }
+                };
+
+        var selectSingle = UIkit.uploadSelect($("#upload-select"), settings),
+                dropSingle   = UIkit.uploadDrop($("#upload-drop"), settings);
     </script>
 @endsection

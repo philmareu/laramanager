@@ -12,7 +12,7 @@
             @include('laraform::elements.form.textarea', ['field' => ['name' => 'filename', 'value' => $file->filename]])
             @include('laraform::elements.form.text', ['field' => ['name' => 'title', 'value' => $file->title]])
             @include('laraform::elements.form.textarea', ['field' => ['name' => 'description', 'value' => $file->description]])
-            @include('laraform::elements.form.text', ['field' => ['name' => 'original_filename', 'value' => $file->origianl_filename]])
+            @include('laraform::elements.form.text', ['field' => ['name' => 'original_filename', 'value' => $file->original_filename]])
             @include('laraform::elements.form.text', ['field' => ['name' => 'alt', 'value' => $file->alt]])
 
             <div class="uk-form-row">

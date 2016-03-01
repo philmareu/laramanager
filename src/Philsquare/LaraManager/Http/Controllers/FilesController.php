@@ -39,7 +39,7 @@ class FilesController extends Controller {
         $file = $this->file->findOrFail($fileId);
         if($file->filename != $request->get('filename'))
         {
-            if(Storage::has('files/' . $file->filename)) return response()->json(['errors' => ['Filename Exists']]);
+            if(Storage::has('files/' . $request->get('filename'))) return response()->json(['errors' => ['Filename Exists']]);
 
             Storage::move('files/' . $file->filename, 'files/' . $request->get('filename'));
         }
@@ -64,13 +64,22 @@ class FilesController extends Controller {
 
     public function upload(UploadFileRequest $request)
     {
-        $filename = $this->formProcessor->processFile($request->file('file'), 'files');
+        $upload = $request->file('file');
+        $extension = $upload->getClientOriginalExtension();
+        $originalName = str_replace('.' . $extension, '', $upload->getClientOriginalName());
+        $filename = $this->formProcessor->processFile($upload, 'files');
 
-        $file = File::create(['filename' => $filename, 'type' => 'image']);
+        $file = File::create([
+            'filename' => $filename,
+            'type' => 'image',
+            'original_filename' => $upload->getClientOriginalName(),
+            'alt' => ucwords($originalName),
+            'title' => ucwords($originalName)
+        ]);
 
         $output['status'] = 'ok';
         $output['data'] = [
-            'html' => view('laramanager::browser.file', compact('file'))->render(),
+            'html' => view('laramanager::' . $request->get('view'), compact('file'))->render(),
             'file' => $file
         ];
 

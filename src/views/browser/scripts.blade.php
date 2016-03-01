@@ -12,7 +12,7 @@
 
                 param: 'file',
 
-                params: {_token: csrf},
+                params: {_token: csrf, view: 'browser.file'},
 
                 loadstart: function() {
                     bar.css("width", "0%").text("0%");
