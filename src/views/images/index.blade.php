@@ -40,7 +40,11 @@
         $('.pagination').attr('class', 'uk-pagination');
         var ImageBrowserModal = $('#image-modal');
         var spinnerHTML = '<i class="uk-icon-spinner uk-icon-spin"></i>';
-        UIkit.grid('#images', {gutter: 10});
+
+        $(function() {
+            UIkit.grid('#images', {gutter: 10});
+        });
+
         function getModal(uri) {
 
             updateModal('<div class="modal-spinner uk-text-center"><i class="uk-icon-spinner uk-icon-spin uk-icon-large"></i>');

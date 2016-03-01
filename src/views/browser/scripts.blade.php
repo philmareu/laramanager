@@ -51,6 +51,10 @@
 
     var ImageBrowser = $('#modal-image-browser');
 
+    $(function() {
+        UIkit.grid('#image-browser-images', {gutter: 10});
+    });
+
     $('.opens-image-browser').on('click', function(event) {
 
         var button = $(this);

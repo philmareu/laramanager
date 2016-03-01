@@ -15,7 +15,7 @@ class ImageBrowserViewComposer
 
     public function compose(View $view)
     {
-        $images = $this->image->latest()->get();
+        $images = $this->image->latest()->limit(50)->get();
 
         $view->with(compact('images'));
     }

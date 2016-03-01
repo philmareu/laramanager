@@ -55,7 +55,7 @@ class LaraManagerServiceProvider extends ServiceProvider
     {
         view()->composer('laramanager::navigations.top.index', 'Philsquare\LaraManager\ViewComposers\NavigationComposer');
         view()->composer('laramanager::navigations.primary.*', 'Philsquare\LaraManager\ViewComposers\NavigationComposer');
-        view()->composer(['laramanager::browse.files.*', 'laramanager::browser.modals.*'],
+        view()->composer(['laramanager::browse.files.*', 'laramanager::browser.modal'],
             'Philsquare\LaraManager\ViewComposers\ImageBrowserViewComposer');
         view()->composer('layouts.*', 'Philsquare\LaraManager\ViewComposers\LayoutsViewComposer');
     }

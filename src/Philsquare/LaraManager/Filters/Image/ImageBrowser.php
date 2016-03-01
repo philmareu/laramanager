@@ -17,6 +17,6 @@ class ImageBrowser implements FilterInterface {
     {
         return $image->resize(300, null, function($constraint) {
             $constraint->aspectRatio();
-        });
+        })->encode('jpg', 50);
     }
 }
