@@ -24,7 +24,7 @@ class Object extends Model {
     {
         $id = $this->data($key);
 
-        return File::find($id);
+        return Image::find($id);
     }
 
     public function files($key)
@@ -35,7 +35,7 @@ class Object extends Model {
 
         $idsOrdered = implode(',', $ids);
 
-        return File::whereIn('id', $ids)
+        return Image::whereIn('id', $ids)
             ->orderByRaw(DB::raw("FIELD(id, $idsOrdered)"))
             ->get();
     }
