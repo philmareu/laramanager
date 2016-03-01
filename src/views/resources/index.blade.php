@@ -14,39 +14,41 @@
 
 @section('content')
 
-    <table id="data-table" class="stripe row-border">
-        <thead>
-        <tr>
-            <td>Title</td>
-            <td>Slug</td>
-            <td>Namespace</td>
-            <td>Model</td>
-            <td>&nbsp;</td>
-        </tr>
-        </thead>
-
-        <tbody>
-        @foreach($resources as $resource)
+    <div class="uk-overflow-container">
+        <table id="data-table" class="stripe row-border">
+            <thead>
             <tr>
-                <td>{{ $resource->title }}</td>
-                <td>{{ $resource->slug }}</td>
-                <td>{{ $resource->namespace }}</td>
-                <td>{{ $resource->model }}</td>
-
-                <td width="50">
-                    <div class="uk-grid uk-grid-medium">
-                        <div class="uk-width-1-2">
-                            <a href="{{ url('admin/resources/' . $resource->id . '/fields') }}"><i class="uk-icon-eye"></i></a>
-                        </div>
-                        <div class="uk-width-1-2">
-                            <a href="{{ route('admin.resources.edit', $resource->id) }}"><i class="uk-icon-pencil"></i></a>
-                        </div>
-                    </div>
-                </td>
+                <td>Title</td>
+                <td>Slug</td>
+                <td>Namespace</td>
+                <td>Model</td>
+                <td>&nbsp;</td>
             </tr>
-        @endforeach
-        </tbody>
-    </table>
+            </thead>
+
+            <tbody>
+            @foreach($resources as $resource)
+                <tr>
+                    <td>{{ $resource->title }}</td>
+                    <td>{{ $resource->slug }}</td>
+                    <td>{{ $resource->namespace }}</td>
+                    <td>{{ $resource->model }}</td>
+
+                    <td width="50">
+                        <div class="uk-grid uk-grid-medium">
+                            <div class="uk-width-1-2">
+                                <a href="{{ url('admin/resources/' . $resource->id . '/fields') }}"><i class="uk-icon-eye"></i></a>
+                            </div>
+                            <div class="uk-width-1-2">
+                                <a href="{{ route('admin.resources.edit', $resource->id) }}"><i class="uk-icon-pencil"></i></a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
 
 @endsection
 

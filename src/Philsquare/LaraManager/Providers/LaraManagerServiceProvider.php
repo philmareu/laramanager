@@ -57,6 +57,7 @@ class LaraManagerServiceProvider extends ServiceProvider
         view()->composer('laramanager::navigations.primary.*', 'Philsquare\LaraManager\ViewComposers\NavigationComposer');
         view()->composer(['laramanager::browse.files.*', 'laramanager::browser.modals.*'],
             'Philsquare\LaraManager\ViewComposers\ImageBrowserViewComposer');
+        view()->composer('layouts.*', 'Philsquare\LaraManager\ViewComposers\LayoutsViewComposer');
     }
 
     private function setCustomValidation()

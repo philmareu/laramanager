@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-    404s
+    Settings
 @endsection
 
 @section('content')
@@ -14,18 +14,23 @@
         <table id="data-table" class="stripe row-border">
             <thead>
             <tr>
-                <td>Count</td>
-                <td>Uri</td>
-                <td>Last Hit</td>
+                <td>Title</td>
+                <td>Slug</td>
+                <td>Value</td>
+                <td>&nbsp;</td>
             </tr>
             </thead>
 
             <tbody>
-            @foreach($errors as $error)
+            @foreach($settings as $setting)
                 <tr>
-                    <td>{{ $error->count }}</td>
-                    <td>{{ $error->uri }}</td>
-                    <td>{{ $error->updated_at->format('M gS, Y') }}</td>
+                    <td>{{ $setting->title }}</td>
+                    <td>{{ $setting->slug }}</td>
+                    <td>{{ $setting->value }}</td>
+
+                    <td width="50">
+                        <a href="{{ route('admin.settings.edit', $setting->id) }}"><i class="uk-icon-pencil"></i></a>
+                    </td>
                 </tr>
             @endforeach
             </tbody>

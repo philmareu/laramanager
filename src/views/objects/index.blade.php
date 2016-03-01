@@ -14,30 +14,32 @@
 
 @section('content')
 
-    <table id="data-table" class="stripe row-border">
-        <thead>
-        <tr>
-            <td>Title</td>
-            <td>Slug</td>
-            <td>Description</td>
-            <td>&nbsp;</td>
-        </tr>
-        </thead>
-
-        <tbody>
-        @foreach($objects as $object)
+    <div class="uk-overflow-container">
+        <table id="data-table" class="stripe row-border">
+            <thead>
             <tr>
-                <td>{{ $object->title }}</td>
-                <td>{{ $object->slug }}</td>
-                <td>{{ $object->description }}</td>
-
-                <td width="50">
-                    <a href="{{ route('admin.objects.edit', $object->id) }}"><i class="uk-icon-pencil"></i></a>
-                </td>
+                <td>Title</td>
+                <td>Slug</td>
+                <td>Description</td>
+                <td>&nbsp;</td>
             </tr>
-        @endforeach
-        </tbody>
-    </table>
+            </thead>
+
+            <tbody>
+            @foreach($objects as $object)
+                <tr>
+                    <td>{{ $object->title }}</td>
+                    <td>{{ $object->slug }}</td>
+                    <td>{{ $object->description }}</td>
+
+                    <td width="50">
+                        <a href="{{ route('admin.objects.edit', $object->id) }}"><i class="uk-icon-pencil"></i></a>
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
 
 @endsection
 

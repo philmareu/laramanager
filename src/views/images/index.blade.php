@@ -19,7 +19,7 @@
         <div class="uk-progress-bar" style="width: 0%;">...</div>
     </div>
 
-    <div class="uk-grid-width-small-1-2 uk-grid-width-medium-1-4 uk-grid-width-large-1-6" id="images">
+    <div class="uk-grid-width-1-2 uk-grid-width-small-1-2 uk-grid-width-medium-1-4 uk-grid-width-large-1-6" id="images">
         @each('laramanager::images.image', $images, 'image')
     </div>
 

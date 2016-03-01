@@ -24,10 +24,10 @@
     @include('laramanager::navigations.top.index')
 
     <div class="uk-grid uk-grid-collapse">
-        <div class="uk-width-1-6 uk-contrast uk-height-viewport" id="sidebar">
+        <div class="uk-width-1-6 uk-contrast uk-height-viewport uk-hidden-small" id="sidebar">
             @include('laramanager::navigations.primary.index')
         </div>
-        <div class="uk-width-5-6" id="primary-content-area">
+        <div class="uk-width-1-1 uk-width-medium-5-6" id="primary-content-area">
 
             <div class="title-bar uk-container">
                 <div class="uk-grid uk-grid-collapse uk-flex-middle">

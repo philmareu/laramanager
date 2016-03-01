@@ -1,4 +1,4 @@
-<li class="uk-parent" data-uk-dropdown="{mode:'click'}">
+<li class="uk-parent uk-hidden-small" data-uk-dropdown="{mode:'click'}">
 
     <!-- This is the menu item toggling the dropdown -->
     <a href="#" style="cursor:pointer;">{{ $user->name }} <i class="uk-icon-caret-down"></i></a>

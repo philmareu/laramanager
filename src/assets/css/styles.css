@@ -8181,6 +8181,11 @@ footer {
   padding: 10px;
   background-color: #eeeeee;
 }
+#offcanvas-navigation .uk-panel-title {
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1em;
+}
 #sidebar .uk-panel-title {
   text-transform: uppercase;
   color: rgba(0, 0, 0, 0.9);
