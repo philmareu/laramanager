@@ -4,7 +4,7 @@ namespace Philsquare\LaraManager\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class File extends Model {
+class Image extends Model {
 
     protected $fillable = [
         'filename',
@@ -12,7 +12,8 @@ class File extends Model {
         'description',
         'type',
         'original_filename',
-        'alt'
+        'alt',
+        'size'
     ];
 
 }

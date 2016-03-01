@@ -1,21 +1,21 @@
 <?php namespace Philsquare\LaraManager\ViewComposers; 
 
 use Illuminate\Contracts\View\View;
-use Philsquare\LaraManager\Models\File;
+use Philsquare\LaraManager\Models\Image;
 
 class ImageBrowserViewComposer
 {
 
-    protected $file;
+    protected $image;
 
-    public function __construct(File $file)
+    public function __construct(Image $image)
     {
-        $this->file = $file;
+        $this->image = $image;
     }
 
     public function compose(View $view)
     {
-        $images = $this->file->latest()->where('type', 'image')->get();
+        $images = $this->image->latest()->get();
 
         $view->with(compact('images'));
     }

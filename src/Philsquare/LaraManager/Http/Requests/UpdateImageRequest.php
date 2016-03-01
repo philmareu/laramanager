@@ -1,6 +1,6 @@
 <?php namespace Philsquare\LaraManager\Http\Requests;
 
-class UpdateFileRequest extends Request {
+class UpdateImageRequest extends Request {
 
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class UpdateFileRequest extends Request {
             'alt' => 'max:255',
             'description' => 'max:255',
             'original_filename' => 'max:255',
-            'filename' => 'required|max:110|unique:files,filename,' . $this->segment(3)
+            'filename' => 'required|max:110|unique:images,filename,' . $this->segment(3)
         ];
     }
 

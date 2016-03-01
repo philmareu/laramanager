@@ -1,7 +1,7 @@
 @extends('laramanager::layouts.default')
 
 @section('title')
-    Files
+    Images
 @endsection
 
 @section('actions')
@@ -12,18 +12,20 @@
 
     <div id="upload-drop" class="uk-placeholder uk-text-center">
         <i class="uk-icon-cloud-upload uk-icon-medium uk-text-muted uk-margin-small-right"></i>
-        Drag files here or <a class="uk-form-file">selecting one<input id="upload-select" type="file"></a>. (5Mb Max)
+        Drag images here or <a class="uk-form-file">selecting one<input id="upload-select" type="file"></a>. (5Mb Max)
     </div>
 
     <div id="progressbar" class="uk-progress uk-hidden">
         <div class="uk-progress-bar" style="width: 0%;">...</div>
     </div>
 
-    <div class="uk-grid-width-small-1-2 uk-grid-width-medium-1-4 uk-grid-width-large-1-6" id="files">
-        @each('laramanager::files.file', $files, 'file')
+    <div class="uk-grid-width-small-1-2 uk-grid-width-medium-1-4 uk-grid-width-large-1-6" id="images">
+        @each('laramanager::images.image', $images, 'image')
     </div>
 
-    <div id="file-modal" class="uk-modal">
+    {!! $images->render() !!}
+
+    <div id="image-modal" class="uk-modal">
         <div class="uk-modal-dialog uk-modal-dialog-large">
             <a class="uk-modal-close uk-close"></a>
             <div class="modal-content">
@@ -35,13 +37,14 @@
 
 @section('scripts')
     <script>
-        var FileBrowserModal = $('#file-modal');
+        $('.pagination').attr('class', 'uk-pagination');
+        var ImageBrowserModal = $('#image-modal');
         var spinnerHTML = '<i class="uk-icon-spinner uk-icon-spin"></i>';
-        UIkit.grid('#files', {gutter: 10});
+        UIkit.grid('#images', {gutter: 10});
         function getModal(uri) {
 
             updateModal('<div class="modal-spinner uk-text-center"><i class="uk-icon-spinner uk-icon-spin uk-icon-large"></i>');
-            UIkit.modal(FileBrowserModal).show();
+            UIkit.modal(ImageBrowserModal).show();
 
             $.ajax({
                 type: "GET",
@@ -63,13 +66,13 @@
             $('.modal-content').html( html );
         }
 
-        $('#files').on('click', '.file', function(event) {
-            var fileId = $(this).attr('data-laramanager-file-id');
+        $('#images').on('click', '.image', function(event) {
+            var imageId = $(this).attr('data-laramanager-image-id');
 
-            getModal('/admin/files/' + fileId + '/edit');
+            getModal('/admin/images/' + imageId + '/edit');
         });
 
-        FileBrowserModal.on('submit', '#update-file', function(event) {
+        ImageBrowserModal.on('submit', '#update-image', function(event) {
 
             event.preventDefault();
             var form = $(this);
@@ -102,13 +105,13 @@
                 bar         = progressbar.find('.uk-progress-bar'),
                 settings    = {
 
-                    action: SITE_URL + '/admin/files/upload', // upload url
+                    action: SITE_URL + '/admin/images/upload', // upload url
 
                     allow : '*.(jpg|jpeg|gif|png)', // allow only pngs
 
-                    param: 'file',
+                    param: 'image',
 
-                    params: {_token: csrf, view: 'files.file'},
+                    params: {_token: csrf, view: 'images.image'},
 
                     loadstart: function() {
                         bar.css("width", "0%").text("0%");
@@ -123,7 +126,6 @@
                     complete: function(response, xhr) {
 
                         bar.css("width", "0%").text("0%");
-                        response = $.parseJSON(response);
 
                         if(response.status == 'ok') {
 
@@ -138,7 +140,7 @@
                             progressbar.addClass("uk-hidden");
                         }, 250);
 
-                    location.reload(true);
+                        location.reload(true);
                     }
                 };
 

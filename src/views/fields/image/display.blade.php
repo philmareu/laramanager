@@ -1,3 +1,3 @@
-@inject('file', 'Philsquare\LaraManager\Models\File')
+@inject('image', 'Philsquare\LaraManager\Models\Image')
 
-@include('laramanager::fields.images.file', ['file' => $file->find($entity->{$field->slug})])
+@include('laramanager::browser.image', ['image' => $image->find($entity->{$field->slug})])

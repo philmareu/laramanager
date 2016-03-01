@@ -16,7 +16,7 @@ File Browser
     </div>
 
     <div id="file-gallery" class="uk-grid" data-uk-grid-margin>
-        @each('laramanager::browser.file', $images, 'file')
+        @each('laramanager::browser.image', $images, 'image')
     </div>
 
     {!! $images->appends(['CKEditorFuncNum' => $funcNum])->render() !!}

@@ -1,4 +1,4 @@
-@inject('file', 'Philsquare\LaraManager\Models\File')
+@inject('image', 'Philsquare\LaraManager\Models\Image')
 <div class="uk-form-row field-images">
 
     <label for="{{ $field->slug }}" class="uk-form-label">{{ $field->title }}</label>
@@ -7,12 +7,12 @@
         <div class="uk-grid uk-grid-small uk-sortable images-container" data-uk-sortable>
 
             @if(null !== old($field->slug))
-                @foreach(old($field->slug) as $fileId)
-                    @include('laramanager::fields.images.file', ['file' => $file->find($fileId)])
+                @foreach(old($field->slug) as $imageId)
+                    @include('laramanager::fields.images.image', ['image' => $image->find($imageId)])
                 @endforeach
             @elseif(isset($entity) && $entity->{$field->slug} != "" && is_array(unserialize($entity->{$field->slug})))
-                @foreach(unserialize($entity->{$field->slug}) as $fileId)
-                    @include('laramanager::fields.images.file', ['file' => $file->find($fileId)])
+                @foreach(unserialize($entity->{$field->slug}) as $imageId)
+                    @include('laramanager::fields.images.image', ['image' => $image->find($imageId)])
                 @endforeach
             @endif
         </div>

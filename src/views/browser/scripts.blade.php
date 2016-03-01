@@ -6,13 +6,13 @@
             bar         = progressbar.find('.uk-progress-bar'),
             settings    = {
 
-                action: SITE_URL + '/admin/files/upload', // upload url
+                action: SITE_URL + '/admin/images/upload', // upload url
 
                 allow : '*.(jpg|jpeg|gif|png)', // allow only pngs
 
-                param: 'file',
+                param: 'image',
 
-                params: {_token: csrf, view: 'browser.file'},
+                params: {_token: csrf, view: 'browser.image'},
 
                 loadstart: function() {
                     bar.css("width", "0%").text("0%");
