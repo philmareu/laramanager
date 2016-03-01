@@ -1,5 +1,5 @@
 <nav class="uk-navbar" id="top-navigation" data-uk-sticky>
-    <a href="#offcanvas-navigation" class="uk-navbar-toggle" data-uk-offcanvas></a>
+    <a href="#offcanvas-navigation" class="uk-navbar-toggle uk-visible-small" data-uk-offcanvas></a>
     <a href="{{ url() }}" target="_blank" class="uk-navbar-brand">{{ $settings['site-name'] }} <span class="uk-hidden-small uk-text-large">({{ url('/') }}) </span><i class="uk-icon-external-link uk-text-large"></i></a>
     <div class="uk-navbar-flip">
         <ul class="uk-navbar-nav">
