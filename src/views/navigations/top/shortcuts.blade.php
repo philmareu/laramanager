@@ -6,7 +6,7 @@
     <!-- This is the dropdown -->
     <div class="uk-dropdown uk-dropdown-navbar">
         <ul class="uk-nav uk-nav-navbar">
-            @each('laramanager::navigations.top.shortcut', config('laramanager.navigation.shortcuts'), 'item')
+            @each('laramanager::navigations.top.shortcut', $resources, 'resource')
         </ul>
     </div>
 

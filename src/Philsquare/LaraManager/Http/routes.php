@@ -26,7 +26,8 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], functio
     {
         Route::get('/', 'AdminController@index');
         Route::get('dashboard', 'AdminController@dashboard');
-        Route::post('files/upload', 'FilesController@upload');
+        Route::post('images/upload', 'ImagesController@upload');
+        Route::resource('images', 'ImagesController', ['except' => ['create', 'store', 'destroy']]);
 
         if(Schema::hasTable('resources'))
         {
@@ -34,17 +35,17 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], functio
             {
                 Route::resource($resource->slug, 'ResourcesController');
 
-                Route::get('objects/{resource}/{resourceId}/{objects}/create', 'ObjectsController@create');
-                Route::post('objects/{resource}/{resourceId}/{objects}', 'ObjectsController@store');
-                Route::get('objects/{resource}/{resourceId}/{id}/edit', 'ObjectsController@edit');
-                Route::put('objects/{resource}/{resourceId}/{id}', 'ObjectsController@update');
-                Route::put('objects/reorder', 'ObjectsController@reorder');
-                Route::delete('objects/{id}', ['before' => 'ajax', 'uses' => 'ObjectsController@destroy']);
+                Route::get('objects/{resource}/{resourceId}/{objects}/create', 'ResourceObjectsController@create');
+                Route::post('objects/{resource}/{resourceId}/{objects}', 'ResourceObjectsController@store');
+                Route::get('objects/{resource}/{resourceId}/{id}/edit', 'ResourceObjectsController@edit');
+                Route::put('objects/{resource}/{resourceId}/{id}', 'ResourceObjectsController@update');
+                Route::put('objects/reorder', 'ResourceObjectsController@reorder');
+                Route::delete('objects/{id}', ['before' => 'ajax', 'uses' => 'ResourceObjectsController@destroy']);
             }
         }
 
         Route::post('uploads/resource', 'ResourcesController@uploads');
-        Route::get('images/browser', 'FilesController@imageBrowser');
+        Route::get('images/browser', 'ImagesController@imageBrowser');
 
 
         Route::get('resources/fields/getOptions/{type}', 'ResourceFieldController@getOptions');
@@ -55,5 +56,9 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], functio
         Route::post('resources/{resources}/fields/create', 'ResourceFieldController@store');
         Route::delete('resources/{resources}/fields/{fields}', 'ResourceFieldController@destroy');
         Route::resource('resources', 'ResourceManagerController');
+
+        Route::resource('objects', 'ObjectsController');
+        Route::resource('settings', 'SettingsController');
+        Route::get('not-founds', 'NotFoundExceptionsController@index');
     });
 });

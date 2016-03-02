@@ -1,5 +1,3 @@
-@inject('file', 'Philsquare\LaraManager\Models\File')
-
 @extends('laramanager::objects.wrappers.edit')
 
 @section('form')
@@ -10,10 +8,10 @@
 
         <div class="uk-placeholder {{ $errors->has('data[file_ids]') ? 'uk-form-danger' : '' }}">
             <div class="uk-grid uk-grid-small uk-sortable images-container" data-uk-sortable>
-                @foreach($object->files('file_ids') as $file)
+                @foreach($object->files('file_ids') as $image)
                     <div class="uk-width-1-2 uk-width-medium-1-4 uk-width-large-1-6 uk-margin-bottom">
-                        <img src="{{ url('images/medium/' . $file->filename) }}" alt=""/>
-                        <input type="hidden" name="data[file_ids][]" value="{{ $file->id }}">
+                        <img src="{{ url('images/medium/' . $image->filename) }}" alt=""/>
+                        <input type="hidden" name="data[file_ids][]" value="{{ $image->id }}">
                     </div>
                 @endforeach
             </div>

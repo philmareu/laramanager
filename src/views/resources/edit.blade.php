@@ -19,11 +19,11 @@
 
         @include('laraform::elements.form.text', ['field' => ['name' => 'title', 'id' => 'title', 'value' => $resource->title]])
         @include('laraform::elements.form.slug', ['field' => ['name' => 'slug', 'id' => 'slug', 'target' => 'title', 'value' => $resource->slug]])
-        @include('laraform::elements.form.slug', ['field' => ['name' => 'namespace', 'value' => $resource->namespace]])
-        @include('laraform::elements.form.slug', ['field' => ['name' => 'model', 'value' => $resource->model]])
+        @include('laraform::elements.form.text', ['field' => ['name' => 'namespace', 'value' => $resource->namespace]])
+        @include('laraform::elements.form.text', ['field' => ['name' => 'model', 'value' => $resource->model]])
         @include('laraform::elements.form.text', ['field' => ['name' => 'order_column', 'value' => 0, 'value' => $resource->order_column]])
         @include('laraform::elements.form.select', ['field' => ['name' => 'order_direction', 'options' => ['asc' => 'asc', 'desc' => 'desc'], 'value' => $resource->order_direction]])
-        @include('laraform::elements.form.slug', ['field' => ['name' => 'icon', 'value' => $resource->icon]])
+        @include('laraform::elements.form.text', ['field' => ['name' => 'icon', 'value' => $resource->icon]])
 
         <div class="uk-form-row">
             <button type="submit" class="uk-button uk-button-primary uk-width-1-1 uk-width-medium-1-3 uk-width-large-1-6">Update</button>

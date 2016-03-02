@@ -47,7 +47,7 @@
 
 <script>
 
-    var funcNum = {{ $funcNum }};
+    var funcNum = "{{ $funcNum }}";
 
     $(function(){
 

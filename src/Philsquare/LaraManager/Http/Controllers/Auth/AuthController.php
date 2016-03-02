@@ -68,7 +68,7 @@ class AuthController extends Controller
 
         $credentials = $this->getCredentials($request);
 
-        if (Auth::attempt($credentials, $request->has('remember'), ['is_admin' => 1])) {
+        if (Auth::attempt(array_merge($credentials, ['is_admin' => 1]), $request->has('remember'))) {
             return $this->handleUserWasAuthenticated($request, $throttles);
         }
 

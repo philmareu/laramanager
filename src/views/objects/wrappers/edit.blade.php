@@ -26,7 +26,7 @@
         </div>
     </form>
 
-    @include('laramanager::browser.modals.multiple')
+    @include('laramanager::browser.modal')
 	
 @endsection
 

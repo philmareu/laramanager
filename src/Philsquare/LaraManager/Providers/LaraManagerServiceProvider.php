@@ -49,18 +49,15 @@ class LaraManagerServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../../database/migrations/' => database_path('migrations')
         ], 'migrations');
-
-        $this->publishes([
-            __DIR__ . '/../../../config/config.php' => config_path('laramanager.php'),
-        ], 'config');
     }
 
     private function setViewComposers()
     {
         view()->composer('laramanager::navigations.top.index', 'Philsquare\LaraManager\ViewComposers\NavigationComposer');
         view()->composer('laramanager::navigations.primary.*', 'Philsquare\LaraManager\ViewComposers\NavigationComposer');
-        view()->composer(['laramanager::browse.files.*', 'laramanager::browser.modals.*'],
+        view()->composer(['laramanager::browse.files.*', 'laramanager::browser.modal'],
             'Philsquare\LaraManager\ViewComposers\ImageBrowserViewComposer');
+        view()->composer('layouts.*', 'Philsquare\LaraManager\ViewComposers\LayoutsViewComposer');
     }
 
     private function setCustomValidation()

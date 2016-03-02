@@ -1,9 +1,9 @@
-@inject('file', 'Philsquare\LaraManager\Models\File')
+@inject('image', 'Philsquare\LaraManager\Models\Image')
 
 @if(is_array(unserialize($entity->{$field->slug})))
     <div id="images" class="uk-grid uk-grid-small">
-        @foreach(unserialize($entity->{$field->slug}) as $fileId)
-            @include('laramanager::fields.images.file', ['file' => $file->find($fileId)])
+        @foreach(unserialize($entity->{$field->slug}) as $imageId)
+            @include('laramanager::browser.image', ['image' => $image->find($imageId)])
         @endforeach
     </div>
 @else

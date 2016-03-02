@@ -1,6 +1,6 @@
-<?php namespace Philsquare\LaraManager\Http\Requests; 
+<?php namespace Philsquare\LaraManager\Http\Requests;
 
-class UploadFileRequest extends Request {
+class UpdateSettingRequest extends Request {
 
     /**
      * Determine if the user is authorized to make this request.
@@ -20,7 +20,7 @@ class UploadFileRequest extends Request {
     public function rules()
     {
         return [
-            'file' => 'required|image|max:20000'
+            'value' => '',
         ];
     }
 

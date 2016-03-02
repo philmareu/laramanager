@@ -1,1 +1,1 @@
-<li><a href="{{ url($item['uri']) }}"><i class="uk-icon-plus uk-icon-justify"></i> {{ $item['title'] }}</a></li>
+<li><a href="{{ url('admin/' . $resource->slug . '/create') }}"><i class="uk-icon-plus uk-icon-justify"></i> {{ $resource->title }}</a></li>

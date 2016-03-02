@@ -1,80 +1,56 @@
 <?php namespace Philsquare\LaraManager\Http\Controllers; 
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Philsquare\LaraManager\Models\File;
+use Illuminate\Support\Facades\Storage;
+use Philsquare\LaraManager\Http\Requests\CreateObjectRequest;
+use Philsquare\LaraManager\Http\Requests\UpdateObjectRequest;
 use Philsquare\LaraManager\Models\Object;
-use Philsquare\LaraManager\Models\Resource;
 
 class ObjectsController extends Controller {
 
-    protected $resource;
+    protected $object;
 
-    public function __construct(Resource $resource)
+    public function __construct(Object $object)
     {
-        $this->resource = $resource;
+        $this->object = $object;
     }
 
-    public function create($resource, $resourceId, $objectId)
+    public function index()
     {
-        $resource = $this->resource->with('fields')->where('slug', $resource)->first();
-        $model = $this->getModel($resource);
-        $entity = $model::find($resourceId);
-        $object = Object::find($objectId);
-        $files = File::latest()->get();
+        $objects = $this->object->all();
 
-        if(view()->exists('vendor/laramanager/objects/' . $object->slug . '/create'))
-        {
-            return view('vendor/laramanager/objects/' . $object->slug . '/create', compact('resource', 'entity', 'object', 'files'));
-        }
-
-        return view('laramanager::objects.' . $object->slug . '.create', compact('resource', 'entity', 'object', 'files'));
+        return view('laramanager::objects.index', compact('objects'));
     }
 
-    public function store(Request $request, $resource, $resourceId, $objectId)
+    public function create()
     {
-        // validation
-//        $this->validate($request, $this->validationRules($this->fields, 'store'));
-
-//        or
-
-//        if( ! $this->validator->isValid(Input::all(), Config::get('validation/objects.' . $object->slug)))
-//        {
-//            return Redirect::back()->withErrors($this->validator->getErrors())->withInput();
-//        }
-
-        $resource = $this->resource->with('fields')->where('slug', $resource)->first();
-        $model = $this->getModel($resource);
-        $entity = $model::find($resourceId);
-        $object = Object::find($objectId);
-
-        $entity->objects()->attach($object->id, ['label' => $request->label, 'ordinal' => 1, 'data' => serialize($request->only(['data']))]);
-
-        return redirect('admin/' . $resource->slug . '/' . $resourceId);
+        return view('laramanager::objects.create');
     }
 
-    public function edit($resource, $resourceId, $objectableId)
+    public function store(CreateObjectRequest $request)
     {
-        $resource = $this->resource->with('fields')->where('slug', $resource)->first();
-        $model = $this->getModel($resource);
-        $entity = $model::find($resourceId);
+        $this->object->create($request->all());
 
-        $object = $entity->objects()->where('objectables.id', $objectableId)->first();
-        $files = File::latest()->get();
-
-        if(view()->exists('vendor/laramanager/objects/' . $object->slug . '/edit'))
-        {
-            return view('vendor/laramanager/objects/' . $object->slug . '/edit', compact('resource', 'entity', 'object', 'files'));
-        }
-
-        return view('laramanager::objects.' . $object->slug . '.edit', compact('resource', 'entity', 'object', 'data', 'files'));
+        return redirect('admin/objects');
     }
 
-    public function update(Request $request, $resource, $resourceId, $objectableId)
+    public function show()
     {
-        DB::table('objectables')->where('id', $objectableId)->update(['label' => $request->label, 'data' => serialize($request->only(['data']))]);
 
-        return redirect('admin/' . $resource . '/' . $resourceId);
+    }
+
+    public function edit($objectId)
+    {
+        $object = $this->object->findOrFail($objectId);
+
+        return view('laramanager::objects.edit', compact('object'));
+    }
+
+    public function update(UpdateObjectRequest $request, $objectId)
+    {
+        $object = $this->object->findOrFail($objectId);
+        $object->update($request->all());
+
+        return redirect('admin/objects');
     }
 
     public function destroy()
@@ -82,23 +58,4 @@ class ObjectsController extends Controller {
 
     }
 
-    public function reorder(Request $request)
-    {
-        foreach($request->get('ids') as $ordinal => $id)
-        {
-            DB::table('objectables')->where('id', $id)->update([
-                'ordinal' => $ordinal
-            ]);
-        }
-    }
-
-    /**
-     * @param $resource
-     * @return string
-     */
-    private function getModel($resource)
-    {
-        $model = $resource->namespace . '\\' . $resource->model;
-        return $model;
-    }
 }
