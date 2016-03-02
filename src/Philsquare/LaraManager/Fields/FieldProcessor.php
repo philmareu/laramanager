@@ -48,6 +48,11 @@ class FieldProcessor {
 
     public function images($slug)
     {
-        $this->request->offsetSet($slug, serialize($this->request->get($slug)));
+        if($this->request->has($slug))
+        {
+            $this->request->offsetSet($slug, serialize($this->request->get($slug)));
+        }
+
+        else $this->request->offsetSet($slug, '');
     }
 }
