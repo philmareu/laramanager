@@ -7,7 +7,7 @@
         <div class="uk-grid uk-grid-small uk-sortable images-container" data-uk-sortable>
 
             @if(null !== old($field->slug))
-                @include('laramanager::browser.image', ['image' => $file->find(old($field->slug))])
+                @include('laramanager::browser.image', ['image' => $image->find(old($field->slug))])
             @elseif(isset($entity) && is_int($entity->{$field->slug}))
                 @include('laramanager::browser.image', ['image' => $image->find($entity->{$field->slug})])
             @endif
