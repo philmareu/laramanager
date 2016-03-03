@@ -4,10 +4,6 @@
     Images
 @endsection
 
-@section('actions')
-    <a href="{{ route('admin.resources.create') }}" class="uk-float-right"><i class="uk-icon-plus"></i> Add</a>
-@endsection
-
 @section('content')
 
     <div id="upload-drop" class="uk-placeholder uk-text-center">
