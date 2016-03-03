@@ -48,7 +48,7 @@ class ImagesController extends Controller {
 
         $output['data'] = [
             'file' => $image,
-            'url' => url('images/original/' . $image->imagename)
+            'url' => url('images/original/' . $image->filename)
         ];
 
         return response()->json($output);
