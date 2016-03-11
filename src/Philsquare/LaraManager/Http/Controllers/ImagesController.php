@@ -23,7 +23,7 @@ class ImagesController extends Controller {
 
     public function index()
     {
-        $images = $this->image->latest()->paginate(30);
+        $images = $this->image->latest()->paginate(100);
         return view('laramanager::images.index', compact('images'));
     }
 

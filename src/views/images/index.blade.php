@@ -38,7 +38,7 @@
         var spinnerHTML = '<i class="uk-icon-spinner uk-icon-spin"></i>';
 
         $(function() {
-            UIkit.grid('#images', {gutter: 10});
+            UIkit.grid('#images', {gutter: 10, animation: false});
         });
 
         function getModal(uri) {
