@@ -23,10 +23,12 @@
         <ul id="browser-tabs" class="uk-switcher uk-margin uk-tab-center">
             <li id="all-images">
                 <div class="uk-overflow-container">
-                    <div class="image-browser-images" class="uk-grid" data-uk-observe>
+                    <div class="image-browser-images uk-grid uk-clearfix" data-uk-observe>
                     </div>
-                    <a href="#" class="load-more">Load More</a>
-                    <span class="page-number uk-hidden">1</span>
+                    <div class="options uk-margin-top">
+                        <a href="#" class="load-more uk-button uk-width-1-1">Load More</a>
+                        <span class="page-number uk-hidden">1</span>
+                    </div>
                 </div>
             </li>
             <li id="search-images">
@@ -35,7 +37,7 @@
                 </form>
 
                 <div class="uk-overflow-container">
-                    <div class="image-browser-images" class="uk-grid">
+                    <div class="image-browser-images uk-grid">
                     </div>
                 </div>
             </li>
@@ -50,7 +52,7 @@
                 </div>
 
                 <div class="uk-overflow-container">
-                    <div class="image-browser-images" class="uk-grid">
+                    <div class="image-browser-images uk-grid">
                     </div>
                 </div>
             </li>
