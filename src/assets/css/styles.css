@@ -1301,6 +1301,267 @@ iframe {
   }
 }
 /* ========================================================================
+   Component: Block
+ ========================================================================== */
+.uk-block {
+  position: relative;
+  box-sizing: border-box;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+/* Phone landscape and bigger */
+@media (min-width: 768px) {
+  .uk-block {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+}
+/*
+ * Micro clearfix to make blocks more robust
+ */
+.uk-block:before,
+.uk-block:after {
+  content: "";
+  display: table;
+}
+.uk-block:after {
+  clear: both;
+}
+/*
+ * Remove margin from the last-child
+ */
+.uk-block > :last-child {
+  margin-bottom: 0;
+}
+/* Padding Modifier
+ ========================================================================== */
+/*
+ * Large padding
+ */
+.uk-block-large {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+/* Tablets and bigger */
+@media (min-width: 768px) {
+  .uk-block-large {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+}
+/* Desktop and bigger */
+@media (min-width: 960px) {
+  .uk-block-large {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+}
+/* Color Modifier
+ ========================================================================== */
+/*
+ * Default
+ */
+.uk-block-default {
+  background: #fff;
+}
+/*
+ * Muted
+ */
+.uk-block-muted {
+  background: #f9f9f9;
+}
+/*
+ * Primary
+ */
+.uk-block-primary {
+  background: #00a8e6;
+}
+/*
+ * Secondary
+ */
+.uk-block-secondary {
+  background: #222;
+}
+/* ========================================================================
+   Component: Article
+ ========================================================================== */
+/*
+ * Micro clearfix to make articles more robust
+ */
+.uk-article:before,
+.uk-article:after {
+  content: "";
+  display: table;
+}
+.uk-article:after {
+  clear: both;
+}
+/*
+ * Remove margin from the last-child
+ */
+.uk-article > :last-child {
+  margin-bottom: 0;
+}
+/*
+ * Vertical gutter for articles
+ */
+.uk-article + .uk-article {
+  margin-top: 25px;
+}
+/* Sub-object `uk-article-title`
+ ========================================================================== */
+.uk-article-title {
+  font-size: 36px;
+  line-height: 42px;
+  font-weight: normal;
+  text-transform: none;
+}
+.uk-article-title a {
+  color: inherit;
+  text-decoration: none;
+}
+/* Sub-object `uk-article-meta`
+ ========================================================================== */
+.uk-article-meta {
+  font-size: 12px;
+  line-height: 18px;
+  color: #999;
+}
+/* Sub-object `uk-article-lead`
+ ========================================================================== */
+.uk-article-lead {
+  color: #444;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: normal;
+}
+/* Sub-object `uk-article-divider`
+ ========================================================================== */
+.uk-article-divider {
+  margin-bottom: 25px;
+  border-color: #ddd;
+}
+* + .uk-article-divider {
+  margin-top: 25px;
+}
+/* ========================================================================
+   Component: Comment
+ ========================================================================== */
+/* Sub-object `uk-comment-header`
+ ========================================================================== */
+.uk-comment-header {
+  margin-bottom: 15px;
+}
+/*
+ * Micro clearfix
+ */
+.uk-comment-header:before,
+.uk-comment-header:after {
+  content: "";
+  display: table;
+}
+.uk-comment-header:after {
+  clear: both;
+}
+/* Sub-object `uk-comment-avatar`
+ ========================================================================== */
+.uk-comment-avatar {
+  margin-right: 15px;
+  float: left;
+}
+/* Sub-object `uk-comment-title`
+ ========================================================================== */
+.uk-comment-title {
+  margin: 5px 0 0 0;
+  font-size: 16px;
+  line-height: 22px;
+}
+/* Sub-object `uk-comment-meta`
+ ========================================================================== */
+.uk-comment-meta {
+  margin: 2px 0 0 0;
+  font-size: 11px;
+  line-height: 16px;
+  color: #999;
+}
+/* Sub-object `uk-comment-body`
+ ========================================================================== */
+/*
+ * Remove margin from the last-child
+ */
+.uk-comment-body > :last-child {
+  margin-bottom: 0;
+}
+/* Sub-object `uk-comment-list`
+ ========================================================================== */
+.uk-comment-list {
+  padding: 0;
+  list-style: none;
+}
+.uk-comment-list .uk-comment + ul {
+  margin: 15px 0 0 0;
+  list-style: none;
+}
+.uk-comment-list > li:nth-child(n+2),
+.uk-comment-list .uk-comment + ul > li:nth-child(n+2) {
+  margin-top: 15px;
+}
+/* Tablet and bigger */
+@media (min-width: 768px) {
+  .uk-comment-list .uk-comment + ul {
+    padding-left: 100px;
+  }
+}
+/* Modifier `uk-comment-primary`
+ ========================================================================== */
+/* ========================================================================
+   Component: Cover
+ ========================================================================== */
+/*
+ * Background image always covers and centers its element
+ */
+.uk-cover-background {
+  background-position: 50% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+/*
+ * Emulates image cover, works with video and image elements
+ * 1. Parent container which clips resized object
+ * 2. Resizes the object to always covers its container
+ * 3. Reset the responsive image CSS
+ * 4. Center object
+ */
+/* 1 */
+.uk-cover {
+  overflow: hidden;
+}
+.uk-cover-object {
+  /* 2 */
+  width: auto;
+  height: auto;
+  min-width: 100%;
+  min-height: 100%;
+  /* 3 */
+  max-width: none;
+  /* 4 */
+  position: relative;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+/*
+ * To center iframes use `data-uk-cover` JavaScript
+ */
+[data-uk-cover] {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+/* ========================================================================
    Component: Nav
  ========================================================================== */
 .uk-nav,
@@ -2026,6 +2287,353 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
   text-align: right;
 }
 /* ========================================================================
+   Component: Tab
+ ========================================================================== */
+.uk-tab {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid #ddd;
+}
+/*
+ * Micro clearfix on the deepest container
+ */
+.uk-tab:before,
+.uk-tab:after {
+  content: "";
+  display: table;
+}
+.uk-tab:after {
+  clear: both;
+}
+/*
+ * Items
+ * 1. Create position context for dropdowns
+ */
+.uk-tab > li {
+  margin-bottom: -1px;
+  float: left;
+  /* 1 */
+  position: relative;
+}
+.uk-tab > li > a {
+  display: block;
+  padding: 8px 12px 8px 12px;
+  border: 1px solid transparent;
+  border-bottom-width: 0;
+  color: #07D;
+  text-decoration: none;
+}
+.uk-tab > li:nth-child(n+2) > a {
+  margin-left: 5px;
+}
+/*
+ * Hover
+ * 1. Apply hover style also to focus state
+ * 2. Also apply if dropdown is opened
+ * 3. Remove default focus style
+ */
+.uk-tab > li > a:hover,
+.uk-tab > li > a:focus,
+.uk-tab > li.uk-open > a {
+  border-color: #f5f5f5;
+  background: #f5f5f5;
+  color: #059;
+  /* 2 */
+  outline: none;
+}
+.uk-tab > li:not(.uk-active) > a:hover,
+.uk-tab > li:not(.uk-active) > a:focus,
+.uk-tab > li.uk-open:not(.uk-active) > a {
+  margin-bottom: 1px;
+  padding-bottom: 7px;
+}
+/* Active */
+.uk-tab > li.uk-active > a {
+  border-color: #ddd;
+  border-bottom-color: transparent;
+  background: #fff;
+  color: #444;
+}
+/* Disabled */
+.uk-tab > li.uk-disabled > a {
+  color: #999;
+  cursor: text;
+}
+.uk-tab > li.uk-disabled > a:hover,
+.uk-tab > li.uk-disabled > a:focus,
+.uk-tab > li.uk-disabled.uk-active > a {
+  background: none;
+  border-color: transparent;
+}
+/* Modifier: 'tab-flip'
+ ========================================================================== */
+.uk-tab-flip > li {
+  float: right;
+}
+.uk-tab-flip > li:nth-child(n+2) > a {
+  margin-left: 0;
+  margin-right: 5px;
+}
+/* Modifier: 'tab-responsive'
+ ========================================================================== */
+.uk-tab > li.uk-tab-responsive > a {
+  margin-left: 0;
+  margin-right: 0;
+}
+/*
+ * Icon
+ */
+.uk-tab-responsive > a:before {
+  content: "\f0c9\00a0";
+  font-family: FontAwesome;
+}
+/* Modifier: 'tab-center'
+ ========================================================================== */
+.uk-tab-center {
+  border-bottom: 1px solid #ddd;
+}
+.uk-tab-center-bottom {
+  border-bottom: none;
+  border-top: 1px solid #ddd;
+}
+.uk-tab-center:before,
+.uk-tab-center:after {
+  content: "";
+  display: table;
+}
+.uk-tab-center:after {
+  clear: both;
+}
+/*
+ * 1. Using `right` to prevent vertical scrollbar caused by centering if to many tabs
+ */
+.uk-tab-center .uk-tab {
+  position: relative;
+  right: 50%;
+  border: none;
+  float: right;
+}
+.uk-tab-center .uk-tab > li {
+  position: relative;
+  right: -50%;
+}
+.uk-tab-center .uk-tab > li > a {
+  text-align: center;
+}
+/* Modifier: 'tab-bottom'
+ ========================================================================== */
+.uk-tab-bottom {
+  border-top: 1px solid #ddd;
+  border-bottom: none;
+}
+.uk-tab-bottom > li {
+  margin-top: -1px;
+  margin-bottom: 0;
+}
+.uk-tab-bottom > li > a {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-bottom-width: 1px;
+  border-top-width: 0;
+}
+.uk-tab-bottom > li:not(.uk-active) > a:hover,
+.uk-tab-bottom > li:not(.uk-active) > a:focus,
+.uk-tab-bottom > li.uk-open:not(.uk-active) > a {
+  margin-bottom: 0;
+  margin-top: 1px;
+  padding-bottom: 8px;
+  padding-top: 7px;
+}
+.uk-tab-bottom > li.uk-active > a {
+  border-top-color: transparent;
+  border-bottom-color: #ddd;
+}
+/* Modifier: 'tab-grid'
+ ========================================================================== */
+/*
+ * 1. Create position context to prevent hidden border because of negative `z-index`
+ */
+.uk-tab-grid {
+  margin-left: -5px;
+  border-bottom: none;
+  /* 1 */
+  position: relative;
+  z-index: 0;
+}
+.uk-tab-grid:before {
+  display: block;
+  position: absolute;
+  left: 5px;
+  right: 0;
+  bottom: -1px;
+  border-top: 1px solid #ddd;
+  /* 1 */
+  z-index: -1;
+}
+.uk-tab-grid > li:first-child > a {
+  margin-left: 5px;
+}
+.uk-tab-grid > li > a {
+  text-align: center;
+}
+/*
+ * If `uk-tab-bottom`
+ */
+.uk-tab-grid.uk-tab-bottom {
+  border-top: none;
+}
+.uk-tab-grid.uk-tab-bottom:before {
+  top: -1px;
+  bottom: auto;
+}
+/* Modifier: 'tab-left', 'tab-right'
+ ========================================================================== */
+/* Tablet and bigger */
+@media (min-width: 768px) {
+  .uk-tab-left,
+  .uk-tab-right {
+    border-bottom: none;
+  }
+  .uk-tab-left > li,
+  .uk-tab-right > li {
+    margin-bottom: 0;
+    float: none;
+  }
+  .uk-tab-left > li > a,
+  .uk-tab-right > li > a {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+  .uk-tab-left > li:nth-child(n+2) > a,
+  .uk-tab-right > li:nth-child(n+2) > a {
+    margin-left: 0;
+    margin-top: 5px;
+  }
+  .uk-tab-left > li.uk-active > a,
+  .uk-tab-right > li.uk-active > a {
+    border-color: #ddd;
+  }
+  /*
+     * Modifier: 'tab-left'
+     */
+  .uk-tab-left {
+    border-right: 1px solid #ddd;
+  }
+  .uk-tab-left > li {
+    margin-right: -1px;
+  }
+  .uk-tab-left > li > a {
+    border-bottom-width: 1px;
+    border-right-width: 0;
+  }
+  .uk-tab-left > li:not(.uk-active) > a:hover,
+  .uk-tab-left > li:not(.uk-active) > a:focus {
+    margin-bottom: 0;
+    margin-right: 1px;
+    padding-bottom: 8px;
+    padding-right: 11px;
+  }
+  .uk-tab-left > li.uk-active > a {
+    border-right-color: transparent;
+  }
+  /*
+     * Modifier: 'tab-right'
+     */
+  .uk-tab-right {
+    border-left: 1px solid #ddd;
+  }
+  .uk-tab-right > li {
+    margin-left: -1px;
+  }
+  .uk-tab-right > li > a {
+    border-bottom-width: 1px;
+    border-left-width: 0;
+  }
+  .uk-tab-right > li:not(.uk-active) > a:hover,
+  .uk-tab-right > li:not(.uk-active) > a:focus {
+    margin-bottom: 0;
+    margin-left: 1px;
+    padding-bottom: 8px;
+    padding-left: 11px;
+  }
+  .uk-tab-right > li.uk-active > a {
+    border-left-color: transparent;
+  }
+}
+/* ========================================================================
+   Component: Thumbnav
+ ========================================================================== */
+/*
+ * 1. Gutter
+ * 2. Remove default list style
+ */
+.uk-thumbnav {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  /* 1 */
+  margin-left: -10px;
+  margin-top: -10px;
+  /* 2 */
+  padding: 0;
+  list-style: none;
+}
+/*
+ * 1. Space is allocated solely based on content dimensions
+ * 2. Horizontal gutter is using `padding` so `uk-width-*` classes can be applied
+ */
+.uk-thumbnav > * {
+  /* 1 */
+  -ms-flex: none;
+  -webkit-flex: none;
+  flex: none;
+  /* 2 */
+  padding-left: 10px;
+  margin-top: 10px;
+}
+/*
+ * DEPRECATED IE9 Support
+ */
+.uk-thumbnav:before,
+.uk-thumbnav:after {
+  content: "";
+  display: block;
+  overflow: hidden;
+}
+.uk-thumbnav:after {
+  clear: both;
+}
+.uk-thumbnav > * {
+  float: left;
+}
+/* Items
+ ========================================================================== */
+.uk-thumbnav > * > * {
+  display: block;
+  background: #fff;
+}
+.uk-thumbnav > * > * > img {
+  opacity: 0.7;
+  transition: opacity 0.15s linear;
+}
+/*
+ * Hover
+ */
+.uk-thumbnav > * > :hover > img,
+.uk-thumbnav > * > :focus > img {
+  opacity: 1;
+}
+/*
+ * Active
+ */
+.uk-thumbnav > .uk-active > * > img {
+  opacity: 1;
+}
+/* ========================================================================
    Component: List
  ========================================================================== */
 .uk-list {
@@ -2076,6 +2684,41 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
  ========================================================================== */
 .uk-list-space > li:nth-child(n+2) {
   margin-top: 10px;
+}
+/* ========================================================================
+   Component: Description list
+ ========================================================================== */
+/* Modifier: `uk-description-list-horizontal`
+ ========================================================================== */
+/* Tablet and bigger */
+@media (min-width: 768px) {
+  .uk-description-list-horizontal {
+    overflow: hidden;
+  }
+  .uk-description-list-horizontal > dt {
+    width: 160px;
+    float: left;
+    clear: both;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .uk-description-list-horizontal > dd {
+    margin-left: 180px;
+  }
+}
+/* Modifier: `uk-description-list-line`
+ ========================================================================== */
+.uk-description-list-line > dt {
+  font-weight: normal;
+}
+.uk-description-list-line > dt:nth-child(n+2) {
+  margin-top: 5px;
+  padding-top: 5px;
+  border-top: 1px solid #ddd;
+}
+.uk-description-list-line > dd {
+  color: #999;
 }
 /* ========================================================================
    Component: Table
@@ -6380,107 +7023,6 @@ a.uk-thumbnail:focus {
 /* Sub-object: `uk-dropdown-overlay`
  ========================================================================== */
 /* ========================================================================
-   Component: Off-canvas
- ========================================================================== */
-/*
- * This is the offcanvas overlay and bar container
- * 1. Hide by default
- * 2. Set fixed position
- * 3. Deactivate browser touch actions in IE11
- * 4. Mask the background page
- */
-.uk-offcanvas {
-  /* 1 */
-  display: none;
-  /* 2 */
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1000;
-  /* 3 */
-  -ms-touch-action: none;
-  touch-action: none;
-  /* 4 */
-  background: rgba(0, 0, 0, 0.1);
-}
-.uk-offcanvas.uk-active {
-  display: block;
-}
-/* Sub-object `uk-offcanvas-page`
- ========================================================================== */
-/*
- * Prepares the whole HTML page to slide-out
- * 1. Fix the main page and disallow scrolling
- * 2. Side-out transition
- */
-.uk-offcanvas-page {
-  /* 1 */
-  position: fixed;
-  /* 2 */
-  transition: margin-left 0.3s ease-in-out;
-}
-/* Sub-object `uk-offcanvas-bar`
- ========================================================================== */
-/*
- * This is the offcanvas bar
- * 1. Set fixed position
- * 2. Size and style
- * 3. Allow scrolling
- * 4. Side-out transition
- * 5. Deactivate scroll chaining in IE11
- */
-.uk-offcanvas-bar {
-  /* 1 */
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  -webkit-transform: translateX(-100%);
-  transform: translateX(-100%);
-  z-index: 1001;
-  /* 2 */
-  width: 270px;
-  max-width: 100%;
-  background: #333;
-  /* 3 */
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  /* 4 */
-  transition: -webkit-transform 0.3s ease-in-out;
-  transition: transform 0.3s ease-in-out;
-  /* 5 */
-  -ms-scroll-chaining: none;
-}
-.uk-offcanvas.uk-active .uk-offcanvas-bar.uk-offcanvas-bar-show {
-  -webkit-transform: translateX(0%);
-  transform: translateX(0%);
-}
-/* Modifier `uk-offcanvas-bar-flip`
- ========================================================================== */
-.uk-offcanvas-bar-flip {
-  left: auto;
-  right: 0;
-  -webkit-transform: translateX(100%);
-  transform: translateX(100%);
-}
-/* Panel in offcanvas
- ========================================================================== */
-.uk-offcanvas .uk-panel {
-  margin: 20px 15px;
-  color: #777;
-}
-.uk-offcanvas .uk-panel-title {
-  color: #ccc;
-}
-.uk-offcanvas .uk-panel a:not([class]) {
-  color: #ccc;
-}
-.uk-offcanvas .uk-panel a:not([class]):hover {
-  color: #fff;
-}
-/* ========================================================================
    Component: Modal
  ========================================================================== */
 /*
@@ -6679,6 +7221,127 @@ a.uk-thumbnail:focus {
   font-family: FontAwesome;
   -webkit-animation: uk-rotate 2s infinite linear;
   animation: uk-rotate 2s infinite linear;
+}
+/* ========================================================================
+   Component: Off-canvas
+ ========================================================================== */
+/*
+ * This is the offcanvas overlay and bar container
+ * 1. Hide by default
+ * 2. Set fixed position
+ * 3. Deactivate browser touch actions in IE11
+ * 4. Mask the background page
+ */
+.uk-offcanvas {
+  /* 1 */
+  display: none;
+  /* 2 */
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  /* 3 */
+  -ms-touch-action: none;
+  touch-action: none;
+  /* 4 */
+  background: rgba(0, 0, 0, 0.1);
+}
+.uk-offcanvas.uk-active {
+  display: block;
+}
+/* Sub-object `uk-offcanvas-page`
+ ========================================================================== */
+/*
+ * Prepares the whole HTML page to slide-out
+ * 1. Fix the main page and disallow scrolling
+ * 2. Side-out transition
+ */
+.uk-offcanvas-page {
+  /* 1 */
+  position: fixed;
+  /* 2 */
+  transition: margin-left 0.3s ease-in-out;
+}
+/* Sub-object `uk-offcanvas-bar`
+ ========================================================================== */
+/*
+ * This is the offcanvas bar
+ * 1. Set fixed position
+ * 2. Size and style
+ * 3. Allow scrolling
+ * 4. Side-out transition
+ * 5. Deactivate scroll chaining in IE11
+ */
+.uk-offcanvas-bar {
+  /* 1 */
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+  z-index: 1001;
+  /* 2 */
+  width: 270px;
+  max-width: 100%;
+  background: #333;
+  /* 3 */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  /* 4 */
+  transition: -webkit-transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  /* 5 */
+  -ms-scroll-chaining: none;
+}
+.uk-offcanvas.uk-active .uk-offcanvas-bar.uk-offcanvas-bar-show {
+  -webkit-transform: translateX(0%);
+  transform: translateX(0%);
+}
+/* Modifier `uk-offcanvas-bar-flip`
+ ========================================================================== */
+.uk-offcanvas-bar-flip {
+  left: auto;
+  right: 0;
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%);
+}
+/* Panel in offcanvas
+ ========================================================================== */
+.uk-offcanvas .uk-panel {
+  margin: 20px 15px;
+  color: #777;
+}
+.uk-offcanvas .uk-panel-title {
+  color: #ccc;
+}
+.uk-offcanvas .uk-panel a:not([class]) {
+  color: #ccc;
+}
+.uk-offcanvas .uk-panel a:not([class]):hover {
+  color: #fff;
+}
+/* ========================================================================
+   Component: Switcher
+ ========================================================================== */
+/*
+ * 1. Deactivate browser history navigation in IE11
+ */
+.uk-switcher {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  /* 1 */
+  -ms-touch-action: cross-slide-y pinch-zoom double-tap-zoom;
+  touch-action: cross-slide-y pinch-zoom double-tap-zoom;
+}
+/*
+ * Items
+ */
+.uk-switcher > :not(.uk-active) {
+  display: none;
 }
 /* ========================================================================
    Component: Text
@@ -7720,6 +8383,49 @@ a.uk-thumbnail:focus {
 }
 .uk-contrast .uk-text-primary {
   color: #2d7091 !important;
+}
+/* ========================================================================
+   Component: Print
+ ========================================================================== */
+@media print {
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+  thead {
+    display: table-header-group;
+  }
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+  img {
+    max-width: 100% !important;
+  }
+  @page {
+    margin: 0.5cm;
+  }
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
 }
 /***** Additional Uikit Components *****/
 /* ========================================================================
