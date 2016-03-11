@@ -6,20 +6,53 @@ File Browser
 
 @section('content')
 
-    <div id="upload-drop" class="uk-placeholder uk-text-center">
-        <i class="uk-icon-cloud-upload uk-icon-medium uk-text-muted uk-margin-small-right"></i>
-        Drag files here or <a class="uk-form-file">selecting one<input id="upload-select" type="file"></a>. (5Mb Max)
-    </div>
+    <!-- This is the tabbed navigation containing the toggling elements -->
+    <ul class="uk-tab" data-uk-tab="{connect:'#browser-tabs'}">
+        <li><a href="">All</a></li>
+        <li><a href="">Search</a></li>
+        <li><a href="">Upload</a></li>
+    </ul>
 
-    <div id="progressbar" class="uk-progress uk-hidden">
-        <div class="uk-progress-bar" style="width: 0%;">...</div>
-    </div>
+    <!-- This is the container of the content items -->
+    <ul id="browser-tabs" class="uk-switcher uk-margin uk-tab-center">
+        <li id="all-images">
+            <div id="file-gallery" class="image-browser-images uk-grid" data-uk-grid="{gutter: 10, animation: false}">
+                @each('laramanager::browser.image', $images, 'image')
+            </div>
 
-    <div id="file-gallery" class="uk-grid" data-uk-grid-margin>
-        @each('laramanager::browser.image', $images, 'image')
-    </div>
+            {!! $images->appends(['CKEditorFuncNum' => $funcNum])->render() !!}
+        </li>
+        <li id="search-images">
+            <form action="{{ url('admin/images/search') }}" method="POST" class="uk-form uk-form-horizontal search-images uk-margin-bottom">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <div class="uk-form-icon">
+                    <i class="uk-icon-search"></i>
+                    <input type="text" name="term">
+                </div>
+                <input type="submit" name="search" value="Search" class="uk-button">
+            </form>
 
-    {!! $images->appends(['CKEditorFuncNum' => $funcNum])->render() !!}
+            <div class="uk-overflow-container">
+                <div class="image-browser-images uk-grid" data-uk-observe data-uk-grid="{gutter: 10, animation: false}">
+                </div>
+            </div>
+        </li>
+        <li id="upload-images">
+            <div id="upload-drop" class="uk-placeholder uk-text-center">
+                <i class="uk-icon-cloud-upload uk-icon-medium uk-text-muted uk-margin-small-right"></i>
+                Drag images here or <a class="uk-form-file">selecting one<input id="upload-select" type="file"></a>. (20Mb Max)
+            </div>
+
+            <div id="progressbar" class="uk-progress uk-hidden">
+                <div class="uk-progress-bar" style="width: 0%;">...</div>
+            </div>
+
+            <div class="uk-overflow-container">
+                <div class="image-browser-images uk-grid" data-uk-observe data-uk-grid>
+                </div>
+            </div>
+        </li>
+    </ul>
 @endsection
 
 @section('scripts')

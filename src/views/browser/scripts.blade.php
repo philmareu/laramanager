@@ -30,7 +30,7 @@
                     response = $.parseJSON(response);
 
                     if(response.status == 'ok') {
-                        $('#image-browser-images').prepend(response.data.html);
+                        $('#upload-images').find('.image-browser-images').append(response.data.html);
                     }
                 },
 
@@ -135,8 +135,11 @@
     });
 
     $(function() {
+
+        var allImagesPanelImages = $('#all-images').find('.image-browser-images');
+        var searchResultsImages = $('#search-images').find('.image-browser-images');
+
         $(ImageBrowser).on('show.uk.modal', function() {
-            var allImagesPanelImages = $('#all-images').find('.image-browser-images');
 
             if(allImagesPanelImages.find('div').length == 0) {
                 $.ajax({
@@ -146,18 +149,13 @@
                         allImagesPanelImages.html(response.images);
                         UIkit.grid(allImagesPanelImages, {gutter: 10, animation: false});
                     }
-                })
+                });
             }
-
-            // yes ignore
         });
-    });
 
-    $(function() {
         $('.load-more').on('click', function(event) {
             event.preventDefault();
 
-            var allImagesPanelImages = $('#all-images').find('.image-browser-images');
             var page = $('.page-number');
             var nextPage = parseInt(page.text()) + 1;
 
@@ -169,7 +167,31 @@
                     page.text(nextPage);
                 }
             })
-        })
-    })
+        });
+
+        $('form.search-images').on('submit', function(event) {
+            event.preventDefault();
+
+            var form = $(this);
+            var data = form.serialize();
+            var action = form.attr('action');
+
+            $.ajax({
+                type: 'POST',
+                url: action,
+                data: data,
+                success: function(response) {
+                    if(response.images == "") {
+                        searchResultsImages.html("No Images Found.");
+                    } else {
+                        searchResultsImages.append(response.images);
+                    }
+                },
+                complete: function(response, status) {
+
+                }
+            })
+        });
+    });
 
 </script>

@@ -51,7 +51,7 @@
 
     $(function(){
 
-        $('.unselected-image').on('click', function(event) {
+        $('.image-browser-images').on('click', '.unselected-image', function(event) {
 
             event.preventDefault();
 

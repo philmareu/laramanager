@@ -23,7 +23,7 @@
         <ul id="browser-tabs" class="uk-switcher uk-margin uk-tab-center">
             <li id="all-images">
                 <div class="uk-overflow-container">
-                    <div class="image-browser-images uk-grid" data-uk-observe>
+                    <div class="image-browser-images uk-grid uk-clearfix" data-uk-observe>
                     </div>
                     <div class="options uk-margin-top uk-clearfix">
                         <a href="#" class="load-more uk-button uk-width-1-1">Load More</a>
@@ -32,12 +32,17 @@
                 </div>
             </li>
             <li id="search-images">
-                <form action="">
-                    <input type="text"/>
+                <form action="{{ url('admin/images/search') }}" method="POST" class="uk-form uk-form-horizontal search-images uk-margin-bottom">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <div class="uk-form-icon">
+                        <i class="uk-icon-search"></i>
+                        <input type="text" name="term">
+                    </div>
+                    <input type="submit" name="search" value="Search" class="uk-button">
                 </form>
 
                 <div class="uk-overflow-container">
-                    <div class="image-browser-images uk-grid">
+                    <div class="image-browser-images uk-grid" data-uk-observe data-uk-grid="{gutter: 10, animation: false}">
                     </div>
                 </div>
             </li>
@@ -52,7 +57,7 @@
                 </div>
 
                 <div class="uk-overflow-container">
-                    <div class="image-browser-images uk-grid">
+                    <div class="image-browser-images uk-grid" data-uk-observe data-uk-grid>
                     </div>
                 </div>
             </li>
