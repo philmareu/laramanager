@@ -21,9 +21,16 @@ class ImagesController extends Controller {
         $this->image = $image;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $images = $this->image->latest()->paginate(100);
+        $images = $this->image->latest()->paginate(5);
+
+        if($request->ajax())
+        {
+            $output['images'] = view('laramanager::browser.images', compact('images'))->render();
+            return response()->json($output);
+        }
+
         return view('laramanager::images.index', compact('images'));
     }
 

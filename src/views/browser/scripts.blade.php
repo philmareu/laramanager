@@ -136,8 +136,40 @@
 
     $(function() {
         $(ImageBrowser).on('show.uk.modal', function() {
-            UIkit.grid('#image-browser-images', {gutter: 10, animation: false});
+            var allImagesPanelImages = $('#all-images').find('.image-browser-images');
+
+            if(allImagesPanelImages.find('div').length == 0) {
+                $.ajax({
+                    type: 'GET',
+                    url: SITE_URL + '/admin/images',
+                    success: function(response) {
+                        allImagesPanelImages.html(response.images);
+                        UIkit.grid(allImagesPanelImages, {gutter: 10, animation: false});
+                    }
+                })
+            }
+
+            // yes ignore
         });
     });
+
+    $(function() {
+        $('.load-more').on('click', function(event) {
+            event.preventDefault();
+
+            var allImagesPanelImages = $('#all-images').find('.image-browser-images');
+            var page = $('.page-number');
+            var nextPage = parseInt(page.text()) + 1;
+
+            $.ajax({
+                type: 'GET',
+                url: SITE_URL + '/admin/images?page=' + nextPage,
+                success: function(response) {
+                    allImagesPanelImages.append(response.images);
+                    page.text(nextPage);
+                }
+            })
+        })
+    })
 
 </script>
