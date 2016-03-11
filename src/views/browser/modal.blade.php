@@ -23,9 +23,9 @@
         <ul id="browser-tabs" class="uk-switcher uk-margin uk-tab-center">
             <li id="all-images">
                 <div class="uk-overflow-container">
-                    <div class="image-browser-images uk-grid uk-clearfix" data-uk-observe>
+                    <div class="image-browser-images uk-grid" data-uk-observe>
                     </div>
-                    <div class="options uk-margin-top">
+                    <div class="options uk-margin-top uk-clearfix">
                         <a href="#" class="load-more uk-button uk-width-1-1">Load More</a>
                         <span class="page-number uk-hidden">1</span>
                     </div>
