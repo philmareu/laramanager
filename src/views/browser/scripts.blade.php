@@ -1,6 +1,8 @@
 <script>
 
     $('.pagination').attr('class', 'uk-pagination');
+    $('.disabled').attr('class', 'uk-disabled');
+    $('.active').attr('class', 'uk-active');
 
     var progressbar = $("#progressbar"),
             bar         = progressbar.find('.uk-progress-bar'),

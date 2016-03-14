@@ -16,11 +16,13 @@ File Browser
     <!-- This is the container of the content items -->
     <ul id="browser-tabs" class="uk-switcher uk-margin uk-tab-center">
         <li id="all-images">
-            <div id="file-gallery" class="image-browser-images uk-grid-width-1-2 uk-grid-width-small-1-2 uk-grid-width-medium-1-4 uk-grid-width-large-1-6" data-uk-grid="{gutter: 10, animation: false}">
+            <div id="file-gallery" class="image-browser-images uk-grid-width-1-2 uk-grid-width-small-1-2 uk-grid-width-medium-1-4 uk-grid-width-large-1-6 uk-margin-bottom" data-uk-grid="{gutter: 10, animation: false}">
                 @each('laramanager::browser.image', $images, 'image')
             </div>
 
-            {!! $images->appends(['CKEditorFuncNum' => $funcNum])->render() !!}
+            <div>
+                {!! $images->appends(['CKEditorFuncNum' => $funcNum])->render() !!}
+            </div>
         </li>
         <li id="search-images">
             <form action="{{ url('admin/images/search') }}" method="POST" class="uk-form uk-form-horizontal search-images uk-margin-bottom">
@@ -33,7 +35,7 @@ File Browser
             </form>
 
             <div class="uk-overflow-container">
-                <div class="image-browser-images uk-grid-width-1-2 uk-grid-width-small-1-2 uk-grid-width-medium-1-4 uk-grid-width-large-1-6" data-uk-observe data-uk-grid="{gutter: 10, animation: false}">
+                <div class="image-browser-images uk-grid-width-1-2 uk-grid-width-small-1-2 uk-grid-width-medium-1-4 uk-grid-width-large-1-6 uk-margin-bottom" data-uk-observe data-uk-grid="{gutter: 10, animation: false}">
                 </div>
             </div>
         </li>
@@ -48,7 +50,7 @@ File Browser
             </div>
 
             <div class="uk-overflow-container">
-                <div class="image-browser-images uk-grid-width-1-2 uk-grid-width-small-1-2 uk-grid-width-medium-1-4 uk-grid-width-large-1-6" data-uk-observe data-uk-grid>
+                <div class="image-browser-images uk-grid-width-1-2 uk-grid-width-small-1-2 uk-grid-width-medium-1-4 uk-grid-width-large-1-6 uk-margin-bottom" data-uk-observe data-uk-grid>
                 </div>
             </div>
         </li>
