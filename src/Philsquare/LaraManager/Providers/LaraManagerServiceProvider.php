@@ -2,6 +2,7 @@
 
 namespace Philsquare\LaraManager\Providers;
 
+use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
@@ -13,11 +14,14 @@ class LaraManagerServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(Router $router)
     {
         if (! $this->app->routesAreCached()) {
             require __DIR__ . '/../Http/routes.php';
         }
+
+        $router->middleware('admin', \Philsquare\LaraManager\Http\Middleware\AdminMiddleware::class);
+        $router->middleware('guest.admin', \Philsquare\LaraManager\Http\Middleware\RedirectIfAuthenticated::class);
 
         $this->loadViewsFrom(__DIR__.'/../../../views', 'laramanager');
 
