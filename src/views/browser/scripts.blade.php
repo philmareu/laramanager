@@ -90,12 +90,12 @@
             });
 
             var img = $(this);
-            img.clone().appendTo(wrapper).toggleClass('unselected-image').toggleClass('selected-image');
+            img.clone().appendTo(wrapper).toggleClass('unselected-image').toggleClass('selected-image').attr('style', '');
 
             var input = $('<input>', {
                 type: 'hidden',
                 name: fieldName +'[]',
-                value: img.attr('data-laramanager-file-id')
+                value: img.attr('data-laramanager-image-id')
             }).appendTo(wrapper);
 
             $('#selected-images .images').append(wrapper);
@@ -120,9 +120,9 @@
 
     function setOneClick(imagesContainer) {
         ImageBrowser.one('click', 'img.unselected-image', function(event) {
-            var img = $(this).clone();
+            var img = $(this).clone().attr('style', '');
             imagesContainer.html(img);
-            imagesContainer.parents('.field-images').find('.file_id').attr('value', img.attr('data-laramanager-file-id'));
+            imagesContainer.parents('.field-images').find('.file_id').attr('value', img.attr('data-laramanager-image-id'));
             hideImageBrowser();
         });
     }

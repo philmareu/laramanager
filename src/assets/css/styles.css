@@ -8944,5 +8944,8 @@ footer {
 .uk-panel-box-secondary {
   border-bottom: 1px solid rgba(229, 145, 78, 0.5);
 }
+.image-browser-images {
+  min-height: 200px;
+}
 
 /*# sourceMappingURL=styles.css.map */

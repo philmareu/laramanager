@@ -23,7 +23,7 @@
         <ul id="browser-tabs" class="uk-switcher uk-margin uk-tab-center">
             <li id="all-images">
                 <div class="uk-overflow-container">
-                    <div class="image-browser-images uk-grid uk-clearfix" data-uk-observe>
+                    <div class="uk-grid-width-1-2 uk-grid-width-small-1-2 uk-grid-width-medium-1-4 uk-grid-width-large-1-6 image-browser-images uk-clearfix" data-uk-observe>
                     </div>
                     <div class="options uk-margin-top uk-clearfix">
                         <a href="#" class="load-more uk-button uk-width-1-1">Load More</a>
@@ -42,7 +42,7 @@
                 </form>
 
                 <div class="uk-overflow-container">
-                    <div class="image-browser-images uk-grid" data-uk-observe data-uk-grid="{gutter: 10, animation: false}">
+                    <div class="image-browser-images uk-grid-width-1-2 uk-grid-width-small-1-2 uk-grid-width-medium-1-4 uk-grid-width-large-1-6" data-uk-observe data-uk-grid="{gutter: 10, animation: false}">
                     </div>
                 </div>
             </li>
@@ -65,7 +65,7 @@
 
         <div class="uk-modal-footer uk-text-right">
             <div id="selected-images" class="uk-placeholder">
-                <div class="uk-grid uk-sortable images" data-uk-sortable>
+                <div class="uk-grid uk-grid-small uk-sortable images" data-uk-sortable>
                 </div>
             </div>
         </div>
