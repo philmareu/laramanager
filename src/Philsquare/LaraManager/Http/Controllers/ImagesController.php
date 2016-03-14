@@ -23,7 +23,7 @@ class ImagesController extends Controller {
 
     public function index(Request $request)
     {
-        $images = $this->image->latest()->paginate(100);
+        $images = $this->image->latest()->paginate(10);
 
         if($request->ajax())
         {
