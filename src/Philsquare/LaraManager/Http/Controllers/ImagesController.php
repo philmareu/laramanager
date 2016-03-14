@@ -23,7 +23,7 @@ class ImagesController extends Controller {
 
     public function index(Request $request)
     {
-        $images = $this->image->latest()->paginate(6);
+        $images = $this->image->latest()->paginate(100);
 
         if($request->ajax())
         {
@@ -85,7 +85,7 @@ class ImagesController extends Controller {
     {
         $funcNum = $request->has('CKEditorFuncNum') ? $request->get('CKEditorFuncNum') : '';
 
-        $images = $this->image->latest()->paginate(30);
+        $images = $this->image->latest()->paginate(100);
         return view('laramanager::browser.wysiwyg', compact('images', 'funcNum'));
     }
 
