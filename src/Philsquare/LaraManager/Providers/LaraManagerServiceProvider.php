@@ -2,6 +2,7 @@
 
 namespace Philsquare\LaraManager\Providers;
 
+//use Illuminate\Contracts\Config\Repository as Config;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Validator;
@@ -19,6 +20,8 @@ class LaraManagerServiceProvider extends ServiceProvider
         if (! $this->app->routesAreCached()) {
             require __DIR__ . '/../Http/routes.php';
         }
+
+//        $config->push('imagacache.templates', ['testing' => 'tester']);
 
         $router->middleware('admin', \Philsquare\LaraManager\Http\Middleware\AdminMiddleware::class);
         $router->middleware('guest.admin', \Philsquare\LaraManager\Http\Middleware\RedirectIfAuthenticated::class);
@@ -41,7 +44,7 @@ class LaraManagerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->mergeConfigFrom(__DIR__.'/../../../config/imagecache/templates.php', 'imagecache.templates');
     }
 
     private function assetsToPublish()
