@@ -8947,5 +8947,8 @@ footer {
 .image-browser-images {
   min-height: 200px;
 }
+img.needs-alt {
+  border-bottom: 2px solid #d85030;
+}
 
 /*# sourceMappingURL=styles.css.map */
