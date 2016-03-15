@@ -34,6 +34,9 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], functio
         Route::post('images/search', 'ImagesController@search');
         Route::resource('images', 'ImagesController', ['except' => ['create', 'store', 'destroy']]);
 
+        // Redirects
+        Route::resource('redirects', 'RedirectsController');
+
         // RSS Feeds
         Route::resource('feeds', 'RssFeedsController', ['except' => ['show']]);
 

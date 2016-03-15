@@ -35,6 +35,10 @@
     <a href="{{ url('admin/feeds') }}"><i class="uk-icon-rss uk-icon-justify"></i> Feeds</a>
 </li>
 
+<li class="{{ $segments[1] == 'redirects' ? 'uk-active' : '' }}">
+    <a href="{{ url('admin/redirects') }}"><i class="uk-icon-refresh uk-icon-justify"></i> Redirects</a>
+</li>
+
 {{--<li class="uk-nav-divider"></li>--}}
 
 {{--<li class="uk-nav-header">Support</li>--}}
