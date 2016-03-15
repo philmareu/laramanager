@@ -66,6 +66,9 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], functio
 
         Route::resource('objects', 'ObjectsController');
         Route::resource('settings', 'SettingsController');
+
+        // Errors
         Route::get('not-founds', 'NotFoundExceptionsController@index');
+        Route::delete('not-founds/{id}', 'NotFoundExceptionsController@destroy');
     });
 });
