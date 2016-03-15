@@ -43,7 +43,7 @@
         $(function() {
             $('#data-table').DataTable({
                 "pageLength": 50,
-                "order": [[1, 'asc']]
+                "order": [[0, 'desc']]
             });
 
         });
