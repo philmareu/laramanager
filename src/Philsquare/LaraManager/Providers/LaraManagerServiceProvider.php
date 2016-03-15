@@ -7,6 +7,7 @@ use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
+use Suin\RSSWriter\Feed;
 
 class LaraManagerServiceProvider extends ServiceProvider
 {
@@ -17,11 +18,11 @@ class LaraManagerServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
+//        require_once __DIR__.'/../../../../vendor/autoload.php';
+
         if (! $this->app->routesAreCached()) {
             require __DIR__ . '/../Http/routes.php';
         }
-
-//        $config->push('imagacache.templates', ['testing' => 'tester']);
 
         $router->middleware('admin', \Philsquare\LaraManager\Http\Middleware\AdminMiddleware::class);
         $router->middleware('guest.admin', \Philsquare\LaraManager\Http\Middleware\RedirectIfAuthenticated::class);
@@ -33,8 +34,6 @@ class LaraManagerServiceProvider extends ServiceProvider
         $this->setViewComposers();
 
         $this->loadTranslationsFrom(__DIR__.'/../../../lang', 'laramanager');
-
-        $this->setCustomValidation();
     }
 
     /**
@@ -63,13 +62,5 @@ class LaraManagerServiceProvider extends ServiceProvider
         view()->composer('laramanager::navigations.top.index', 'Philsquare\LaraManager\ViewComposers\NavigationComposer');
         view()->composer('laramanager::navigations.primary.*', 'Philsquare\LaraManager\ViewComposers\NavigationComposer');
         view()->composer('layouts.*', 'Philsquare\LaraManager\ViewComposers\LayoutsViewComposer');
-    }
-
-    private function setCustomValidation()
-    {
-        Validator::extend(
-            'unique_except_this_id', 'Philsquare\LaraManager\Validators\Validator@validateUniqueExceptThisId',
-            trans('laramanager::validation.unique_except_this_id')
-        );
     }
 }

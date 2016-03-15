@@ -22,6 +22,8 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], functio
         }
     }
 
+    get('feed/{type?}', 'RssFeedsController@show');
+
     Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function()
     {
         Route::get('/', 'AdminController@index');
@@ -31,6 +33,9 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], functio
         Route::get('images', 'ImagesController@index');
         Route::post('images/search', 'ImagesController@search');
         Route::resource('images', 'ImagesController', ['except' => ['create', 'store', 'destroy']]);
+
+        // RSS Feeds
+        Route::resource('feeds', 'RssFeedsController', ['except' => ['show']]);
 
         if(Schema::hasTable('resources'))
         {

@@ -1,6 +1,6 @@
 <?php namespace Philsquare\LaraManager\Http\Requests;
 
-class UpdateObjectRequest extends Request {
+class UpdateFeedRequest extends Request {
 
     /**
      * Determine if the user is authorized to make this request.
@@ -20,9 +20,11 @@ class UpdateObjectRequest extends Request {
     public function rules()
     {
         return [
-            'title' => 'required|max:255|unique:objects,title,' . $this->segment(3),
-            'slug' => 'required|max:255|unique:objects,slug,' . $this->segment(3),
-            'description' => 'max:255'
+            'title' => 'required|max:255|unique:feeds,title,' . $this->segment(3),
+            'description' => 'required|max:255',
+            'url' => 'required|max:255|url',
+            'slug' => 'required|max:255|unique:feeds,slug,' . $this->segment(3),
+            'model' => 'required|max:255'
         ];
     }
 

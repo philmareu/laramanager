@@ -30,6 +30,11 @@
 <li class="{{ $segments[1] == 'objects' ? 'uk-active' : '' }}">
     <a href="{{ url('admin/objects') }}"><i class="uk-icon-cube uk-icon-justify"></i> Objects</a>
 </li>
+
+<li class="{{ $segments[1] == 'feeds' ? 'uk-active' : '' }}">
+    <a href="{{ url('admin/feeds') }}"><i class="uk-icon-rss uk-icon-justify"></i> Feeds</a>
+</li>
+
 {{--<li class="uk-nav-divider"></li>--}}
 
 {{--<li class="uk-nav-header">Support</li>--}}

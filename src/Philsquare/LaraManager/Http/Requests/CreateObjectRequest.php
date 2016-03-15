@@ -21,7 +21,7 @@ class CreateObjectRequest extends Request {
     {
         return [
             'title' => 'required|max:255|unique:objects,title',
-            'slug' => 'required|max:255|unique:objects,title',
+            'slug' => 'required|max:255|unique:objects,slug',
             'description' => 'max:255'
         ];
     }
