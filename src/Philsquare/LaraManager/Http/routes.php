@@ -40,6 +40,9 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], functio
         // RSS Feeds
         Route::resource('feeds', 'RssFeedsController', ['except' => ['show']]);
 
+        // Users
+        Route::resource('users', 'UsersController', ['except' => ['show']]);
+
         if(Schema::hasTable('resources'))
         {
             foreach(Resource::all() as $resource)
