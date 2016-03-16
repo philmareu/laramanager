@@ -30,6 +30,19 @@
 <li class="{{ $segments[1] == 'objects' ? 'uk-active' : '' }}">
     <a href="{{ url('admin/objects') }}"><i class="uk-icon-cube uk-icon-justify"></i> Objects</a>
 </li>
+
+<li class="{{ $segments[1] == 'feeds' ? 'uk-active' : '' }}">
+    <a href="{{ url('admin/feeds') }}"><i class="uk-icon-rss uk-icon-justify"></i> Feeds</a>
+</li>
+
+<li class="{{ $segments[1] == 'redirects' ? 'uk-active' : '' }}">
+    <a href="{{ url('admin/redirects') }}"><i class="uk-icon-refresh uk-icon-justify"></i> Redirects</a>
+</li>
+
+<li class="{{ $segments[1] == 'users' ? 'uk-active' : '' }}">
+    <a href="{{ url('admin/users') }}"><i class="uk-icon-users uk-icon-justify"></i> Users</a>
+</li>
+
 {{--<li class="uk-nav-divider"></li>--}}
 
 {{--<li class="uk-nav-header">Support</li>--}}

@@ -6,20 +6,55 @@
 
 @section('content')
 
-    <div id="upload-drop" class="uk-placeholder uk-text-center">
-        <i class="uk-icon-cloud-upload uk-icon-medium uk-text-muted uk-margin-small-right"></i>
-        Drag images here or <a class="uk-form-file">selecting one<input id="upload-select" type="file"></a>. (5Mb Max)
-    </div>
+    <!-- This is the tabbed navigation containing the toggling elements -->
+    <ul class="uk-tab" data-uk-tab="{connect:'#browser-tabs'}">
+        <li><a href="">All</a></li>
+        <li><a href="">Search</a></li>
+        <li><a href="">Upload</a></li>
+    </ul>
 
-    <div id="progressbar" class="uk-progress uk-hidden">
-        <div class="uk-progress-bar" style="width: 0%;">...</div>
-    </div>
+    <!-- This is the container of the content items -->
+    <ul id="browser-tabs" class="uk-switcher uk-margin uk-tab-center">
+        <li id="all-images">
+            <div class="uk-grid-width-1-2 uk-grid-width-small-1-2 uk-grid-width-medium-1-4 uk-grid-width-large-1-6 image-browser-images uk-margin-bottom" id="images">
+                @each('laramanager::browser.image', $images, 'image')
+            </div>
 
-    <div class="uk-grid-width-1-2 uk-grid-width-small-1-2 uk-grid-width-medium-1-4 uk-grid-width-large-1-6" id="images">
-        @each('laramanager::images.image', $images, 'image')
-    </div>
+            <div>
+                {!! $images->render() !!}
+            </div>
+        </li>
+        <li id="search-images">
+            <form action="{{ url('admin/images/search') }}" method="POST" class="uk-form uk-form-horizontal search-images uk-margin-bottom">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <div class="uk-form-icon">
+                    <i class="uk-icon-search"></i>
+                    <input type="text" name="term">
+                </div>
+                <input type="submit" name="search" value="Search" class="uk-button">
+            </form>
 
-    {!! $images->render() !!}
+            <div class="uk-overflow-container">
+                <div class="image-browser-images uk-grid-width-1-2 uk-grid-width-small-1-2 uk-grid-width-medium-1-4 uk-grid-width-large-1-6 uk-margin-bottom" data-uk-observe data-uk-grid="{gutter: 10, animation: false}">
+                </div>
+            </div>
+        </li>
+        <li id="upload-images">
+            <div id="upload-drop" class="uk-placeholder uk-text-center">
+                <i class="uk-icon-cloud-upload uk-icon-medium uk-text-muted uk-margin-small-right"></i>
+                Drag images here or <a class="uk-form-file">selecting one<input id="upload-select" type="file"></a>. (20Mb Max)
+            </div>
+
+            <div id="progressbar" class="uk-progress uk-hidden">
+                <div class="uk-progress-bar" style="width: 0%;">...</div>
+            </div>
+
+            <div class="uk-overflow-container">
+                <div class="image-browser-images uk-grid-width-1-2 uk-grid-width-small-1-2 uk-grid-width-medium-1-4 uk-grid-width-large-1-6" data-uk-observe data-uk-grid>
+                </div>
+            </div>
+        </li>
+    </ul>
 
     <div id="image-modal" class="uk-modal">
         <div class="uk-modal-dialog uk-modal-dialog-large">
@@ -34,11 +69,13 @@
 @section('scripts')
     <script>
         $('.pagination').attr('class', 'uk-pagination');
+        $('.disabled').attr('class', 'uk-disabled');
+        $('.active').attr('class', 'uk-active');
         var ImageBrowserModal = $('#image-modal');
         var spinnerHTML = '<i class="uk-icon-spinner uk-icon-spin"></i>';
 
         $(function() {
-            UIkit.grid('#images', {gutter: 10});
+            UIkit.grid('#images', {gutter: 10, animation: false});
         });
 
         function getModal(uri) {
@@ -66,7 +103,7 @@
             $('.modal-content').html( html );
         }
 
-        $('#images').on('click', '.image', function(event) {
+        $('.image-browser-images').on('click', 'img', function(event) {
             var imageId = $(this).attr('data-laramanager-image-id');
 
             getModal('/admin/images/' + imageId + '/edit');
@@ -111,7 +148,7 @@
 
                     param: 'image',
 
-                    params: {_token: csrf, view: 'images.image'},
+                    params: {_token: csrf, view: 'browser.image'},
 
                     loadstart: function() {
                         bar.css("width", "0%").text("0%");
@@ -126,9 +163,11 @@
                     complete: function(response, xhr) {
 
                         bar.css("width", "0%").text("0%");
+                        response = $.parseJSON(response);
 
                         if(response.status == 'ok') {
-
+                            console.log($('#upload-images').find('.image-browser-images'));
+                            $('#upload-images').find('.image-browser-images').append(response.data.html);
                         }
                     },
 
@@ -140,11 +179,37 @@
                             progressbar.addClass("uk-hidden");
                         }, 250);
 
-                        location.reload(true);
+//                        location.reload(true);
                     }
                 };
 
         var selectSingle = UIkit.uploadSelect($("#upload-select"), settings),
                 dropSingle   = UIkit.uploadDrop($("#upload-drop"), settings);
+
+        var searchResultsImages = $('#search-images').find('.image-browser-images');
+
+        $('form.search-images').on('submit', function(event) {
+            event.preventDefault();
+
+            var form = $(this);
+            var data = form.serialize();
+            var action = form.attr('action');
+
+            $.ajax({
+                type: 'POST',
+                url: action,
+                data: data,
+                success: function(response) {
+                    if(response.images == "") {
+                        searchResultsImages.html("No Images Found.");
+                    } else {
+                        searchResultsImages.append(response.images);
+                    }
+                },
+                complete: function(response, status) {
+
+                }
+            })
+        });
     </script>
 @endsection

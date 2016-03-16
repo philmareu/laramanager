@@ -15,6 +15,8 @@ class Object extends Model {
 
     public function data($key)
     {
+        if(is_null($this->pivot)) return null;
+
         $data = unserialize($this->pivot->data);
 
         return isset($data['data'][$key]) ? $data['data'][$key] : '';

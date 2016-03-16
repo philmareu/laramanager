@@ -1,6 +1,8 @@
 <script>
 
     $('.pagination').attr('class', 'uk-pagination');
+    $('.disabled').attr('class', 'uk-disabled');
+    $('.active').attr('class', 'uk-active');
 
     var progressbar = $("#progressbar"),
             bar         = progressbar.find('.uk-progress-bar'),
@@ -30,7 +32,7 @@
                     response = $.parseJSON(response);
 
                     if(response.status == 'ok') {
-                        $('#image-browser-images').prepend(response.data.html);
+                        $('#upload-images').find('.image-browser-images').append(response.data.html);
                     }
                 },
 
@@ -90,12 +92,12 @@
             });
 
             var img = $(this);
-            img.clone().appendTo(wrapper).toggleClass('unselected-image').toggleClass('selected-image');
+            img.clone().appendTo(wrapper).toggleClass('unselected-image').toggleClass('selected-image').attr('style', '');
 
             var input = $('<input>', {
                 type: 'hidden',
                 name: fieldName +'[]',
-                value: img.attr('data-laramanager-file-id')
+                value: img.attr('data-laramanager-image-id')
             }).appendTo(wrapper);
 
             $('#selected-images .images').append(wrapper);
@@ -120,9 +122,9 @@
 
     function setOneClick(imagesContainer) {
         ImageBrowser.one('click', 'img.unselected-image', function(event) {
-            var img = $(this).clone();
+            var img = $(this).clone().attr('style', '');
             imagesContainer.html(img);
-            imagesContainer.parents('.field-images').find('.file_id').attr('value', img.attr('data-laramanager-file-id'));
+            imagesContainer.parents('.field-images').find('.file_id').attr('value', img.attr('data-laramanager-image-id'));
             hideImageBrowser();
         });
     }
@@ -135,8 +137,62 @@
     });
 
     $(function() {
+
+        var allImagesPanelImages = $('#all-images').find('.image-browser-images');
+        var searchResultsImages = $('#search-images').find('.image-browser-images');
+
         $(ImageBrowser).on('show.uk.modal', function() {
-            UIkit.grid('#image-browser-images', {gutter: 10, animation: false});
+
+            if(allImagesPanelImages.find('div').length == 0) {
+                $.ajax({
+                    type: 'GET',
+                    url: SITE_URL + '/admin/images',
+                    success: function(response) {
+                        allImagesPanelImages.html(response.images);
+                        UIkit.grid(allImagesPanelImages, {gutter: 10, animation: false});
+                    }
+                });
+            }
+        });
+
+        $('.load-more').on('click', function(event) {
+            event.preventDefault();
+
+            var page = $('.page-number');
+            var nextPage = parseInt(page.text()) + 1;
+
+            $.ajax({
+                type: 'GET',
+                url: SITE_URL + '/admin/images?page=' + nextPage,
+                success: function(response) {
+                    allImagesPanelImages.append(response.images);
+                    page.text(nextPage);
+                }
+            })
+        });
+
+        $('form.search-images').on('submit', function(event) {
+            event.preventDefault();
+
+            var form = $(this);
+            var data = form.serialize();
+            var action = form.attr('action');
+
+            $.ajax({
+                type: 'POST',
+                url: action,
+                data: data,
+                success: function(response) {
+                    if(response.images == "") {
+                        searchResultsImages.html("No Images Found.");
+                    } else {
+                        searchResultsImages.append(response.images);
+                    }
+                },
+                complete: function(response, status) {
+
+                }
+            })
         });
     });
 

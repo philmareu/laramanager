@@ -21,9 +21,16 @@ class ImagesController extends Controller {
         $this->image = $image;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $images = $this->image->latest()->paginate(30);
+        $images = $this->image->latest()->paginate(100);
+
+        if($request->ajax())
+        {
+            $output['images'] = view('laramanager::browser.images', compact('images'))->render();
+            return response()->json($output);
+        }
+
         return view('laramanager::images.index', compact('images'));
     }
 
@@ -54,12 +61,32 @@ class ImagesController extends Controller {
         return response()->json($output);
     }
 
+    public function search(Request $request)
+    {
+        $term = $request->term;
+
+        $images = $this->image
+            ->where('filename', 'LIKE', "%$term%")
+            ->orWhere('title', 'LIKE', "%$term%")
+            ->orWhere('alt', 'LIKE', "%$term%")
+            ->orWhere('original_filename', 'LIKE', "%$term%")
+            ->get();
+
+        if($request->ajax())
+        {
+            $output['images'] = view('laramanager::browser.images', compact('images'))->render();
+            return response()->json($output);
+        }
+
+        return view('laramanager::images.index', compact('images'));
+    }
+
     public function imageBrowser(Request $request)
     {
         $funcNum = $request->has('CKEditorFuncNum') ? $request->get('CKEditorFuncNum') : '';
 
-        $images = $this->image->latest()->paginate(30);
-        return view('laramanager::browser.images', compact('images', 'funcNum'));
+        $images = $this->image->latest()->paginate(100);
+        return view('laramanager::browser.wysiwyg', compact('images', 'funcNum'));
     }
 
     public function upload(UploadImageRequest $request)

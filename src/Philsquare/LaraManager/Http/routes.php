@@ -22,12 +22,26 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], functio
         }
     }
 
+    get('feed/{type?}', 'RssFeedsController@show');
+
     Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function()
     {
         Route::get('/', 'AdminController@index');
         Route::get('dashboard', 'AdminController@dashboard');
+        Route::get('images/browser', 'ImagesController@imageBrowser');
         Route::post('images/upload', 'ImagesController@upload');
+        Route::get('images', 'ImagesController@index');
+        Route::post('images/search', 'ImagesController@search');
         Route::resource('images', 'ImagesController', ['except' => ['create', 'store', 'destroy']]);
+
+        // Redirects
+        Route::resource('redirects', 'RedirectsController');
+
+        // RSS Feeds
+        Route::resource('feeds', 'RssFeedsController', ['except' => ['show']]);
+
+        // Users
+        Route::resource('users', 'UsersController', ['except' => ['show']]);
 
         if(Schema::hasTable('resources'))
         {
@@ -45,7 +59,6 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], functio
         }
 
         Route::post('uploads/resource', 'ResourcesController@uploads');
-        Route::get('images/browser', 'ImagesController@imageBrowser');
 
 
         Route::get('resources/fields/getOptions/{type}', 'ResourceFieldController@getOptions');
@@ -59,6 +72,9 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], functio
 
         Route::resource('objects', 'ObjectsController');
         Route::resource('settings', 'SettingsController');
+
+        // Errors
         Route::get('not-founds', 'NotFoundExceptionsController@index');
+        Route::delete('not-founds/{id}', 'NotFoundExceptionsController@destroy');
     });
 });
