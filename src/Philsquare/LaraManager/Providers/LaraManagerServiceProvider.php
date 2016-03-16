@@ -44,6 +44,7 @@ class LaraManagerServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(__DIR__.'/../../../config/imagecache/templates.php', 'imagecache.templates');
+        $this->mergeConfigFrom(__DIR__.'/../../../config/imagecache/paths.php', 'imagecache.paths');
     }
 
     private function assetsToPublish()
