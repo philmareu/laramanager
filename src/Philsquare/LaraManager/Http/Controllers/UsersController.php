@@ -45,8 +45,6 @@ class UsersController extends Controller {
     {
         $user = $this->user->create($request->except('password'));
 
-        dd($user);
-
         if($request->has('password')) $user->password = bcrypt($request->password);
 
         $user->save();
