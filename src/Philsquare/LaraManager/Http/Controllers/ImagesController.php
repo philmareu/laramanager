@@ -95,11 +95,13 @@ class ImagesController extends Controller {
         $extension = $upload->getClientOriginalExtension();
         $originalName = str_replace('.' . $extension, '', $upload->getClientOriginalName());
         $filename = $this->formProcessor->processFile($upload, $this->imageFolder);
+        $alt = str_replace('-', ' ', $originalName);
+        $alt = str_replace('_', ' ', $originalName);
 
         $image = $this->image->create([
             'filename' => $filename,
             'original_filename' => $upload->getClientOriginalName(),
-            'alt' => ucwords($originalName),
+            'alt' => ucwords($alt),
             'title' => ucwords($originalName),
             'size' => $upload->getClientSize()
         ]);
