@@ -7,9 +7,9 @@ interface RssFeedInterface {
 
     public static function getFeedItems();
 
-    public function feedTitle();
+    public function itemTitle();
 
-    public function feedDescription();
+    public function itemDescription();
 
-    public function feedUrl();
+    public function itemUrl();
 }
