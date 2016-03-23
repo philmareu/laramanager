@@ -85,9 +85,9 @@ class RssFeedsController extends Controller
         {
             $item = new Item;
             $item
-                ->title($entity->feedTitle())
-                ->description($entity->feedDescription())
-                ->url($entity->feedUrl())
+                ->title($entity->itemTitle())
+                ->description($entity->itemDescription())
+                ->url($entity->itemUrl())
                 ->appendTo($channel);
         }
 
