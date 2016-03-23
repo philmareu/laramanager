@@ -46,6 +46,7 @@ class UsersController extends Controller {
         $user = $this->user->create($request->except('password'));
 
         if($request->has('password')) $user->password = bcrypt($request->password);
+        if($request->has('is_admin')) $user->is_admin = 1;
 
         $user->save();
 
