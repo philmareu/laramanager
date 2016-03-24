@@ -16,7 +16,7 @@
 
     <!-- This is the tabbed navigation containing the toggling elements -->
     <ul class="uk-tab" data-uk-tab="{connect:'#not-found-errors-tabs'}">
-        <li><a href="">Last 7</a></li>
+        <li><a href="">Last 7 days</a></li>
         <li><a href="">All</a></li>
     </ul>
 
@@ -30,7 +30,7 @@
                         <td>Count</td>
                         <td>Uri</td>
                         <td>Last Hit</td>
-                        <td>&nbps;</td>
+                        <td>&nbsp;</td>
                     </tr>
                     </thead>
 
@@ -38,8 +38,8 @@
                     @foreach($last7 as $error)
                         <tr>
                             <td>{{ $error->count }}</td>
-                            <td>{{ $error->uri }}</td>
-                            <td>{{ $error->updated_at->format('M jS, Y') }}</td>
+                            <td class="uk-text-truncate">{{ $error->uri }}</td>
+                            <td class="uk-text-truncate">{{ $error->updated_at->format('M jS, Y') }}</td>
                             <td><a href="#" class="uk-text-danger delete" data-resource-id="{{ $error->id }}"><i class="uk-icon-trash"></i></a></td>
                         </tr>
                     @endforeach
@@ -63,8 +63,8 @@
                     @foreach($all as $error)
                         <tr>
                             <td>{{ $error->count }}</td>
-                            <td>{{ $error->uri }}</td>
-                            <td>{{ $error->updated_at->format('M jS, Y') }}</td>
+                            <td class="uk-text-truncate">{{ $error->uri }}</td>
+                            <td class="uk-text-truncate">{{ $error->updated_at->format('M jS, Y') }}</td>
                             <td><a href="#" class="uk-text-danger delete" data-resource-id="{{ $error->id }}"><i class="uk-icon-trash"></i></a></td>
                         </tr>
                     @endforeach
