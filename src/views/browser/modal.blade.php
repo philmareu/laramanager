@@ -57,7 +57,7 @@
                 </div>
 
                 <div class="uk-overflow-container">
-                    <div class="image-browser-images uk-grid" data-uk-observe data-uk-grid>
+                    <div class="image-browser-images uk-grid-width-1-2 uk-grid-width-small-1-2 uk-grid-width-medium-1-4 uk-grid-width-large-1-6" data-uk-observe data-uk-grid="{gutter: 10, animation: false}">
                     </div>
                 </div>
             </li>

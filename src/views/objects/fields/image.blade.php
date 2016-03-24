@@ -6,7 +6,7 @@
         <div class="uk-grid uk-grid-small uk-sortable images-container" data-uk-sortable>
             @if($object->file($name))
                 <div class="uk-width-1-2 uk-width-medium-1-4 uk-width-large-1-6 uk-margin-bottom">
-                    <img src="{{ url('images/medium/' . $object->file($name)->filename) }}" alt=""/>
+                    <img src="{{ url('images/medium/' . $object->file($name)->filename) }}" alt="{{ $object->file($name)->alt }}">
                     <input type="hidden" name="data[file_id]" value="{{ $object->data($name) }}">
                 </div>
             @endif

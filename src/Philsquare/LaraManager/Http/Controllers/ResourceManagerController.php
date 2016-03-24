@@ -58,23 +58,6 @@ class ResourceManagerController extends Controller
 
         $resource = $this->resource->create($request->all());
 
-        if (! Schema::hasTable($resource->slug))
-        {
-            Artisan::call('make:migration', [
-                'name' => 'create_' . $resource->slug . '_table',
-                '--create' => $resource->slug
-            ]);
-
-            Artisan::call('migrate');
-        }
-
-        if (! class_exists($resource->namespace . '\\' . $resource->model))
-        {
-            Artisan::call('make:model', [
-                'name' => $resource->model
-            ]);
-        }
-
         return redirect('admin/resources/' . $resource->id . '/fields');
     }
 

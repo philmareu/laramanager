@@ -183,6 +183,7 @@
                 url: action,
                 data: data,
                 success: function(response) {
+                    searchResultsImages.html('');
                     if(response.images == "") {
                         searchResultsImages.html("No Images Found.");
                     } else {
