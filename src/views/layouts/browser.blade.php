@@ -57,8 +57,24 @@
 
             file = $(this);
             fileUrl = file.attr('src');
+            fileAlt = file.attr('alt');
 
-            window.opener.CKEDITOR.tools.callFunction(funcNum, fileUrl, '');
+            window.opener.CKEDITOR.tools.callFunction(funcNum, fileUrl, function() {
+                // Get the reference to a dialog window.
+                var dialog = this.getDialog();
+                // Check if this is the Image Properties dialog window.
+                if ( dialog.getName() == 'image' ) {
+                    // Get the reference to a text field that stores the "alt" attribute.
+                    var element = dialog.getContentElement( 'info', 'txtAlt' );
+                    // Assign the new value.
+                    if ( element )
+                        element.setValue( fileAlt );
+                }
+                // Return "false" to stop further execution. In such case CKEditor will ignore the second argument ("fileUrl")
+                // and the "onSelect" function assigned to the button that called the file manager (if defined).
+                // return false;
+            } );
+
             window.close();
 
         });
