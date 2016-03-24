@@ -96,7 +96,7 @@ class ImagesController extends Controller {
         $originalName = str_replace('.' . $extension, '', $upload->getClientOriginalName());
         $filename = $this->formProcessor->processFile($upload, $this->imageFolder);
         $alt = str_replace('-', ' ', $originalName);
-        $alt = str_replace('_', ' ', $originalName);
+        $alt = str_replace('_', ' ', $alt);
 
         $image = $this->image->create([
             'filename' => $filename,
