@@ -11,5 +11,9 @@ interface RssFeedInterface {
 
     public function itemDescription();
 
+    public function itemContent();
+
     public function itemUrl();
+
+    public function itemPubDate();
 }

@@ -24,7 +24,10 @@ class UpdateFeedRequest extends Request {
             'description' => 'required|max:255',
             'url' => 'required|max:255|url',
             'slug' => 'required|max:255|unique:feeds,slug,' . $this->segment(3),
-            'model' => 'required|max:255'
+            'model' => 'required|max:255',
+            'language' => 'required|max:255',
+            'copyright' => 'required|max:255',
+            'ttl' => 'required|integer'
         ];
     }
 
