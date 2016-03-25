@@ -9,7 +9,10 @@ class Feed extends Model {
         'description',
         'url',
         'slug',
-        'model'
+        'model',
+        'language',
+        'copyright',
+        'ttl'
     ];
 
 }

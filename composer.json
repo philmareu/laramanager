@@ -21,6 +21,6 @@
     "philsquare/laraform": "^1.0",
     "intervention/image": "~2.2",
     "intervention/imagecache": "~2.3",
-    "suin/php-rss-writer": "^1.3"
+    "suin/php-rss-writer": "^1.4"
   }
 }

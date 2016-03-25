@@ -79,6 +79,9 @@ class RssFeedsController extends Controller
             ->title($feedData->title)
             ->description($feedData->description)
             ->url($feedData->url)
+            ->language($feedData->language)
+            ->copyright($feedData->copyright)
+            ->ttl($feedData->ttl)
             ->appendTo($feed);
 
         foreach($entities as $entity)
@@ -87,7 +90,10 @@ class RssFeedsController extends Controller
             $item
                 ->title($entity->itemTitle())
                 ->description($entity->itemDescription())
+                ->contentEncoded($entity->itemContent())
                 ->url($entity->itemUrl())
+                ->guid($entity->itemUrl(), true)
+                ->pubDate($entity->itemPubDate())
                 ->appendTo($channel);
         }
 
