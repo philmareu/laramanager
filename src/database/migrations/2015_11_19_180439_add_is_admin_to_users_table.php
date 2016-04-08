@@ -13,16 +13,18 @@ class AddIsAdminToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->boolean('is_admin');
-        });
+        if (! Schema::hasColumn('is_admin')) {
+            Schema::table('users', function (Blueprint $table) {
+                $table->boolean('is_admin');
+            });
 
-        DB::table('users')->insert([
-            'name' => 'Admin',
-            'email' => 'admin@admin.com',
-            'password' => bcrypt('password'),
-            'is_admin' => 1
-        ]);
+            DB::table('users')->insert([
+                'name' => 'Admin',
+                'email' => 'admin@admin.com',
+                'password' => bcrypt('password'),
+                'is_admin' => 1
+            ]);
+        }
     }
 
     /**
