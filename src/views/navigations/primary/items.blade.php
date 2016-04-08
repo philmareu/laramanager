@@ -3,19 +3,21 @@
 <li class="uk-nav-header">Reporting</li>
 <li class="{{ $segments[1] == 'dashboard' ? 'uk-active' : '' }}"><a href="{{ url('admin/dashboard') }}"><i class="uk-icon-dashboard uk-icon-justify"></i> Dashboard</a></li>
 <li class="{{ $segments[1] == 'not-founds' ? 'uk-active' : '' }}"><a href="{{ url('admin/not-founds') }}"><i class="uk-icon-exclamation uk-icon-justify"></i> 404s</a></li>
+@each('laramanager::navigations.primary.item', config('laramanager.navigation.primary.reporting'), 'item')
 <li class="uk-nav-divider"></li>
 
 <li class="uk-nav-header">Resources</li>
 @foreach($resources as $resource)
     <li class="{{ $segments[1] == $resource->slug ? 'uk-active' : '' }}"><a href="{{ url('admin/' . $resource->slug) }}"><i class="{{ $resource->icon }} uk-icon-justify"></i> {{ $resource->title }}</a></li>
 @endforeach
+@each('laramanager::navigations.primary.item', config('laramanager.navigation.primary.resources'), 'item')
 <li class="uk-nav-divider"></li>
 
 <li class="uk-nav-header">Uploads</li>
 <li class="{{ $segments[1] == 'images' ? 'uk-active' : '' }}"><a href="{{ url('admin/images') }}"><i class="uk-icon-file-picture-o uk-icon-justify"></i> Images</a></li>
+@each('laramanager::navigations.primary.item', config('laramanager.navigation.primary.uploads'), 'item')
 <li class="uk-nav-divider"></li>
 
-{{--    @each('laramanager::navigations.primary.items', config('laramanager.navigation.primary'), 'item')--}}
 
 <li class="uk-nav-header">System</li>
 <li class="{{ $segments[1] == 'settings' ? 'uk-active' : '' }}">
@@ -24,7 +26,6 @@
 
 <li class="{{ $segments[1] == 'resources' ? 'uk-active' : '' }}">
     <a href="{{ url('admin/resources') }}"><i class="uk-icon-cubes uk-icon-justify"></i> Resources</a>
-
 </li>
 
 <li class="{{ $segments[1] == 'objects' ? 'uk-active' : '' }}">
@@ -42,6 +43,8 @@
 <li class="{{ $segments[1] == 'users' ? 'uk-active' : '' }}">
     <a href="{{ url('admin/users') }}"><i class="uk-icon-users uk-icon-justify"></i> Users</a>
 </li>
+
+@each('laramanager::navigations.primary.item', config('laramanager.navigation.primary.systems'), 'item')
 
 {{--<li class="uk-nav-divider"></li>--}}
 
