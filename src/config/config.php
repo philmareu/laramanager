@@ -2,6 +2,20 @@
 
 return [
 
-    'version' => '0.4.9'
+    'navigation' => [
+        'primary' => [
+            'reporting' => [
+            ],
+            'resources' => [
+            ],
+            'uploads' => [
+            ],
+            'system' => [
+            ]
+        ],
+        'shortcuts' => [
+            // Future Dev
+        ]
+    ]
 
 ];

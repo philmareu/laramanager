@@ -18,8 +18,6 @@ class LaraManagerServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
-//        require_once __DIR__.'/../../../../vendor/autoload.php';
-
         if (! $this->app->routesAreCached()) {
             require __DIR__ . '/../Http/routes.php';
         }
@@ -50,6 +48,10 @@ class LaraManagerServiceProvider extends ServiceProvider
 
     private function assetsToPublish()
     {
+        $this->publishes([
+            __DIR__. '/../../../config/config.php' => config_path('laramanager.php'),
+        ]);
+
         $this->publishes([
             __DIR__ . '/../../../assets/' => public_path('vendor/laramanager/'),
         ], 'public');
