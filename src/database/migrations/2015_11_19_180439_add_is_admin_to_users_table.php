@@ -13,7 +13,7 @@ class AddIsAdminToUsersTable extends Migration
      */
     public function up()
     {
-        if (! Schema::hasColumn('is_admin')) {
+        if (! Schema::hasColumn('users', 'is_admin')) {
             Schema::table('users', function (Blueprint $table) {
                 $table->boolean('is_admin');
             });
