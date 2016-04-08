@@ -41,13 +41,19 @@ class ResourcesController extends Controller
         $resource = $this->resource->with('fields')->where('slug', $this->slug)->first();
 
         $select = ['id'];
+        $eagerLoad = [];
         foreach($resource->fields as $field)
         {
             if($field->list) $select[] = $field->slug;
+
+            if($field->type == 'relational')
+            {
+                $eagerLoad[] = $field->data('method');
+            }
         }
 
         $model = $this->getModel($resource);
-        $entities = $model::select($select)->get();
+        $entities = $model::with($eagerLoad)->select($select)->get();
 
         $hasObjects = false;
         if(method_exists($model, 'objects')) $hasObjects = true;
@@ -68,10 +74,16 @@ class ResourcesController extends Controller
 
         foreach($resource->fields as $field)
         {
-            if($field['type'] == 'wysiwyg') $hasWysiwyg = true;
+            if($field->type == 'wysiwyg') $hasWysiwyg = true;
+
+            if($field->type == 'relational')
+            {
+                $model = $field->data('model');
+                $options[$field->slug] = $model::all()->lists($field->data('title'), $field->data('key'));
+            }
         }
 
-        return view('laramanager::resource.create', compact('resource', 'hasWysiwyg'));
+        return view('laramanager::resource.create', compact('resource', 'hasWysiwyg', 'options'));
     }
 
     /**
@@ -130,9 +142,15 @@ class ResourcesController extends Controller
         foreach($resource->fields as $field)
         {
             if($field['type'] == 'wysiwyg') $hasWysiwyg = true;
+
+            if($field->type == 'relational')
+            {
+                $model = $field->data('model');
+                $options[$field->slug] = $model::all()->lists($field->data('title'), $field->data('key'));
+            }
         }
 
-        return view('laramanager::resource.edit', compact('resource', 'hasWysiwyg', 'entity'));
+        return view('laramanager::resource.edit', compact('resource', 'hasWysiwyg', 'entity', 'options'));
     }
 
     /**

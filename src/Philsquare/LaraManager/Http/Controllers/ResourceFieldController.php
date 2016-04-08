@@ -18,7 +18,8 @@ class ResourceFieldController extends Controller {
         'textarea' => 'Textarea',
         'wysiwyg' => 'WYSIWYG',
         'select' => 'Select',
-        'date' => 'Date'
+        'date' => 'Date',
+        'relational' => 'Relational'
     ];
 
     protected $resource;
