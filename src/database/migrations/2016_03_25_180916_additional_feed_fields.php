@@ -13,9 +13,9 @@ class AdditionalFeedFields extends Migration
     public function up()
     {
         Schema::table('feeds', function (Blueprint $table) {
-            $table->string('language');
-            $table->string('copyright');
-            $table->unsignedInteger('ttl');
+            $table->string('language')->nullable();
+            $table->string('copyright')->nullable();
+            $table->unsignedInteger('ttl')->default(720);
         });
     }
 

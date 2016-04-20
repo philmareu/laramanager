@@ -24,15 +24,13 @@ class CreateSettingsTable extends Migration
             $table->timestamps();
         });
 
-        Setting::table('settings')->insert([
-            [
-                'title' => 'Site Name',
-                'slug' => 'site-name',
-                'description' => 'The name of the website',
-                'type' => 'text',
-                'value' => 'Admin',
-                'is_core' => 1
-            ]
+        Setting::forceCreate([
+            'title' => 'Site Name',
+            'slug' => 'site-name',
+            'description' => 'The name of the website',
+            'type' => 'text',
+            'value' => 'Admin',
+            'is_core' => 1
         ]);
     }
 
