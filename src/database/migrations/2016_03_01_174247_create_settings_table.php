@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Philsquare\LaraManager\Models\Setting;
 
 class CreateSettingsTable extends Migration
 {
@@ -18,26 +19,18 @@ class CreateSettingsTable extends Migration
             $table->text('slug');
             $table->text('description');
             $table->enum('type', ['text', 'textarea']);
-            $table->text('value');
-            $table->boolean('is_core');
+            $table->text('value')->default('');
+            $table->boolean('is_core')->default(0);
             $table->timestamps();
         });
 
-        DB::table('settings')->insert([
+        Setting::table('settings')->insert([
             [
                 'title' => 'Site Name',
                 'slug' => 'site-name',
                 'description' => 'The name of the website',
                 'type' => 'text',
                 'value' => 'Admin',
-                'is_core' => 1
-            ],
-            [
-                'title' => 'Integration Code',
-                'slug' => 'integration-code',
-                'description' => 'This code will be injected on every page.',
-                'type' => 'textarea',
-                'value' => '',
                 'is_core' => 1
             ]
         ]);
