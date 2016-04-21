@@ -16,7 +16,7 @@
             @include('laramanager::partials.elements.form.text', ['field' => ['name' => 'alt', 'value' => $image->alt]])
 
             <div class="uk-form-row">
-                @include('laraform::elements.form.submit', ['class' => 'uk-width-1-1 uk-width-medium-1-4 uk-text-contrast'])
+                @include('laramanager::partials.elements.form.submit', ['class' => 'uk-width-1-1 uk-width-medium-1-4 uk-text-contrast'])
             </div>
         </form>
     </div>
