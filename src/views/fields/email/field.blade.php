@@ -1,1 +1,1 @@
-@include('laraform::elements.form.email', ['field' => ['name' => $field->slug, 'value' => isset($entity) ? $entity->{$field->slug} : null]])
+@include('laramanager::partials.elements.form.email', ['field' => ['name' => $field->slug, 'value' => isset($entity) ? $entity->{$field->slug} : null]])

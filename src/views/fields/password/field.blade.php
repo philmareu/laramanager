@@ -1,1 +1,1 @@
-@include('laraform::elements.form.password', ['field' => ['name' => $field->slug]])
+@include('laramanager::partials.elements.form.password', ['field' => ['name' => $field->slug]])

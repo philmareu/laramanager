@@ -17,7 +17,7 @@
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <input type="hidden" name="_method" value="PUT">
 
-        @include('laraform::elements.form.' . $setting->type, ['field' => ['name' => 'value', 'id' => 'title', 'label' => $setting->title, 'value' => $setting->value]])
+        @include('laramanager::partials.elements.form.' . $setting->type, ['field' => ['name' => 'value', 'id' => 'title', 'label' => $setting->title, 'value' => $setting->value]])
 
         <div class="uk-form-row">
             <button type="submit" class="uk-button uk-button-primary uk-width-1-1 uk-width-medium-1-3 uk-width-large-1-6">Update</button>
