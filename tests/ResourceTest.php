@@ -19,11 +19,6 @@ class ResourceTest extends TestCase
     {
         $user = User::find(1);
 
-//        $response = $this->actingAs($user)
-//            ->call('GET', 'admin/dashboard');
-//
-//        $this->assertEquals(200, $response->status());
-
         $this->actingAs($user)
             ->visit('admin/resources/create')
             ->type('Events', 'title')
