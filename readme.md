@@ -3,7 +3,7 @@
 LaraManager is a basic database interface for Laravel applications. It was created as a simple way for us to provide clients with a method for updating basic content.
 
 ## Support
-Use with caution. I'm the only one supporting this package at the moment and bugs might exist. Issues and pull requests are welcome.
+I'm the only one supporting this package at the moment and bugs might exist. Issues and pull requests are welcome.
 
 ## Laravel 5.1
 Currenting it is only available for Laravel 5.1.
@@ -18,7 +18,6 @@ $ composer require philsquare/laramanager
 You will need to add 2 providers to the ```config/app.php```
 
 ```
-  'Philsquare\LaraForm\LaraFormServiceProvider',
   'Philsquare\LaraManager\Providers\LaraManagerServiceProvider'
 ```
 

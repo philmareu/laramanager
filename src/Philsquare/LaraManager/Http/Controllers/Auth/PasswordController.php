@@ -3,7 +3,6 @@
 namespace Philsquare\LaraManager\Http\Controllers\Auth;
 
 use Illuminate\Support\Facades\Password;
-
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Philsquare\LaraManager\Http\Controllers\Controller;
 
@@ -33,7 +32,6 @@ class PasswordController extends Controller
     {
         $this->middleware('guest.admin');
         config(['auth.password.email' => 'laramanager::emails.password']);
-        $this->redirectTo = config('laramanager.home_uri');
     }
 
     /**

@@ -16,7 +16,7 @@ class UpdateFilesToImages extends Migration
 
         Schema::table('images', function (Blueprint $table) {
             $table->dropColumn('type');
-            $table->unsignedInteger('size');
+            $table->unsignedInteger('size')->nullable();
         });
     }
 

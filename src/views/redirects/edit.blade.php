@@ -17,9 +17,9 @@
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <input type="hidden" name="_method" value="PUT">
 
-        @include('laraform::elements.form.text', ['field' => ['name' => 'from', 'value' => $redirect->from]])
-        @include('laraform::elements.form.text', ['field' => ['name' => 'to', 'value' => $redirect->to]])
-        @include('laraform::elements.form.select', ['field' => ['name' => 'type', 'options' => ['301' => '301 Permanent', '302' => '302 Temporary'], 'value' => $redirect->type]])
+        @include('laramanager::partials.elements.form.text', ['field' => ['name' => 'from', 'value' => $redirect->from]])
+        @include('laramanager::partials.elements.form.text', ['field' => ['name' => 'to', 'value' => $redirect->to]])
+        @include('laramanager::partials.elements.form.select', ['field' => ['name' => 'type', 'options' => ['301' => '301 Permanent', '302' => '302 Temporary'], 'value' => $redirect->type]])
 
         <div class="uk-form-row">
             <button type="submit" class="uk-button uk-button-primary uk-width-1-1 uk-width-medium-1-3 uk-width-large-1-6">Update</button>

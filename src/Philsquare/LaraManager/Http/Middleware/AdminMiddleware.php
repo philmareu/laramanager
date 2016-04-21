@@ -32,7 +32,7 @@ class AdminMiddleware
             }
         }
 
-        if ($this->auth->user()->is_admin !== 1) return redirect()->guest('admin/auth/login');
+        if ($this->auth->user()->is_admin != 1) return redirect()->guest('admin/auth/login');
 
         return $next($request);
     }

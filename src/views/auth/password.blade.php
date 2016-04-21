@@ -8,7 +8,7 @@
 
     <div class="uk-width-medium-1-5 uk-vertical-align-middle">
 
-        @include('laraform::alerts.default')
+        @include('laramanager::partials.alerts.default')
 
         <div id="login-box">
             <div class="title-bar"><i class="uk-icon-lock"></i> Request Password Reset</div>
@@ -28,7 +28,7 @@
 
                 <div class="uk-form-row">
                     <div class="uk-width-1-1">
-                        @include('laraform::elements.form.submit', ['value' => 'Send Password Reset Link'])
+                        @include('laramanager::partials.elements.form.submit', ['value' => 'Send Password Reset Link'])
                     </div>
                 </div>
 

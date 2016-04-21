@@ -1,1 +1,1 @@
-@include('laraform::elements.form.date', ['field' => ['name' => $field->slug, 'id' => 'date', 'value' => isset($entity) ? $entity->{$field->slug} : null]])
+@include('laramanager::partials.elements.form.date', ['field' => ['name' => $field->slug, 'id' => 'date', 'value' => isset($entity) ? $entity->{$field->slug} : null]])
