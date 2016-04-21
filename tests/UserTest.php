@@ -11,7 +11,7 @@ class UserTest extends TestCase
 {
     use DatabaseMigrations;
 
-    public function testResourcePageLoads()
+    public function testUserPageLoads()
     {
         $response = $this->actingAs(User::find(1))
             ->call('GET', 'admin/users');
