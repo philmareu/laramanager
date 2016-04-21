@@ -43,7 +43,7 @@ class UsersController extends Controller {
      */
     public function store(CreateUserRequest $request)
     {
-        $user = $this->user->create($request->except('password'));
+        $user = new User($request->except('password'));
 
         if($request->has('password')) $user->password = bcrypt($request->password);
         if($request->has('is_admin')) $user->is_admin = 1;
