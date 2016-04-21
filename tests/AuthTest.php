@@ -12,6 +12,17 @@ class AuthTest extends TestCase
 {
     use DatabaseMigrations;
 
+    public function testLinks()
+    {
+        $this->visit('admin/auth/login')
+            ->click('Forgot Password?')
+            ->seePageIs('admin/auth/password/email');
+
+        $this->visit('admin/auth/password/email')
+            ->click('Back')
+            ->seePageIs('admin/auth/login');
+    }
+
     public function testGuestAuthPages()
     {
         $this->visit('admin/auth/login')->assertResponseOk();
@@ -34,8 +45,6 @@ class AuthTest extends TestCase
             ->press('Send Password Reset Link')
             ->seePageIs('admin/auth/password/email');
 
-        // http://localhost/admin/auth/password/reset/abad32327f28e484c6aa7cd9b90b2d5a73acc1747d79469dc7b8e6d158f5b452
-
         $reset = DB::table('password_resets')->where('email', 'admin@admin.com')->select('token')->first();
 
         $resetLink = url('admin/auth/password/reset/' . $reset->token);
@@ -50,29 +59,5 @@ class AuthTest extends TestCase
         $user = User::find(1);
 
         $this->assertTrue(Hash::check('newPassword', $user->password));
-    }
-
-    /**
-     * A basic functional test example.
-     *
-     * @return void
-     */
-    public function testCreateUser()
-    {
-//        $this->actingAs(User::find(1))
-//            ->visit('admin/users/create')
-//            ->type('Bob', 'name')
-//            ->type('bob@bob.com', 'email')
-//            ->type('password', 'password')
-//            ->check('is_admin')
-//            ->press('Save')
-//            ->seePageIs('admin/users');
-//
-//        $retrievedResource = User::find(2);
-//
-//        $this->assertEquals('Bob', $retrievedResource->name);
-//        $this->assertEquals('bob@bob.com', $retrievedResource->email);
-//        $this->assertTrue(Hash::check('password', $retrievedResource->password));
-//        $this->assertEquals('1', $retrievedResource->is_admin);
     }
 }
