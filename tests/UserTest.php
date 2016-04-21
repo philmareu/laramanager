@@ -42,4 +42,22 @@ class UserTest extends TestCase
         $this->assertTrue(Hash::check('password', $retrievedResource->password));
         $this->assertEquals('1', $retrievedResource->is_admin);
     }
+
+    public function testEditUser()
+    {
+        $this->actingAs(User::find(1))
+            ->visit('admin/users/1/edit')
+            ->type('Admin2', 'name')
+            ->type('admin2@admin2.com', 'email')
+            ->type('newPassword', 'password')
+            ->press('Update')
+            ->seePageIs('admin/users');
+
+        $retrievedResource = User::find(1);
+
+        $this->assertEquals('Admin2', $retrievedResource->name);
+        $this->assertEquals('admin2@admin2.com', $retrievedResource->email);
+        $this->assertTrue(Hash::check('newPassword', $retrievedResource->password));
+        $this->assertEquals('1', $retrievedResource->is_admin);
+    }
 }
