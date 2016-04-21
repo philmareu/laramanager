@@ -15,7 +15,7 @@ You can install this package with Composer.
 $ composer require philsquare/laramanager
 ```
 
-You will need to add 2 providers to the ```config/app.php```
+You will need to add the following provider to ```config/app.php```
 
 ```
   'Philsquare\LaraManager\Providers\LaraManagerServiceProvider'
