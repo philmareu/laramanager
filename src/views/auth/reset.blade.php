@@ -45,7 +45,7 @@
 
                 <div class="uk-form-row">
                     <div class="uk-width-1-1">
-                        @include('laraform::elements.form.submit', ['value' => 'Reset Password'])
+                        @include('laramanager::partials.elements.form.submit', ['value' => 'Reset Password'])
                     </div>
                 </div>
             </form>

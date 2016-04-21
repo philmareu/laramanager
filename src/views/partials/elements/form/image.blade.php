@@ -1,4 +1,4 @@
-@extends('laraform::wrappers.form')
+@extends('laramanager::partials.wrappers.form')
 
 @section('field')
 

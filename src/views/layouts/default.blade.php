@@ -41,7 +41,7 @@
             </div>
 
             <div class="uk-container" id="secondary-content-area">
-                @include('laraform::alerts.default')
+                @include('laramanager::partials.alerts.default')
 
                 @yield('content')
             </div>
