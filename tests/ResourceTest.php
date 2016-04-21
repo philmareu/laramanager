@@ -10,6 +10,14 @@ class ResourceTest extends TestCase
 {
     use DatabaseMigrations;
 
+    public function testResourcePageLoads()
+    {
+        $response = $this->actingAs(User::find(1))
+            ->call('GET', 'admin/resources');
+
+        $this->assertEquals(200, $response->getStatusCode());
+    }
+
     /**
      * A basic functional test example.
      *
@@ -17,9 +25,7 @@ class ResourceTest extends TestCase
      */
     public function testCreateResource()
     {
-        $user = User::find(1);
-
-        $this->actingAs($user)
+        $this->actingAs(User::find(1))
             ->visit('admin/resources/create')
             ->type('Events', 'title')
             ->type('events', 'slug')
