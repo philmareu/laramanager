@@ -16,13 +16,13 @@
     <form action="{{ url('admin/resources/' . $resource->id . '/fields/create') }}" enctype="multipart/form-data" method="POST" class="uk-form uk-form-stacked">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-        @include('laraform::elements.form.text', ['field' => ['name' => 'title', 'id' => 'title']])
-        @include('laraform::elements.form.slug', ['field' => ['name' => 'slug', 'id' => 'slug', 'target' => 'title']])
-        @include('laraform::elements.form.slug', ['field' => ['name' => 'validation']])
-        @include('laraform::elements.form.checkbox', ['field' => ['name' => 'is_unique', 'checked' => false]])
-        @include('laraform::elements.form.checkbox', ['field' => ['name' => 'list', 'checked' => false]])
-
-        @include('laraform::elements.form.select', ['field' => ['name' => 'type', 'options' => $fields, 'id' => 'type']])
+        @include('laramanager::partials.elements.form.text', ['field' => ['name' => 'title', 'id' => 'title']])
+        @include('laramanager::partials.elements.form.slug', ['field' => ['name' => 'slug', 'id' => 'slug', 'target' => 'title']])
+        @include('laramanager::partials.elements.form.slug', ['field' => ['name' => 'validation']])
+        @include('laramanager::partials.elements.form.checkbox', ['field' => ['name' => 'is_unique', 'checked' => false]])
+        @include('laramanager::partials.elements.form.checkbox', ['field' => ['name' => 'list', 'checked' => false]])
+:
+        @include('laramanager::partials.elements.form.select', ['field' => ['name' => 'type', 'options' => $fields, 'id' => 'type']])
 
         <div id="options" class="uk-form-row">
 
