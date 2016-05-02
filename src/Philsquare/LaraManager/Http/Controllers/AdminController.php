@@ -14,9 +14,4 @@ class AdminController extends Controller {
         return view('laramanager::dashboard.index');
     }
 
-    public function findHome()
-    {
-        return redirect(config('laramanager.home_uri'));
-    }
-
 }
