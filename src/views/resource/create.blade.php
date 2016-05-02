@@ -4,6 +4,10 @@
     {{ $resource->title or 'Create' }}
 @endsection
 
+@section('head')
+
+@endsection
+
 @section('content')
 
     @if(session()->has('errors'))
@@ -33,6 +37,16 @@
 @endsection
 
 @section('scripts')
+
+    @if($hasHTML)
+        <link rel="stylesheet" href="{{ asset('vendor/laramanager/vendor/codemirror-5.14.2/lib/codemirror.css') }}">
+
+        <script src="{{ asset('vendor/laramanager/codemirror-5.14.2/lib/codemirror.js') }}"></script>
+        <script src="{{ asset('vendor/laramanager/codemirror-5.14.2/addon/mode/overlay.js') }}"></script>
+        <script src="{{ asset('vendor/laramanager/codemirror-5.14.2/mode/xml/xml.js') }}"></script>
+        <script src="{{ asset('vendor/laramanager/codemirror-5.14.2/mode/gfm/gfm.js') }}"></script>
+        <script src="{{ asset('vendor/laramanager/marked-0.3.5/marked.min.js') }}"></script>
+    @endif
 
     @if($hasWysiwyg)
         <script src="{{ asset('vendor/laramanager/js/ckeditor/ckeditor.js') }}"></script>

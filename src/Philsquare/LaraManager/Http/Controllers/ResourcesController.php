@@ -70,11 +70,13 @@ class ResourcesController extends Controller
     {
         $resource = $this->resource->with('fields')->where('slug', $this->slug)->first();
 
-        $hasWysiwyg = false;
+        $hasWysiwyg = $hasHTML = false;
 
         foreach($resource->fields as $field)
         {
             if($field->type == 'wysiwyg') $hasWysiwyg = true;
+
+            if($field->type == 'html') $hasHTML = true;
 
             if($field->type == 'relational')
             {
@@ -83,7 +85,7 @@ class ResourcesController extends Controller
             }
         }
 
-        return view('laramanager::resource.create', compact('resource', 'hasWysiwyg', 'options'));
+        return view('laramanager::resource.create', compact('resource', 'hasWysiwyg', 'options', 'hasHTML'));
     }
 
     /**
@@ -137,11 +139,13 @@ class ResourcesController extends Controller
         $resource = $this->resource->with('fields')->where('slug', $this->slug)->first();
         $model = $this->getModel($resource);
         $entity = $model::find($entityId);
-        $hasWysiwyg = false;
+        $hasWysiwyg = $hasHTML= false;
 
         foreach($resource->fields as $field)
         {
             if($field['type'] == 'wysiwyg') $hasWysiwyg = true;
+
+            if($field->type == 'html') $hasHTML = true;
 
             if($field->type == 'relational')
             {
@@ -150,7 +154,7 @@ class ResourcesController extends Controller
             }
         }
 
-        return view('laramanager::resource.edit', compact('resource', 'hasWysiwyg', 'entity', 'options'));
+        return view('laramanager::resource.edit', compact('resource', 'hasWysiwyg', 'entity', 'options', 'hasHTML'));
     }
 
     /**

@@ -19,7 +19,8 @@ class ResourceFieldController extends Controller {
         'wysiwyg' => 'WYSIWYG',
         'select' => 'Select',
         'date' => 'Date',
-        'relational' => 'Relational'
+        'relational' => 'Relational',
+        'html' => 'HTML'
     ];
 
     protected $resource;
