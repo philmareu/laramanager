@@ -2,6 +2,6 @@
 
 @section('form')
 
-    @include('laraform::elements.form.text', ['field' => ['name' => 'data[embed_url]', 'label' => 'Embed URL']])
+    @include('laramanager::partials.elements.form.text', ['field' => ['name' => 'data[embed_url]', 'label' => 'Embed URL']])
 
 @endsection

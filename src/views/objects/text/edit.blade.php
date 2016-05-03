@@ -2,6 +2,6 @@
 
 @section('form')
 
-    @include('laraform::elements.form.text', ['field' => ['name' => 'data[text]', 'label' => 'Text', 'value' => $object->data('text')]])
+    @include('laramanager::partials.elements.form.text', ['field' => ['name' => 'data[text]', 'label' => 'Text', 'value' => $object->data('text')]])
 
 @endsection

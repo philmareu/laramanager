@@ -9,7 +9,7 @@
 
     <div id="file-gallery" class="uk-grid">
         @if(isset($field['value']))
-            @each('laraform::elements.form.displays.file', $field['value'], 'file')
+            @each('laramanager::partials.elements.form.displays.file', $field['value'], 'file')
         @endif
     </div>
 

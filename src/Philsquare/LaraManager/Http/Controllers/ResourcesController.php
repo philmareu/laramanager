@@ -6,7 +6,7 @@ namespace Philsquare\LaraManager\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-use Philsquare\LaraForm\Services\FormProcessor;
+use Philsquare\LaraManager\Form\FormProcessor;
 use Philsquare\LaraManager\Fields\FieldProcessor;
 use Philsquare\LaraManager\Models\File;
 use Philsquare\LaraManager\Models\Object;
@@ -219,7 +219,7 @@ class ResourcesController extends Controller
         $entity->photos()->attach($file->id);
 
         $output['status'] = 'ok';
-        $output['data']['html'] = view('laraform::elements.form.displays.file', compact('file'))->render();
+        $output['data']['html'] = view('laramanager::partials.elements.form.displays.file', compact('file'))->render();
 
         return response()->json($output);
     }

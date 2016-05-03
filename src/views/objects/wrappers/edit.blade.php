@@ -10,14 +10,14 @@
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <input type="hidden" name="_method" value="PUT">
 
-        @include('laraform::elements.form.text', ['field' => ['name' => 'label', 'value' => $object->pivot->label]])
+        @include('laramanager::partials.elements.form.text', ['field' => ['name' => 'label', 'value' => $object->pivot->label]])
 
         @yield('form')
 
         <div class="uk-form-row">
             <div class="uk-grid uk-flex uk-flex-middle">
                 <div class="uk-width-1-2 uk-width-medium-1-4">
-                    @include('laraform::elements.form.submit')
+                    @include('laramanager::partials.elements.form.submit')
                 </div>
                 <div class="uk-width-1-2 uk-width-medium-1-4">
                     <a href="{{ url('admin/' . $resource->slug . '/' . $entity->id) }}">Cancel</a>

@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Philsquare\LaraForm\Services\FormProcessor;
+use Philsquare\LaraManager\Form\FormProcessor;
 use Philsquare\LaraManager\Http\Requests\UpdateImageRequest;
 use Philsquare\LaraManager\Http\Requests\UploadImageRequest;
 use Philsquare\LaraManager\Models\Image;
