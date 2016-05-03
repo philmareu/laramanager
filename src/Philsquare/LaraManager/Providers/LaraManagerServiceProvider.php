@@ -32,6 +32,8 @@ class LaraManagerServiceProvider extends ServiceProvider
         $this->setViewComposers();
 
         $this->loadTranslationsFrom(__DIR__.'/../../../lang', 'laramanager');
+
+        Validator::extend('unique_filename', 'Philsquare\LaraManager\Validators\UniqueFilenameValidator@validate');
     }
 
     /**

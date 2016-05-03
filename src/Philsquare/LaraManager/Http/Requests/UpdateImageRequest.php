@@ -24,7 +24,7 @@ class UpdateImageRequest extends Request {
             'alt' => 'max:255',
             'description' => 'max:255',
             'original_filename' => 'max:255',
-            'filename' => 'required|max:110|unique:images,filename,' . $this->segment(3)
+            'filename' => 'required|unique_filename|max:110|unique:images,filename,' . $this->segment(3)
         ];
     }
 

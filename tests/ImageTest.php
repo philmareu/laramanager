@@ -62,6 +62,7 @@ class ImageTest extends TestCase
     public function testImageUpdateThroughEndPoint()
     {
         if(file_exists(storage_path('app/laramanager/images/tree.jpg'))) unlink(storage_path('app/laramanager/images/tree.jpg'));
+        if(file_exists(storage_path('app/laramanager/images/sunflower.jpg'))) unlink(storage_path('app/laramanager/images/sunflower.jpg'));
         copy(__DIR__ . '/files/sunflower.jpg', storage_path('app/laramanager/images/sunflower.jpg'));
 
         $this->createTestImage();
@@ -76,17 +77,35 @@ class ImageTest extends TestCase
 
         $this->assertResponseOk();
         $this->seeJson([
-            'attributes' => [
-                'filename' => 'tree.jpg',
-                'title' => 'Tree',
-                'description' => 'It is a tree.',
-                'original_filename' => 'image002.jpg',
-                'alt' => 'A photograph of a tree'
-            ],
+            'filename' => 'tree.jpg',
+            'title' => 'Tree',
+            'description' => 'It is a tree.',
+            'original_filename' => 'image002.jpg',
+            'alt' => 'A photograph of a tree',
             'paths' => [
                 'original' => url('images/original/tree.jpg')
             ]
         ]);
+    }
+
+    public function testDoNotOverwriteExistingFilenames()
+    {
+        if(! file_exists(storage_path('app/laramanager/images/tree.jpg')))
+        {
+            copy(__DIR__ . '/files/sunflower.jpg', storage_path('app/laramanager/images/tree.jpg'));
+        }
+
+        $this->createTestImage();
+
+        $this->call('PUT', 'admin/images/1', [
+            'filename' => 'tree.jpg',
+            'title' => 'Tree',
+            'description' => 'It is a tree.',
+            'original_filename' => 'image002.jpg',
+            'alt' => 'A photograph of a tree'
+        ]);
+
+        $this->assertResponseStatus(302);
     }
 
     private function createTestImage()

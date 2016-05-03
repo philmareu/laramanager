@@ -6,19 +6,15 @@ use Philsquare\LaraManager\Form\FormProcessor;
 use Philsquare\LaraManager\Http\Requests\UpdateImageRequest;
 use Philsquare\LaraManager\Http\Requests\UploadImageRequest;
 use Philsquare\LaraManager\Models\Image;
+use Philsquare\LaraManager\Repositories\ImageRepository;
 
 class ImagesController extends Controller {
 
-    protected $formProcessor;
+    protected $imageRepository;
 
-    protected $image;
-
-    protected $imageFolder = 'laramanager/images/';
-
-    public function __construct(FormProcessor $formProcessor, Image $image)
+    public function __construct(ImageRepository $imageRepository)
     {
-        $this->formProcessor = $formProcessor;
-        $this->image = $image;
+        $this->imageRepository = $imageRepository;
     }
 
     public function index(Request $request)
@@ -43,22 +39,7 @@ class ImagesController extends Controller {
 
     public function update(UpdateImageRequest $request, $imageId)
     {
-        $image = $this->image->findOrFail($imageId);
-        if($image->filename != $request->get('filename'))
-        {
-            if(Storage::has($this->imageFolder . $request->get('filename'))) return response()->json(['errors' => ['Image Exists']]);
-
-            Storage::move($this->imageFolder . $image->filename, $this->imageFolder . $request->get('filename'));
-        }
-
-        $image->update($request->all());
-
-        $output['data'] = [
-            'file' => $image,
-            'url' => url('images/original/' . $image->filename)
-        ];
-
-        return response()->json($output);
+        return $this->imageRepository->update($imageId, $request->all());
     }
 
     public function search(Request $request)
@@ -112,6 +93,15 @@ class ImagesController extends Controller {
             'image' => $image
         ];
 
+        return response()->json($output);
+    }
+
+    /**
+     * @param $output
+     * @return \Illuminate\Http\JsonResponse
+     */
+    private function jsonResponse($output)
+    {
         return response()->json($output);
     }
 
