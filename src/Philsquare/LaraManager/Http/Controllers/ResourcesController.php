@@ -51,17 +51,11 @@ class ResourcesController extends Controller
     public function create()
     {
         $resource = $this->resourceRepository->getBySlug($this->slug);
-
-        $hasWysiwyg = $hasHTML = false;
-
-        foreach($resource->fields as $field)
-        {
-            if($field->type == 'relational')
-            {
-                $model = $field->data['model'];
-                $options[$field->slug] = $model::all()->lists($field->data['title'], $field->data['key']);
-            }
-        }
+        $options = $resource->fields->filter(function($field) {
+            return $field->type == 'relational';
+        })->reduce(function($options, $field) {
+            return array_merge($options, [$field->slug => $this->entityRepository->getFieldOptions($field)]);
+        }, []);
 
         return view('laramanager::resource.create', compact('resource', 'options'));
     }

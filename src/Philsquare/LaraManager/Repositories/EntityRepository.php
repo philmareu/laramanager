@@ -21,6 +21,12 @@ class EntityRepository {
         return $model::with($eagerLoad)->select($selects)->get();
     }
 
+    public function getFieldOptions($field)
+    {
+        $model = $field->data['model'];
+        return $model::all()->lists($field->data['title'], $field->data['key'])->all();
+    }
+
     /**
      * @param $resource
      * @return string
