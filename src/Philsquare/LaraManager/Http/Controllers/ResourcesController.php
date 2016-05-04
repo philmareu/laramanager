@@ -144,40 +144,6 @@ class ResourcesController extends Controller
         return response()->json(['status' => 'ok']);
     }
 
-    public function uploads(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'file' => $request->validation
-        ]);
-
-        if($validator->fails()) return response()->json(['status' => 'failed']);
-
-        $model = config('laramanager.resources.' . $request->resource . '.model');
-        $reference = $request->name;
-
-        $filename = $this->form->processFile($request->file('file'), 'files');
-
-        $file = File::create(['filename' => $filename, 'type' => 'image']);
-
-        $entity = (new $model)->findOrFail($request->entityId);
-        $entity->photos()->attach($file->id);
-
-        $output['status'] = 'ok';
-        $output['data']['html'] = view('laramanager::partials.elements.form.displays.file', compact('file'))->render();
-
-        return response()->json($output);
-    }
-
-    public function deleteFile(Request $request)
-    {
-        $model = config('laramanager.resources.' . $request->resource . '.model');
-        $entity = (new $model)->findOrFail($request->entityId);
-
-        $entity->photos()->detach($request->id);
-
-        return response()->json(['status' => 'ok']);
-    }
-
     private function validationRules($resource, $entity = null)
     {
         foreach($resource->fields as $field)

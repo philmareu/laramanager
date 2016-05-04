@@ -58,9 +58,6 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], functio
             }
         }
 
-        Route::post('uploads/resource', 'ResourcesController@uploads');
-
-
         Route::get('resources/fields/getOptions/{type}', 'ResourceFieldController@getOptions');
         Route::get('resources/{resources}/fields/{fields}/edit', 'ResourceFieldController@edit');
         Route::put('resources/{resources}/fields/{fields}/edit', 'ResourceFieldController@update');
