@@ -98,27 +98,20 @@ class ResourcesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($entityId)
+    public function edit($id)
     {
-        $resource = $this->resource->with('fields')->where('slug', $this->slug)->first();
-        $model = $this->getModel($resource);
-        $entity = $model::find($entityId);
-        $hasWysiwyg = $hasHTML= false;
+        $entity = $this->entityRepository->getById($id, $this->resource);
 
-        foreach($resource->fields as $field)
-        {
-            if($field['type'] == 'wysiwyg') $hasWysiwyg = true;
+        $options = $this->resource->fields->filter(function($field) {
+            return $field->type == 'relational';
+        })->reduce(function($options, $field) {
+            return array_merge($options, [$field->slug => $this->entityRepository->getFieldOptions($field)]);
+        }, []);
 
-            if($field->type == 'html') $hasHTML = true;
-
-            if($field->type == 'relational')
-            {
-                $model = $field->data('model');
-                $options[$field->slug] = $model::all()->lists($field->data('title'), $field->data('key'));
-            }
-        }
-
-        return view('laramanager::resource.edit', compact('resource', 'hasWysiwyg', 'entity', 'options', 'hasHTML'));
+        return view('laramanager::resource.edit')
+            ->with('resource', $this->resource)
+            ->with('entity', $entity)
+            ->with('options', $options);
     }
 
     /**
