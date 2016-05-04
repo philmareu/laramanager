@@ -22,7 +22,7 @@ class EntityRepository {
 
         $model = $this->getModel($resource);
 
-        return $model::with($eagerLoad)->select($selects)->get();
+        return $model::with($eagerLoad)->select(array_merge(['id'], $selects))->get();
     }
 
     public function create(Request $request, Resource $resource)
