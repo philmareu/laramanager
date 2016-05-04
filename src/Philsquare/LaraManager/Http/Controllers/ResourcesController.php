@@ -70,20 +70,10 @@ class ResourcesController extends Controller
      */
     public function store(Request $request)
     {
-        $resource = $this->resourceRepository->getBySlug($this->slug);
-        $fieldProcessor = new FieldProcessor($request, $resource);
+        $this->validate($request, $this->validationRules($this->resource));
+        $entity = $this->entityRepository->create($request, $this->resource);
 
-        $this->validate($request, $this->validationRules($resource));
-
-        $model = $this->getModel($resource);
-        $entity = new $model;
-        $request = $fieldProcessor->processAttributes();
-
-        $entity = $entity->create($request->all());
-
-        if(method_exists($model, 'objects')) return redirect('admin/' . $resource->slug . '/' . $entity->id)->with('success', 'Added');
-
-        return redirect('admin/' . $resource->slug)->with('success', 'Added');
+        return redirect('admin/' . $this->resource->slug)->with('success', 'Added');
     }
 
     /**

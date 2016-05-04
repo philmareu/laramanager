@@ -1,5 +1,9 @@
 <?php namespace Philsquare\LaraManager\Repositories; 
 
+use Illuminate\Http\Request;
+use Philsquare\LaraManager\Fields\FieldProcessor;
+use Philsquare\LaraManager\Models\Resource;
+
 class EntityRepository {
 
     public function getList($resource)
@@ -19,6 +23,17 @@ class EntityRepository {
         $model = $this->getModel($resource);
 
         return $model::with($eagerLoad)->select($selects)->get();
+    }
+
+    public function create(Request $request, Resource $resource)
+    {
+        $fieldProcessor = new FieldProcessor($request, $resource);
+        $request = $fieldProcessor->processAttributes();
+
+        $model = $this->getModel($resource);
+        $entity = new $model;
+
+        return $entity->create($request->all());
     }
 
     public function getFieldOptions($field)
