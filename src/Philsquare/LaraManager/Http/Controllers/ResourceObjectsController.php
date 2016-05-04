@@ -3,7 +3,6 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Philsquare\LaraManager\Models\File;
-use Philsquare\LaraManager\Models\Image;
 use Philsquare\LaraManager\Models\Object;
 use Philsquare\LaraManager\Models\Resource;
 
@@ -11,12 +10,9 @@ class ResourceObjectsController extends Controller {
 
     protected $resource;
 
-    protected $image;
-
-    public function __construct(Resource $resource, Image $image)
+    public function __construct(Resource $resource)
     {
         $this->resource = $resource;
-        $this->image = $image;
     }
 
     public function create($resource, $resourceId, $objectId)
@@ -25,9 +21,8 @@ class ResourceObjectsController extends Controller {
         $model = $this->getModel($resource);
         $entity = $model::find($resourceId);
         $object = Object::find($objectId);
-        $images = $this->image->latest()->get();
 
-        return view('laramanager::objects.wrappers.create', compact('object', 'resource', 'entity', 'object', 'images'));
+        return view('laramanager::objects.wrappers.create', compact('object', 'resource', 'entity', 'object'));
     }
 
     public function store(Request $request, $resource, $resourceId, $objectId)
@@ -59,9 +54,8 @@ class ResourceObjectsController extends Controller {
         $entity = $model::find($resourceId);
 
         $object = $entity->objects()->where('objectables.id', $objectableId)->first();
-        $images = $this->image->latest()->get();
 
-        return view('laramanager::objects.wrappers.edit', compact('object', 'resource', 'entity', 'object', 'images'));
+        return view('laramanager::objects.wrappers.edit', compact('object', 'resource', 'entity', 'object'));
     }
 
     public function update(Request $request, $resource, $resourceId, $objectableId)
