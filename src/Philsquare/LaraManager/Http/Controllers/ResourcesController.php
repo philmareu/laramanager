@@ -50,24 +50,20 @@ class ResourcesController extends Controller
      */
     public function create()
     {
-        $resource = $this->resource->with('fields')->where('slug', $this->slug)->first();
+        $resource = $this->resourceRepository->getBySlug($this->slug);
 
         $hasWysiwyg = $hasHTML = false;
 
         foreach($resource->fields as $field)
         {
-            if($field->type == 'wysiwyg') $hasWysiwyg = true;
-
-            if($field->type == 'html') $hasHTML = true;
-
             if($field->type == 'relational')
             {
-                $model = $field->data('model');
-                $options[$field->slug] = $model::all()->lists($field->data('title'), $field->data('key'));
+                $model = $field->data['model'];
+                $options[$field->slug] = $model::all()->lists($field->data['title'], $field->data['key']);
             }
         }
 
-        return view('laramanager::resource.create', compact('resource', 'hasWysiwyg', 'options', 'hasHTML'));
+        return view('laramanager::resource.create', compact('resource', 'options'));
     }
 
     /**

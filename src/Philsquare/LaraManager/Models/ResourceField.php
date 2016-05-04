@@ -24,7 +24,7 @@ class ResourceField extends Model {
 
     public function selectArray()
     {
-        $data = unserialize($this->data)['options'];
+        $data = $this->data['options'];
 
         $options = [];
         foreach(explode('|', $data) as $row)
