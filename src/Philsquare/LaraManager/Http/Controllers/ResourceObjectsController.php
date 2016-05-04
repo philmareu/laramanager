@@ -4,70 +4,56 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Philsquare\LaraManager\Models\File;
 use Philsquare\LaraManager\Models\Object;
-use Philsquare\LaraManager\Models\Resource;
+use Philsquare\LaraManager\Repositories\EntityRepository;
+use Philsquare\LaraManager\Repositories\ResourceRepository;
 
 class ResourceObjectsController extends Controller {
 
-    protected $resource;
+    protected $resourceRepository;
 
-    public function __construct(Resource $resource)
+    protected $entityRepository;
+
+    public function __construct(ResourceRepository $resourceRepository, EntityRepository $entityRepository)
     {
-        $this->resource = $resource;
+        $this->resourceRepository = $resourceRepository;
+        $this->entityRepository = $entityRepository;
     }
 
-    public function create($resource, $resourceId, $objectId)
+    public function create($resourceSlug, $entityId, $objectId)
     {
-        $resource = $this->resource->with('fields')->where('slug', $resource)->first();
-        $model = $this->getModel($resource);
-        $entity = $model::find($resourceId);
+        $resource = $this->resourceRepository->getBySlug($resourceSlug);
+        $entity = $this->entityRepository->getById($entityId, $resource);
         $object = Object::find($objectId);
 
-        return view('laramanager::objects.wrappers.create', compact('object', 'resource', 'entity', 'object'));
+        return view('laramanager::objects.wrappers.create', compact('object', 'resource', 'entity'));
     }
 
-    public function store(Request $request, $resource, $resourceId, $objectId)
+    public function store(Request $request, $resourceSlug, $entityId, $objectId)
     {
-        // validation
-//        $this->validate($request, $this->validationRules($this->fields, 'store'));
-
-//        or
-
-//        if( ! $this->validator->isValid(Input::all(), Config::get('validation/objects.' . $object->slug)))
-//        {
-//            return Redirect::back()->withErrors($this->validator->getErrors())->withInput();
-//        }
-
-        $resource = $this->resource->with('fields')->where('slug', $resource)->first();
-        $model = $this->getModel($resource);
-        $entity = $model::find($resourceId);
+        $resource = $this->resourceRepository->getBySlug($resourceSlug);
+        $entity = $this->entityRepository->getById($entityId, $resource);
         $object = Object::find($objectId);
 
         $entity->objects()->attach($object->id, ['label' => $request->label, 'ordinal' => 100, 'data' => serialize($request->only(['data']))]);
 
-        return redirect('admin/' . $resource->slug . '/' . $resourceId);
+        return redirect('admin/' . $resource->slug . '/' . $entity->id);
     }
 
-    public function edit($resource, $resourceId, $objectableId)
+    public function edit($resourceSlug, $entityId, $objectableId)
     {
-        $resource = $this->resource->with('fields')->where('slug', $resource)->first();
-        $model = $this->getModel($resource);
-        $entity = $model::find($resourceId);
+        $resource = $this->resourceRepository->getBySlug($resourceSlug);
+        $entity = $this->entityRepository->getById($entityId, $resource);
 
         $object = $entity->objects()->where('objectables.id', $objectableId)->first();
 
-        return view('laramanager::objects.wrappers.edit', compact('object', 'resource', 'entity', 'object'));
+        return view('laramanager::objects.wrappers.edit', compact('object', 'resource', 'entity'));
     }
 
-    public function update(Request $request, $resource, $resourceId, $objectableId)
+    public function update(Request $request, $resourceSlug, $entity, $objectableId)
     {
         DB::table('objectables')->where('id', $objectableId)->update(['label' => $request->label, 'data' => serialize($request->only(['data']))]);
 
-        return redirect('admin/' . $resource . '/' . $resourceId);
-    }
-
-    public function destroy()
-    {
-
+        return redirect('admin/' . $resourceSlug . '/' . $entity);
     }
 
     public function reorder(Request $request)
@@ -78,15 +64,5 @@ class ResourceObjectsController extends Controller {
                 'ordinal' => $ordinal
             ]);
         }
-    }
-
-    /**
-     * @param $resource
-     * @return string
-     */
-    private function getModel($resource)
-    {
-        $model = $resource->namespace . '\\' . $resource->model;
-        return $model;
     }
 }
