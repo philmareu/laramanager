@@ -121,21 +121,12 @@ class ResourcesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $entityId)
+    public function update(Request $request, $id)
     {
-        $resource = $this->resource->with('fields')->where('slug', $this->slug)->first();
-        $fieldProcessor = new FieldProcessor($request, $resource);
-        $model = $this->getModel($resource);
+        $entity = $this->entityRepository->getById($id, $this->resource);
+        $this->validate($request, $this->validationRules($this->resource, $entity));
 
-        $entity = $model::findOrFail($entityId);
-
-        $this->validate($request, $this->validationRules($resource, $entity));
-
-        $request = $fieldProcessor->processAttributes();
-
-        $entity->update($request->all());
-
-        if(method_exists($model, 'objects')) return redirect('admin/' . $resource->slug . '/' . $entity->id)->with('success', 'Updated');
+        $this->entityRepository->update($id, $request, $this->resource);
 
         return redirect()->back()->with('success', 'Updated');
     }
@@ -146,15 +137,11 @@ class ResourcesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($entityId)
+    public function destroy($id)
     {
-        $resource = $this->resource->with('fields')->where('slug', $this->slug)->first();
-        $model = $this->getModel($resource);
-        $entity = $model::findOrFail($entityId);
-        
-        if($entity->delete()) return response()->json(['status' => 'ok']);
+        $this->entityRepository->delete($id, $this->resource);
 
-        return response()->json(['status' => 'failed']);
+        return response()->json(['status' => 'ok']);
     }
 
     public function uploads(Request $request)

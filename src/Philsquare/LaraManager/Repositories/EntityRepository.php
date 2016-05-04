@@ -33,13 +33,24 @@ class EntityRepository {
 
     public function create(Request $request, Resource $resource)
     {
-        $fieldProcessor = new FieldProcessor($request, $resource);
-        $request = $fieldProcessor->processAttributes();
-
+        $request = $this->processFields($request, $resource);
         $model = $this->getModel($resource);
         $entity = new $model;
 
         return $entity->create($request->all());
+    }
+
+    public function update($id, Request $request, Resource $resource)
+    {
+        $request = $this->processFields($request, $resource);
+        $entity = $this->getById($id, $resource);
+
+        return $entity->update($request->all());
+    }
+
+    public function delete($id, $resource)
+    {
+        return $this->getById($id, $resource)->delete();
     }
 
     public function getFieldOptions($field)
@@ -55,6 +66,18 @@ class EntityRepository {
     private function getModel($resource)
     {
         return $resource->namespace . '\\' . $resource->model;
+    }
+
+    /**
+     * @param Request $request
+     * @param Resource $resource
+     * @return Request
+     */
+    private function processFields(Request $request, Resource $resource)
+    {
+        $fieldProcessor = new FieldProcessor($request, $resource);
+        $request = $fieldProcessor->processAttributes();
+        return $request;
     }
 
 }
