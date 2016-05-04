@@ -3,7 +3,6 @@
 namespace Philsquare\LaraManager\Repositories;
 
 use Illuminate\Support\Facades\Storage;
-use Philsquare\LaraManager\Exceptions\FilenameExistsException;
 use Philsquare\LaraManager\Models\Image;
 
 class ImageRepository {
