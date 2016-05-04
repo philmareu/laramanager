@@ -10,12 +10,23 @@ use Philsquare\LaraManager\Repositories\ImageRepository;
 
 class ImageTest extends TestCase
 {
-    use DatabaseMigrations, WithoutMiddleware;
+    use DatabaseMigrations;
 
     public function testImagePageLoads()
     {
         $this->actingAs(User::find(1))
             ->call('GET', 'admin/images');
+
+        $this->assertResponseOk();
+    }
+
+    public function testEditImageFormLoads()
+    {
+        $this->createTestImage();
+
+        $this->actingAs(User::find(1))
+            ->call('GET', 'admin/images/1/edit');
+
         $this->assertResponseOk();
     }
 
@@ -68,6 +79,8 @@ class ImageTest extends TestCase
 
     public function testImageUpdateThroughEndPoint()
     {
+        $this->withoutMiddleware();
+
         if(file_exists(storage_path('app/laramanager/images/tree.jpg'))) unlink(storage_path('app/laramanager/images/tree.jpg'));
         if(file_exists(storage_path('app/laramanager/images/sunflower.jpg'))) unlink(storage_path('app/laramanager/images/sunflower.jpg'));
         copy(__DIR__ . '/files/sunflower.jpg', storage_path('app/laramanager/images/sunflower.jpg'));
@@ -97,6 +110,8 @@ class ImageTest extends TestCase
 
     public function testDoNotOverwriteExistingFilename()
     {
+        $this->withoutMiddleware();
+
         if(! file_exists(storage_path('app/laramanager/images/tree.jpg')))
         {
             copy(__DIR__ . '/files/sunflower.jpg', storage_path('app/laramanager/images/tree.jpg'));

@@ -57,7 +57,7 @@ class ImagesController extends Controller {
     }
 
     /**
-     * Display edit image form
+     * Respond with the edit image form
      *
      * @param $imageId
      * @return \Illuminate\Http\JsonResponse
