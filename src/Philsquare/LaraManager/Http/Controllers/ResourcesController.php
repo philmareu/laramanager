@@ -82,13 +82,14 @@ class ResourcesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($resourceId)
+    public function show($id)
     {
-        $model = $this->getModel($this->resource);
-        $entity = $model::with('objects')->where('id', $resourceId)->first();
-        $objects = Object::all();
+        $entity = $this->entityRepository->getById($id, $this->resource);
 
-        return view('laramanager::resource.show', compact('resource', 'entity', 'objects'));
+        return view('laramanager::resource.show')
+            ->with('resource', $this->resource)
+            ->with('entity', $entity)
+            ->with('objects', Object::all());
     }
 
     /**

@@ -6,6 +6,12 @@ use Philsquare\LaraManager\Models\Resource;
 
 class EntityRepository {
 
+    public function getById($id, $resource)
+    {
+        $model = $this->getModel($resource);
+        return $model::where('id', $id)->first();
+    }
+
     public function getList($resource)
     {
         $selects = $resource->listedFields->filter(function($field) {

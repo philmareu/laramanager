@@ -24,11 +24,13 @@
         </form>
     </div>
 
+    @if(method_exists($entity, 'objects'))
     <h2>Objects</h2>
 
     <div class="uk-accordion" data-uk-accordion="{showfirst: false}">
 
         <div id="objects" class="uk-sortable" data-uk-sortable>
+
             @foreach($entity->objects as $object)
                 <div class="uk-panel uk-panel-box uk-panel-box-secondary uk-margin-bottom object" data-laramanager-objectable-id="{{ $object->pivot->id }}">
                     <h3 class="uk-accordion-title uk-panel-title">
@@ -58,13 +60,14 @@
 
         <div class="uk-dropdown uk-dropdown-small">
             <ul class="uk-nav uk-nav-dropdown">
-                @foreach($objects as $object)
+            @foreach($objects as $object)
                     <li><a href="{{ url('admin/objects/' . $resource->slug . '/' . $entity->id . '/' . $object->id . '/create') }}">{{ $object->title }}</a></li>
                 @endforeach
             </ul>
         </div>
 
     </div>
+    @endif
 @endsection
 
 @section('scripts')
