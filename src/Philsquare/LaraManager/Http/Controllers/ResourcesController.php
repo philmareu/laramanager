@@ -84,8 +84,7 @@ class ResourcesController extends Controller
      */
     public function show($resourceId)
     {
-        $resource = $this->resource->with('fields')->where('slug', $this->slug)->first();
-        $model = $this->getModel($resource);
+        $model = $this->getModel($this->resource);
         $entity = $model::with('objects')->where('id', $resourceId)->first();
         $objects = Object::all();
 
