@@ -146,22 +146,19 @@ class ResourcesController extends Controller
 
     private function validationRules($resource, $entity = null)
     {
-        foreach($resource->fields as $field)
-        {
+        return $resource->fields->reduce(function($rules, $field) use ($resource, $entity) {
             $rule = $field->validation;
 
             if($field->is_unique)
             {
                 $rule .= '|unique:' . $resource->slug . ',' . $field->slug;
-                
+
                 if($entity) $rule .=  ',' . $entity->id;
             }
-            
-            if($field->is_required) $rule .= '|required';
-            
-            $rules[$field->slug] = $rule;
-        }
 
-        return isset($rules) ? $rules : [];
+            if($field->is_required) $rule .= '|required';
+
+            return array_merge($rules, [$field->slug => $rule]);
+        }, []);
     }
 }
