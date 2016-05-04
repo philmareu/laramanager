@@ -30,6 +30,16 @@ class ImageRepository {
         return $this->model->latest()->paginate(100);
     }
 
+    public function search($term)
+    {
+        return $this->model
+            ->where('filename', 'LIKE', "%$term%")
+            ->orWhere('title', 'LIKE', "%$term%")
+            ->orWhere('alt', 'LIKE', "%$term%")
+            ->orWhere('original_filename', 'LIKE', "%$term%")
+            ->get();
+    }
+
     public function update($id, $attributes)
     {
         $image = $this->getById($id);

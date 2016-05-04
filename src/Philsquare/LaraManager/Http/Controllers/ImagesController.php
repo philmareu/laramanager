@@ -25,11 +25,9 @@ class ImagesController extends Controller {
     {
         $images = $this->imageRepository->getPaginated();
 
-        if($request->ajax())
-        {
-            $output['images'] = view('laramanager::browser.images', compact('images'))->render();
-            return response()->json($output);
-        }
+        if($request->ajax()) return $this->jsonResponse([
+            'images' => view('laramanager::browser.images', compact('images'))->render()
+        ]);
 
         return view('laramanager::images.index', compact('images'));
     }
@@ -37,8 +35,12 @@ class ImagesController extends Controller {
     public function edit($imageId)
     {
         $image = $this->imageRepository->getById($imageId);
-        $output['data']['html'] = view('laramanager::images.edit', compact('image'))->render();
-        return response()->json($output);
+
+        return $this->jsonResponse([
+            'html' => [
+                'form' => view('laramanager::images.edit', compact('image'))->render()
+            ]
+        ]);
     }
 
     public function update(UpdateImageRequest $request, $imageId)
@@ -48,30 +50,20 @@ class ImagesController extends Controller {
 
     public function search(Request $request)
     {
-        $term = $request->term;
+        $images = $this->imageRepository->search($request->term);
 
-        $images = $this->image
-            ->where('filename', 'LIKE', "%$term%")
-            ->orWhere('title', 'LIKE', "%$term%")
-            ->orWhere('alt', 'LIKE', "%$term%")
-            ->orWhere('original_filename', 'LIKE', "%$term%")
-            ->get();
-
-        if($request->ajax())
-        {
-            $output['images'] = view('laramanager::browser.images', compact('images'))->render();
-            return response()->json($output);
-        }
+        if($request->ajax()) return response()->json([
+            'images' => view('laramanager::browser.images', compact('images'))->render()
+        ]);
 
         return view('laramanager::images.index', compact('images'));
     }
 
     public function imageBrowser(Request $request)
     {
-        $funcNum = $request->has('CKEditorFuncNum') ? $request->get('CKEditorFuncNum') : '';
-
-        $images = $this->image->latest()->paginate(100);
-        return view('laramanager::browser.wysiwyg', compact('images', 'funcNum'));
+        return view('laramanager::browser.wysiwyg')
+            ->with('funcNum', $request->has('CKEditorFuncNum') ? $request->get('CKEditorFuncNum') : '')
+            ->with('images', $this->imageRepository->getPaginated());
     }
 
     public function upload(UploadImageRequest $request)
@@ -80,10 +72,9 @@ class ImagesController extends Controller {
 
         $image = $this->imageRepository->create($upload->toArray());
 
-        return $this->jsonResponse([
+        return $this->jsonResponse(array_merge([
             'html' => view('laramanager::' . $request->get('view'), compact('image'))->render(),
-            $image
-        ]);
+            ], $image->toArray()));
     }
 
     /**
