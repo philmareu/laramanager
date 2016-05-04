@@ -32,7 +32,7 @@ class ResourceObjectsController extends Controller {
             return view('vendor/laramanager/objects/' . $object->slug . '/create', compact('resource', 'entity', 'object', 'images'));
         }
 
-        return view('laramanager::objects.' . $object->slug . '.create', compact('resource', 'entity', 'object', 'images'));
+        return view('laramanager::objects.wrappers.create', compact('object', 'resource', 'entity', 'object', 'images'));
     }
 
     public function store(Request $request, $resource, $resourceId, $objectId)

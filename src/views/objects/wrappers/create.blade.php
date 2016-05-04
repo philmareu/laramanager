@@ -13,7 +13,11 @@
 
         @include('laramanager::partials.elements.form.text', ['field' => ['name' => 'label']])
 
-        @yield('form')
+        @if(view()->exists('vendor/laramanager/objects/' . $object->slug . '/create'))
+            @include('vendor/laramanager/objects/' . $object->slug . '/create')
+        @else
+            @include('laramanager::objects.' . $object->slug . '.create')
+        @endif
 
         <div class="uk-form-row">
             <div class="uk-grid uk-flex uk-flex-middle">
