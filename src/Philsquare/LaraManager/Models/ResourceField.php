@@ -37,11 +37,17 @@ class ResourceField extends Model {
         return $options;
     }
 
-    public function data($key)
+    public function getDataAttribute($value)
     {
-        $data = unserialize($this->data);
-
-        return isset($data[$key]) ? $data[$key] : '';
+        return unserialize($value);
     }
+
+    // replace this with accessor
+//    public function get($key)
+//    {
+//        $data = unserialize($this->data);
+//
+//        return isset($data[$key]) ? $data[$key] : '';
+//    }
 
 }

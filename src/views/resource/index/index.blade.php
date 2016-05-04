@@ -17,38 +17,26 @@
     <div class="uk-overflow-container">
         <table id="data-table" class="stripe row-border">
             <thead>
-            <tr>
-                @foreach($resource->fields as $field)
+                <tr>
+                    @each('laramanager::resource.index.thead', $resource->listedFields, 'field')
 
-                    @if($field->list)
-                        <td>{{ $field->title }}</td>
-                    @endif
-
-                @endforeach
-
-                <td>&nbsp;</td>
-            </tr>
+                    <td>&nbsp;</td>
+                </tr>
             </thead>
 
             <tbody>
             @foreach($entities as $entity)
                 <tr>
-                    @foreach($resource->fields as $field)
-                        @if($field->list)
-                            <td>
-                                @include('laramanager::fields.' . $field->type . '.display')
-                            </td>
-                        @endif
+                    @foreach($resource->listedFields as $field)
+                        <td>
+                            @include('laramanager::fields.' . $field->type . '.display')
+                        </td>
                     @endforeach
 
                     <td width="50">
                         <div class="uk-grid uk-grid-medium">
                             <div class="uk-width-1-2">
-                                @if($hasObjects)
-                                    <a href="{{ route('admin.' . $resource->slug . '.show', $entity->id) }}"><i class="uk-icon-pencil"></i></a>
-                                @else
-                                    <a href="{{ route('admin.' . $resource->slug . '.edit', $entity->id) }}"><i class="uk-icon-pencil"></i></a>
-                                @endif
+                                <a href="{{ route('admin.' . $resource->slug . '.show', $entity->id) }}"><i class="uk-icon-pencil"></i></a>
                             </div>
                             <div class="uk-width-1-2">
                                 <a href="#" class="uk-text-danger delete" data-resource-id="{{ $entity->id }}"><i class="uk-icon-trash"></i></a>

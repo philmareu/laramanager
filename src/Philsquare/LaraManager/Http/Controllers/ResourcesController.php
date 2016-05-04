@@ -11,24 +11,22 @@ use Philsquare\LaraManager\Fields\FieldProcessor;
 use Philsquare\LaraManager\Models\File;
 use Philsquare\LaraManager\Models\Object;
 use Philsquare\LaraManager\Models\Resource;
+use Philsquare\LaraManager\Repositories\EntityRepository;
+use Philsquare\LaraManager\Repositories\ResourceRepository;
 
 class ResourcesController extends Controller
 {
-    protected $request;
-
     protected $slug;
 
-    protected $title;
+    protected $resourceRepository;
 
-    protected $form;
+    protected $entityRepository;
 
-    protected $resource;
-
-    public function __construct(Request $request, FormProcessor $form, Resource $resource)
+    public function __construct(Request $request, ResourceRepository $resourceRepository, EntityRepository $entityRepository)
     {
         $this->slug = $request->segment(2);
-        $this->form = $form;
-        $this->resource = $resource;
+        $this->resourceRepository = $resourceRepository;
+        $this->entityRepository = $entityRepository;
     }
 
     /**
@@ -38,27 +36,11 @@ class ResourcesController extends Controller
      */
     public function index()
     {
-        $resource = $this->resource->with('fields')->where('slug', $this->slug)->first();
+        $resource = $this->resourceRepository->getBySlug($this->slug);
 
-        $select = ['id'];
-        $eagerLoad = [];
-        foreach($resource->fields as $field)
-        {
-            if($field->list) $select[] = $field->slug;
-
-            if($field->type == 'relational')
-            {
-                $eagerLoad[] = $field->data('method');
-            }
-        }
-
-        $model = $this->getModel($resource);
-        $entities = $model::with($eagerLoad)->select($select)->get();
-
-        $hasObjects = false;
-        if(method_exists($model, 'objects')) $hasObjects = true;
-
-        return view('laramanager::resource.index', compact('resource', 'entities', 'hasObjects'));
+        return view('laramanager::resource.index.index')
+            ->with('resource', $resource)
+            ->with('entities', $this->entityRepository->getList($resource));
     }
 
     /**
@@ -253,15 +235,5 @@ class ResourcesController extends Controller
         }
 
         return isset($rules) ? $rules : [];
-    }
-
-    /**
-     * @param $resource
-     * @return string
-     */
-    private function getModel($resource)
-    {
-        $model = $resource->namespace . '\\' . $resource->model;
-        return $model;
     }
 }

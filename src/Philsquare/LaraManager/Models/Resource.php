@@ -21,4 +21,9 @@ class Resource extends Model {
         return $this->hasMany('Philsquare\LaraManager\Models\ResourceField');
     }
 
+    public function listedFields()
+    {
+        return $this->hasMany('Philsquare\LaraManager\Models\ResourceField')->where('list', 1);
+    }
+
 }
