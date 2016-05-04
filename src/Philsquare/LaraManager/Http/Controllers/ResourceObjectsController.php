@@ -27,11 +27,6 @@ class ResourceObjectsController extends Controller {
         $object = Object::find($objectId);
         $images = $this->image->latest()->get();
 
-        if(view()->exists('vendor/laramanager/objects/' . $object->slug . '/create'))
-        {
-            return view('vendor/laramanager/objects/' . $object->slug . '/create', compact('resource', 'entity', 'object', 'images'));
-        }
-
         return view('laramanager::objects.wrappers.create', compact('object', 'resource', 'entity', 'object', 'images'));
     }
 
@@ -66,12 +61,7 @@ class ResourceObjectsController extends Controller {
         $object = $entity->objects()->where('objectables.id', $objectableId)->first();
         $images = $this->image->latest()->get();
 
-        if(view()->exists('vendor/laramanager/objects/' . $object->slug . '/edit'))
-        {
-            return view('vendor/laramanager/objects/' . $object->slug . '/edit', compact('resource', 'entity', 'object', 'images'));
-        }
-
-        return view('laramanager::objects.' . $object->slug . '.edit', compact('resource', 'entity', 'object', 'data', 'images'));
+        return view('laramanager::objects.wrappers.edit', compact('object', 'resource', 'entity', 'object', 'images'));
     }
 
     public function update(Request $request, $resource, $resourceId, $objectableId)

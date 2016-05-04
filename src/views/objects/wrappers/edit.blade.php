@@ -12,7 +12,11 @@
 
         @include('laramanager::partials.elements.form.text', ['field' => ['name' => 'label', 'value' => $object->pivot->label]])
 
-        @yield('form')
+        @if(view()->exists('vendor/laramanager/objects/' . $object->slug . '/edit'))
+            @include('vendor/laramanager/objects/' . $object->slug . '/edit')
+        @else
+            @include('laramanager::objects.' . $object->slug . '.edit')
+        @endif
 
         <div class="uk-form-row">
             <div class="uk-grid uk-flex uk-flex-middle">
