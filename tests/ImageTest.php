@@ -12,6 +12,13 @@ class ImageTest extends TestCase
 {
     use DatabaseMigrations, WithoutMiddleware;
 
+    public function testImagePageLoads()
+    {
+        $this->actingAs(User::find(1))
+            ->call('GET', 'admin/images');
+        $this->assertResponseOk();
+    }
+
     public function testCreateAndRetrieveImage()
     {
         $this->createTestImage();
@@ -25,7 +32,7 @@ class ImageTest extends TestCase
         $this->assertEquals(200000, $retrievedImage->size);
     }
 
-    public function testUpdateImageWithEloquentGateway()
+    public function testUpdateImage()
     {
         $this->createTestImage();
         $imageRepository = new ImageRepository;
@@ -49,7 +56,7 @@ class ImageTest extends TestCase
         $this->assertEquals(500000, $retrievedImage->size);
     }
 
-    public function testDeleteImageWithEloquentGateway()
+    public function testDeleteImage()
     {
         $this->createTestImage();
         $imageRepository = new ImageRepository;
@@ -88,7 +95,7 @@ class ImageTest extends TestCase
         ]);
     }
 
-    public function testDoNotOverwriteExistingFilenames()
+    public function testDoNotOverwriteExistingFilename()
     {
         if(! file_exists(storage_path('app/laramanager/images/tree.jpg')))
         {
