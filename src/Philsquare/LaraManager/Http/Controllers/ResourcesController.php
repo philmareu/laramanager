@@ -18,6 +18,8 @@ class ResourcesController extends Controller
 {
     protected $slug;
 
+    protected $resource;
+
     protected $resourceRepository;
 
     protected $entityRepository;
@@ -25,6 +27,7 @@ class ResourcesController extends Controller
     public function __construct(Request $request, ResourceRepository $resourceRepository, EntityRepository $entityRepository)
     {
         $this->slug = $request->segment(2);
+        $this->resource = $resourceRepository->getBySlug($this->slug);
         $this->resourceRepository = $resourceRepository;
         $this->entityRepository = $entityRepository;
     }
@@ -36,11 +39,9 @@ class ResourcesController extends Controller
      */
     public function index()
     {
-        $resource = $this->resourceRepository->getBySlug($this->slug);
-
         return view('laramanager::resource.index.index')
-            ->with('resource', $resource)
-            ->with('entities', $this->entityRepository->getList($resource));
+            ->with('resource', $this->resource)
+            ->with('entities', $this->entityRepository->getList($this->resource));
     }
 
     /**
@@ -50,14 +51,15 @@ class ResourcesController extends Controller
      */
     public function create()
     {
-        $resource = $this->resourceRepository->getBySlug($this->slug);
-        $options = $resource->fields->filter(function($field) {
+        $options = $this->resource->fields->filter(function($field) {
             return $field->type == 'relational';
         })->reduce(function($options, $field) {
             return array_merge($options, [$field->slug => $this->entityRepository->getFieldOptions($field)]);
         }, []);
 
-        return view('laramanager::resource.create', compact('resource', 'options'));
+        return view('laramanager::resource.create')
+            ->with('resource', $this->resource)
+            ->with('options', $options);
     }
 
     /**
@@ -68,7 +70,7 @@ class ResourcesController extends Controller
      */
     public function store(Request $request)
     {
-        $resource = $this->resource->with('fields')->where('slug', $this->slug)->first();
+        $resource = $this->resourceRepository->getBySlug($this->slug);
         $fieldProcessor = new FieldProcessor($request, $resource);
 
         $this->validate($request, $this->validationRules($resource));
