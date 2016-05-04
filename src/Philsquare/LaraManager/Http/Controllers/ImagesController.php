@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Philsquare\LaraManager\Form\FormProcessor;
+use Philsquare\LaraManager\Form\Uploader;
 use Philsquare\LaraManager\Http\Requests\UpdateImageRequest;
 use Philsquare\LaraManager\Http\Requests\UploadImageRequest;
 use Philsquare\LaraManager\Models\Image;
@@ -12,14 +13,17 @@ class ImagesController extends Controller {
 
     protected $imageRepository;
 
-    public function __construct(ImageRepository $imageRepository)
+    protected $uploader;
+
+    public function __construct(ImageRepository $imageRepository, Uploader $uploader)
     {
         $this->imageRepository = $imageRepository;
+        $this->uploader = $uploader;
     }
 
     public function index(Request $request)
     {
-        $images = $this->image->latest()->paginate(100);
+        $images = $this->imageRepository->getPaginated();
 
         if($request->ajax())
         {
@@ -32,7 +36,7 @@ class ImagesController extends Controller {
 
     public function edit($imageId)
     {
-        $image = $this->image->findOrFail($imageId);
+        $image = $this->imageRepository->getById($imageId);
         $output['data']['html'] = view('laramanager::images.edit', compact('image'))->render();
         return response()->json($output);
     }
@@ -72,28 +76,14 @@ class ImagesController extends Controller {
 
     public function upload(UploadImageRequest $request)
     {
-        $upload = $request->file('image');
-        $extension = $upload->getClientOriginalExtension();
-        $originalName = str_replace('.' . $extension, '', $upload->getClientOriginalName());
-        $filename = $this->formProcessor->processFile($upload, $this->imageFolder);
-        $alt = str_replace('-', ' ', $originalName);
-        $alt = str_replace('_', ' ', $alt);
+        $upload = $this->uploader->upload($request->file('image'), storage_path('app/laramanager/images'));
 
-        $image = $this->image->create([
-            'filename' => $filename,
-            'original_filename' => $upload->getClientOriginalName(),
-            'alt' => ucwords($alt),
-            'title' => ucwords($originalName),
-            'size' => $upload->getClientSize()
-        ]);
+        $image = $this->imageRepository->create($upload->toArray());
 
-        $output['status'] = 'ok';
-        $output['data'] = [
+        return $this->jsonResponse([
             'html' => view('laramanager::' . $request->get('view'), compact('image'))->render(),
-            'image' => $image
-        ];
-
-        return response()->json($output);
+            $image
+        ]);
     }
 
     /**

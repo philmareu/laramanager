@@ -71,6 +71,7 @@
         $('.pagination').attr('class', 'uk-pagination');
         $('.disabled').attr('class', 'uk-disabled');
         $('.active').attr('class', 'uk-active');
+
         var ImageBrowserModal = $('#image-modal');
         var spinnerHTML = '<i class="uk-icon-spinner uk-icon-spin"></i>';
 
