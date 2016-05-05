@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-    404s
+    Errors
 @endsection
 
 @section('actions')
@@ -28,7 +28,9 @@
                     <thead>
                     <tr>
                         <td>Count</td>
+                        <td>Exception</td>
                         <td>Uri</td>
+                        <td>Message</td>
                         <td>Last Hit</td>
                         <td>&nbsp;</td>
                     </tr>
@@ -38,7 +40,9 @@
                     @foreach($last7 as $error)
                         <tr>
                             <td>{{ $error->count }}</td>
+                            <td>{{ $error->exception }}</td>
                             <td>{{ $error->uri }}</td>
+                            <td>{{ $error->message }}</td>
                             <td>{{ $error->updated_at->format('M jS, Y') }}</td>
                             <td><a href="#" class="uk-text-danger delete" data-resource-id="{{ $error->id }}"><i class="uk-icon-trash"></i></a></td>
                         </tr>
@@ -53,7 +57,9 @@
                     <thead>
                     <tr>
                         <td>Count</td>
+                        <td>Exception</td>
                         <td>Uri</td>
+                        <td>Message</td>
                         <td>Last Hit</td>
                         <td>&nbsp;</td>
                     </tr>
@@ -63,7 +69,9 @@
                     @foreach($all as $error)
                         <tr>
                             <td>{{ $error->count }}</td>
+                            <td>{{ $error->exception }}</td>
                             <td>{{ $error->uri }}</td>
+                            <td>{{ $error->message }}</td>
                             <td>{{ $error->updated_at->format('M jS, Y') }}</td>
                             <td><a href="#" class="uk-text-danger delete" data-resource-id="{{ $error->id }}"><i class="uk-icon-trash"></i></a></td>
                         </tr>

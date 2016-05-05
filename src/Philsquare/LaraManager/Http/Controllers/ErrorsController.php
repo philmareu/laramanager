@@ -3,7 +3,7 @@
 use Carbon\Carbon;
 use Philsquare\LaraManager\Models\Error;
 
-class NotFoundExceptionsController extends Controller {
+class ErrorsController extends Controller {
 
     protected $error;
 
@@ -15,12 +15,10 @@ class NotFoundExceptionsController extends Controller {
     public function index()
     {
         $now = Carbon::create();
-        $last7 = $this->error->where('exception', 'NotFoundHttpException')
-            ->where('updated_at', '>', $now->subDays(7))->get();
+        $last7 = $this->error->where('updated_at', '>', $now->subDays(7))->get();
+        $all = $this->error->get();
 
-        $all = $this->error->where('exception', 'NotFoundHttpException')->get();
-
-        return view('laramanager::errors.not_found.index', compact('last7', 'all'));
+        return view('laramanager::errors.index', compact('last7', 'all'));
     }
 
     /**
