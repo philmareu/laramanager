@@ -1,1 +1,1 @@
-@include('laramanager::partials.elements.form.text', ['field' => ['name' => 'data[target]', 'label' => 'Target Id', 'value' => isset($field) ? unserialize($field->data)['target'] : '']])
+@include('laramanager::partials.elements.form.text', ['field' => ['name' => 'data[target]', 'label' => 'Field Name', 'value' => isset($field) ? unserialize($field->data)['target'] : '']])
