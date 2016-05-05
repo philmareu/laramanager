@@ -18,7 +18,7 @@
         <input type="hidden" name="_method" value="PUT">
 
         @include('laramanager::partials.elements.form.text', ['field' => ['name' => 'title', 'id' => 'title', 'value' => $field->title]])
-        @include('laramanager::partials.elements.form.slug', ['field' => ['name' => 'slug', 'id' => 'slug', 'target' => 'title', 'value' => $field->slug]])
+        @include('laramanager::partials.elements.form.slug', ['field' => ['name' => 'slug', 'id' => 'slug', 'target' => 'title', 'value' => $field->slug, 'label' => 'Slug (column name)']])
         @include('laramanager::partials.elements.form.slug', ['field' => ['name' => 'validation', 'value' => $field->validation]])
         @include('laramanager::partials.elements.form.checkbox', ['field' => ['name' => 'is_unique', 'checked' => $field->is_unique]])
         @include('laramanager::partials.elements.form.checkbox', ['field' => ['name' => 'list', 'checked' => $field->list]])

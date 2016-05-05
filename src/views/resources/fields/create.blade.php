@@ -17,7 +17,7 @@
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
         @include('laramanager::partials.elements.form.text', ['field' => ['name' => 'title', 'id' => 'title']])
-        @include('laramanager::partials.elements.form.slug', ['field' => ['name' => 'slug', 'id' => 'slug', 'target' => 'title']])
+        @include('laramanager::partials.elements.form.slug', ['field' => ['name' => 'slug', 'id' => 'slug', 'target' => 'title', 'label' => 'Slug (column name)']])
         @include('laramanager::partials.elements.form.slug', ['field' => ['name' => 'validation']])
         @include('laramanager::partials.elements.form.checkbox', ['field' => ['name' => 'is_unique', 'checked' => false]])
         @include('laramanager::partials.elements.form.checkbox', ['field' => ['name' => 'list', 'checked' => false]])
