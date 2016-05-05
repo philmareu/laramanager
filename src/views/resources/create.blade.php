@@ -19,7 +19,7 @@
         @include('laramanager::partials.elements.form.text', ['field' => ['name' => 'title', 'id' => 'title']])
         @include('laramanager::partials.elements.form.slug', ['field' => ['name' => 'slug', 'id' => 'slug', 'target' => 'title']])
         @include('laramanager::partials.elements.form.text', ['field' => ['name' => 'namespace']])
-        @include('laramanager::partials.elements.form.text', ['field' => ['name' => 'model']])
+        @include('laramanager::partials.elements.form.text', ['field' => ['name' => 'model', 'value' => 'Models\\']])
         @include('laramanager::partials.elements.form.text', ['field' => ['name' => 'order_column', 'value' => 0]])
         @include('laramanager::partials.elements.form.select', ['field' => ['name' => 'order_direction', 'options' => ['asc' => 'asc', 'desc' => 'desc']]])
         @include('laramanager::partials.elements.form.text', ['field' => ['name' => 'icon', 'value' => 'uk-icon-']])
