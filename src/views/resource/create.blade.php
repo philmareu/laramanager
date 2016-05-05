@@ -10,13 +10,6 @@
 
 @section('content')
 
-    @if(session()->has('errors'))
-        <div class="uk-alert uk-alert-danger" data-uk-alert>
-            Oops. It looks like a few fields were not completed properly.
-            <a href="#" class="uk-alert-close uk-close"></a>
-        </div>
-    @endif
-
     <form action="{{ route('admin.' . $resource->slug . '.store') }}" enctype="multipart/form-data" method="POST" class="uk-form uk-form-stacked">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
