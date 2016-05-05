@@ -8,10 +8,6 @@
     Errors
 @endsection
 
-@section('actions')
-    <a href="{{ route('admin.objects.create') }}" class="uk-float-right"><i class="uk-icon-plus"></i> Reset</a>
-@endsection
-
 @section('content')
 
     <!-- This is the tabbed navigation containing the toggling elements -->
