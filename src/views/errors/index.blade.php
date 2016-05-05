@@ -103,7 +103,7 @@
                 "order": [[0, 'desc']]
             });
 
-            var resource = "not-founds";
+            var resource = "errors";
 
             $('table').on('click', '.delete', function(event) {
                 var r = confirm("Are you sure?");
