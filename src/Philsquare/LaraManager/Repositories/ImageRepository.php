@@ -2,6 +2,7 @@
 
 namespace Philsquare\LaraManager\Repositories;
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Philsquare\LaraManager\Models\Image;
 
@@ -42,8 +43,8 @@ class ImageRepository {
     public function update($id, $attributes)
     {
         $image = $this->getById($id);
-        $image->update($attributes);
         $this->updateFilenameIfChanged($image->filename, $attributes['filename']);
+        $image->update($attributes);
 
         return $image;
     }
