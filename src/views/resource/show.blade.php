@@ -1,7 +1,7 @@
 @extends('laramanager::layouts.default')
 
 @section('title')
-    {{ $resource->title . '> View' }}
+    {{ $resource->title . ' > View' }}
 @endsection
 
 @section('content')
