@@ -13,10 +13,10 @@
 
         @include('laramanager::partials.elements.form.text', ['field' => ['name' => 'label']])
 
-        @if(view()->exists('vendor/laramanager/objects/' . $object->slug . '/create'))
-            @include('vendor/laramanager/objects/' . $object->slug . '/create')
+        @if(view()->exists('vendor/laramanager/objects/' . $object->slug . '/fields'))
+            @include('vendor/laramanager/objects/' . $object->slug . '/fields')
         @else
-            @include('laramanager::objects.core.' . $object->slug . '.create')
+            @include('laramanager::objects.core.' . $object->slug . '.fields')
         @endif
 
         <div class="uk-form-row">
@@ -40,8 +40,8 @@
 
     @if(view()->exists('vendor.laramanager.objects.' . $object->slug . '/scripts'))
         @include('vendor.laramanager.objects.' . $object->slug . '/scripts')
-    @elseif(view()->exists('laramanager::objects.' . $object->slug . '/scripts'))
-        @include('laramanager::objects.' . $object->slug . '/scripts')
+    @elseif(view()->exists('laramanager::objects.core.' . $object->slug . '/scripts'))
+        @include('laramanager::objects.core.' . $object->slug . '/scripts')
     @endif
 
     @include('laramanager::browser.scripts')
