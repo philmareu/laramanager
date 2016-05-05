@@ -31,9 +31,7 @@
                     bar.css("width", "0%").text("0%");
                     response = $.parseJSON(response);
 
-                    if(response.status == 'ok') {
-                        $('#upload-images').find('.image-browser-images').append(response.data.html);
-                    }
+                    $('#upload-images').find('.image-browser-images').append(response.html);
                 },
 
                 allcomplete: function(response) {
