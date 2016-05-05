@@ -34,6 +34,10 @@ class LaraManagerServiceProvider extends ServiceProvider
         $this->loadTranslationsFrom(__DIR__.'/../../../lang', 'laramanager');
 
         Validator::extend('unique_filename', 'Philsquare\LaraManager\Validators\UniqueFilenameValidator@validate');
+        Validator::extend('model_must_exist', 'Philsquare\LaraManager\Validators\ModelMustExistValidator@validate');
+        Validator::replacer('model_must_exist', function($message, $attribute, $rule, $parameters) {
+            return trans('laramanager::validation.model_must_exist');
+        });
     }
 
     /**
