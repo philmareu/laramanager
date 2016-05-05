@@ -15,7 +15,7 @@
         @if(view()->exists('vendor/laramanager/objects/' . $object->slug . '/edit'))
             @include('vendor/laramanager/objects/' . $object->slug . '/edit')
         @else
-            @include('laramanager::objects.' . $object->slug . '.edit')
+            @include('laramanager::objects.core.' . $object->slug . '.edit')
         @endif
 
         <div class="uk-form-row">

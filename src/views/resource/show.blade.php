@@ -39,10 +39,10 @@
                     <div class="uk-accordion-content uk-margin-top uk-margin-bottom">
                         <div id="object-{{ $object->pivot->id }}">
                             <div class="admin-objects">
-                                @if(view()->exists('vendor/laramanager/objects/' . $object->slug . '/display'))
-                                    @include('vendor/laramanager/objects/' . $object->slug . '/display')
+                                @if(view()->exists('vendor.laramanager.objects.' . $object->slug . '.display'))
+                                    @include('vendor.laramanager.objects.' . $object->slug . '.display')
                                 @else
-                                    @include('laramanager::objects/' . $object->slug . '/display')
+                                    @include('laramanager::objects.core.' . $object->slug . '.display')
                                 @endif
                             </div>
                         </div>
