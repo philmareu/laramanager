@@ -5,11 +5,7 @@
 @endsection
 
 @section('title')
-    404s
-@endsection
-
-@section('actions')
-    <a href="{{ route('admin.objects.create') }}" class="uk-float-right"><i class="uk-icon-plus"></i> Reset</a>
+    Errors
 @endsection
 
 @section('content')
@@ -28,7 +24,9 @@
                     <thead>
                     <tr>
                         <td>Count</td>
+                        <td>Exception</td>
                         <td>Uri</td>
+                        <td>Message</td>
                         <td>Last Hit</td>
                         <td>&nbsp;</td>
                     </tr>
@@ -38,7 +36,9 @@
                     @foreach($last7 as $error)
                         <tr>
                             <td>{{ $error->count }}</td>
+                            <td>{{ $error->exception }}</td>
                             <td>{{ $error->uri }}</td>
+                            <td>{{ $error->message }}</td>
                             <td>{{ $error->updated_at->format('M jS, Y') }}</td>
                             <td><a href="#" class="uk-text-danger delete" data-resource-id="{{ $error->id }}"><i class="uk-icon-trash"></i></a></td>
                         </tr>
@@ -53,7 +53,9 @@
                     <thead>
                     <tr>
                         <td>Count</td>
+                        <td>Exception</td>
                         <td>Uri</td>
+                        <td>Message</td>
                         <td>Last Hit</td>
                         <td>&nbsp;</td>
                     </tr>
@@ -63,7 +65,9 @@
                     @foreach($all as $error)
                         <tr>
                             <td>{{ $error->count }}</td>
+                            <td>{{ $error->exception }}</td>
                             <td>{{ $error->uri }}</td>
+                            <td>{{ $error->message }}</td>
                             <td>{{ $error->updated_at->format('M jS, Y') }}</td>
                             <td><a href="#" class="uk-text-danger delete" data-resource-id="{{ $error->id }}"><i class="uk-icon-trash"></i></a></td>
                         </tr>
@@ -95,7 +99,7 @@
                 "order": [[0, 'desc']]
             });
 
-            var resource = "not-founds";
+            var resource = "errors";
 
             $('table').on('click', '.delete', function(event) {
                 var r = confirm("Are you sure?");
