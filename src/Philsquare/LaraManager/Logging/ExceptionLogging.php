@@ -21,11 +21,6 @@ class ExceptionLogging {
     {
         $error = new Error;
 
-//        if($this->exception instanceof NotFoundHttpException)
-//        {
-//
-//        }
-
         $uri = $this->getRequestUri();
 
         if(! strpos($uri, 'admin'))
@@ -55,6 +50,10 @@ class ExceptionLogging {
     {
         $trace = $this->exception->getTrace();
         $first = end($trace);
+
+        if(! isset($first['args'])) return "";
+
+        if(! $first['args'][0] instanceof Request) return "";
 
         return $first['args'][0]->getRequestUri();
     }
