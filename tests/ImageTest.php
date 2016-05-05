@@ -43,30 +43,6 @@ class ImageTest extends TestCase
         $this->assertEquals(200000, $retrievedImage->size);
     }
 
-    public function testUpdateImage()
-    {
-        $this->createTestImage();
-        $imageRepository = new ImageRepository;
-
-        $imageRepository->update(1, [
-            'filename' => 'tree.jpg',
-            'title' => 'Tree',
-            'description' => 'It is a tree.',
-            'original_filename' => 'image002.jpg',
-            'alt' => 'A photograph of a tree',
-            'size' => 500000
-        ]);
-
-        $retrievedImage = $this->retrieveTestImage();
-
-        $this->assertEquals('tree.jpg', $retrievedImage->filename);
-        $this->assertEquals('Tree', $retrievedImage->title);
-        $this->assertEquals('It is a tree.', $retrievedImage->description);
-        $this->assertEquals('image002.jpg', $retrievedImage->original_filename);
-        $this->assertEquals('A photograph of a tree', $retrievedImage->alt);
-        $this->assertEquals(500000, $retrievedImage->size);
-    }
-
     public function testDeleteImage()
     {
         $this->createTestImage();

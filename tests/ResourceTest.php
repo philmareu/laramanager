@@ -29,7 +29,7 @@ class ResourceTest extends TestCase
             ->visit('admin/resources/create')
             ->type('Events', 'title')
             ->type('events', 'slug')
-            ->type('LaraDev', 'namespace')
+            ->type('Laradev', 'namespace')
             ->type('Models\Event', 'model')
             ->type('0', 'order_column')
             ->type('asc', 'order_direction')
@@ -41,7 +41,7 @@ class ResourceTest extends TestCase
 
         $this->assertEquals('Events', $retrievedResource->title);
         $this->assertEquals('events', $retrievedResource->slug);
-        $this->assertEquals('LaraDev', $retrievedResource->namespace);
+        $this->assertEquals('Laradev', $retrievedResource->namespace);
         $this->assertEquals('Models\Event', $retrievedResource->model);
         $this->assertEquals('0', $retrievedResource->order_column);
         $this->assertEquals('asc', $retrievedResource->order_direction);
