@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Philsquare\LaraManager\Fields\FieldProcessor;
+use Philsquare\LaraManager\Fields\RelationProcessor;
 use Philsquare\LaraManager\Models\Resource;
 
 class EntityRepository {
@@ -44,6 +45,7 @@ class EntityRepository {
     {
         $request = $this->processFields($request, $resource);
         $entity = $this->getById($id, $resource);
+        $this->processRelations($request, $resource, $entity);
 
         return $entity->update($request->all());
     }
@@ -78,6 +80,12 @@ class EntityRepository {
         $fieldProcessor = new FieldProcessor($request, $resource);
         $request = $fieldProcessor->processAttributes();
         return $request;
+    }
+
+    private function processRelations(Request $request, Resource $resource, $entity)
+    {
+        $relationProcessor = new RelationProcessor($request, $resource, $entity);
+        $relationProcessor->processRelations();
     }
 
 }

@@ -4,7 +4,8 @@ namespace Philsquare\LaraManager\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ResourceField extends Model {
+class
+ResourceField extends Model {
 
     protected $fillable = [
         'title',
