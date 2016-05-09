@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Laramanager by philsquare</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Laramanager</h1>
+      <h2 class="project-tagline">Simple admin for Laravel applications</h2>
+      <a href="https://github.com/philsquare/LaraManager" class="btn">View on GitHub</a>
+      <a href="https://github.com/philsquare/LaraManager/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/philsquare/LaraManager/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="laramanager" class="anchor" href="#laramanager" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>LaraManager</h1>
+
+<p>LaraManager is a basic database interface for Laravel applications. It was created as a simple way for us to provide clients with a method for updating basic content.</p>
+
+<h2>
+<a id="support" class="anchor" href="#support" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support</h2>
+
+<p>I'm the only one supporting this package at the moment and bugs might exist. Issues and pull requests are welcome.</p>
+
+<h2>
+<a id="laravel-51" class="anchor" href="#laravel-51" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Laravel 5.1</h2>
+
+<p>Currenting it is only available for Laravel 5.1.</p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>You can install this package with Composer.</p>
+
+<div class="highlight highlight-text-shell-session"><pre>$ <span class="pl-s1">composer require philsquare/laramanager</span></pre></div>
+
+<p>You will need to add the following provider to <code>config/app.php</code></p>
+
+<pre><code>  'Philsquare\LaraManager\Providers\LaraManagerServiceProvider'
+</code></pre>
+
+<p>Publish the vendor assets and migrations</p>
+
+<div class="highlight highlight-text-shell-session"><pre>$ <span class="pl-s1">php artisan vendor:publish</span></pre></div>
+
+<p>Then migrate the database</p>
+
+<div class="highlight highlight-text-shell-session"><pre>$ <span class="pl-s1">php artisan migrate</span></pre></div>
+
+<p>You can then login at /admin with <a href="mailto:admin@admin.com">admin@admin.com</a> and "password" as the email and password respectively</p>
+
+<h2>
+<a id="content-resourses" class="anchor" href="#content-resourses" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Content Resourses</h2>
+
+<p>Resources are tables that contain website content. For example, a website might have a table called "events". In order to update the event data, you will need to setup a resource and add fields that map to the table.</p>
+
+<h3>
+<a id="fields" class="anchor" href="#fields" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Fields</h3>
+
+<p>There are 12 fields avaiable.</p>
+
+<ul>
+<li>Checkbox</li>
+<li>Date</li>
+<li>Email</li>
+<li>Image (integer)</li>
+<li>Images</li>
+<li>Password</li>
+<li>Relational (integer)</li>
+<li>Select</li>
+<li>Slug</li>
+<li>Text</li>
+<li>Textarea</li>
+<li>WYSIWYG</li>
+</ul>
+
+<p>These fields should match up with your existing database fields appropriately. Make sure to make these fields fillable in your Laravel Model.</p>
+
+<h2>
+<a id="objects" class="anchor" href="#objects" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Objects</h2>
+
+<p>Objects allow you to provide users with a way to "build" content onto a resourse. There are 4 default objects.</p>
+
+<ul>
+<li>Text</li>
+<li>WYSIWYG</li>
+<li>Photo Gallery</li>
+<li>Embed</li>
+</ul>
+
+<p>The display for these objects can be overloaded by adding your own in the <code>view/vendor/laramanager/objects/</code> folder. For example, by creating <code>view/vendor/laramanager/objects/text/display.blade.php</code> LaraManager will use this file to display instead of the default.</p>
+
+<h3>
+<a id="adding-objects-to-resources" class="anchor" href="#adding-objects-to-resources" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Adding objects to resources</h3>
+
+<p>In order to be able to add objects to your resources, you will need add a trait to your Laravel Model.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-k">class</span> <span class="pl-en">Event</span> <span class="pl-k">extends</span> <span class="pl-e">Model</span> {</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Philsquare\Laramanager\Database\Objectable</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">}</span></pre></div>
+
+<h3>
+<a id="creating-custom-objects" class="anchor" href="#creating-custom-objects" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Creating custom objects</h3>
+
+<p>Docs to come...</p>
+
+<h2>
+<a id="feeds" class="anchor" href="#feeds" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Feeds</h2>
+
+<p>LaraManager can create custom RSS feeds for your resources such as <a href="http://www.my-site.com/feed/events">www.my-site.com/feed/events</a>. Before adding the feed you will need to use the interface <code>Philsquare\LaraManager\Contracts\RssFeedInterface</code> on your model and impliment the contract methods.</p>
+
+<h2>
+<a id="customizing-admin-panel" class="anchor" href="#customizing-admin-panel" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Customizing Admin Panel</h2>
+
+<p>You can use all your own routes, controllers, models, etc and just use LaraManager as an admin interface. Just load the layout in your blade file.</p>
+
+<pre lang="blade"><code>@extends('laramanager::default')
+</code></pre>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
+
+<p>LaraManager is licensed under the <a href="http://opensource.org/licenses/MIT">MIT License</a>.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/philsquare/LaraManager">Laramanager</a> is maintained by <a href="https://github.com/philsquare">philsquare</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
