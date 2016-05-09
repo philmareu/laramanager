@@ -149,7 +149,7 @@
 <h3>
 <a id="images-1" class="anchor" href="#images-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Images</h3>
 
-<p>This field is similar to Image but allows for selection and reordering of multiple images. This field required a pivot table such as <code>event_image</code> and a method added to the <code>Model</code>. For example, adding a "Gallery" to <code>Event</code>.</p>
+<p>This field is similar to Image but allows for selection and reordering of multiple images. This field required a pivot table such as <code>event_image</code> and a method added to the <code>Model</code>. For example, adding a "Gallery" to <code>Event</code>. The <code>orderBy('ordinal', 'asc')</code> is required to order the images correction. <strong>Make sure your pivot table contains an ordinal column</strong></p>
 
 <pre><code>public function gallery()
 {
