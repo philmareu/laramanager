@@ -149,7 +149,7 @@
 <h3>
 <a id="images-1" class="anchor" href="#images-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Images</h3>
 
-<p>This field is similar to Image but allows for selection and reordering of multiple images. This field required a pivot table such as <code>event_image</code> and a method added to the <code>Model</code>. For example, adding a "Gallery" to <code>Event</code>. The <code>orderBy('ordinal', 'asc')</code> is required to order the images correction. <strong>Make sure your pivot table contains an ordinal column</strong></p>
+<p>This field is similar to Image but allows for selection and reordering of multiple images. This field required a pivot table such as <code>event_image</code> and a method added to the <code>Model</code>. For example, adding a "Gallery" to <code>Event</code>. The <code>orderBy('ordinal', 'asc')</code> is required to order the images correctly. <strong>Make sure your pivot table contains an ordinal column</strong></p>
 
 <pre><code>public function gallery()
 {
@@ -228,7 +228,36 @@
 <h3>
 <a id="creating-custom-objects" class="anchor" href="#creating-custom-objects" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Creating custom objects</h3>
 
-<p>Docs to come...</p>
+<p>You can easily make objects. The most basic object needs 2 files, a <code>display.blade.php</code> and <code>fields.blade.php</code>. Optionally, you can add a <code>scripts.blade.php</code>.</p>
+
+<h4>
+<a id="fieldsbladephp" class="anchor" href="#fieldsbladephp" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>fields.blade.php</h4>
+
+<p>The <em>fields</em> file can contain HTML form fields to receive input. These inputs should have names in the <code>data</code> array (e.x. <code>&lt;input type="text" name="data[introduction]"&gt;</code>). The <code>data</code> array is serialized and saved.</p>
+
+<p>If you want to access the image browser, you can use the use the special object fields "Image" and "Images" using an include (Note that these are different than the resource fields). For example if you need to add a field that will all users/clients to select one image, add the following.</p>
+
+<pre lang="blade"><code>@include('laramanager::objects.fields.image', ['name' =&gt; 'file_id', 'label' =&gt; 'Photo'])
+</code></pre>
+
+<p>...or select multiple images.</p>
+
+<pre><code>@include('laramanager::objects.fields.images', ['name' =&gt; 'file_ids', 'label' =&gt; 'Photos'])
+</code></pre>
+
+<h4>
+<a id="displaybladephp" class="anchor" href="#displaybladephp" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>display.blade.php</h4>
+
+<p>The <em>display</em> file will receive an <code>$object</code> variable that will contain the input data. The data can be accessed using the <code>data()</code> method (e.x. <code>$object-&gt;data('introduction')</code>).</p>
+
+<p>If you are using the "Image" or "Images" object fields, you can access the image(s) using either <code>$object-&gt;file('file_id')</code> or <code>$object-&gt;files('file_ids')</code>.</p>
+
+<p>Be careful about the type of input your are acquiring. There is no validation and all the data is just serialized and stored in a <code>TEXT</code> field. I'm sure there are limitations and security issues. However, these objects are meant for display purposes only. I do not recommend receiving any form input data using objects.</p>
+
+<h4>
+<a id="scriptsbladephp" class="anchor" href="#scriptsbladephp" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>scripts.blade.php</h4>
+
+<p>Use this if your object needs JS or other assets loaded on the object form page.</p>
 
 <h2>
 <a id="feeds-1" class="anchor" href="#feeds-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Feeds</h2>
