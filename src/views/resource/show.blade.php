@@ -73,17 +73,29 @@
 @section('scripts')
 
     <script>
+
+        var id = "{{ $entity->id }}";
+        var resource = "{{ $resource->slug }}";
+
         // Form confirmation
         $('a.confirm').on('click', function(e){
 
             e.preventDefault();
 
-            var form = $(this).parents('form');
             var removemsg	= $(this).attr('title');
 
             if (confirm(removemsg))
             {
-                form.submit();
+                $.ajax({
+                    url: SITE_URL + '/admin/' + resource + '/' + id,
+                    type: 'POST',
+                    data: {_method: 'DELETE', _token: csrf},
+                    success: function(response) {
+                        if(response.status == 'ok') {
+                            window.location = SITE_URL + '/admin/' + resource;
+                        }
+                    }
+                });
             }
         });
 
