@@ -1,6 +1,7 @@
 <?php namespace Philsquare\LaraManager\Http\Controllers; 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 use Philsquare\LaraManager\Models\Resource;
 use Philsquare\LaraManager\Models\ResourceField;
 

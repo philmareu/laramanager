@@ -10,9 +10,9 @@
                 @foreach(old($field->slug) as $imageId)
                     @include('laramanager::fields.images.image', ['image' => $image->find($imageId)])
                 @endforeach
-            @elseif(isset($entity) && $entity->{$field->slug} != "" && is_array(unserialize($entity->{$field->slug})))
-                @foreach(unserialize($entity->{$field->slug}) as $imageId)
-                    @include('laramanager::fields.images.image', ['image' => $image->find($imageId)])
+            @elseif(isset($entity) && $entity->{$field->data['method']}->count())
+                @foreach($entity->{$field->data['method']} as $image)
+                    @include('laramanager::fields.images.image', ['image' => $image])
                 @endforeach
             @endif
         </div>

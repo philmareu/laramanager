@@ -1,13 +1,5 @@
-@inject('image', 'Philsquare\LaraManager\Models\Image')
-
-@if(is_array(unserialize($entity->{$field->slug})))
-    <div id="images" class="uk-grid uk-grid-small">
-        @foreach(unserialize($entity->{$field->slug}) as $imageId)
-            @include('laramanager::browser.image', ['image' => $image->find($imageId)])
-        @endforeach
-    </div>
-@else
-
-<p>No Images Selected</p>
-
-@endif
+<div id="images" class="uk-grid uk-grid-small">
+    @foreach($entity->{$field->data['method']} as $image)
+        @include('laramanager::browser.image', ['image' => $image])
+    @endforeach
+</div>
