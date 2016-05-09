@@ -8,8 +8,8 @@
 
             @if(null !== old($field->slug))
                 @include('laramanager::browser.image', ['image' => $image->find(old($field->slug))])
-            @elseif(isset($entity) && is_int($entity->{$field->slug}))
-                @include('laramanager::browser.image', ['image' => $image->find($entity->{$field->slug})])
+            @elseif(isset($entity) && $entity->{$field->data['method']})
+                @include('laramanager::browser.image', ['image' => $entity->{$field->data['method']}])
             @endif
 
         </div>
