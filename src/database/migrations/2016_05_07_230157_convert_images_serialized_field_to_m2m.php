@@ -68,6 +68,13 @@ class ConvertImagesSerializedFieldToM2m extends Migration
     {
         $method = $field->data['method'];
         $imageIds = unserialize($entity->{$field->slug});
-        if (!empty($imageIds)) $entity->$method()->sync($imageIds);
+
+        $entries = [];
+        foreach($imageIds as $key => $imageId)
+        {
+            $entries[$imageId] = ['ordinal' => $key];
+        }
+
+        if (!empty($imageIds)) $entity->$method()->sync($entries);
     }
 }
