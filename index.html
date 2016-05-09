@@ -45,7 +45,7 @@
 
 <p>In order to record exceptions the following will need to be added in the <code>report()</code> method in <code>App/Exceptions/Handler.php</code></p>
 
-<pre><code>    new Philsquare\LaraManager\Logging\ExceptionLogging($e);
+<pre><code>new Philsquare\LaraManager\Logging\ExceptionLogging($e);
 </code></pre>
 
 <p>Publish the vendor assets and migrations</p>
@@ -76,6 +76,41 @@
 
 <p>This section lists any exceptions and groups them by count. The list can easily for sorted as to find 404s or any other exception.</p>
 
+<h4>
+<a id="images" class="anchor" href="#images" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Images</h4>
+
+<p>This image manager will contain all images uploaded to LaraManager. These images can then be accessed and used by resources and fields.</p>
+
+<h4>
+<a id="settings" class="anchor" href="#settings" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Settings</h4>
+
+<p>Not much to see here yet. Basically just set your site name.</p>
+
+<h4>
+<a id="resources" class="anchor" href="#resources" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Resources</h4>
+
+<p>Create resources such as Posts, Locations and Events.</p>
+
+<h4>
+<a id="objects" class="anchor" href="#objects" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Objects</h4>
+
+<p>Objects are generally used to provide design and content flexibility.</p>
+
+<h4>
+<a id="feeds" class="anchor" href="#feeds" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Feeds</h4>
+
+<p>Easily create an RSS feed for any of your resources</p>
+
+<h4>
+<a id="redirects" class="anchor" href="#redirects" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Redirects</h4>
+
+<p>Create 301 or 302 redirects</p>
+
+<h4>
+<a id="users" class="anchor" href="#users" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Users</h4>
+
+<p>Basic user management</p>
+
 <h2>
 <a id="content-resourses" class="anchor" href="#content-resourses" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Content Resourses</h2>
 
@@ -104,7 +139,7 @@
 <p>These fields should match up with your existing database fields appropriately. Make sure to make these fields fillable in your Laravel Model.</p>
 
 <h2>
-<a id="objects" class="anchor" href="#objects" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Objects</h2>
+<a id="objects-1" class="anchor" href="#objects-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Objects</h2>
 
 <p>Objects allow you to provide users with a way to "build" content onto a resourse. There are 4 default objects.</p>
 
@@ -134,7 +169,7 @@
 <p>Docs to come...</p>
 
 <h2>
-<a id="feeds" class="anchor" href="#feeds" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Feeds</h2>
+<a id="feeds-1" class="anchor" href="#feeds-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Feeds</h2>
 
 <p>LaraManager can create custom RSS feeds for your resources such as <a href="http://www.my-site.com/feed/events">www.my-site.com/feed/events</a>. Before adding the feed you will need to use the interface <code>Philsquare\LaraManager\Contracts\RssFeedInterface</code> on your model and impliment the contract methods.</p>
 
