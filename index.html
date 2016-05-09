@@ -21,6 +21,8 @@
     <section class="main-content">
       <p>LaraManager is a basic database interface for Laravel applications. It was created as a simple way for us to provide clients with a method for updating basic content.</p>
 
+<p><img src="http://philmareu.com/images/original/wtamrreKe0arLIvMcp646KHCX6oCEjJTszI9o98TmQemwZe9WO8gAPak0EnRQPyyYqTxJRM1K3QoKGJp5AKXbgFp3QmKtpaP4H9E.jpg" alt="LaraManager Screenshot"></p>
+
 <h2>
 <a id="support" class="anchor" href="#support" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support</h2>
 
@@ -235,7 +237,7 @@
 
 <p>The <em>fields</em> file can contain HTML form fields to receive input. These inputs should have names in the <code>data</code> array (e.x. <code>&lt;input type="text" name="data[introduction]"&gt;</code>). The <code>data</code> array is serialized and saved.</p>
 
-<p>If you want to access the image browser, you can use the use the special object fields "Image" and "Images" using an include (Note that these are different than the resource fields). For example if you need to add a field that will all users/clients to select one image, add the following.</p>
+<p>If you want to access the image browser, you can use the use the special object fields "Image" and "Images" using an include (Note that these are different than the resource fields). For example if you need to add a field that will allow users/clients to select one image, add the following.</p>
 
 <pre lang="blade"><code>@include('laramanager::objects.fields.image', ['name' =&gt; 'file_id', 'label' =&gt; 'Photo'])
 </code></pre>
