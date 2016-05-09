@@ -37,7 +37,13 @@ class RelationProcessor {
     {
         if($this->request->has($field->slug))
         {
-            $this->entity->{$field->data['method']}()->sync($this->request->get($field->slug));
+            $entries = [];
+            foreach($this->request->get($field->slug) as $key => $imageId)
+            {
+                $entries[$imageId] = ['ordinal' => $key];
+            }
+
+            $this->entity->{$field->data['method']}()->sync($entries);
         }
     }
 }
