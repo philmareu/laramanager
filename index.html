@@ -19,7 +19,7 @@
     </section>
 
     <section class="main-content">
-      <p>LaraManager is a basic database interface for Laravel applications. It was created as a simple way for us to provide clients with a method for updating basic content.Testing.</p>
+      <p>LaraManager is a basic database interface for Laravel applications. It was created as a simple way for us to provide clients with a method for updating basic content.</p>
 
 <h2>
 <a id="support" class="anchor" href="#support" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support</h2>
@@ -43,6 +43,11 @@
 <pre><code>'Philsquare\LaraManager\Providers\LaraManagerServiceProvider'
 </code></pre>
 
+<p>In order to record exceptions the following will need to be added in the report method in <code>App/Exceptions/Handler.php</code></p>
+
+<pre><code>    new Philsquare\LaraManager\Logging\ExceptionLogging($e);
+</code></pre>
+
 <p>Publish the vendor assets and migrations</p>
 
 <div class="highlight highlight-text-shell-session"><pre>$ <span class="pl-s1">php artisan vendor:publish</span></pre></div>
@@ -52,6 +57,24 @@
 <div class="highlight highlight-text-shell-session"><pre>$ <span class="pl-s1">php artisan migrate</span></pre></div>
 
 <p>You can then login at /admin with <a href="mailto:admin@admin.com">admin@admin.com</a> and "password" as the email and password respectively</p>
+
+<h2>
+<a id="admin-panel" class="anchor" href="#admin-panel" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Admin Panel</h2>
+
+<p>The admin panel consists of the side navigation, top bar and content area. The side navigation has a few topic areas with some default links. These topic areas are reporting, resources, uploads and system.</p>
+
+<h3>
+<a id="standard-sections" class="anchor" href="#standard-sections" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Standard sections</h3>
+
+<h4>
+<a id="dashboard" class="anchor" href="#dashboard" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dashboard</h4>
+
+<p>The dashboard is basically a blank canvas. It is used as the main landing page and can be customized per project.</p>
+
+<h4>
+<a id="errors" class="anchor" href="#errors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Errors</h4>
+
+<p>This section lists any </p>
 
 <h2>
 <a id="content-resourses" class="anchor" href="#content-resourses" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Content Resourses</h2>
