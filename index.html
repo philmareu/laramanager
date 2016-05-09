@@ -138,8 +138,7 @@
 <h3>
 <a id="image" class="anchor" href="#image" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Image</h3>
 
-<p><code>INT</code> - Displays the image browser
-This fields requires a relational method added to the <code>Model</code>. For example, adding a "Featured Image" to <code>Event</code>.</p>
+<p><code>INT</code> - Displays the image browser. This fields requires a relational method added to the <code>Model</code>. For example, adding a "Featured Image" to <code>Event</code>.</p>
 
 <pre><code>public function featuredImage()
 {
@@ -150,17 +149,56 @@ This fields requires a relational method added to the <code>Model</code>. For ex
 <h3>
 <a id="images-1" class="anchor" href="#images-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Images</h3>
 
-<p>Requireds</p>
+<p>This field is similar to Image but allows for selection and reordering of multiple images. This field required a pivot table such as <code>event_image</code> and a method added to the <code>Model</code>. For example, adding a "Gallery" to <code>Event</code>.</p>
 
-<ul>
-<li>Password</li>
-<li>Relational (integer)</li>
-<li>Select</li>
-<li>Slug</li>
-<li>Text</li>
-<li>Textarea</li>
-<li>WYSIWYG</li>
-</ul>
+<pre><code>public function gallery()
+{
+    return $this-&gt;belongsToMany('Philsquare\LaraManager\Models\Image')-&gt;orderBy('ordinal', 'asc');
+}
+</code></pre>
+
+<h3>
+<a id="password" class="anchor" href="#password" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Password</h3>
+
+<p><code>VARCHAR</code> - Password field</p>
+
+<h3>
+<a id="relational" class="anchor" href="#relational" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Relational</h3>
+
+<p><code>INT</code> - This field will display a dropdown with options from the related (lookup) table. This field required a relational method added to the <code>Model</code>. For example, adding <code>User</code> to <code>Event</code>.</p>
+
+<pre><code>public function user()
+{
+    return $this-&gt;belongsTo('App\Models\User');
+}
+</code></pre>
+
+<p>In this example, the dropdown will have a list of all the users.</p>
+
+<h3>
+<a id="select" class="anchor" href="#select" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Select</h3>
+
+<p><code>ENUM</code> - Basic select field that is populated with a defined static list of options.</p>
+
+<h3>
+<a id="slug" class="anchor" href="#slug" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Slug</h3>
+
+<p><code>VARCHAR</code> - Text field that auto-creates a slug from a targeted field.</p>
+
+<h3>
+<a id="text" class="anchor" href="#text" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Text</h3>
+
+<p>Basic text field</p>
+
+<h3>
+<a id="textarea" class="anchor" href="#textarea" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Textarea</h3>
+
+<p>Basic textarea field</p>
+
+<h3>
+<a id="wysiwyg" class="anchor" href="#wysiwyg" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>WYSIWYG</h3>
+
+<p><code>TEXT</code> - A ckeditor instance</p>
 
 <h2>
 <a id="objects-1" class="anchor" href="#objects-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Objects</h2>
