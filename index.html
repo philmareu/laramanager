@@ -43,7 +43,7 @@
 <pre><code>'Philsquare\LaraManager\Providers\LaraManagerServiceProvider'
 </code></pre>
 
-<p>In order to record exceptions the following will need to be added in the report method in <code>App/Exceptions/Handler.php</code></p>
+<p>In order to record exceptions the following will need to be added in the <code>report()</code> method in <code>App/Exceptions/Handler.php</code></p>
 
 <pre><code>    new Philsquare\LaraManager\Logging\ExceptionLogging($e);
 </code></pre>
@@ -74,7 +74,7 @@
 <h4>
 <a id="errors" class="anchor" href="#errors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Errors</h4>
 
-<p>This section lists any </p>
+<p>This section lists any exceptions and groups them by count. The list can easily for sorted as to find 404s or any other exception.</p>
 
 <h2>
 <a id="content-resourses" class="anchor" href="#content-resourses" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Content Resourses</h2>
