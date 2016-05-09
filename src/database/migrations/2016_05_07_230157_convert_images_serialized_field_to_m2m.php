@@ -13,29 +13,24 @@ class ConvertImagesSerializedFieldToM2m extends Migration
      */
     public function up()
     {
-        // Get resources
         $resources = Resource::with('fields')->get();
 
-        $resources->each(function($resource, $key) {
-            $resource->fields->each(function($field, $key) use ($resource) {
-                if($field->type == 'images')
-                {
-                    if(! isset($this->data['method'])) throw new Exception('Method not defined');
+        $resources->filter(function($resource) {
+            return $resource->fields->contains(function($key, $field) {
+                return $field->type == 'images';
+            });
+        })->each(function($resource, $key) {
+            $resource->fields->filter(function($field) {
+                return $field->type == 'images';
+            })->each(function($field, $key) use ($resource) {
+                if($this->belongsToManyMethodDoesNotExists($field)) throw new Exception('Method not defined');
 
-                    $model = $this->getModel($resource);
-                    $entities = $model::select($field->slug)->get();
-
-                    $entities->each(function($entity, $key) use ($field) {
-                        $method = $field->data['method'];
-                        $imageIds = unserialize($entity->{$field->slug});
-
-                        if(! empty($imageIds)) $entity->$method()->sync($imageIds);
-                    });
-                }
+                $this->getEntities($field, $resource)->each(function($entity, $key) use ($field) {
+                    $this->syncImageIds($entity, $field);
+                });
             });
         });
-        // Go through fields
-        // Move them to m2m
+
     }
 
     /**
@@ -49,11 +44,30 @@ class ConvertImagesSerializedFieldToM2m extends Migration
     }
 
     /**
+     * @param $field
      * @param $resource
-     * @return string
+     * @return mixed
      */
-    private function getModel($resource)
+    private function getEntities($field, $resource)
     {
-        return $resource->namespace . '\\' . $resource->model;
+        $model = $resource->namespace . '\\' . $resource->model;
+        $entities = $model::select(['id', $field->slug])->get();
+        return $entities;
+    }
+
+    private function belongsToManyMethodDoesNotExists($field)
+    {
+        return ! isset($field->data['method']);
+    }
+
+    /**
+     * @param $entity
+     * @param $field
+     */
+    private function syncImageIds($entity, $field)
+    {
+        $method = $field->data['method'];
+        $imageIds = unserialize($entity->{$field->slug});
+        if (!empty($imageIds)) $entity->$method()->sync($imageIds);
     }
 }
