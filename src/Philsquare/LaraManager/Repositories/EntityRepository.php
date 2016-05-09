@@ -36,9 +36,10 @@ class EntityRepository {
     {
         $request = $this->processFields($request, $resource);
         $model = $this->getModel($resource);
-        $entity = new $model;
+        $entity = (new $model)->create($request->all());
+        $this->processRelations($request, $resource, $entity);
 
-        return $entity->create($request->all());
+        return $entity;
     }
 
     public function update($id, Request $request, Resource $resource)
