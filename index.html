@@ -109,12 +109,14 @@
 <p>Basic user management</p>
 
 <h2>
-<a id="content-resourses" class="anchor" href="#content-resourses" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Content Resourses</h2>
+<a id="adding-a-resource" class="anchor" href="#adding-a-resource" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Adding a Resource</h2>
 
-<p>Resources are tables that contain website content. For example, a website might have a table called "events". In order to update the event data, you will need to setup a resource and add fields that map to the table.</p>
+<p>Resources are items such as Events, Pages and Posts. They map up to your tables to help handle the CRUD actions. Since LaraManager is built as just an "interface" to your existing Laravel application, you will need to have these tables created and an Eloquent Model defined.</p>
 
-<h3>
-<a id="fields" class="anchor" href="#fields" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Fields</h3>
+<p>You will be adding fields to the resource that will match up to your columns. Make sure you add these field to your <code>$fillable</code> array.</p>
+
+<h2>
+<a id="fields" class="anchor" href="#fields" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Fields</h2>
 
 <p>There are 12 fields avaiable.</p>
 
