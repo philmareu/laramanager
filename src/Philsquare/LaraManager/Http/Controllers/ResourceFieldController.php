@@ -1,6 +1,7 @@
 <?php namespace Philsquare\LaraManager\Http\Controllers; 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 use Philsquare\LaraManager\Models\Resource;
 use Philsquare\LaraManager\Models\ResourceField;
 
@@ -19,7 +20,8 @@ class ResourceFieldController extends Controller {
         'wysiwyg' => 'WYSIWYG',
         'select' => 'Select',
         'date' => 'Date',
-        'relational' => 'Relational'
+        'relational' => 'Relational',
+        'html' => 'HTML'
     ];
 
     protected $resource;

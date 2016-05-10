@@ -17,13 +17,13 @@
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <input type="hidden" name="_method" value="PUT">
 
-        @include('laraform::elements.form.text', ['field' => ['name' => 'title', 'id' => 'title', 'value' => $field->title]])
-        @include('laraform::elements.form.slug', ['field' => ['name' => 'slug', 'id' => 'slug', 'target' => 'title', 'value' => $field->slug]])
-        @include('laraform::elements.form.slug', ['field' => ['name' => 'validation', 'value' => $field->validation]])
-        @include('laraform::elements.form.checkbox', ['field' => ['name' => 'is_unique', 'checked' => $field->is_unique]])
-        @include('laraform::elements.form.checkbox', ['field' => ['name' => 'list', 'checked' => $field->list]])
+        @include('laramanager::partials.elements.form.text', ['field' => ['name' => 'title', 'id' => 'title', 'value' => $field->title]])
+        @include('laramanager::partials.elements.form.slug', ['field' => ['name' => 'slug', 'id' => 'slug', 'target' => 'title', 'value' => $field->slug, 'label' => 'Slug (column name)']])
+        @include('laramanager::partials.elements.form.slug', ['field' => ['name' => 'validation', 'value' => $field->validation]])
+        @include('laramanager::partials.elements.form.checkbox', ['field' => ['name' => 'is_unique', 'checked' => $field->is_unique]])
+        @include('laramanager::partials.elements.form.checkbox', ['field' => ['name' => 'list', 'checked' => $field->list]])
 
-        @include('laraform::elements.form.select', ['field' => ['name' => 'type', 'options' => $fields, 'id' => 'type', 'value' => $field->type]])
+        @include('laramanager::partials.elements.form.select', ['field' => ['name' => 'type', 'options' => $fields, 'id' => 'type', 'value' => $field->type]])
 
         <div id="options" class="uk-form-row">
             @if(view()->exists('laramanager::fields.' . $field->type . '.options'))

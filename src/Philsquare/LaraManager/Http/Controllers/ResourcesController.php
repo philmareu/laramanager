@@ -6,29 +6,30 @@ namespace Philsquare\LaraManager\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-use Philsquare\LaraForm\Services\FormProcessor;
+use Philsquare\LaraManager\Form\FormProcessor;
 use Philsquare\LaraManager\Fields\FieldProcessor;
 use Philsquare\LaraManager\Models\File;
 use Philsquare\LaraManager\Models\Object;
 use Philsquare\LaraManager\Models\Resource;
+use Philsquare\LaraManager\Repositories\EntityRepository;
+use Philsquare\LaraManager\Repositories\ResourceRepository;
 
 class ResourcesController extends Controller
 {
-    protected $request;
-
     protected $slug;
-
-    protected $title;
-
-    protected $form;
 
     protected $resource;
 
-    public function __construct(Request $request, FormProcessor $form, Resource $resource)
+    protected $resourceRepository;
+
+    protected $entityRepository;
+
+    public function __construct(Request $request, ResourceRepository $resourceRepository, EntityRepository $entityRepository)
     {
         $this->slug = $request->segment(2);
-        $this->form = $form;
-        $this->resource = $resource;
+        $this->resource = $resourceRepository->getBySlug($this->slug);
+        $this->resourceRepository = $resourceRepository;
+        $this->entityRepository = $entityRepository;
     }
 
     /**
@@ -38,27 +39,9 @@ class ResourcesController extends Controller
      */
     public function index()
     {
-        $resource = $this->resource->with('fields')->where('slug', $this->slug)->first();
-
-        $select = ['id'];
-        $eagerLoad = [];
-        foreach($resource->fields as $field)
-        {
-            if($field->list) $select[] = $field->slug;
-
-            if($field->type == 'relational')
-            {
-                $eagerLoad[] = $field->data('method');
-            }
-        }
-
-        $model = $this->getModel($resource);
-        $entities = $model::with($eagerLoad)->select($select)->get();
-
-        $hasObjects = false;
-        if(method_exists($model, 'objects')) $hasObjects = true;
-
-        return view('laramanager::resource.index', compact('resource', 'entities', 'hasObjects'));
+        return view('laramanager::resource.index.index')
+            ->with('resource', $this->resource)
+            ->with('entities', $this->entityRepository->getList($this->resource));
     }
 
     /**
@@ -68,22 +51,15 @@ class ResourcesController extends Controller
      */
     public function create()
     {
-        $resource = $this->resource->with('fields')->where('slug', $this->slug)->first();
+        $options = $this->resource->fields->filter(function($field) {
+            return $field->type == 'relational';
+        })->reduce(function($options, $field) {
+            return array_merge($options, [$field->slug => $this->entityRepository->getFieldOptions($field)]);
+        }, []);
 
-        $hasWysiwyg = false;
-
-        foreach($resource->fields as $field)
-        {
-            if($field->type == 'wysiwyg') $hasWysiwyg = true;
-
-            if($field->type == 'relational')
-            {
-                $model = $field->data('model');
-                $options[$field->slug] = $model::all()->lists($field->data('title'), $field->data('key'));
-            }
-        }
-
-        return view('laramanager::resource.create', compact('resource', 'hasWysiwyg', 'options'));
+        return view('laramanager::resource.create')
+            ->with('resource', $this->resource)
+            ->with('options', $options);
     }
 
     /**
@@ -94,20 +70,10 @@ class ResourcesController extends Controller
      */
     public function store(Request $request)
     {
-        $resource = $this->resource->with('fields')->where('slug', $this->slug)->first();
-        $fieldProcessor = new FieldProcessor($request, $resource);
+        $this->validate($request, $this->validationRules($this->resource));
+        $entity = $this->entityRepository->create($request, $this->resource);
 
-        $this->validate($request, $this->validationRules($resource));
-
-        $model = $this->getModel($resource);
-        $entity = new $model;
-        $request = $fieldProcessor->processAttributes();
-
-        $entity = $entity->create($request->all());
-
-        if(method_exists($model, 'objects')) return redirect('admin/' . $resource->slug . '/' . $entity->id)->with('success', 'Added');
-
-        return redirect('admin/' . $resource->slug)->with('success', 'Added');
+        return redirect('admin/' . $this->resource->slug)->with('success', 'Added');
     }
 
     /**
@@ -116,14 +82,14 @@ class ResourcesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($resourceId)
+    public function show($id)
     {
-        $resource = $this->resource->with('fields')->where('slug', $this->slug)->first();
-        $model = $this->getModel($resource);
-        $entity = $model::with('objects')->where('id', $resourceId)->first();
-        $objects = Object::all();
+        $entity = $this->entityRepository->getById($id, $this->resource);
 
-        return view('laramanager::resource.show', compact('resource', 'entity', 'objects'));
+        return view('laramanager::resource.show')
+            ->with('resource', $this->resource)
+            ->with('entity', $entity)
+            ->with('objects', Object::all());
     }
 
     /**
@@ -132,25 +98,20 @@ class ResourcesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($entityId)
+    public function edit($id)
     {
-        $resource = $this->resource->with('fields')->where('slug', $this->slug)->first();
-        $model = $this->getModel($resource);
-        $entity = $model::find($entityId);
-        $hasWysiwyg = false;
+        $entity = $this->entityRepository->getById($id, $this->resource);
 
-        foreach($resource->fields as $field)
-        {
-            if($field['type'] == 'wysiwyg') $hasWysiwyg = true;
+        $options = $this->resource->fields->filter(function($field) {
+            return $field->type == 'relational';
+        })->reduce(function($options, $field) {
+            return array_merge($options, [$field->slug => $this->entityRepository->getFieldOptions($field)]);
+        }, []);
 
-            if($field->type == 'relational')
-            {
-                $model = $field->data('model');
-                $options[$field->slug] = $model::all()->lists($field->data('title'), $field->data('key'));
-            }
-        }
-
-        return view('laramanager::resource.edit', compact('resource', 'hasWysiwyg', 'entity', 'options'));
+        return view('laramanager::resource.edit')
+            ->with('resource', $this->resource)
+            ->with('entity', $entity)
+            ->with('options', $options);
     }
 
     /**
@@ -160,21 +121,12 @@ class ResourcesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $entityId)
+    public function update(Request $request, $id)
     {
-        $resource = $this->resource->with('fields')->where('slug', $this->slug)->first();
-        $fieldProcessor = new FieldProcessor($request, $resource);
-        $model = $this->getModel($resource);
+        $entity = $this->entityRepository->getById($id, $this->resource);
+        $this->validate($request, $this->validationRules($this->resource, $entity));
 
-        $entity = $model::findOrFail($entityId);
-
-        $this->validate($request, $this->validationRules($resource, $entity));
-
-        $request = $fieldProcessor->processAttributes();
-
-        $entity->update($request->all());
-
-        if(method_exists($model, 'objects')) return redirect('admin/' . $resource->slug . '/' . $entity->id)->with('success', 'Updated');
+        $this->entityRepository->update($id, $request, $this->resource);
 
         return redirect()->back()->with('success', 'Updated');
     }
@@ -185,79 +137,28 @@ class ResourcesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($entityId)
+    public function destroy($id)
     {
-        $resource = $this->resource->with('fields')->where('slug', $this->slug)->first();
-        $model = $this->getModel($resource);
-        $entity = $model::findOrFail($entityId);
-        
-        if($entity->delete()) return response()->json(['status' => 'ok']);
-
-        return response()->json(['status' => 'failed']);
-    }
-
-    public function uploads(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'file' => $request->validation
-        ]);
-
-        if($validator->fails()) return response()->json(['status' => 'failed']);
-
-        $model = config('laramanager.resources.' . $request->resource . '.model');
-        $reference = $request->name;
-
-        $filename = $this->form->processFile($request->file('file'), 'files');
-
-        $file = File::create(['filename' => $filename, 'type' => 'image']);
-
-        $entity = (new $model)->findOrFail($request->entityId);
-        $entity->photos()->attach($file->id);
-
-        $output['status'] = 'ok';
-        $output['data']['html'] = view('laraform::elements.form.displays.file', compact('file'))->render();
-
-        return response()->json($output);
-    }
-
-    public function deleteFile(Request $request)
-    {
-        $model = config('laramanager.resources.' . $request->resource . '.model');
-        $entity = (new $model)->findOrFail($request->entityId);
-
-        $entity->photos()->detach($request->id);
+        $this->entityRepository->delete($id, $this->resource);
 
         return response()->json(['status' => 'ok']);
     }
 
     private function validationRules($resource, $entity = null)
     {
-        foreach($resource->fields as $field)
-        {
+        return $resource->fields->reduce(function($rules, $field) use ($resource, $entity) {
             $rule = $field->validation;
 
             if($field->is_unique)
             {
                 $rule .= '|unique:' . $resource->slug . ',' . $field->slug;
-                
+
                 if($entity) $rule .=  ',' . $entity->id;
             }
-            
+
             if($field->is_required) $rule .= '|required';
-            
-            $rules[$field->slug] = $rule;
-        }
 
-        return isset($rules) ? $rules : [];
-    }
-
-    /**
-     * @param $resource
-     * @return string
-     */
-    private function getModel($resource)
-    {
-        $model = $resource->namespace . '\\' . $resource->model;
-        return $model;
+            return array_merge($rules, [$field->slug => $rule]);
+        }, []);
     }
 }

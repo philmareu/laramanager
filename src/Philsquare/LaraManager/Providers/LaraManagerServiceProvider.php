@@ -32,6 +32,12 @@ class LaraManagerServiceProvider extends ServiceProvider
         $this->setViewComposers();
 
         $this->loadTranslationsFrom(__DIR__.'/../../../lang', 'laramanager');
+
+        Validator::extend('unique_filename', 'Philsquare\LaraManager\Validators\UniqueFilenameValidator@validate');
+        Validator::extend('model_must_exist', 'Philsquare\LaraManager\Validators\ModelMustExistValidator@validate');
+        Validator::replacer('model_must_exist', function($message, $attribute, $rule, $parameters) {
+            return trans('laramanager::validation.model_must_exist');
+        });
     }
 
     /**
@@ -65,6 +71,6 @@ class LaraManagerServiceProvider extends ServiceProvider
     {
         view()->composer('laramanager::navigations.top.index', 'Philsquare\LaraManager\ViewComposers\NavigationComposer');
         view()->composer('laramanager::navigations.primary.*', 'Philsquare\LaraManager\ViewComposers\NavigationComposer');
-        view()->composer('layouts.*', 'Philsquare\LaraManager\ViewComposers\LayoutsViewComposer');
+        view()->composer('laramanager::layouts.*', 'Philsquare\LaraManager\ViewComposers\LayoutsViewComposer');
     }
 }

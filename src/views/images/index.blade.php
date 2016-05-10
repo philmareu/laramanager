@@ -71,8 +71,10 @@
         $('.pagination').attr('class', 'uk-pagination');
         $('.disabled').attr('class', 'uk-disabled');
         $('.active').attr('class', 'uk-active');
+
         var ImageBrowserModal = $('#image-modal');
         var spinnerHTML = '<i class="uk-icon-spinner uk-icon-spin"></i>';
+        var modalSpinnerHTML = '<div class="modal-spinner uk-text-center"><i class="uk-icon-spinner uk-icon-spin uk-icon-large"></i>';
 
         $(function() {
             UIkit.grid('#images', {gutter: 10, animation: false});
@@ -80,14 +82,14 @@
 
         function getModal(uri) {
 
-            updateModal('<div class="modal-spinner uk-text-center"><i class="uk-icon-spinner uk-icon-spin uk-icon-large"></i>');
+            updateModal(modalSpinnerHTML);
             UIkit.modal(ImageBrowserModal).show();
 
             $.ajax({
                 type: "GET",
                 url: SITE_URL + uri,
                 success: function(response) {
-                    updateModal(response.data.html);
+                    updateModal(response.html.form);
                 },
                 error: function(response, status, error) {
                     if(response.status == 401) {
@@ -126,7 +128,7 @@
                         alert(response.errors)
                     }
 
-                    $('.url').html(response.data.url);
+                    $('.url').html(response.paths.original);
                     button.val('Update');
                 },
                 error: function(response, status, error) {
@@ -165,10 +167,8 @@
                         bar.css("width", "0%").text("0%");
                         response = $.parseJSON(response);
 
-                        if(response.status == 'ok') {
-                            console.log($('#upload-images').find('.image-browser-images'));
-                            $('#upload-images').find('.image-browser-images').append(response.data.html);
-                        }
+                        $('#upload-images').find('.image-browser-images').append(response.html);
+
                     },
 
                     allcomplete: function(response) {

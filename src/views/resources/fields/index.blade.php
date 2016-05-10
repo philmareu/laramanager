@@ -18,7 +18,7 @@
         <thead>
         <tr>
             <td>Title</td>
-            <td>Slug</td>
+            <td>Slug (column name)</td>
             <td>Type</td>
             <td>&nbsp;</td>
         </tr>

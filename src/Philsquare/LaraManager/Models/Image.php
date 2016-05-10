@@ -16,4 +16,13 @@ class Image extends Model {
         'size'
     ];
 
+    protected $appends = ['paths'];
+
+    public function getPathsAttribute()
+    {
+        return [
+            'original' => url('images/original/' . $this->filename)
+        ];
+    }
+
 }

@@ -22,7 +22,7 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], functio
         }
     }
 
-    get('feed/{type?}', 'RssFeedsController@show');
+    get('feed/{type}', 'RssFeedsController@show');
 
     Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function()
     {
@@ -58,9 +58,6 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], functio
             }
         }
 
-        Route::post('uploads/resource', 'ResourcesController@uploads');
-
-
         Route::get('resources/fields/getOptions/{type}', 'ResourceFieldController@getOptions');
         Route::get('resources/{resources}/fields/{fields}/edit', 'ResourceFieldController@edit');
         Route::put('resources/{resources}/fields/{fields}/edit', 'ResourceFieldController@update');
@@ -74,7 +71,7 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], functio
         Route::resource('settings', 'SettingsController');
 
         // Errors
-        Route::get('not-founds', 'NotFoundExceptionsController@index');
-        Route::delete('not-founds/{id}', 'NotFoundExceptionsController@destroy');
+        Route::get('errors', 'ErrorsController@index');
+        Route::delete('errors/{id}', 'ErrorsController@destroy');
     });
 });

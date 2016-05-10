@@ -2,116 +2,150 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Philsquare\LaraForm\Services\FormProcessor;
+use Philsquare\LaraManager\Form\FormProcessor;
+use Philsquare\LaraManager\Form\Uploader;
 use Philsquare\LaraManager\Http\Requests\UpdateImageRequest;
 use Philsquare\LaraManager\Http\Requests\UploadImageRequest;
 use Philsquare\LaraManager\Models\Image;
+use Philsquare\LaraManager\Repositories\ImageRepository;
 
 class ImagesController extends Controller {
 
-    protected $formProcessor;
+    /**
+     * The Image Repository
+     *
+     * @var ImageRepository
+     */
+    protected $imageRepository;
 
-    protected $image;
+    /**
+     * The Uploader handles uploading of files
+     *
+     * @var Uploader
+     */
+    protected $uploader;
 
-    protected $imageFolder = 'laramanager/images/';
-
-    public function __construct(FormProcessor $formProcessor, Image $image)
+    /**
+     * Create a new images controller instance
+     *
+     * @param ImageRepository $imageRepository
+     * @param Uploader $uploader
+     */
+    public function __construct(ImageRepository $imageRepository, Uploader $uploader)
     {
-        $this->formProcessor = $formProcessor;
-        $this->image = $image;
+        $this->imageRepository = $imageRepository;
+        $this->uploader = $uploader;
     }
 
+    /**
+     * This provides the gallery of images
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
+     * @throws \Exception
+     * @throws \Throwable
+     */
     public function index(Request $request)
     {
-        $images = $this->image->latest()->paginate(100);
+        $images = $this->imageRepository->getPaginated();
 
-        if($request->ajax())
-        {
-            $output['images'] = view('laramanager::browser.images', compact('images'))->render();
-            return response()->json($output);
-        }
-
-        return view('laramanager::images.index', compact('images'));
-    }
-
-    public function edit($imageId)
-    {
-        $image = $this->image->findOrFail($imageId);
-        $output['data']['html'] = view('laramanager::images.edit', compact('image'))->render();
-        return response()->json($output);
-    }
-
-    public function update(UpdateImageRequest $request, $imageId)
-    {
-        $image = $this->image->findOrFail($imageId);
-        if($image->filename != $request->get('filename'))
-        {
-            if(Storage::has($this->imageFolder . $request->get('filename'))) return response()->json(['errors' => ['Image Exists']]);
-
-            Storage::move($this->imageFolder . $image->filename, $this->imageFolder . $request->get('filename'));
-        }
-
-        $image->update($request->all());
-
-        $output['data'] = [
-            'file' => $image,
-            'url' => url('images/original/' . $image->filename)
-        ];
-
-        return response()->json($output);
-    }
-
-    public function search(Request $request)
-    {
-        $term = $request->term;
-
-        $images = $this->image
-            ->where('filename', 'LIKE', "%$term%")
-            ->orWhere('title', 'LIKE', "%$term%")
-            ->orWhere('alt', 'LIKE', "%$term%")
-            ->orWhere('original_filename', 'LIKE', "%$term%")
-            ->get();
-
-        if($request->ajax())
-        {
-            $output['images'] = view('laramanager::browser.images', compact('images'))->render();
-            return response()->json($output);
-        }
-
-        return view('laramanager::images.index', compact('images'));
-    }
-
-    public function imageBrowser(Request $request)
-    {
-        $funcNum = $request->has('CKEditorFuncNum') ? $request->get('CKEditorFuncNum') : '';
-
-        $images = $this->image->latest()->paginate(100);
-        return view('laramanager::browser.wysiwyg', compact('images', 'funcNum'));
-    }
-
-    public function upload(UploadImageRequest $request)
-    {
-        $upload = $request->file('image');
-        $extension = $upload->getClientOriginalExtension();
-        $originalName = str_replace('.' . $extension, '', $upload->getClientOriginalName());
-        $filename = $this->formProcessor->processFile($upload, $this->imageFolder);
-        $alt = str_replace('-', ' ', $originalName);
-        $alt = str_replace('_', ' ', $alt);
-
-        $image = $this->image->create([
-            'filename' => $filename,
-            'original_filename' => $upload->getClientOriginalName(),
-            'alt' => ucwords($alt),
-            'title' => ucwords($originalName),
-            'size' => $upload->getClientSize()
+        if($request->ajax()) return $this->jsonResponse([
+            'images' => view('laramanager::browser.images', compact('images'))->render()
         ]);
 
-        $output['status'] = 'ok';
-        $output['data'] = [
-            'html' => view('laramanager::' . $request->get('view'), compact('image'))->render(),
-            'image' => $image
-        ];
+        return view('laramanager::images.index', compact('images'));
+    }
 
+    /**
+     * Respond with the edit image form
+     *
+     * @param $imageId
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
+     * @throws \Throwable
+     */
+    public function edit($imageId)
+    {
+        $image = $this->imageRepository->getById($imageId);
+
+        return $this->jsonResponse([
+            'html' => [
+                'form' => view('laramanager::images.edit', compact('image'))->render()
+            ]
+        ]);
+    }
+
+    /**
+     * Update image from form
+     *
+     * @param UpdateImageRequest $request
+     * @param $imageId
+     * @return mixed
+     */
+    public function update(UpdateImageRequest $request, $imageId)
+    {
+        return $this->imageRepository->update($imageId, $request->all());
+    }
+
+    /**
+     * Returns images from search results
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
+     * @throws \Exception
+     * @throws \Throwable
+     */
+    public function search(Request $request)
+    {
+        $images = $this->imageRepository->search($request->term);
+
+        if($request->ajax()) return response()->json([
+            'images' => view('laramanager::browser.images', compact('images'))->render()
+        ]);
+
+        return view('laramanager::images.index', compact('images'));
+    }
+
+    /**
+     * Show image browser in the WYSIWYG editor
+     *
+     * @param Request $request
+     * @return mixed
+     */
+    public function imageBrowser(Request $request)
+    {
+        return view('laramanager::browser.wysiwyg')
+            ->with('funcNum', $request->has('CKEditorFuncNum') ? $request->get('CKEditorFuncNum') : '')
+            ->with('images', $this->imageRepository->getPaginated());
+    }
+
+    /**
+     * Upload and save image information
+     *
+     * @param UploadImageRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
+     * @throws \Throwable
+     */
+    public function upload(UploadImageRequest $request)
+    {
+        $upload = $this->uploader->upload($request->file('image'), storage_path('app/laramanager/images'));
+
+        $image = $this->imageRepository->create($upload->toArray());
+
+        return $this->jsonResponse(array_merge([
+            'html' => view('laramanager::' . $request->get('view'), compact('image'))->render(),
+            ], $image->toArray()));
+    }
+
+    /**
+     * Helper for converting array data into json responses
+     *
+     * @param $output
+     * @return \Illuminate\Http\JsonResponse
+     */
+    private function jsonResponse($output)
+    {
         return response()->json($output);
     }
 

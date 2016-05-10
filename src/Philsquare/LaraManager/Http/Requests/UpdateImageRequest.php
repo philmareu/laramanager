@@ -19,12 +19,14 @@ class UpdateImageRequest extends Request {
      */
     public function rules()
     {
+        $id = $this->segment(3);
+
         return [
             'title' => 'max:255',
             'alt' => 'max:255',
             'description' => 'max:255',
             'original_filename' => 'max:255',
-            'filename' => 'required|max:110|unique:images,filename,' . $this->segment(3)
+            'filename' => "required|unique_filename:$id|max:110|unique:images,filename,$id"
         ];
     }
 

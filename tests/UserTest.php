@@ -24,7 +24,7 @@ class UserTest extends TestCase
      *
      * @return void
      */
-    public function testCreateUser()
+    public function testCreateUserForm()
     {
         $this->actingAs(User::find(1))
             ->visit('admin/users/create')
@@ -43,7 +43,7 @@ class UserTest extends TestCase
         $this->assertEquals('1', $retrievedResource->is_admin);
     }
 
-    public function testEditUser()
+    public function testEditUserForm()
     {
         $this->actingAs(User::find(1))
             ->visit('admin/users/1/edit')

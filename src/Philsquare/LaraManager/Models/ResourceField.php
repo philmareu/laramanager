@@ -4,7 +4,8 @@ namespace Philsquare\LaraManager\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ResourceField extends Model {
+class
+ResourceField extends Model {
 
     protected $fillable = [
         'title',
@@ -24,7 +25,7 @@ class ResourceField extends Model {
 
     public function selectArray()
     {
-        $data = unserialize($this->data)['options'];
+        $data = $this->data['options'];
 
         $options = [];
         foreach(explode('|', $data) as $row)
@@ -37,11 +38,17 @@ class ResourceField extends Model {
         return $options;
     }
 
-    public function data($key)
+    public function getDataAttribute($value)
     {
-        $data = unserialize($this->data);
-
-        return isset($data[$key]) ? $data[$key] : '';
+        return unserialize($value);
     }
+
+    // replace this with accessor
+//    public function get($key)
+//    {
+//        $data = unserialize($this->data);
+//
+//        return isset($data[$key]) ? $data[$key] : '';
+//    }
 
 }

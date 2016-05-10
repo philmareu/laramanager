@@ -6,13 +6,6 @@
 
 @section('content')
 
-    @if(session()->has('errors'))
-        <div class="uk-alert uk-alert-danger" data-uk-alert>
-            Oops. It looks like a few fields were not completed properly.
-            <a href="#" class="uk-alert-close uk-close"></a>
-        </div>
-    @endif
-
     <div class="uk-alert uk-alert-warning">
         Please note that your model requires the "RssFeedInterface" before you can create the feed.
     </div>

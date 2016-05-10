@@ -1,7 +1,7 @@
 @extends('laramanager::layouts.default')
 
 @section('title')
-    {{ $resource->title . '> View' }}
+    {{ $resource->title . ' > View' }}
 @endsection
 
 @section('content')
@@ -24,11 +24,13 @@
         </form>
     </div>
 
+    @if(method_exists($entity, 'objects'))
     <h2>Objects</h2>
 
     <div class="uk-accordion" data-uk-accordion="{showfirst: false}">
 
         <div id="objects" class="uk-sortable" data-uk-sortable>
+
             @foreach($entity->objects as $object)
                 <div class="uk-panel uk-panel-box uk-panel-box-secondary uk-margin-bottom object" data-laramanager-objectable-id="{{ $object->pivot->id }}">
                     <h3 class="uk-accordion-title uk-panel-title">
@@ -37,10 +39,10 @@
                     <div class="uk-accordion-content uk-margin-top uk-margin-bottom">
                         <div id="object-{{ $object->pivot->id }}">
                             <div class="admin-objects">
-                                @if(view()->exists('vendor/laramanager/objects/' . $object->slug . '/display'))
-                                    @include('vendor/laramanager/objects/' . $object->slug . '/display')
+                                @if(view()->exists('vendor.laramanager.objects.' . $object->slug . '.display'))
+                                    @include('vendor.laramanager.objects.' . $object->slug . '.display')
                                 @else
-                                    @include('laramanager::objects/' . $object->slug . '/display')
+                                    @include('laramanager::objects.core.' . $object->slug . '.display')
                                 @endif
                             </div>
                         </div>
@@ -58,29 +60,42 @@
 
         <div class="uk-dropdown uk-dropdown-small">
             <ul class="uk-nav uk-nav-dropdown">
-                @foreach($objects as $object)
+            @foreach($objects as $object)
                     <li><a href="{{ url('admin/objects/' . $resource->slug . '/' . $entity->id . '/' . $object->id . '/create') }}">{{ $object->title }}</a></li>
                 @endforeach
             </ul>
         </div>
 
     </div>
+    @endif
 @endsection
 
 @section('scripts')
 
     <script>
+
+        var id = "{{ $entity->id }}";
+        var resource = "{{ $resource->slug }}";
+
         // Form confirmation
         $('a.confirm').on('click', function(e){
 
             e.preventDefault();
 
-            var form = $(this).parents('form');
             var removemsg	= $(this).attr('title');
 
             if (confirm(removemsg))
             {
-                form.submit();
+                $.ajax({
+                    url: SITE_URL + '/admin/' + resource + '/' + id,
+                    type: 'POST',
+                    data: {_method: 'DELETE', _token: csrf},
+                    success: function(response) {
+                        if(response.status == 'ok') {
+                            window.location = SITE_URL + '/admin/' + resource;
+                        }
+                    }
+                });
             }
         });
 
