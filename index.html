@@ -115,7 +115,7 @@
 
 <p>Resources are items such as Events, Pages and Posts. They map up to your tables to help handle the CRUD actions. Since LaraManager is built as just an "interface" to your existing Laravel application, you will need to have these tables created and an Eloquent Model defined.</p>
 
-<p>You will be adding fields to the resource that will match up to your columns. Make sure you add these field to your <code>$fillable</code> array.</p>
+<p>You will be adding fields to the resource that will match up to your columns. Make sure you add these fields to your <code>$fillable</code> array.</p>
 
 <h2>
 <a id="fields" class="anchor" href="#fields" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Fields</h2>
@@ -151,13 +151,15 @@
 <h3>
 <a id="images-1" class="anchor" href="#images-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Images</h3>
 
-<p>This field is similar to Image but allows for selection and reordering of multiple images. This field required a pivot table such as <code>event_image</code> and a method added to the <code>Model</code>. For example, adding a "Gallery" to <code>Event</code>. The <code>orderBy('ordinal', 'asc')</code> is required to order the images correctly. <strong>Make sure your pivot table contains an ordinal column</strong></p>
+<p>This field is similar to Image but allows for selection and reordering of multiple images. This field requires a pivot table such as <code>event_image</code> and a method added to the <code>Model</code>. For example, adding a "Gallery" to <code>Event</code>.</p>
 
 <pre><code>public function gallery()
 {
     return $this-&gt;belongsToMany('Philsquare\LaraManager\Models\Image')-&gt;orderBy('ordinal', 'asc');
 }
 </code></pre>
+
+<p>The <code>orderBy('ordinal', 'asc')</code> is required to order the images correctly. <strong>Make sure your pivot table contains an ordinal column</strong></p>
 
 <h3>
 <a id="password" class="anchor" href="#password" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Password</h3>
@@ -254,7 +256,7 @@
 
 <p>If you are using the "Image" or "Images" object fields, you can access the image(s) using either <code>$object-&gt;file('file_id')</code> or <code>$object-&gt;files('file_ids')</code>.</p>
 
-<p>Be careful about the type of input your are acquiring. There is no validation and all the data is just serialized and stored in a <code>TEXT</code> field. I'm sure there are limitations and security issues. However, these objects are meant for display purposes only. I do not recommend receiving any form input data using objects.</p>
+<p>Be careful about the type of input your are acquiring. There is no validation and all the data is just serialized and stored in a <code>TEXT</code> field. I'm sure there are limitations and security issues. However, these objects are meant for display purposes only. I do not recommend receiving any form input data from the public side using objects. In other words, no forms in the display.blade.php view.</p>
 
 <h4>
 <a id="scriptsbladephp" class="anchor" href="#scriptsbladephp" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>scripts.blade.php</h4>
