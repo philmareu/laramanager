@@ -4,16 +4,16 @@ use Philsquare\LaraManager\Models\Resource;
 
 class ResourceRepository {
 
-    protected $model;
+    protected $resource;
 
-    public function __construct()
+    public function __construct(Resource $resource)
     {
-        $this->model = new Resource;
+        $this->resource = $resource;
     }
 
     public function getBySlug($slug)
     {
-        return $this->model->where('slug', $slug)->first();
+        return $this->resource->where('slug', $slug)->first();
     }
 
 }
