@@ -234,6 +234,16 @@
 <span class="pl-s1"></span>
 <span class="pl-s1">}</span></pre></div>
 
+<p>Once you have added this trait to your model, you can then add objects to your resources entities.</p>
+
+<h3>
+<a id="rendering-objects-views" class="anchor" href="#rendering-objects-views" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Rendering objects views</h3>
+
+<p>You can easily render the objects views for your entities by using the <code>@each</code> directive. Make sure you pass the objects to the view. For example, if you had a resource "Events" then you more than likely would use this on your event show page.</p>
+
+<pre lang="blade"><code>@each('laramanager::objects.render', $event-&gt;objects, 'object')
+</code></pre>
+
 <h3>
 <a id="creating-custom-objects" class="anchor" href="#creating-custom-objects" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Creating custom objects</h3>
 
