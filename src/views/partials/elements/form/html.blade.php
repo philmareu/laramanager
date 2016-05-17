@@ -4,6 +4,6 @@
 
     <textarea name="{{ $field['name'] }}"
               id="{{ $field['id'] or '' }}"
-              class="{{ $errors->has($field['name']) ? 'uk-form-danger' : '' }}" data-uk-htmleditor>{{ old($field['name']) ?: (isset($field['value']) ? $field['value'] : '') }}</textarea>
+              class="{{ $errors->has($field['name']) ? 'uk-form-danger' : '' }}" data-uk-htmleditor="{mode:'tab', markdown:true}">{{ old($field['name']) ?: (isset($field['value']) ? $field['value'] : '') }}</textarea>
 
 @overwrite

@@ -2,6 +2,7 @@
     <link rel="stylesheet" href="{{ asset('vendor/laramanager/vendor/codemirror-5.14.2/lib/codemirror.css') }}">
 
     <script src="{{ asset('vendor/laramanager/codemirror-5.14.2/lib/codemirror.js') }}"></script>
+    <script src="{{ asset('vendor/laramanager/codemirror-5.14.2/mode/markdown/markdown.js') }}"></script>
     <script src="{{ asset('vendor/laramanager/codemirror-5.14.2/addon/mode/overlay.js') }}"></script>
     <script src="{{ asset('vendor/laramanager/codemirror-5.14.2/mode/xml/xml.js') }}"></script>
     <script src="{{ asset('vendor/laramanager/codemirror-5.14.2/mode/gfm/gfm.js') }}"></script>
