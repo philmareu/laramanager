@@ -22,7 +22,7 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], functio
         }
     }
 
-    get('feed/{type}', 'RssFeedsController@show');
+    Route::get('feed/{type}', 'RssFeedsController@show');
 
     Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function()
     {
