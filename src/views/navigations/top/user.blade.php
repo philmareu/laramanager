@@ -6,7 +6,17 @@
     <!-- This is the dropdown -->
     <div class="uk-dropdown uk-dropdown-navbar">
         <ul class="uk-nav uk-nav-navbar">
-            <li><a href="{{ url('admin/auth/logout') }}"><i class="uk-icon-sign-out uk-icon-justify"></i> Logout</a></li>
+            <li>
+                <a href="{{ url('/admin/logout') }}"
+                   onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                    Logout
+                </a>
+
+                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
+            </li>
         </ul>
     </div>
 

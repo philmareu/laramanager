@@ -13,7 +13,7 @@
         <div id="login-box">
             <div class="title-bar"><i class="uk-icon-lock"></i> Request Password Reset</div>
 
-            <form class="uk-form uk-text-left" role="form" method="POST" action="{{ url('admin/auth/password/email') }}">
+            <form class="uk-form uk-text-left" role="form" method="POST" action="{{ url('admin/password/email') }}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 <div class="uk-form-row">
@@ -32,7 +32,7 @@
                     </div>
                 </div>
 
-                <div class="uk-form-row"><a href="{{ url('admin/auth/login') }}"><i class="uk-icon-arrow-left"></i> Back</a></div>
+                <div class="uk-form-row"><a href="{{ url('admin/login') }}"><i class="uk-icon-arrow-left"></i> Back</a></div>
 
             </form>
         </div>
