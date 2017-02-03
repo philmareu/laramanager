@@ -24,7 +24,7 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers', 'middlew
 
     Route::get('feed/{type}', 'RssFeedsController@show');
 
-    Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function()
+    Route::group(['prefix' => 'admin', 'middleware' => 'admin', 'as' => 'admin.'], function()
     {
         Route::get('/', 'AdminController@index');
         Route::get('dashboard', 'AdminController@dashboard');
