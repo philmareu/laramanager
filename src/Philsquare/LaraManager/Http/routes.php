@@ -4,15 +4,15 @@ use Illuminate\Support\Facades\Schema;
 use Philsquare\LaraManager\Models\Redirect;
 use Philsquare\LaraManager\Models\Resource;
 
-Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers'], function()
+Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers', 'middleware' => 'web'], function()
 {
-    Route::get('admin/auth/login', 'Auth\AuthController@getLogin');
-    Route::post('admin/auth/login', 'Auth\AuthController@postLogin');
-    Route::get('admin/auth/logout', 'Auth\AuthController@getLogout');
-    Route::get('admin/auth/password/email', 'Auth\PasswordController@getEmail');
-    Route::post('admin/auth/password/email', 'Auth\PasswordController@postEmail');
-    Route::get('admin/auth/password/reset/{token}', 'Auth\PasswordController@getReset');
-    Route::post('admin/auth/password/reset', 'Auth\PasswordController@postReset');
+    Route::get('admin/login', 'Auth\LoginController@showLoginForm');
+    Route::post('admin/login', 'Auth\LoginController@login');
+    Route::get('admin/logout', 'Auth\LoginController@logout');
+    Route::get('admin/password/email', 'Auth\ForgotPasswordController@showLinkRequestForm');
+    Route::post('admin/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
+    Route::get('admin/password/reset/{token}', 'Auth\PasswordController@getReset');
+    Route::post('admin/password/reset', 'Auth\PasswordController@postReset');
 
     if(Schema::hasTable('redirects'))
     {

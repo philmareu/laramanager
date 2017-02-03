@@ -9,7 +9,7 @@
     <div class="uk-width-medium-1-5 uk-vertical-align-middle">
         <div id="login-box">
             <div class="title-bar"><i class="uk-icon-lock"></i> Reset Password</div>
-            <form class="uk-form uk-text-left" method="POST" action="{{ url('admin/auth/password/reset') }}">
+            <form class="uk-form uk-text-left" method="POST" action="{{ url('admin/password/reset') }}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="token" value="{{ $token }}">
 

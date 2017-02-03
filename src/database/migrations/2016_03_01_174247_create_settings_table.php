@@ -19,7 +19,7 @@ class CreateSettingsTable extends Migration
             $table->text('slug');
             $table->text('description');
             $table->enum('type', ['text', 'textarea']);
-            $table->text('value')->default('');
+            $table->text('value');
             $table->boolean('is_core')->default(0);
             $table->timestamps();
         });
