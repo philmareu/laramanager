@@ -28,11 +28,11 @@ class AdminMiddleware
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             } else {
-                return redirect()->guest('admin/auth/login');
+                return redirect()->guest('admin/login');
             }
         }
 
-        if ($this->auth->user()->is_admin != 1) return redirect()->guest('admin/auth/login');
+        if ($this->auth->user()->is_admin != 1) return redirect()->guest('admin/login');
 
         return $next($request);
     }
