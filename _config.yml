@@ -1,0 +1,8 @@
+title: LaraManager
+description: Simple admin for Laravel applications
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-cayman
+
+gems:
+  - jekyll-mentions
