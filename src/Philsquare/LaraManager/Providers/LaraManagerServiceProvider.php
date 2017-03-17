@@ -18,9 +18,7 @@ class LaraManagerServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
-        if (! $this->app->routesAreCached()) {
-            require __DIR__ . '/../Http/routes.php';
-        }
+        $this->loadRoutesFrom(__DIR__ . '/../Http/routes.php');
 
         $router->middleware('admin', \Philsquare\LaraManager\Http\Middleware\AdminMiddleware::class);
         $router->middleware('guest.admin', \Philsquare\LaraManager\Http\Middleware\RedirectIfAuthenticated::class);
