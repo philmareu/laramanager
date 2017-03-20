@@ -2,7 +2,7 @@
     'field' => [
         'name' => 'data[model]',
         'label' => 'Model (values)',
-        'value' => isset($field) ? $field->data('model') : ''
+        'value' => isset($field) ? $field->data['model'] : ''
     ]
 ])
 
@@ -10,7 +10,7 @@
     'field' => [
         'name' => 'data[method]',
         'label' => 'Method name',
-        'value' => isset($field) ? $field->data('method') : ''
+        'value' => isset($field) ? $field->data['method'] : ''
     ]
 ])
 
@@ -18,7 +18,7 @@
     'field' => [
         'name' => 'data[title]',
         'label' => 'Title Field (e.x. "name")',
-        'value' => isset($field) ? $field->data('title') : 'title'
+        'value' => isset($field) ? $field->data['title'] : 'title'
     ]
 ])
 
@@ -26,6 +26,6 @@
     'field' => [
         'name' => 'data[key]',
         'label' => 'Key Field (e.x. "id")',
-        'value' => isset($field) ? $field->data('key') : 'id'
+        'value' => isset($field) ? $field->data['key'] : 'id'
     ]
 ])
