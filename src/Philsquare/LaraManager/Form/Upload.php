@@ -89,6 +89,7 @@ class Upload implements Arrayable {
             'original_filename' => $this->original_filename,
             'title' => $this->title,
             'alt' => $this->alt,
+            'description' => '',
             'size' => $this->size,
             'extension' => $this->extension
         ];

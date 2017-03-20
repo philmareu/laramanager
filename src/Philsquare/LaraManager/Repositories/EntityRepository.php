@@ -59,7 +59,7 @@ class EntityRepository {
     public function getFieldOptions($field)
     {
         $model = $field->data['model'];
-        return $model::orderBy($field->data['title'], 'asc')->get()->lists($field->data['title'], $field->data['key'])->all();
+        return $model::orderBy($field->data['title'], 'asc')->get()->pluck($field->data['title'], $field->data['key'])->all();
     }
 
     /**
