@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Image extends Model {
 
+    protected $table = 'laramanager_images';
+
     protected $fillable = [
         'filename',
         'title',

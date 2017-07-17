@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Resource extends Model {
 
+    protected $table = 'laramanager_resources';
+
     protected $fillable = [
         'title',
         'slug',

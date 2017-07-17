@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 
 class Object extends Model {
 
+    protected $table = 'laramanager_objects';
+
     protected $fillable = [
         'title',
         'slug',
