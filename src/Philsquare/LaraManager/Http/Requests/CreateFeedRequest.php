@@ -20,10 +20,10 @@ class CreateFeedRequest extends Request {
     public function rules()
     {
         return [
-            'title' => 'required|max:255|unique:feeds,title',
+            'title' => 'required|max:255|unique:laramanager_feeds,title',
             'description' => 'required|max:255',
             'url' => 'required|max:255|url',
-            'slug' => 'required|max:255|unique:feeds,slug',
+            'slug' => 'required|max:255|unique:laramanager_feeds,slug',
             'model' => 'required|max:255',
             'language' => 'required|max:255',
             'copyright' => 'required|max:255',

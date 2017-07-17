@@ -26,7 +26,7 @@ class UpdateImageRequest extends Request {
             'alt' => 'max:255',
             'description' => 'max:255',
             'original_filename' => 'max:255',
-            'filename' => "required|unique_filename:$id|max:110|unique:images,filename,$id"
+            'filename' => "required|unique_filename:$id|max:110|unique:laramanager_images,filename,$id"
         ];
     }
 
