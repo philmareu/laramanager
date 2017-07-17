@@ -20,8 +20,8 @@ class CreateObjectRequest extends Request {
     public function rules()
     {
         return [
-            'title' => 'required|max:255|unique:objects,title',
-            'slug' => 'required|max:255|unique:objects,slug',
+            'title' => 'required|max:255|unique:laramanager_objects,title',
+            'slug' => 'required|max:255|unique:laramanager_objects,slug',
             'description' => 'max:255'
         ];
     }
