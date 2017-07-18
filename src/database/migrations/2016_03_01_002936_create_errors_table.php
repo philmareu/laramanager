@@ -12,7 +12,7 @@ class CreateErrorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('errors', function (Blueprint $table) {
+        Schema::create('laramanager_errors', function (Blueprint $table) {
             $table->increments('id');
             $table->string('exception');
             $table->string('uri');
@@ -29,6 +29,6 @@ class CreateErrorsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('errors');
+        Schema::drop('laramanager_errors');
     }
 }
