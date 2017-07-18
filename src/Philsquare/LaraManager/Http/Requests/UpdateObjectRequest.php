@@ -20,8 +20,8 @@ class UpdateObjectRequest extends Request {
     public function rules()
     {
         return [
-            'title' => 'required|max:255|unique:objects,title,' . $this->segment(3),
-            'slug' => 'required|max:255|unique:objects,slug,' . $this->segment(3),
+            'title' => 'required|max:255|unique:laramanager_objects,title,' . $this->segment(3),
+            'slug' => 'required|max:255|unique:laramanager_objects,slug,' . $this->segment(3),
             'description' => 'max:255'
         ];
     }

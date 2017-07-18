@@ -47,9 +47,9 @@ class ResourceManagerController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required|unique:resources|max:255',
-            'slug' => 'required|unique:resources|max:255',
-            'model' => 'required|model_must_exist|unique:resources|max:255',
+            'title' => 'required|unique:laramanager_resources|max:255',
+            'slug' => 'required|unique:laramanager_resources|max:255',
+            'model' => 'required|model_must_exist|unique:laramanager_resources|max:255',
             'namespace' => 'required|max:255',
             'order_column' => 'required|integer',
             'order_direction' => 'required|in:asc,desc',
@@ -97,9 +97,9 @@ class ResourceManagerController extends Controller
         $resource = $this->resource->find($resourceId);
 
         $this->validate($request, [
-            'title' => 'required|unique:resources,title,' . $resourceId . '|max:255',
-            'slug' => 'required|unique:resources,title,' . $resourceId . '|max:255',
-            'model' => 'required|unique:resources,title,' . $resourceId . '|max:255',
+            'title' => 'required|unique:laramanager_resources,title,' . $resourceId . '|max:255',
+            'slug' => 'required|unique:laramanager_resources,title,' . $resourceId . '|max:255',
+            'model' => 'required|unique:laramanager_resources,title,' . $resourceId . '|max:255',
             'namespace' => 'required|max:255',
             'order_column' => 'required|integer',
             'order_direction' => 'required|in:asc,desc',

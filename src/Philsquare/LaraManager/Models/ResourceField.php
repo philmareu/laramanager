@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class
 ResourceField extends Model {
 
+    protected $table = 'laramanager_resource_fields';
+
     protected $fillable = [
         'title',
         'slug',
