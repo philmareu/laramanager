@@ -3,7 +3,7 @@ LaraManager is a basic database interface for Laravel applications. It was creat
 ![LaraManager Screenshot](http://philmareu.com/uploads/laramanager-screenshot.jpg)
 
 ## Support
-I'm the only one supporting this package at the moment and bugs might exist. Issues and pull requests are welcome. Currently, LaraManager is available for Laravel 5.1 (v0.6.x) & 5.3 (v1.x.x). Please check the [releases page](https://github.com/philsquare/LaraManager/releases) for updates and change log.
+I'm the only one supporting this package at the moment and bugs might exist. Issues and pull requests are welcome. Currently, LaraManager is available for Laravel 5.1 (v0.6.x), 5.3 (v1.0.x) & 5.4 (v1.1.x). Please check the [releases page](https://github.com/philsquare/LaraManager/releases) for updates and change log.
 
 ## Introduction
 LaraManager started out as a super simple admin panel for some of my basic Laravel website projects. However, I just couldn't stop tinkering and now it does a bit more. All I needed was a way for clients and myself to interact with basic customizable content resources such as events, posts and pages. It was never created to be a stand alone build-your-own-website CMS type product. For that, I would recommend PyroCMS. Instead, it provides some basic admin boiler plate such as auth, crud actions and panel.
