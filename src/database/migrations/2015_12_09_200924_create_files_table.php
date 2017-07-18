@@ -12,14 +12,14 @@ class CreateFilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('files', function (Blueprint $table) {
+        Schema::create('laramanager_images', function (Blueprint $table) {
             $table->increments('id');
             $table->string('filename', 110);
             $table->string('title');
             $table->string('description');
-            $table->enum('type', ['doc', 'image', 'pdf']);
             $table->string('original_filename');
             $table->string('alt');
+            $table->unsignedInteger('size')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateFilesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('files');
+        Schema::drop('laramanager_images');
     }
 }

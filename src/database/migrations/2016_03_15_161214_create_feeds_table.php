@@ -12,13 +12,16 @@ class CreateFeedsTable extends Migration
      */
     public function up()
     {
-        Schema::create('feeds', function (Blueprint $table) {
+        Schema::create('laramanager_feeds', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->string('description');
             $table->string('url');
             $table->string('slug');
             $table->string('model');
+            $table->string('language')->nullable();
+            $table->string('copyright')->nullable();
+            $table->unsignedInteger('ttl')->default(720);
             $table->timestamps();
         });
     }
@@ -30,6 +33,6 @@ class CreateFeedsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('feeds');
+        Schema::drop('laramanager_feeds');
     }
 }

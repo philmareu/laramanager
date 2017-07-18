@@ -12,7 +12,7 @@ class CreateObjectableTable extends Migration
      */
     public function up()
     {
-        Schema::create('objectables', function (Blueprint $table) {
+        Schema::create('laramanager_objectables', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('object_id');
             $table->unsignedInteger('objectable_id');
@@ -31,6 +31,6 @@ class CreateObjectableTable extends Migration
      */
     public function down()
     {
-        Schema::drop('objectables');
+        Schema::drop('laramanager_objectables');
     }
 }

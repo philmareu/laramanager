@@ -12,17 +12,19 @@ class CreateResourceFieldsTable extends Migration
      */
     public function up()
     {
-        Schema::create('resource_fields', function (Blueprint $table) {
+        Schema::create('laramanager_resource_fields', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('resource_id');
             $table->string('title');
             $table->string('slug');
             $table->string('type');
             $table->string('validation');
-            $table->boolean('is_unique');
-            $table->boolean('list');
-            $table->text('data');
+            $table->boolean('list')->default(0)->change();
+            $table->boolean('is_unique')->default(0)->change();
+            $table->text('data')->nullable()->change();
             $table->timestamps();
+
+            $table->foreign('resource_id')->references('id')->on('laramanager_resources')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -33,6 +35,6 @@ class CreateResourceFieldsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('resource_fields');
+        Schema::drop('laramanager_resource_fields');
     }
 }

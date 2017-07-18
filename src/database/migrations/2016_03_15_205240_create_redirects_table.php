@@ -12,7 +12,7 @@ class CreateRedirectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('redirects', function (Blueprint $table) {
+        Schema::create('laramanager_redirects', function (Blueprint $table) {
             $table->increments('id');
             $table->string('from');
             $table->string('to');
@@ -28,6 +28,6 @@ class CreateRedirectsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('redirects');
+        Schema::drop('laramanager_redirects');
     }
 }

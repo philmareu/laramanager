@@ -12,7 +12,7 @@ class CreateObjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('objects', function (Blueprint $table) {
+        Schema::create('laramanager_objects', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title', 40);
             $table->string('slug', 50);
@@ -28,6 +28,6 @@ class CreateObjectsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('objects');
+        Schema::drop('laramanager_objects');
     }
 }

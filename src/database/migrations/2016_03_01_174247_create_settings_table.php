@@ -13,7 +13,7 @@ class CreateSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('settings', function (Blueprint $table) {
+        Schema::create('laramanager_settings', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->text('slug');
@@ -41,6 +41,6 @@ class CreateSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('settings');
+        Schema::drop('laramanager_settings');
     }
 }
