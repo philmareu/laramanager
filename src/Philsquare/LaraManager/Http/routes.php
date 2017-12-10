@@ -43,7 +43,7 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers', 'middlew
         // Users
         Route::resource('users', 'UsersController', ['except' => ['show']]);
 
-        if(Schema::hasTable('resources'))
+        if(Schema::hasTable('laramanager_resources'))
         {
             foreach(Resource::all() as $resource)
             {
