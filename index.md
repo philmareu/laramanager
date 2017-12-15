@@ -1,6 +1,6 @@
 LaraManager is a basic database interface for Laravel applications. It was created as a simple way for us to provide clients with a method for updating basic content.
 
-![LaraManager Screenshot](http://philmareu.com/uploads/laramanager-screenshot.jpg)
+![LaraManager Screenshot](https://philmareu.com/images/original/wtamrreKe0arLIvMcp646KHCX6oCEjJTszI9o98TmQemwZe9WO8gAPak0EnRQPyyYqTxJRM1K3QoKGJp5AKXbgFp3QmKtpaP4H9E.jpg)
 
 ## Support
 I'm the only one supporting this package at the moment and bugs might exist. Issues and pull requests are welcome. Currently, LaraManager is available for Laravel 5.1 (v0.6.x), 5.3 (v1.0.x) & 5.4 (v1.1.x). Please check the [releases page](https://github.com/philsquare/LaraManager/releases) for updates and change log.
