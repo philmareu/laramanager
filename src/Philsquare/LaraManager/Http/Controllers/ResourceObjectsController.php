@@ -51,7 +51,7 @@ class ResourceObjectsController extends Controller {
 
     public function update(Request $request, $resourceSlug, $entity, $objectableId)
     {
-        DB::table('objectables')->where('id', $objectableId)->update(['label' => $request->label, 'data' => serialize($request->only(['data']))]);
+        DB::table('laramanager_objectables')->where('id', $objectableId)->update(['label' => $request->label, 'data' => serialize($request->only(['data']))]);
 
         return redirect('admin/' . $resourceSlug . '/' . $entity);
     }
@@ -60,7 +60,7 @@ class ResourceObjectsController extends Controller {
     {
         foreach($request->get('ids') as $ordinal => $id)
         {
-            DB::table('objectables')->where('id', $id)->update([
+            DB::table('laramanager_objectables')->where('id', $id)->update([
                 'ordinal' => $ordinal
             ]);
         }
