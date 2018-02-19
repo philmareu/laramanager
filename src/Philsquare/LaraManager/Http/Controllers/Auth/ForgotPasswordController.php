@@ -2,8 +2,9 @@
 
 namespace Philsquare\Laramanager\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
+
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Philsquare\LaraManager\Http\Controllers\Controller;
 
 class ForgotPasswordController extends Controller
 {
