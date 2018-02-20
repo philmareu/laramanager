@@ -24,10 +24,10 @@
     @include('laramanager::navigations.top.index')
 
     <div class="uk-grid uk-grid-collapse">
-        <div class="uk-width-1-6 uk-contrast uk-height-viewport uk-hidden-small" id="sidebar">
+        <div class="uk-width-1-6 uk-visible@s" id="sidebar">
             @include('laramanager::navigations.primary.index')
         </div>
-        <div class="uk-width-1-1 uk-width-medium-5-6" id="primary-content-area">
+        <div class="uk-width-1-1 uk-width-5-6@s" id="primary-content-area">
 
             <div class="title-bar uk-container">
                 <div class="uk-grid uk-grid-collapse uk-flex-middle">
@@ -48,7 +48,7 @@
         </div>
     </div>
 
-    <script src="{{ asset('/vendor/laramanager/js/scripts.min.js') }}"></script>
+    <script src="{{ asset('vendor/laramanager/js/scripts.min.js') }}"></script>
 
     @yield('scripts')
 

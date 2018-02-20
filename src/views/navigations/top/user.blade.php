@@ -1,11 +1,7 @@
-<li class="uk-parent uk-hidden-small" data-uk-dropdown="{mode:'click'}">
-
-    <!-- This is the menu item toggling the dropdown -->
-    <a href="#" style="cursor:pointer;">{{ $user->name }} <i class="uk-icon-caret-down"></i></a>
-
-    <!-- This is the dropdown -->
-    <div class="uk-dropdown uk-dropdown-navbar">
-        <ul class="uk-nav uk-nav-navbar">
+<li>
+    <a href="#"><span class="uk-visible@s uk-margin-small-left">{{ Auth::user()->name }}</span></a>
+    <div class="uk-navbar-dropdown" uk-dropdown="mode: click">
+        <ul class="uk-nav uk-navbar-dropdown-nav">
             <li>
                 <a href="{{ url('/admin/logout') }}"
                    onclick="event.preventDefault();
@@ -19,5 +15,4 @@
             </li>
         </ul>
     </div>
-
 </li>
