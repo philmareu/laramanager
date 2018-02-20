@@ -13,6 +13,8 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers', 'middlew
     Route::post('admin/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
     Route::get('admin/password/reset/{token}', 'Auth\PasswordController@getReset');
     Route::post('admin/password/reset', 'Auth\PasswordController@postReset');
+    Route::get('laramanager/install', 'Auth\InstallController@showInstallForm');
+    Route::post('laramanager/install', 'Auth\InstallController@processInstall');
 
     if(Schema::hasTable('redirects'))
     {
