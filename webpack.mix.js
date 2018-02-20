@@ -16,7 +16,3 @@ mix.options({ processCssUrls: false });
 mix.js('src/assets/js/scripts.js', 'src/assets/js/scripts.min.js');
 
 mix.less('src/assets/less/styles.less', '../LaraManager/src/assets/css/styles.css');
-
-if (mix.inProduction()) {
-    mix.version();
-}
