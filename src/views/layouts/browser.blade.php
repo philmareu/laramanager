@@ -43,7 +43,7 @@
     </div>
 </div>
 
-<script src="{{ asset('vendor/laramanager/js/scripts.js') }}"></script>
+<script src="{{ mix('vendor/laramanager/js/scripts.min.js') }}"></script>
 
 <script>
 
