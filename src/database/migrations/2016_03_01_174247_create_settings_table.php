@@ -25,11 +25,11 @@ class CreateSettingsTable extends Migration
         });
 
         Setting::forceCreate([
-            'title' => 'Site Name',
+            'title' => 'Website Name',
             'slug' => 'site-name',
             'description' => 'The name of the website',
             'type' => 'text',
-            'value' => 'Admin',
+            'value' => config('app.name'),
             'is_core' => 1
         ]);
     }
