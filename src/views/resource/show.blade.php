@@ -26,7 +26,7 @@
 
     @if(method_exists($entity, 'objects'))
         <h2>Objects</h2>
-    
+
         <div class="uk-accordion" data-uk-accordion="{showfirst: false}">
 
             <div id="objects" class="uk-sortable" data-uk-sortable>
