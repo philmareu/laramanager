@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Philsquare\LaraManager\Http\Controllers\Controller;
 use Philsquare\LaraManager\Http\Requests\SubmitInstallSettingsRequest;
 use Philsquare\LaraManager\Models\LaramanagerObject;
+use Philsquare\LaraManager\Models\LaramanagerSetting;
 
 class InstallController extends Controller
 {
@@ -48,6 +49,15 @@ class InstallController extends Controller
             'title' => 'Embed',
             'slug' => 'embed',
             'description' => 'Embed something...'
+        ]);
+
+        LaramanagerSetting::forceCreate([
+            'title' => 'Website Name',
+            'slug' => 'site-name',
+            'description' => 'The name of the website',
+            'type' => 'text',
+            'value' => config('app.name'),
+            'is_core' => 1
         ]);
 
         Auth::login($user);

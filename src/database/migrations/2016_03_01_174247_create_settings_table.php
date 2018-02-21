@@ -23,15 +23,6 @@ class CreateSettingsTable extends Migration
             $table->boolean('is_core')->default(0);
             $table->timestamps();
         });
-
-        LaramanagerSetting::forceCreate([
-            'title' => 'Website Name',
-            'slug' => 'site-name',
-            'description' => 'The name of the website',
-            'type' => 'text',
-            'value' => config('app.name'),
-            'is_core' => 1
-        ]);
     }
 
     /**
