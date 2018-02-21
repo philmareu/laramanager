@@ -22,7 +22,7 @@ class LayoutsViewComposer {
     {
         $settings = $this->setting->all()->pluck('value', 'slug')->all();
 
-        $view->with(compact('settings'));
+        $view->withLaraManagerSettings($settings);
     }
 
 }
