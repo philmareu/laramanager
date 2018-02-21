@@ -3,15 +3,16 @@
 use Illuminate\Http\Request;
 use Philsquare\LaraManager\Http\Requests\CreateUserRequest;
 use Philsquare\LaraManager\Http\Requests\UpdateUserRequest;
-use Philsquare\LaraManager\Models\User;
 
 class UsersController extends Controller {
 
     protected $user;
 
-    public function __construct(User $user)
+    public function __construct()
     {
-        $this->user = $user;
+        $userModel = config('auth.providers.users.model');
+
+        $this->user = $userModel::make();
     }
     /**
      * Display a listing of the resource.
@@ -43,7 +44,7 @@ class UsersController extends Controller {
      */
     public function store(CreateUserRequest $request)
     {
-        $user = new User($request->except('password'));
+        $user = $this->user->fill($request->except('password'));
 
         if($request->has('password')) $user->password = bcrypt($request->password);
         if($request->has('is_admin')) $user->is_admin = 1;
