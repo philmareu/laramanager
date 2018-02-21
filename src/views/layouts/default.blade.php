@@ -17,6 +17,9 @@
         var csrf = "{{ csrf_token() }}";
     </script>
 
+    <!-- Scripts -->
+    @stack('scripts')
+
     @yield('head')
 </head>
 <body>
@@ -63,14 +66,7 @@
 
     <script src="{{ asset('vendor/laramanager/js/scripts.min.js') }}"></script>
 
-    <script>
-
-        $(function(){
-            $('#sidebar li.uk-active').parent('ul').attr('hidden', false);
-        })
-    </script>
-
-    @yield('scripts')
+    @stack('scripts-last')
 
 </body>
 </html>
