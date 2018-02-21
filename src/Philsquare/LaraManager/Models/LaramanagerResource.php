@@ -18,12 +18,12 @@ class LaramanagerResource extends Model {
 
     public function fields()
     {
-        return $this->hasMany(LaramanagerResourceField::class);
+        return $this->hasMany(LaramanagerResourceField::class, 'resource_id');
     }
 
     public function listedFields()
     {
-        return $this->hasMany(LaramanagerResourceField::class)->where('list', 1);
+        return $this->hasMany(LaramanagerResourceField::class, 'resource_id')->where('list', 1);
     }
 
 }
