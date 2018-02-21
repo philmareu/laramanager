@@ -25,48 +25,42 @@
     </div>
 
     @if(method_exists($entity, 'objects'))
-    <h2>Objects</h2>
+        <h2>Objects</h2>
+    
+        <div class="uk-accordion" data-uk-accordion="{showfirst: false}">
 
-    <div class="uk-accordion" data-uk-accordion="{showfirst: false}">
+            <div id="objects" class="uk-sortable" data-uk-sortable>
 
-        <div id="objects" class="uk-sortable" data-uk-sortable>
-
-            @foreach($entity->objects as $object)
-                <div class="uk-panel uk-panel-box uk-panel-box-secondary uk-margin-bottom object" data-laramanager-objectable-id="{{ $object->pivot->id }}">
-                    <h3 class="uk-accordion-title uk-panel-title">
-                        <i class="uk-icon-bars"></i> {{ $object->title }} - {{ $object->pivot->label }}
-                    </h3>
-                    <div class="uk-accordion-content uk-margin-top uk-margin-bottom">
-                        <div id="object-{{ $object->pivot->id }}">
-                            <div class="admin-objects">
-                                @if(view()->exists('vendor.laramanager.objects.' . $object->slug . '.display'))
-                                    @include('vendor.laramanager.objects.' . $object->slug . '.display')
-                                @else
-                                    @include('laramanager::objects.core.' . $object->slug . '.display')
-                                @endif
+                @foreach($entity->objects as $object)
+                    <div class="uk-panel uk-panel-box uk-panel-box-secondary uk-margin-bottom object" data-laramanager-objectable-id="{{ $object->pivot->id }}">
+                        <h3 class="uk-accordion-title uk-panel-title">
+                            <i class="uk-icon-bars"></i> {{ $object->title }} - {{ $object->pivot->label }}
+                        </h3>
+                        <div class="uk-accordion-content uk-margin-top uk-margin-bottom">
+                            <div id="object-{{ $object->pivot->id }}">
+                                <div class="admin-objects">
+                                    @if(view()->exists('vendor.laramanager.objects.' . $object->slug . '.display'))
+                                        @include('vendor.laramanager.objects.' . $object->slug . '.display')
+                                    @else
+                                        @include('laramanager::objects.core.' . $object->slug . '.display')
+                                    @endif
+                                </div>
                             </div>
                         </div>
+                        <a href="{{ url('admin/objects/' . $resource->slug . '/' . $entity->id . '/' . $object->pivot->id . '/edit') }}" class="uk-float-rigdht"><span uk-icon="icon: pencil;"></span> Edit</a>
                     </div>
-                    <a href="{{ url('admin/objects/' . $resource->slug . '/' . $entity->id . '/' . $object->pivot->id . '/edit') }}" class="uk-float-rigdht"><span uk-icon="icon: pencil;"></span> Edit</a>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
-    </div>
 
-
-    <div class="uk-button-dropdown" data-uk-dropdown>
-
-        <button class="uk-button">Add Object</button>
-
-        <div class="uk-dropdown uk-dropdown-small">
-            <ul class="uk-nav uk-nav-dropdown">
-            @foreach($objects as $object)
+        <div class="uk-inline">
+            <button class="uk-button uk-button-default" type="button">Add Object</button>
+            <div uk-dropdown="mode: click">
+                @foreach($objects as $object)
                     <li><a href="{{ url('admin/objects/' . $resource->slug . '/' . $entity->id . '/' . $object->id . '/create') }}">{{ $object->title }}</a></li>
                 @endforeach
-            </ul>
+            </div>
         </div>
-
-    </div>
     @endif
 @endsection
 

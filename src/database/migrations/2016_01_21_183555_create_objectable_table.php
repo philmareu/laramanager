@@ -14,9 +14,9 @@ class CreateObjectableTable extends Migration
     {
         Schema::create('laramanager_objectables', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('object_id');
-            $table->unsignedInteger('objectable_id');
-            $table->string('objectable_type');
+            $table->unsignedInteger('laramanager_object_id');
+            $table->unsignedInteger('laramanager_objectable_id');
+            $table->string('laramanager_objectable_type');
             $table->string('label');
             $table->tinyInteger('ordinal');
             $table->text('data');
