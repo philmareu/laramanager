@@ -35,7 +35,7 @@
                 <form action="{{ url('admin/images/search') }}" method="POST" class="uk-form uk-form-horizontal search-images uk-margin-bottom">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="uk-form-icon">
-                        <i class="uk-icon-search"></i>
+                        <span uk-icon="icon: search;"></span>
                         <input type="text" name="term">
                     </div>
                     <input type="submit" name="search" value="Search" class="uk-button">

@@ -9,7 +9,7 @@
 @endsection
 
 @section('actions')
-    <a href="{{ route('admin.objects.create') }}" class="uk-float-right"><i class="uk-icon-plus"></i> Add</a>
+    <a href="{{ route('admin.objects.create') }}" class="uk-float-right"><span uk-icon="icon: plus;"></span>Add</a>
 @endsection
 
 @section('content')
@@ -33,7 +33,7 @@
                     <td>{{ $object->description }}</td>
 
                     <td width="50">
-                        <a href="{{ route('admin.objects.edit', $object->id) }}"><i class="uk-icon-pencil"></i></a>
+                        <a href="{{ route('admin.objects.edit', $object->id) }}"><span uk-icon="icon: pencil;"></span></a>
                     </td>
                 </tr>
             @endforeach

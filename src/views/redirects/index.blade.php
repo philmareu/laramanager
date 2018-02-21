@@ -35,7 +35,7 @@
                     <td width="50">
                         <div class="uk-grid uk-grid-medium">
                             <div class="uk-width-1-2">
-                                <a href="{{ route('admin.redirects.edit', $redirect->id) }}"><i class="uk-icon-pencil"></i></a>
+                                <a href="{{ route('admin.redirects.edit', $redirect->id) }}"><span uk-icon="icon: pencil;"></span></a>
                             </div>
                             <div class="uk-width-1-2">
                                 <a href="#" class="uk-text-danger delete" data-resource-id="{{ $redirect->id }}"><i class="uk-icon-trash"></i></a>

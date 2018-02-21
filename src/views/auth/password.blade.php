@@ -32,7 +32,7 @@
                     </div>
                 </div>
 
-                <div class="uk-form-row"><a href="{{ url('admin/login') }}"><i class="uk-icon-arrow-left"></i> Back</a></div>
+                <div class="uk-form-row"><a href="{{ url('admin/login') }}"><span uk-icon="icon: arrow-left;" class="uk-margin-small-right"></span>Back</a></div>
 
             </form>
         </div>

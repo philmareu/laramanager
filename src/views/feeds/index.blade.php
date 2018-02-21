@@ -9,7 +9,7 @@
 @endsection
 
 @section('actions')
-    <a href="{{ route('admin.feeds.create') }}" class="uk-float-right"><i class="uk-icon-plus"></i> Add</a>
+    <a href="{{ route('admin.feeds.create') }}" class="uk-float-right"><span uk-icon="icon: plus;" class="uk-margin-small-right"></span>Add</a>
 @endsection
 
 @section('content')
@@ -33,10 +33,10 @@
                     <td width="50">
                         <div class="uk-grid uk-grid-medium">
                             <div class="uk-width-1-2">
-                                <a href="{{ route('admin.feeds.edit', $feed->id) }}"><i class="uk-icon-pencil"></i></a>
+                                <a href="{{ route('admin.feeds.edit', $feed->id) }}"><span uk-icon="icon: pencil;"></span></a>
                             </div>
                             <div class="uk-width-1-2">
-                                <a href="#" class="uk-text-danger delete" data-resource-id="{{ $feed->id }}"><i class="uk-icon-trash"></i></a>
+                                <a href="#" class="uk-text-danger delete" data-resource-id="{{ $feed->id }}"><span uk-icon="icon: trash;"></span></a>
                             </div>
                         </div>
                     </td>

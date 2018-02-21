@@ -40,7 +40,7 @@
                                 <a href="{{ url('admin/resources/' . $resource->id . '/fields') }}"><i class="uk-icon-list"></i></a>
                             </div>
                             <div class="uk-width-1-2">
-                                <a href="{{ route('admin.resources.edit', $resource->id) }}"><i class="uk-icon-pencil"></i></a>
+                                <a href="{{ route('admin.resources.edit', $resource->id) }}"><span uk-icon="icon: pencil;"></span></a>
                             </div>
                         </div>
                     </td>

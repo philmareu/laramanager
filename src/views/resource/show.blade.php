@@ -47,7 +47,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="{{ url('admin/objects/' . $resource->slug . '/' . $entity->id . '/' . $object->pivot->id . '/edit') }}" class="uk-float-rigdht"><i class="uk-icon-pencil"></i> Edit</a>
+                    <a href="{{ url('admin/objects/' . $resource->slug . '/' . $entity->id . '/' . $object->pivot->id . '/edit') }}" class="uk-float-rigdht"><span uk-icon="icon: pencil;"></span> Edit</a>
                 </div>
             @endforeach
         </div>

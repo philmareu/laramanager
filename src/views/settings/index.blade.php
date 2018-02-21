@@ -29,7 +29,7 @@
                     <td>{{ $setting->value }}</td>
 
                     <td width="50">
-                        <a href="{{ route('admin.settings.edit', $setting->id) }}"><i class="uk-icon-pencil"></i></a>
+                        <a href="{{ route('admin.settings.edit', $setting->id) }}"><span uk-icon="icon: pencil;"></span></a>
                     </td>
                 </tr>
             @endforeach
