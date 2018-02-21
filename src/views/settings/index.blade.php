@@ -1,8 +1,4 @@
-@extends('laramanager::layouts.sub.default')
-
-@section('head')
-    <link href="{{ asset("vendor/laramanager/css/datatables.css") }}" rel="stylesheet" media="screen">
-@endsection
+@extends('laramanager::layouts.sub.table')
 
 @section('title')
     Settings
@@ -39,20 +35,17 @@
 
 @endsection
 
-@push('scripts-last')
-
-    <script src="{{ asset('vendor/laramanager/js/datatables.js') }}"></script>
+@section('table-settings')
 
     <script>
 
         $(function() {
-            $('#data-table').DataTable({
+            $('#data-table').dataTable({
                 "pageLength": 50,
-                "order": [[1, 'asc']]
+                "order": [[0, 'asc']]
             });
-
         });
 
     </script>
 
-@endpush
+@endsection
