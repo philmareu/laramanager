@@ -70,7 +70,7 @@
     @endif
 @endsection
 
-@section('scripts')
+@push('script-last')
 
     <script>
 
@@ -118,4 +118,4 @@
         });
     </script>
 
-@endsection
+@endpush

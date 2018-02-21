@@ -29,8 +29,8 @@
 
 @endsection
 
-@section('scripts')
+@push('scripts-last')
 
     @include('laramanager::resource.assets')
 
-@endsection
+@endpush

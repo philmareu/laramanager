@@ -48,7 +48,7 @@
 
 @endsection
 
-@section('scripts')
+@push('scripts-last')
 
     <script src="{{ asset('vendor/laramanager/js/datatables.js') }}"></script>
 
@@ -93,4 +93,4 @@
         });
     </script>
 
-@endsection
+@endpush

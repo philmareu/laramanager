@@ -57,6 +57,6 @@ File Browser
     </ul>
 @endsection
 
-@section('scripts')
+@push('scripts-last')
     @include('laramanager::browser.scripts')
-@endsection
+@endpush

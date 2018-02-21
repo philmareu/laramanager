@@ -25,10 +25,10 @@
 
 @endsection
 
-@section('scripts')
+@push('scripts-last')
 
     <script>
         $('#title').slugify({ slug: '#slug', type: '_' });
     </script>
 
-@endsection
+@endpush

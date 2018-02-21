@@ -66,7 +66,7 @@
 
 @endsection
 
-@section('scripts')
+@push('scripts-last')
     <script>
         $('.pagination').attr('class', 'uk-pagination');
         $('.disabled').attr('class', 'uk-disabled');
@@ -213,4 +213,4 @@
             })
         });
     </script>
-@endsection
+@endpush

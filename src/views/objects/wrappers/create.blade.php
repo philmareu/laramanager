@@ -36,7 +36,7 @@
 
 @endsection
 
-@section('scripts')
+@push('scripts-last')
 
     @if(view()->exists('vendor.laramanager.objects.' . $object->slug . '/scripts'))
         @include('vendor.laramanager.objects.' . $object->slug . '/scripts')
@@ -46,4 +46,4 @@
 
     @include('laramanager::browser.scripts')
 
-@endsection
+@endpush

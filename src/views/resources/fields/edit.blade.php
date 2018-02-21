@@ -39,7 +39,7 @@
 
 @endsection
 
-@section('scripts')
+@push('scripts-last')
 
     <script>
         $(function() {
@@ -61,4 +61,4 @@
 
         });
     </script>
-@endsection
+@endpush
