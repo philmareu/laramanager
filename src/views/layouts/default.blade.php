@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{{ $laraManagerSettings['site-name'] }} Admin | @yield('title')</title>
+    <title>{{ config('app.name') }} Admin | @yield('title')</title>
 
     <link href="{{ asset("vendor/laramanager/css/styles.css") }}" rel="stylesheet" media="screen">
 
