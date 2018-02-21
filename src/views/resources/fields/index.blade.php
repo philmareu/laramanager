@@ -1,4 +1,4 @@
-@extends('laramanager::layouts.default')
+@extends('laramanager::layouts.sub.default')
 
 @section('head')
     <link href="{{ asset("vendor/laramanager/css/datatables.css") }}" rel="stylesheet" media="screen">
@@ -12,7 +12,7 @@
     <a href="{{ url('admin/resources/' . $resource->id . '/fields/create') }}" class="uk-float-right"><i class="uk-icon-plus"></i> Add</a>
 @endsection
 
-@section('content')
+@section('page-content')
 
     <table id="data-table" class="stripe row-border">
         <thead>

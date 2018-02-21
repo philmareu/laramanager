@@ -1,10 +1,10 @@
-@extends('laramanager::layouts.default')
+@extends('laramanager::layouts.sub.default')
 
 @section('title')
     {{ $resource->title . ' > View' }}
 @endsection
 
-@section('content')
+@section('page-content')
 
     <h2>Primary Field Information</h2>
     <div class="uk-panel uk-panel-box uk-panel-box-primary uk-margin-bottom">

@@ -1,10 +1,10 @@
-@extends('laramanager::layouts.default')
+@extends('laramanager::layouts.sub.default')
 
 @section('title')
     Create Feed
 @endsection
 
-@section('content')
+@section('page-content')
 
     <div class="uk-alert uk-alert-warning">
         Please note that your model requires the "RssFeedInterface" before you can create the feed.

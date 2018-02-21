@@ -1,10 +1,10 @@
-@extends('laramanager::layouts.default')
+@extends('laramanager::layouts.sub.default')
 
 @section('title')
     Images
 @endsection
 
-@section('content')
+@section('page-content')
 
     <!-- This is the tabbed navigation containing the toggling elements -->
     <ul class="uk-tab" data-uk-tab="{connect:'#browser-tabs'}">

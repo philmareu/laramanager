@@ -1,10 +1,10 @@
-@extends('laramanager::layouts.default')
+@extends('laramanager::layouts.sub.default')
 
 @section('title')
     {{ $resource->title }} > Add Object
 @stop
 
-@section('content')
+@section('page-content')
 
 	<h2>Add {{ $object->title }} object</h2>
 

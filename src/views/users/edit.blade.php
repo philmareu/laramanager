@@ -1,10 +1,10 @@
-@extends('laramanager::layouts.default')
+@extends('laramanager::layouts.sub.default')
 
 @section('title')
     Edit Redirect
 @endsection
 
-@section('content')
+@section('page-content')
 
     @if(session()->has('errors'))
         <div class="uk-alert uk-alert-danger" data-uk-alert>

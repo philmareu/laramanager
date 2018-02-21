@@ -1,4 +1,4 @@
-@extends('laramanager::layouts.default')
+@extends('laramanager::layouts.sub.default')
 
 @section('head')
     <link href="{{ asset("vendor/laramanager/css/datatables.css") }}" rel="stylesheet" media="screen">
@@ -8,7 +8,7 @@
     Settings
 @endsection
 
-@section('content')
+@section('page-content')
 
     <div class="uk-overflow-container">
         <table id="data-table" class="stripe row-border">
