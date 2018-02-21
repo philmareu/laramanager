@@ -48,18 +48,6 @@
                 @include('laramanager::partials.alerts.default')
 
                 @yield('content')
-
-                <div class="uk-width-1-4">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias aliquid aperiam commodi eius error explicabo fugit iste iusto modi neque nihil perferendis quaerat, quam recusandae sequi vitae? Earum, magni.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias aliquid aperiam commodi eius error explicabo fugit iste iusto modi neque nihil perferendis quaerat, quam recusandae sequi vitae? Earum, magni.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias aliquid aperiam commodi eius error explicabo fugit iste iusto modi neque nihil perferendis quaerat, quam recusandae sequi vitae? Earum, magni.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias aliquid aperiam commodi eius error explicabo fugit iste iusto modi neque nihil perferendis quaerat, quam recusandae sequi vitae? Earum, magni.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias aliquid aperiam commodi eius error explicabo fugit iste iusto modi neque nihil perferendis quaerat, quam recusandae sequi vitae? Earum, magni.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias aliquid aperiam commodi eius error explicabo fugit iste iusto modi neque nihil perferendis quaerat, quam recusandae sequi vitae? Earum, magni.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias aliquid aperiam commodi eius error explicabo fugit iste iusto modi neque nihil perferendis quaerat, quam recusandae sequi vitae? Earum, magni.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias aliquid aperiam commodi eius error explicabo fugit iste iusto modi neque nihil perferendis quaerat, quam recusandae sequi vitae? Earum, magni.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias aliquid aperiam commodi eius error explicabo fugit iste iusto modi neque nihil perferendis quaerat, quam recusandae sequi vitae? Earum, magni.</p>
-                </div>
             </div>
         </div>
     </div>
