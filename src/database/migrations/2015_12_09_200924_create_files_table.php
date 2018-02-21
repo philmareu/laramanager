@@ -31,6 +31,6 @@ class CreateFilesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('laramanager_images');
+        Schema::dropIfExists('laramanager_images');
     }
 }

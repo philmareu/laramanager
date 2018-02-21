@@ -32,6 +32,6 @@ class CreateSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('laramanager_settings');
+        Schema::dropIfExists('laramanager_settings');
     }
 }

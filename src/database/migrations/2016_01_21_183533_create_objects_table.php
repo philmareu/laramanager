@@ -28,6 +28,6 @@ class CreateObjectsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('laramanager_objects');
+        Schema::dropIfExists('laramanager_objects');
     }
 }

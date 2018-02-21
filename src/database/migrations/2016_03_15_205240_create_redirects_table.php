@@ -28,6 +28,6 @@ class CreateRedirectsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('laramanager_redirects');
+        Schema::dropIfExists('laramanager_redirects');
     }
 }

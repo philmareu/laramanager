@@ -31,6 +31,6 @@ class CreateObjectableTable extends Migration
      */
     public function down()
     {
-        Schema::drop('laramanager_objectables');
+        Schema::dropIfExists('laramanager_objectables');
     }
 }

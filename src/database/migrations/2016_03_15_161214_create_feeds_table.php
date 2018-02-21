@@ -33,6 +33,6 @@ class CreateFeedsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('laramanager_feeds');
+        Schema::dropIfExists('laramanager_feeds');
     }
 }
