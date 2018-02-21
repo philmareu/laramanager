@@ -36,7 +36,7 @@ class EntityRepository {
     {
         $request = $this->processFields($request, $resource);
         $model = $this->getModel($resource);
-        $entity = (new $model)->create($request->all());
+        $entity = (new $model)->forceCreate($request->except('_token'));
         $this->processRelations($request, $resource, $entity);
 
         return $entity;
@@ -47,8 +47,9 @@ class EntityRepository {
         $request = $this->processFields($request, $resource);
         $entity = $this->getById($id, $resource);
         $this->processRelations($request, $resource, $entity);
+        $entity->forceFill($request->except('_token', '_method'));
 
-        return $entity->update($request->all());
+        return $entity->save();
     }
 
     public function delete($id, $resource)
