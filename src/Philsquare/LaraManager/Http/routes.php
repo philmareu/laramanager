@@ -71,9 +71,5 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers', 'middlew
 
         Route::resource('objects', 'ObjectsController');
         Route::resource('settings', 'SettingsController');
-
-        // Errors
-        Route::get('errors', 'ErrorsController@index');
-        Route::delete('errors/{id}', 'ErrorsController@destroy');
     });
 });
