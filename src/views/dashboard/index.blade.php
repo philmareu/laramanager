@@ -1,10 +1,10 @@
-@extends('laramanager::layouts.default')
+@extends('laramanager::layouts.sub.default')
 
 @section('title')
     Dashboard
 @endsection
 
-@section('content')
+@section('page-content')
 
 
 

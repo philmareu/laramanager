@@ -1,6 +1,6 @@
-@extends('laramanager::layouts.default')
+@extends('laramanager::layouts.master')
 
-@section('page-content')
+@section('content')
     <div class="uk-grid uk-grid-collapse">
         <div class="uk-width-1-6 uk-visible@s">
             <div class="uk-height-1-1 background-gradient-primary" id="sidebar" uk-sticky>
@@ -25,7 +25,7 @@
             <div class="uk-container" id="secondary-content-area">
                 @include('laramanager::partials.alerts.default')
 
-                @yield('content')
+                @yield('page-content')
             </div>
         </div>
     </div>

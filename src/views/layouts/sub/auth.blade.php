@@ -1,4 +1,4 @@
-@extends('laramanager::layouts.default')
+@extends('laramanager::layouts.master')
 
 @section('content')
     @yield('page-content')
