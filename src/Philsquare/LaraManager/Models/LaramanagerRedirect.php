@@ -4,9 +4,7 @@ namespace Philsquare\LaraManager\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Redirect extends Model {
-
-    protected $table = 'redirects';
+class LaramanagerRedirect extends Model {
 
     protected $fillable = [
         'from',

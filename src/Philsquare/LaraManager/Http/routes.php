@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Schema;
-use Philsquare\LaraManager\Models\Redirect;
-use Philsquare\LaraManager\Models\Resource;
+use Philsquare\LaraManager\Models\LaramanagerRedirect;
+use Philsquare\LaraManager\Models\LaramanagerResource;
 
 Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers', 'middleware' => 'web'], function()
 {
@@ -18,7 +18,7 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers', 'middlew
 
     if(Schema::hasTable('redirects'))
     {
-        foreach(Redirect::all() as $redirect)
+        foreach(LaramanagerRedirect::all() as $redirect)
         {
             Route::get($redirect->from, 'RedirectsController@redirect');
         }
@@ -47,7 +47,7 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers', 'middlew
 
         if(Schema::hasTable('laramanager_resources'))
         {
-            foreach(Resource::all() as $resource)
+            foreach(LaramanagerResource::all() as $resource)
             {
                 Route::resource($resource->slug, 'ResourcesController');
 

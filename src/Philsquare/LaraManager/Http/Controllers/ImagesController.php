@@ -6,7 +6,7 @@ use Philsquare\LaraManager\Form\FormProcessor;
 use Philsquare\LaraManager\Form\Uploader;
 use Philsquare\LaraManager\Http\Requests\UpdateImageRequest;
 use Philsquare\LaraManager\Http\Requests\UploadImageRequest;
-use Philsquare\LaraManager\Models\Image;
+use Philsquare\LaraManager\Models\LaramanagerImage;
 use Philsquare\LaraManager\Repositories\ImageRepository;
 
 class ImagesController extends Controller {

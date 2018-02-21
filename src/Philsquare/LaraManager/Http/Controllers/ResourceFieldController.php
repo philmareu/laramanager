@@ -2,8 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
-use Philsquare\LaraManager\Models\Resource;
-use Philsquare\LaraManager\Models\ResourceField;
+use Philsquare\LaraManager\Models\LaramanagerResource;
+use Philsquare\LaraManager\Models\LaramanagerResourceField;
 
 class ResourceFieldController extends Controller {
 
@@ -28,7 +28,7 @@ class ResourceFieldController extends Controller {
 
     protected $resourceField;
 
-    public function __construct(Resource $resource, ResourceField $resourceField)
+    public function __construct(LaramanagerResource $resource, LaramanagerResourceField $resourceField)
     {
         $this->resource = $resource;
         $this->resourceField = $resourceField;

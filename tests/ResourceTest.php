@@ -4,7 +4,7 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Laradev\Models\User;
-use Philsquare\LaraManager\Models\Resource;
+use Philsquare\LaraManager\Models\LaramanagerResource;
 
 class ResourceTest extends TestCase
 {
@@ -37,7 +37,7 @@ class ResourceTest extends TestCase
             ->press('Save')
             ->seePageIs('admin/resources/1/fields');
 
-        $retrievedResource = Resource::find(1);
+        $retrievedResource = LaramanagerResource::find(1);
 
         $this->assertEquals('Events', $retrievedResource->title);
         $this->assertEquals('events', $retrievedResource->slug);

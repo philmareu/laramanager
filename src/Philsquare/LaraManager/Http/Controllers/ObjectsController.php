@@ -3,13 +3,13 @@
 use Illuminate\Support\Facades\Storage;
 use Philsquare\LaraManager\Http\Requests\CreateObjectRequest;
 use Philsquare\LaraManager\Http\Requests\UpdateObjectRequest;
-use Philsquare\LaraManager\Models\Object;
+use Philsquare\LaraManager\Models\LaramanagerObject;
 
 class ObjectsController extends Controller {
 
     protected $object;
 
-    public function __construct(Object $object)
+    public function __construct(LaramanagerObject $object)
     {
         $this->object = $object;
     }

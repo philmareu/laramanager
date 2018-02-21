@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Philsquare\LaraManager\Models\Setting;
+use Philsquare\LaraManager\Models\LaramanagerSetting;
 
 class CreateSettingsTable extends Migration
 {
@@ -24,7 +24,7 @@ class CreateSettingsTable extends Migration
             $table->timestamps();
         });
 
-        Setting::forceCreate([
+        LaramanagerSetting::forceCreate([
             'title' => 'Website Name',
             'slug' => 'site-name',
             'description' => 'The name of the website',

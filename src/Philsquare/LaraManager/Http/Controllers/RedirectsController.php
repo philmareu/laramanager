@@ -3,13 +3,13 @@
 use Illuminate\Http\Request;
 use Philsquare\LaraManager\Http\Requests\CreateRedirectRequest;
 use Philsquare\LaraManager\Http\Requests\UpdateRedirectRequest;
-use Philsquare\LaraManager\Models\Redirect;
+use Philsquare\LaraManager\Models\LaramanagerRedirect;
 
 class RedirectsController extends Controller {
 
     protected $redirect;
 
-    public function __construct(Redirect $redirect)
+    public function __construct(LaramanagerRedirect $redirect)
     {
         $this->redirect = $redirect;
     }
@@ -102,7 +102,7 @@ class RedirectsController extends Controller {
         return response()->json(['status' => 'failed']);
     }
 
-    public function redirect(Request $request, Redirect $redirect)
+    public function redirect(Request $request, LaramanagerRedirect $redirect)
     {
         $redirect = $redirect->where('from', $request->path())->first();
 

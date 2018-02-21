@@ -5,13 +5,13 @@ namespace Philsquare\LaraManager\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
-use Philsquare\LaraManager\Models\Resource;
+use Philsquare\LaraManager\Models\LaramanagerResource;
 
 class ResourceManagerController extends Controller
 {
     protected $resource;
 
-    public function __construct(Resource $resource)
+    public function __construct(LaramanagerResource $resource)
     {
         $this->resource = $resource;
     }

@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Philsquare\LaraManager\Models\File;
-use Philsquare\LaraManager\Models\Object;
+use Philsquare\LaraManager\Models\LaramanagerObject;
 use Philsquare\LaraManager\Repositories\EntityRepository;
 use Philsquare\LaraManager\Repositories\ResourceRepository;
 
@@ -23,7 +23,7 @@ class ResourceObjectsController extends Controller {
     {
         $resource = $this->resourceRepository->getBySlug($resourceSlug);
         $entity = $this->entityRepository->getById($entityId, $resource);
-        $object = Object::find($objectId);
+        $object = LaramanagerObject::find($objectId);
 
         return view('laramanager::objects.wrappers.create', compact('object', 'resource', 'entity'));
     }
@@ -32,7 +32,7 @@ class ResourceObjectsController extends Controller {
     {
         $resource = $this->resourceRepository->getBySlug($resourceSlug);
         $entity = $this->entityRepository->getById($entityId, $resource);
-        $object = Object::find($objectId);
+        $object = LaramanagerObject::find($objectId);
 
         $entity->objects()->attach($object->id, ['label' => $request->label, 'ordinal' => 100, 'data' => serialize($request->only(['data']))]);
 

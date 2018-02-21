@@ -4,7 +4,7 @@ namespace Philsquare\LaraManager\Http\Controllers;
 
 use Philsquare\LaraManager\Http\Requests\CreateFeedRequest;
 use Philsquare\LaraManager\Http\Requests\UpdateFeedRequest;
-use Philsquare\LaraManager\Models\Feed as FeedModel;
+use Philsquare\LaraManager\Models\LaramanagerFeed as FeedModel;
 use Suin\RSSWriter\Channel;
 use Suin\RSSWriter\Feed;
 use Suin\RSSWriter\Item;

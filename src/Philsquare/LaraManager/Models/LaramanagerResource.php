@@ -4,9 +4,7 @@ namespace Philsquare\LaraManager\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Resource extends Model {
-
-    protected $table = 'laramanager_resources';
+class LaramanagerResource extends Model {
 
     protected $fillable = [
         'title',
@@ -20,12 +18,12 @@ class Resource extends Model {
 
     public function fields()
     {
-        return $this->hasMany('Philsquare\LaraManager\Models\ResourceField');
+        return $this->hasMany(LaramanagerResourceField::class);
     }
 
     public function listedFields()
     {
-        return $this->hasMany('Philsquare\LaraManager\Models\ResourceField')->where('list', 1);
+        return $this->hasMany(LaramanagerResourceField::class)->where('list', 1);
     }
 
 }

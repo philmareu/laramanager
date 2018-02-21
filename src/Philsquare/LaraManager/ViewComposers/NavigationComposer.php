@@ -6,8 +6,8 @@ use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Philsquare\LaraManager\Models\Resource;
-use Philsquare\LaraManager\Models\Setting;
+use Philsquare\LaraManager\Models\LaramanagerResource;
+use Philsquare\LaraManager\Models\LaramanagerSetting;
 
 class NavigationComposer
 {
@@ -17,7 +17,7 @@ class NavigationComposer
 
     protected $setting;
 
-    public function __construct(Request $request, Resource $resource, Setting $setting)
+    public function __construct(Request $request, LaramanagerResource $resource, LaramanagerSetting $setting)
     {
         $this->request = $request;
         $this->resources = $resource;

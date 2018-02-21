@@ -5,9 +5,7 @@ namespace Philsquare\LaraManager\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class Object extends Model {
-
-    protected $table = 'laramanager_objects';
+class LaramanagerObject extends Model {
 
     protected $fillable = [
         'title',
@@ -28,7 +26,7 @@ class Object extends Model {
     {
         $id = $this->data($key);
 
-        return Image::find($id);
+        return LaramanagerImage::find($id);
     }
 
     public function files($key)
@@ -39,7 +37,7 @@ class Object extends Model {
 
         $idsOrdered = implode(',', $ids);
 
-        return Image::whereIn('id', $ids)
+        return LaramanagerImage::whereIn('id', $ids)
             ->orderByRaw(DB::raw("FIELD(id, $idsOrdered)"))
             ->get();
     }

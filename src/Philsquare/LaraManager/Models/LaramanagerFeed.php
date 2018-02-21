@@ -2,9 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Feed extends Model {
-
-    protected $table = 'laramanager_feeds';
+class LaramanagerFeed extends Model {
 
     protected $fillable = [
         'title',

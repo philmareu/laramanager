@@ -1,8 +1,8 @@
 <?php namespace Philsquare\LaraManager\Fields; 
 
 use Illuminate\Http\Request;
-use Philsquare\LaraManager\Models\Image;
-use Philsquare\LaraManager\Models\Resource;
+use Philsquare\LaraManager\Models\LaramanagerImage;
+use Philsquare\LaraManager\Models\LaramanagerResource;
 
 class RelationProcessor {
 
@@ -12,7 +12,7 @@ class RelationProcessor {
 
     protected $resource;
 
-    public function __construct(Request $request, Resource $resource, $entity)
+    public function __construct(Request $request, LaramanagerResource $resource, $entity)
     {
         $this->request = $request;
         $this->entity = $entity;

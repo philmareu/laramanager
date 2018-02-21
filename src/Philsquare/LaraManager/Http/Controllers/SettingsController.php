@@ -2,13 +2,13 @@
 
 use Philsquare\LaraManager\Http\Requests\CreateSettingRequest;
 use Philsquare\LaraManager\Http\Requests\UpdateSettingRequest;
-use Philsquare\LaraManager\Models\Setting;
+use Philsquare\LaraManager\Models\LaramanagerSetting;
 
 class SettingsController extends Controller {
 
     protected $setting;
 
-    public function __construct(Setting $setting)
+    public function __construct(LaramanagerSetting $setting)
     {
         $this->setting = $setting;
     }

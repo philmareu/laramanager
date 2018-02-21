@@ -3,7 +3,7 @@
 namespace Philsquare\LaraManager\Fields;
 
 use Illuminate\Http\Request;
-use Philsquare\LaraManager\Models\Resource;
+use Philsquare\LaraManager\Models\LaramanagerResource;
 
 class FieldProcessor {
 
@@ -11,7 +11,7 @@ class FieldProcessor {
 
     protected $resource;
 
-    public function __construct(Request $request, Resource $resource)
+    public function __construct(Request $request, LaramanagerResource $resource)
     {
         $this->request = $request;
         $this->resource = $resource;

@@ -3,7 +3,7 @@
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\DB;
-use Philsquare\LaraManager\Models\Object;
+use Philsquare\LaraManager\Models\LaramanagerObject;
 
 class AddObjectData extends Migration
 {
@@ -16,25 +16,25 @@ class AddObjectData extends Migration
     {
         Model::unguard();
 
-        Object::create([
+        LaramanagerObject::create([
             'title' => 'Text',
             'slug' => 'text',
             'description' => 'Basic text field'
         ]);
 
-        Object::create([
+        LaramanagerObject::create([
             'title' => 'WYSIWYG',
             'slug' => 'wysiwyg',
             'description' => 'Full editor'
         ]);
 
-        Object::create([
+        LaramanagerObject::create([
             'title' => 'Photo Gallery',
             'slug' => 'photo_gallery',
             'description' => 'Capture photos for the use in a gallery, slider, etc.'
         ]);
 
-        Object::create([
+        LaramanagerObject::create([
             'title' => 'Embed',
             'slug' => 'embed',
             'description' => 'Embed something...'

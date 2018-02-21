@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Validator;
 use Philsquare\LaraManager\Form\FormProcessor;
 use Philsquare\LaraManager\Fields\FieldProcessor;
 use Philsquare\LaraManager\Models\File;
-use Philsquare\LaraManager\Models\Object;
-use Philsquare\LaraManager\Models\Resource;
+use Philsquare\LaraManager\Models\LaramanagerObject;
+use Philsquare\LaraManager\Models\LaramanagerResource;
 use Philsquare\LaraManager\Repositories\EntityRepository;
 use Philsquare\LaraManager\Repositories\ResourceRepository;
 
@@ -89,7 +89,7 @@ class ResourcesController extends Controller
         return view('laramanager::resource.show')
             ->with('resource', $this->resource)
             ->with('entity', $entity)
-            ->with('objects', Object::all());
+            ->with('objects', LaramanagerObject::all());
     }
 
     /**

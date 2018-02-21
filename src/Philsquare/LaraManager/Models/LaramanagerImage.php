@@ -4,9 +4,7 @@ namespace Philsquare\LaraManager\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Image extends Model {
-
-    protected $table = 'laramanager_images';
+class LaramanagerImage extends Model {
 
     protected $fillable = [
         'filename',

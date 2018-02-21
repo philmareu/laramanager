@@ -2,9 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Setting extends Model {
-
-    protected $table = 'laramanager_settings';
+class LaramanagerSetting extends Model {
 
     protected $fillable = [
         'title',

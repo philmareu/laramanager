@@ -4,10 +4,7 @@ namespace Philsquare\LaraManager\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class
-ResourceField extends Model {
-
-    protected $table = 'laramanager_resource_fields';
+class LaramanagerResourceField extends Model {
 
     protected $fillable = [
         'title',
@@ -22,7 +19,7 @@ ResourceField extends Model {
 
     public function resource()
     {
-        return $this->belongsTo('Philsquare\LaraManager\Models\Resource');
+        return $this->belongsTo(LaramanagerResource::class);
     }
 
     public function selectArray()

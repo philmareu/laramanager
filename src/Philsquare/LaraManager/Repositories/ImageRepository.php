@@ -4,7 +4,7 @@ namespace Philsquare\LaraManager\Repositories;
 
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
-use Philsquare\LaraManager\Models\Image;
+use Philsquare\LaraManager\Models\LaramanagerImage;
 
 class ImageRepository {
 
@@ -12,7 +12,7 @@ class ImageRepository {
 
     public function __construct()
     {
-        $this->model = new Image;
+        $this->model = new LaramanagerImage;
     }
 
     public function create($attributes)
