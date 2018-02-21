@@ -1,1 +1,46 @@
 @import "../../../node_modules/uikit/src/less/uikit.theme.less";
+
+/*
+|--------------------------------------------------------------------------
+| Global variables
+|--------------------------------------------------------------------------
+|
+*/
+
+//@text-default-color:
+@text-dark-color: #1a1a1a;
+@text-dark-hover-color: #000;
+
+/*
+|--------------------------------------------------------------------------
+| UIkit variables
+|--------------------------------------------------------------------------
+|
+*/
+
+// Navbar
+@nav-default-item-color:                        @text-dark-color;
+@nav-default-item-hover-color:                  @text-dark-hover-color;
+@nav-default-item-active-color:                 @global-emphasis-color;
+@nav-default-sublist-item-color:                @text-dark-color;
+@nav-default-sublist-item-hover-color:          @base-body-color;
+@nav-sublist-padding-left:                      30px;
+
+/*
+|--------------------------------------------------------------------------
+| Custom
+|--------------------------------------------------------------------------
+|
+*/
+
+.background-gradient-primary {
+  background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+}
+
+.li-padding {
+  padding: 5px 0 5px 50px;
+}
+
+.li-active-background-default {
+  background-color: rgba(255, 255, 255, .2);
+}

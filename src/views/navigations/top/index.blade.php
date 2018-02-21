@@ -1,8 +1,4 @@
 <nav uk-navbar>
-    <div class="uk-navbar-left">
-        <a class="uk-navbar-item uk-logo" href="#">{{ $settings['site-name'] }}</a>
-    </div>
-
     <div class="uk-navbar-right">
 
         <ul class="uk-navbar-nav">

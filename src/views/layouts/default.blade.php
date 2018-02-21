@@ -20,14 +20,15 @@
     @yield('head')
 </head>
 <body>
-
-    @include('laramanager::navigations.top.index')
-
     <div class="uk-grid uk-grid-collapse">
-        <div class="uk-width-1-6 uk-visible@s" id="sidebar">
-            @include('laramanager::navigations.primary.index')
+        <div class="uk-width-1-6 uk-visible@s">
+            <div class="uk-height-1-1 background-gradient-primary" id="sidebar" uk-sticky>
+                @include('laramanager::navigations.primary.index')
+            </div>
         </div>
         <div class="uk-width-1-1 uk-width-5-6@s" id="primary-content-area">
+
+            @include('laramanager::navigations.top.index')
 
             <div class="title-bar uk-container">
                 <div class="uk-grid uk-grid-collapse uk-flex-middle">
@@ -44,11 +45,30 @@
                 @include('laramanager::partials.alerts.default')
 
                 @yield('content')
+
+                <div class="uk-width-1-4">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias aliquid aperiam commodi eius error explicabo fugit iste iusto modi neque nihil perferendis quaerat, quam recusandae sequi vitae? Earum, magni.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias aliquid aperiam commodi eius error explicabo fugit iste iusto modi neque nihil perferendis quaerat, quam recusandae sequi vitae? Earum, magni.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias aliquid aperiam commodi eius error explicabo fugit iste iusto modi neque nihil perferendis quaerat, quam recusandae sequi vitae? Earum, magni.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias aliquid aperiam commodi eius error explicabo fugit iste iusto modi neque nihil perferendis quaerat, quam recusandae sequi vitae? Earum, magni.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias aliquid aperiam commodi eius error explicabo fugit iste iusto modi neque nihil perferendis quaerat, quam recusandae sequi vitae? Earum, magni.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias aliquid aperiam commodi eius error explicabo fugit iste iusto modi neque nihil perferendis quaerat, quam recusandae sequi vitae? Earum, magni.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias aliquid aperiam commodi eius error explicabo fugit iste iusto modi neque nihil perferendis quaerat, quam recusandae sequi vitae? Earum, magni.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias aliquid aperiam commodi eius error explicabo fugit iste iusto modi neque nihil perferendis quaerat, quam recusandae sequi vitae? Earum, magni.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias aliquid aperiam commodi eius error explicabo fugit iste iusto modi neque nihil perferendis quaerat, quam recusandae sequi vitae? Earum, magni.</p>
+                </div>
             </div>
         </div>
     </div>
 
     <script src="{{ asset('vendor/laramanager/js/scripts.min.js') }}"></script>
+
+    <script>
+
+        $(function(){
+            $('#sidebar li.uk-active').parent('ul').attr('hidden', false);
+        })
+    </script>
 
     @yield('scripts')
 
