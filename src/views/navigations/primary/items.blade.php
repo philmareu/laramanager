@@ -10,3 +10,11 @@
     </li>
 
 @endforeach
+
+@push('scripts-last')
+    <script>
+        $(function(){
+            $('#sidebar').find('.li-active').parent('ul').attr('hidden', false);
+        })
+    </script>
+@endpush
