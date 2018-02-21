@@ -56,11 +56,10 @@ class ResourceManagerController extends Controller
             'model' => 'required|model_must_exist|unique:laramanager_resources|max:255',
             'namespace' => 'required|max:255',
             'order_column' => 'required|integer',
-            'order_direction' => 'required|in:asc,desc',
-            'icon' => 'required'
+            'order_direction' => 'required|in:asc,desc'
         ]);
 
-        $resource = $this->resource->create($request->all());
+        $resource = $this->resource->create($request->merge(['icon' => 'n/a'])->all());
 
         $this->navigationLink->create([
             'title' => $resource->title,
@@ -112,8 +111,7 @@ class ResourceManagerController extends Controller
             'model' => 'required|unique:laramanager_resources,title,' . $resourceId . '|max:255',
             'namespace' => 'required|max:255',
             'order_column' => 'required|integer',
-            'order_direction' => 'required|in:asc,desc',
-            'icon' => 'required'
+            'order_direction' => 'required|in:asc,desc'
         ]);
 
         $resource->update($request->all());
