@@ -5,15 +5,19 @@ namespace Philsquare\LaraManager\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
+use Philsquare\LaraManager\Models\LaramanagerNavigationLink;
 use Philsquare\LaraManager\Models\LaramanagerResource;
 
 class ResourceManagerController extends Controller
 {
     protected $resource;
 
-    public function __construct(LaramanagerResource $resource)
+    protected $navigationLink;
+
+    public function __construct(LaramanagerResource $resource, LaramanagerNavigationLink $navigationLink)
     {
         $this->resource = $resource;
+        $this->navigationLink = $navigationLink;
     }
 
     /**
@@ -57,6 +61,12 @@ class ResourceManagerController extends Controller
         ]);
 
         $resource = $this->resource->create($request->all());
+
+        $this->navigationLink->create([
+            'title' => $resource->title,
+            'uri' => 'admin/' . $resource->slug,
+            'laramanager_navigation_section_id' => 2
+        ]);
 
         return redirect('admin/resources/' . $resource->id . '/fields');
     }
