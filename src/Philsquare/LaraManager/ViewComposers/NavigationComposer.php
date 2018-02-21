@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Philsquare\LaraManager\Models\LaramanagerNavigationSection;
 use Philsquare\LaraManager\Models\LaramanagerResource;
 use Philsquare\LaraManager\Models\LaramanagerSetting;
 
@@ -13,15 +14,12 @@ class NavigationComposer
 {
     protected $request;
 
-    protected $resources;
+    protected $laramanagerNavigationSection;
 
-    protected $setting;
-
-    public function __construct(Request $request, LaramanagerResource $resource, LaramanagerSetting $setting)
+    public function __construct(Request $request, LaramanagerNavigationSection $laramanagerNavigationSection)
     {
         $this->request = $request;
-        $this->resources = $resource;
-        $this->setting = $setting;
+        $this->laramanagerNavigationSection = $laramanagerNavigationSection;
     }
 
     /**
@@ -33,11 +31,9 @@ class NavigationComposer
     public function compose(View $view)
     {
         $user = Auth::user();
-        $segment = $this->request->segment(1);
-        $segments = $this->request->segments();
-        $resources = $this->resources->all();
-        $settings = $this->setting->all()->pluck('value', 'slug')->all();
 
-        $view->with(compact('segment', 'segments', 'user', 'resources', 'settings'));
+        $view->withRequest($this->request)
+            ->withNavigationSections($this->laramanagerNavigationSection->with('links')->get())
+            ->withUser($user);
     }
 }

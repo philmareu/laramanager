@@ -2,9 +2,6 @@
     <div class="uk-navbar-right">
 
         <ul class="uk-navbar-nav">
-            @if(config('laramanager.navigation.shortcuts'))
-                @include('laramanager::navigations.top.shortcuts')
-            @endif
             @include('laramanager::navigations.top.user')
         </ul>
 
