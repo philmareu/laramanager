@@ -1,8 +1,4 @@
-@extends('laramanager::layouts.sub.default')
-
-@section('head')
-    <link href="{{ asset("vendor/laramanager/css/datatables.css") }}" rel="stylesheet" media="screen">
-@endsection
+@extends('laramanager::layouts.sub.table')
 
 @section('title')
     {{ $resource->title }} Fields
@@ -12,7 +8,7 @@
     <a href="{{ url('admin/resources/' . $resource->id . '/fields/create') }}" class="uk-float-right"><i class="uk-icon-plus"></i> Add</a>
 @endsection
 
-@section('page-content')
+@section('table')
 
     <table id="data-table" class="stripe row-border">
         <thead>
@@ -48,9 +44,7 @@
 
 @endsection
 
-@push('scripts-last')
-
-    <script src="{{ asset('vendor/laramanager/js/datatables.js') }}"></script>
+@section('table-settings')
 
     <script>
 
@@ -89,4 +83,4 @@
         });
     </script>
 
-@endpush
+@endsection

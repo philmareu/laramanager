@@ -1,8 +1,4 @@
-@extends('laramanager::layouts.sub.default')
-
-@section('head')
-    <link href="{{ asset("vendor/laramanager/css/datatables.css") }}" rel="stylesheet" media="screen">
-@endsection
+@extends('laramanager::layouts.sub.table')
 
 @section('title')
     Feeds
@@ -12,7 +8,7 @@
     <a href="{{ route('admin.feeds.create') }}" class="uk-float-right"><span uk-icon="icon: plus;" class="uk-margin-small-right"></span>Add</a>
 @endsection
 
-@section('page-content')
+@section('table')
 
     <div class="uk-overflow-container">
         <table id="data-table" class="stripe row-border">
@@ -48,9 +44,7 @@
 
 @endsection
 
-@push('scripts-last')
-
-    <script src="{{ asset('vendor/laramanager/js/datatables.js') }}"></script>
+@section('table-settings')
 
     <script>
 
@@ -93,4 +87,4 @@
         });
     </script>
 
-@endpush
+@endsection
