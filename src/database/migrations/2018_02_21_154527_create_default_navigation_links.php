@@ -51,14 +51,14 @@ class CreateDefaultNavigationLinks extends Migration
 
         LaramanagerNavigationLink::forceCreate([
             'title' => 'Redirects',
-            'uri' => 'admin/feeds',
+            'uri' => 'admin/redirects',
             'ordinal' => 4,
             'laramanager_navigation_section_id' => 4
         ]);
 
         LaramanagerNavigationLink::forceCreate([
             'title' => 'Users',
-            'uri' => 'admin/feeds',
+            'uri' => 'admin/users',
             'ordinal' => 5,
             'laramanager_navigation_section_id' => 4
         ]);
