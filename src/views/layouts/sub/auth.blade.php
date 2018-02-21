@@ -18,6 +18,11 @@
                 <a href="#" class="uk-alert-close uk-close"></a>
                 {{ session('failed') }}
             </div>
+        @elseif(session()->has('status'))
+            <div class="uk-alert uk-alert-warning" data-uk-alert>
+                <a href="#" class="uk-alert-close uk-close"></a>
+                {{ session('status') }}
+            </div>
         @endif
 
         <div class="uk-card uk-card-default uk-card-small">
