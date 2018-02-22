@@ -40,14 +40,8 @@
             </div>
         </li>
         <li id="upload-images">
-            <div id="upload-drop" class="uk-placeholder uk-text-center">
-                <i class="uk-icon-cloud-upload uk-icon-medium uk-text-muted uk-margin-small-right"></i>
-                Drag images here or <a class="uk-form-file">selecting one<input id="upload-select" type="file"></a>. (20Mb Max)
-            </div>
 
-            <div id="progressbar" class="uk-progress uk-hidden">
-                <div class="uk-progress-bar" style="width: 0%;">...</div>
-            </div>
+            <upload></upload>
 
             <div class="uk-overflow-container">
                 <div class="image-browser-images uk-grid-width-1-2 uk-grid-width-small-1-2 uk-grid-width-medium-1-4 uk-grid-width-large-1-6" data-uk-observe data-uk-grid>
@@ -67,150 +61,171 @@
 @endsection
 
 @push('scripts-last')
-    <script>
-        $('.pagination').attr('class', 'uk-pagination');
-        $('.disabled').attr('class', 'uk-disabled');
-        $('.active').attr('class', 'uk-active');
+    {{--<script>--}}
+        {{--$('.pagination').attr('class', 'uk-pagination');--}}
+        {{--$('.disabled').attr('class', 'uk-disabled');--}}
+        {{--$('.active').attr('class', 'uk-active');--}}
 
-        var ImageBrowserModal = $('#image-modal');
-        var spinnerHTML = '<i class="uk-icon-spinner uk-icon-spin"></i>';
-        var modalSpinnerHTML = '<div class="modal-spinner uk-text-center"><i class="uk-icon-spinner uk-icon-spin uk-icon-large"></i>';
+        {{--var ImageBrowserModal = $('#image-modal');--}}
+        {{--var spinnerHTML = '<i class="uk-icon-spinner uk-icon-spin"></i>';--}}
+        {{--var modalSpinnerHTML = '<div class="modal-spinner uk-text-center"><i class="uk-icon-spinner uk-icon-spin uk-icon-large"></i>';--}}
 
-        $(function() {
-            UIkit.grid('#images', {gutter: 10, animation: false});
-        });
+        {{--$(function() {--}}
+            {{--UIkit.grid('#images', {gutter: 10, animation: false});--}}
+        {{--});--}}
 
-        function getModal(uri) {
+        {{--function getModal(uri) {--}}
 
-            updateModal(modalSpinnerHTML);
-            UIkit.modal(ImageBrowserModal).show();
+            {{--updateModal(modalSpinnerHTML);--}}
+            {{--UIkit.modal(ImageBrowserModal).show();--}}
 
-            $.ajax({
-                type: "GET",
-                url: SITE_URL + uri,
-                success: function(response) {
-                    updateModal(response.html.form);
-                },
-                error: function(response, status, error) {
-                    if(response.status == 401) {
-                        window.location = SITE_URL + '/admin/auth/login';
-                    }
-                }
-            });
-            return false;
+            {{--$.ajax({--}}
+                {{--type: "GET",--}}
+                {{--url: SITE_URL + uri,--}}
+                {{--success: function(response) {--}}
+                    {{--updateModal(response.html.form);--}}
+                {{--},--}}
+                {{--error: function(response, status, error) {--}}
+                    {{--if(response.status == 401) {--}}
+                        {{--window.location = SITE_URL + '/admin/auth/login';--}}
+                    {{--}--}}
+                {{--}--}}
+            {{--});--}}
+            {{--return false;--}}
 
-        }
+        {{--}--}}
 
-        function updateModal(html) {
-            $('.modal-content').html( html );
-        }
+        {{--function updateModal(html) {--}}
+            {{--$('.modal-content').html( html );--}}
+        {{--}--}}
 
-        $('.image-browser-images').on('click', 'img', function(event) {
-            var imageId = $(this).attr('data-laramanager-image-id');
+        {{--$('.image-browser-images').on('click', 'img', function(event) {--}}
+            {{--var imageId = $(this).attr('data-laramanager-image-id');--}}
 
-            getModal('/admin/images/' + imageId + '/edit');
-        });
+            {{--getModal('/admin/images/' + imageId + '/edit');--}}
+        {{--});--}}
 
-        ImageBrowserModal.on('submit', '#update-image', function(event) {
+        {{--ImageBrowserModal.on('submit', '#update-image', function(event) {--}}
 
-            event.preventDefault();
-            var form = $(this);
-            var data = form.serialize();
-            var button = form.find('input[type=submit]');
-            button.val('Updating...');
+            {{--event.preventDefault();--}}
+            {{--var form = $(this);--}}
+            {{--var data = form.serialize();--}}
+            {{--var button = form.find('input[type=submit]');--}}
+            {{--button.val('Updating...');--}}
 
-            $.ajax({
-                url: form.attr('action'),
-                type: 'POST',
-                data: data,
-                success: function load(response) {
-                    if(response.errors) {
-                        alert(response.errors)
-                    }
+            {{--$.ajax({--}}
+                {{--url: form.attr('action'),--}}
+                {{--type: 'POST',--}}
+                {{--data: data,--}}
+                {{--success: function load(response) {--}}
+                    {{--if(response.errors) {--}}
+                        {{--alert(response.errors)--}}
+                    {{--}--}}
 
-                    $('.url').html(response.paths.original);
-                    button.val('Update');
-                },
-                error: function(response, status, error) {
-                    if(response.status == 401) {
-                        window.location = SITE_URL + '/admin/auth/login';
-                    }
-                }
-            });
+                    {{--$('.url').html(response.paths.original);--}}
+                    {{--button.val('Update');--}}
+                {{--},--}}
+                {{--error: function(response, status, error) {--}}
+                    {{--if(response.status == 401) {--}}
+                        {{--window.location = SITE_URL + '/admin/auth/login';--}}
+                    {{--}--}}
+                {{--}--}}
+            {{--});--}}
 
-        });
+        {{--});--}}
 
-        var progressbar = $("#progressbar"),
-                bar         = progressbar.find('.uk-progress-bar'),
-                settings    = {
+        {{--let bar = document.getElementById('js-progressbar');--}}
 
-                    action: SITE_URL + '/admin/images/upload', // upload url
+        {{--UIkit.upload('.js-upload', {--}}
 
-                    allow : '*.(jpg|jpeg|gif|png)', // allow only pngs
+            {{--url: SITE_URL + '/admin/images/upload',--}}
 
-                    param: 'image',
+            {{--multiple: false,--}}
 
-                    params: {_token: csrf, view: 'browser.image'},
+            {{--name: 'image',--}}
 
-                    loadstart: function() {
-                        bar.css("width", "0%").text("0%");
-                        progressbar.removeClass("uk-hidden");
-                    },
+            {{--params: {_token: csrf, view: 'browser.image'},--}}
 
-                    progress: function(percent) {
-                        percent = Math.ceil(percent);
-                        bar.css("width", percent+"%").text(percent+"%");
-                    },
+            {{--allow : '*.(jpg|jpeg|gif|png)',--}}
 
-                    complete: function(response, xhr) {
+            {{--beforeSend: function () {--}}
+                {{--console.log('beforeSend', arguments);--}}
+            {{--},--}}
+            {{--beforeAll: function () {--}}
+                {{--console.log('beforeAll', arguments);--}}
+            {{--},--}}
+            {{--load: function () {--}}
+                {{--console.log('load', arguments);--}}
+            {{--},--}}
+            {{--error: function () {--}}
+                {{--console.log('error', arguments);--}}
+            {{--},--}}
+            {{--complete: function () {--}}
+                {{--console.log('complete', arguments);--}}
+            {{--},--}}
 
-                        bar.css("width", "0%").text("0%");
-                        response = $.parseJSON(response);
+            {{--loadStart: function (e) {--}}
+                {{--console.log('loadStart', arguments);--}}
 
-                        $('#upload-images').find('.image-browser-images').append(response.html);
+                {{--bar.removeAttribute('hidden');--}}
+                {{--bar.max = e.total;--}}
+                {{--bar.value = e.loaded;--}}
+            {{--},--}}
 
-                    },
+            {{--progress: function (e) {--}}
+                {{--console.log('progress', arguments);--}}
 
-                    allcomplete: function(response) {
+                {{--bar.max = e.total;--}}
+                {{--bar.value = e.loaded;--}}
+            {{--},--}}
 
-                        bar.css("width", "100%").text("100%");
+            {{--loadEnd: function (e) {--}}
+                {{--console.log('loadEnd', arguments);--}}
 
-                        setTimeout(function(){
-                            progressbar.addClass("uk-hidden");
-                        }, 250);
+                {{--bar.max = e.total;--}}
+                {{--bar.value = e.loaded;--}}
+            {{--},--}}
 
-//                        location.reload(true);
-                    }
-                };
+            {{--completeAll: function () {--}}
+                {{--console.log('completeAll', arguments);--}}
 
-        var selectSingle = UIkit.uploadSelect($("#upload-select"), settings),
-                dropSingle   = UIkit.uploadDrop($("#upload-drop"), settings);
+                {{--setTimeout(function () {--}}
+                    {{--bar.setAttribute('hidden', 'hidden');--}}
+                {{--}, 1000);--}}
 
-        var searchResultsImages = $('#search-images').find('.image-browser-images');
+                {{--$('#upload-images').find('.image-browser-images').append(response.html);--}}
+            {{--}--}}
 
-        $('form.search-images').on('submit', function(event) {
-            event.preventDefault();
+        {{--});--}}
 
-            var form = $(this);
-            var data = form.serialize();
-            var action = form.attr('action');
+        {{--var selectSingle = UIkit.uploadSelect($("#upload-select"), settings),--}}
+                {{--dropSingle   = UIkit.uploadDrop($("#upload-drop"), settings);--}}
 
-            $.ajax({
-                type: 'POST',
-                url: action,
-                data: data,
-                success: function(response) {
-                    searchResultsImages.html('');
-                    if(response.images == "") {
-                        searchResultsImages.html("No Images Found.");
-                    } else {
-                        searchResultsImages.append(response.images);
-                    }
-                },
-                complete: function(response, status) {
+        {{--var searchResultsImages = $('#search-images').find('.image-browser-images');--}}
 
-                }
-            })
-        });
-    </script>
+        {{--$('form.search-images').on('submit', function(event) {--}}
+            {{--event.preventDefault();--}}
+
+            {{--var form = $(this);--}}
+            {{--var data = form.serialize();--}}
+            {{--var action = form.attr('action');--}}
+
+            {{--$.ajax({--}}
+                {{--type: 'POST',--}}
+                {{--url: action,--}}
+                {{--data: data,--}}
+                {{--success: function(response) {--}}
+                    {{--searchResultsImages.html('');--}}
+                    {{--if(response.images == "") {--}}
+                        {{--searchResultsImages.html("No Images Found.");--}}
+                    {{--} else {--}}
+                        {{--searchResultsImages.append(response.images);--}}
+                    {{--}--}}
+                {{--},--}}
+                {{--complete: function(response, status) {--}}
+
+                {{--}--}}
+            {{--})--}}
+        {{--});--}}
+    {{--</script>--}}
 @endpush

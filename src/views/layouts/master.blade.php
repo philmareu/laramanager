@@ -25,7 +25,9 @@
     @yield('head')
 </head>
 <body>
-    @yield('content')
+    <div id="app">
+        @yield('content')
+    </div>
 
     <script src="{{ asset('vendor/laramanager/js/scripts.min.js') }}"></script>
 
