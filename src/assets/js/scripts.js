@@ -50,7 +50,7 @@ window.Vue = require('vue');
  * Vue components
  */
 
-Vue.component('upload', require('./vue/components/Upload.vue'));
+Vue.component('images', require('./vue/components/Images.vue'));
 
 const app = new Vue({
     el: '#app',

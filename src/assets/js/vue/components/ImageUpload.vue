@@ -1,5 +1,5 @@
 <template>
-    <upload-component :resourceName="image"></upload-component>
+    <upload-component :resourceName="resource"></upload-component>
 </template>
 
 <script>
@@ -14,6 +14,12 @@
 
         components: {
             UploadComponent
+        },
+
+        data: function() {
+            return {
+                resource: 'image'
+            }
         }
 
     }
