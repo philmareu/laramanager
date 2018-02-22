@@ -53,12 +53,12 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers', 'middlew
             }
         }
 
-        Route::get('objects/{resource}/{resourceId}/{objects}/create', 'ResourceObjectsController@create');
-        Route::post('objects/{resource}/{resourceId}/{objects}', 'ResourceObjectsController@store');
-        Route::get('objects/{resource}/{resourceId}/{id}/edit', 'ResourceObjectsController@edit');
-        Route::put('objects/{resource}/{resourceId}/{id}', 'ResourceObjectsController@update');
-        Route::put('objects/reorder', 'ResourceObjectsController@reorder');
-        Route::delete('objects/{id}', ['before' => 'ajax', 'uses' => 'ResourceObjectsController@destroy']);
+        Route::get('{resource}/object/{resourceId}/{objects}/create', 'ResourceObjectsController@create');
+        Route::post('{resource}/object/{resourceId}/{objects}', 'ResourceObjectsController@store');
+        Route::get('{resource}/object/{resourceId}/{id}/edit', 'ResourceObjectsController@edit');
+        Route::put('{resource}/object/{resourceId}/{id}', 'ResourceObjectsController@update');
+        Route::put('{resource}/object/reorder', 'ResourceObjectsController@reorder');
+        Route::delete('{resource}/object/{id}', ['before' => 'ajax', 'uses' => 'ResourceObjectsController@destroy']);
 
         Route::get('resources/fields/getOptions/{type}', 'ResourceFieldController@getOptions');
         Route::get('resources/{resources}/fields/{fields}/edit', 'ResourceFieldController@edit');

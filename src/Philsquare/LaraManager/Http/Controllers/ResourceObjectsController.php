@@ -44,7 +44,7 @@ class ResourceObjectsController extends Controller {
         $resource = $this->resourceRepository->getBySlug($resourceSlug);
         $entity = $this->entityRepository->getById($entityId, $resource);
 
-        $object = $entity->objects()->where('objectables.id', $objectableId)->first();
+        $object = $entity->objects()->where('laramanager_objectables.id', $objectableId)->first();
 
         return view('laramanager::objects.wrappers.edit', compact('object', 'resource', 'entity'));
     }

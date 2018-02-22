@@ -6,7 +6,7 @@
 
 @section('page-content')
 
-    <form action="{{ url('admin/objects/' . $resource->slug . '/' . $entity->id . '/' . $object->pivot->id) }}" method="POST" class="uk-form uk-form-stacked">
+    <form action="{{ url('admin/' . $resource->slug . '/object/' . $entity->id . '/' . $object->pivot->id) }}" method="POST" class="uk-form uk-form-stacked">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <input type="hidden" name="_method" value="PUT">
 

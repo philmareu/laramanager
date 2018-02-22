@@ -8,7 +8,7 @@
 
 	<h2>Add {{ $object->title }} object</h2>
 
-    <form action="{{ url('admin/objects/' . $resource->slug . '/' . $entity->id . '/' . $object->id) }}" method="POST" class="uk-form uk-form-stacked">
+    <form action="{{ url('admin/' . $resource->slug . '/object/' . $entity->id . '/' . $object->id) }}" method="POST" class="uk-form uk-form-stacked">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
         @include('laramanager::partials.elements.form.text', ['field' => ['name' => 'label']])
