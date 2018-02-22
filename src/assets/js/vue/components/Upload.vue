@@ -1,5 +1,5 @@
 <template>
-    <upload-template></upload-template>
+    <upload-component :resourceName="image"></upload-component>
 </template>
 
 <script>

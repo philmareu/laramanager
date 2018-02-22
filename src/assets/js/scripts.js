@@ -51,3 +51,11 @@ window.Vue = require('vue');
  */
 
 Vue.component('upload', require('./vue/components/Upload.vue'));
+
+const app = new Vue({
+    el: '#app',
+    data: {
+        siteUrl: SITE_URL
+    }
+});
+

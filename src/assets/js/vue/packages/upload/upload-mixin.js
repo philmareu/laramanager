@@ -12,8 +12,8 @@ module.exports = {
     methods: {
         setupUploadField: function() {
 
-            var vm = this;
-            var bar = $("#progressbar-" + this.resourceName)[0];
+            let vm = this;
+            let bar = $("#progressbar-" + this.resourceName)[0];
 
             UIkit.upload('#upload-' + this.resourceName, {
 
