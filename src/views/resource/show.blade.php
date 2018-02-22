@@ -64,7 +64,7 @@
     @endif
 @endsection
 
-@push('script-last')
+@push('scripts-last')
 
     <script>
 
