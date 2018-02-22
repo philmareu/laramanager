@@ -12,11 +12,6 @@ try {
 } catch (e) {}
 
 /**
- * Load CKeditor
- */
-// window.ckeditor = require('@ckeditor/ckeditor5-build-classic');
-
-/**
  * Load UIkit
  */
 window.UIkit = require('uikit');
@@ -34,7 +29,7 @@ UIkit.use(Icons);
 let token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
-    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+    // window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
