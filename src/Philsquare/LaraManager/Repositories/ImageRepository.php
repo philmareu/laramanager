@@ -25,9 +25,9 @@ class ImageRepository {
         return $this->model->whereId($id)->first();
     }
 
-    public function getPaginated()
+    public function getPaginated($limit = 100)
     {
-        return $this->model->latest()->paginate(100);
+        return $this->model->latest()->paginate($limit);
     }
 
     public function search($term)
