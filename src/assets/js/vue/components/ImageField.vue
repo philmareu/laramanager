@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="image !== null">
+        <div v-if="image !== null" @click="removeImage">
             <img :src="imageUrl('image-browser', image.filename)" alt="">
             <input type="hidden" :name="field.slug" v-model="image.id">
         </div>
@@ -30,6 +30,9 @@
             },
             imageUrl: function (filter, filename) {
                 return SITE_URL + '/images/' + filter + '/' + filename;
+            },
+            removeImage: function () {
+                this.image = null;
             }
         },
 
