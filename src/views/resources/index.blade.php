@@ -33,7 +33,7 @@
                     <td width="50">
                         <div class="uk-grid uk-grid-medium">
                             <div class="uk-width-1-2">
-                                <a href="{{ url('admin/resources/' . $resource->id . '/fields') }}"><i class="uk-icon-list"></i></a>
+                                <a href="{{ url('admin/resources/' . $resource->id . '/fields') }}"><span uk-icon="icon: list;"></span></a>
                             </div>
                             <div class="uk-width-1-2">
                                 <a href="{{ route('admin.resources.edit', $resource->id) }}"><span uk-icon="icon: pencil;"></span></a>
