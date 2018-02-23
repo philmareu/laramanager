@@ -10,9 +10,9 @@ class ImageRepository {
 
     protected $model;
 
-    public function __construct()
+    public function __construct(LaramanagerImage $laramanagerImage)
     {
-        $this->model = new LaramanagerImage;
+        $this->model = $laramanagerImage;
     }
 
     public function create($attributes)
