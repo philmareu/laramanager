@@ -70,7 +70,7 @@ class ResourceFieldController extends Controller {
         $this->validate($request, [
             'title' => 'required|max:255',
             'slug' => 'required|max:255',
-            'validation' => '',
+            'validation' => 'required',
             'is_unique' => 'boolean',
             'is_required' => 'boolean',
             'type' => 'required|not_in:0',
