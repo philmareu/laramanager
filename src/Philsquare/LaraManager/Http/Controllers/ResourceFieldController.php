@@ -8,7 +8,6 @@ use Philsquare\LaraManager\Models\LaramanagerResourceField;
 class ResourceFieldController extends Controller {
 
     protected $fields = [
-        '0' => 'Select Field',
         'text' => 'Text',
         'email' => 'Email',
         'slug' => 'Slug',
@@ -55,7 +54,7 @@ class ResourceFieldController extends Controller {
     {
         $resource = $this->resource->find($resourceId);
 
-        return view('laramanager::resources.fields.create', ['resource' => $resource, 'fields' => $this->fields]);
+        return view('laramanager::resources.fields.create', ['resource' => $resource, 'fields' => $this->getFields()]);
     }
 
     /**
@@ -109,7 +108,7 @@ class ResourceFieldController extends Controller {
 
         return view('laramanager::resources.fields.edit', [
             'resource' => $resource,
-            'fields' => $this->fields,
+            'fields' => $this->getFields(),
             'field' => $field
         ]);
     }
@@ -175,6 +174,11 @@ class ResourceFieldController extends Controller {
         if($request->has('data')) $attributes['data'] = serialize($request->data);
 
         return $attributes;
+    }
+
+    private function getFields()
+    {
+        return array_sort($this->fields);
     }
 
 }
