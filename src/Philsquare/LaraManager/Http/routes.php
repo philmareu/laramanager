@@ -31,10 +31,7 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers', 'middlew
         Route::get('/', 'AdminController@index');
         Route::get('dashboard', 'AdminController@dashboard');
         Route::get('images/browser', 'ImagesController@imageBrowser');
-        Route::post('images/upload', 'ImagesController@upload');
-        Route::get('images', 'ImagesController@index');
-        Route::post('images/search', 'ImagesController@search');
-        Route::resource('images', 'ImagesController', ['except' => ['create', 'store', 'destroy']]);
+        Route::resource('images', 'ImagesController', ['except' => ['create', 'destroy']]);
 
         // Redirects
         Route::resource('redirects', 'RedirectsController');
