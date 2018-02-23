@@ -11,10 +11,10 @@
 
             @include('laramanager::navigations.top.index')
 
-            <div class="title-bar uk-container">
+            <div class="title-bar uk-container uk-margin-bottom">
                 <div class="uk-grid uk-grid-collapse uk-flex-middle">
                     <div class="uk-width-1-2">
-                        <span class="title">@yield('title')</span>
+                        <h1 class="title">@yield('title')</h1>
                     </div>
                     <div class="uk-width-1-2">
                         @yield('actions')
