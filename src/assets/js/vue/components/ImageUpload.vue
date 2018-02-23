@@ -1,10 +1,10 @@
 <template>
-    <upload-component :resourceName="resource"></upload-component>
+    <upload :resourceName="resourceName"></upload>
 </template>
 
 <script>
     import UploadMixin from '../packages/upload/upload-mixin';
-    import UploadComponent from '../packages/upload/UploadComponent.vue';
+    import Upload from '../packages/upload/UploadComponent.vue';
 
     export default {
 
@@ -13,13 +13,25 @@
         ],
 
         components: {
-            UploadComponent
+            Upload
         },
 
         data: function() {
             return {
-                resource: 'image'
+                resourceName: 'gallery',
+                fileName: 'image',
+                uploadUrl: '/admin/images',
             }
+        },
+
+        methods: {
+            uploadComplete: function (upload) {
+                this.$emit('image-uploaded', upload);
+            }
+        },
+
+        mounted: function () {
+            this.setupUploadField();
         }
 
     }

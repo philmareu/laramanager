@@ -6,6 +6,6 @@
 
 @section('page-content')
 
-    <images></images>
+    <image-gallery></image-gallery>
 
 @endsection

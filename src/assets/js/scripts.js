@@ -50,7 +50,7 @@ window.Vue = require('vue');
  * Vue components
  */
 
-Vue.component('images', require('./vue/components/Images.vue'));
+Vue.component('image-gallery', require('./vue/components/ImageGallery.vue'));
 
 const app = new Vue({
     el: '#app',

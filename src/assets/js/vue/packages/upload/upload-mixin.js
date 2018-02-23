@@ -6,22 +6,25 @@ module.exports = {
             upload: {
                 id: null,
                 filename: null
-            }
+            },
+            uploadUrl: '/uploads',
+            multiple: true,
+            fileName: 'file'
         }
     },
     methods: {
         setupUploadField: function() {
-
             let vm = this;
-            let bar = $("#progressbar-" + this.resourceName)[0];
+            let bar = document.getElementById('progressbar-' + this.resourceName);
 
             UIkit.upload('#upload-' + this.resourceName, {
 
-                url: '/user/upload',
-                multiple: false,
-                params : {"_token": window.Laravel.csrfToken},
-                name: 'file',
+                url: vm.uploadUrl,
+                multiple: vm.multiple,
+                params : {"_token" : window.Laravel.csrfToken},
+                name: vm.fileName,
                 allow : this.allow,
+                dataType: 'json',
 
                 loadStart: function (e) {
                     // vm.thinking = true;
@@ -40,19 +43,26 @@ module.exports = {
                     bar.value =  e.loaded;
                 },
 
+                error: function () {
+                    console.log('error', arguments);
+                },
+
+                complete: function (response) {
+                    vm.uploadComplete(JSON.parse(response.response));
+                },
+
                 completeAll: function (response) {
                     bar.setAttribute('hidden', 'hidden');
 
                     // vm.thinking = false;
-                    vm.processUpload(JSON.parse(response.response));
+                    vm.allUploadsComplete(JSON.parse(response.response));
                 }
             });
         },
-        processUpload: function(upload) {
-            this.upload = upload;
-            this.uploadProcessedHook(upload);
+        uploadComplete: function (upload) {
+
         },
-        uploadProcessedHook: function (upload) {
+        allUploadsComplete: function(upload) {
 
         }
     }
