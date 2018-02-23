@@ -53,10 +53,6 @@ class LaraManagerServiceProvider extends ServiceProvider
     private function assetsToPublish()
     {
         $this->publishes([
-            __DIR__. '/../../../config/config.php' => config_path('laramanager.php'),
-        ], 'config');
-
-        $this->publishes([
             __DIR__ . '/../../../assets/' => public_path('vendor/laramanager/'),
         ], 'assets');
 
