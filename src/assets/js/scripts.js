@@ -54,6 +54,7 @@ window.Vue = require('vue');
 
 Vue.component('image-gallery', require('./vue/components/ImageGallery.vue'));
 Vue.component('image-field', require('./vue/components/ImageField.vue'));
+Vue.component('images-field', require('./vue/components/ImagesField.vue'));
 Vue.component('image-browser-modal', require('./vue/components/ImageBrowserModal.vue'));
 
 const app = new Vue({
