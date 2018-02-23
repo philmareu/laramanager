@@ -1,4 +1,4 @@
-@inject('image', 'Philsquare\LaraManager\Models\Image')
+@inject('image', 'Philsquare\LaraManager\Models\LaramanagerImage')
 <div class="uk-form-row field-images">
 
     <label for="{{ $field->slug }}" class="uk-form-label">{{ $field->title }}</label>
