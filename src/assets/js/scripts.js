@@ -53,11 +53,26 @@ window.Vue = require('vue');
  */
 
 Vue.component('image-gallery', require('./vue/components/ImageGallery.vue'));
+Vue.component('image-field', require('./vue/components/ImageField.vue'));
+Vue.component('image-browser-modal', require('./vue/components/ImageBrowserModal.vue'));
 
 const app = new Vue({
     el: '#app',
     data: {
-        siteUrl: SITE_URL
+        siteUrl: SITE_URL,
+        selectedImage: null,
+        activeField: null
+    },
+    
+    methods: {
+        setSelectedImage: function (image) {
+            this.selectedImage = image;
+        },
+        openBrowser: function (fieldId) {
+            console.log(fieldId);
+            this.activeField = fieldId;
+            UIkit.offcanvas('#offcanvas-image-browser').toggle();
+        }
     }
 });
 
