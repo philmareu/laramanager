@@ -1,5 +1,6 @@
 <template>
     <div>
+        <p v-if="hasErrors()" class="uk-text-danger" v-text="this.errors[this.field.slug][0]"></p>
         <div v-if="image !== null" @click="removeImage">
             <img :src="imageUrl('image-browser', image.filename)" alt="">
             <input type="hidden" :name="field.slug" v-model="image.id">
@@ -15,7 +16,9 @@
         props: [
             'field',
             'selectedImage',
-            'activeField'
+            'activeField',
+            'errors',
+            'old'
         ],
 
         data: function () {
@@ -33,6 +36,9 @@
             },
             removeImage: function () {
                 this.image = null;
+            },
+            hasErrors: function () {
+                return this.errors[this.field.slug] !== undefined;
             }
         },
 
@@ -43,8 +49,18 @@
         },
 
         mounted: function () {
-            console.log('Field:');
-            console.log(this.field);
+            console.log(this.old);
+
+            if(this.old !== null) {
+                axios.get('/admin/images/' + this.old)
+                    .then(response => {
+                        console.log(response);
+                        this.image = response.data;
+                    })
+                    .catch(error => {
+
+                    })
+            }
         }
 
     }

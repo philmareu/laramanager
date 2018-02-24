@@ -22,4 +22,7 @@
 
 <image-field :field="{{ $field }}"
              :selected-image="selectedImage"
-             :active-field="activeField" v-on:open-browser="openBrowser"></image-field>
+             :active-field="activeField"
+             :errors="{{ $errors }}"
+             :old="{{ is_null(old($field->slug)) ? 'null' : old($field->slug) }}"
+             v-on:open-browser="openBrowser"></image-field>
