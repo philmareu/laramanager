@@ -1,6 +1,7 @@
 <?php namespace Philsquare\LaraManager\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Philsquare\LaraManager\Form\FormProcessor;
 use Philsquare\LaraManager\Form\Uploader;
@@ -83,6 +84,11 @@ class ImagesController extends Controller {
         ]);
 
         return view('laramanager::images.index', compact('images'));
+    }
+
+    public function show($imageId)
+    {
+        return $this->imageRepository->getById($imageId);
     }
 
     /**
