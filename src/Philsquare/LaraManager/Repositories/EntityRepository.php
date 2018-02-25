@@ -36,7 +36,7 @@ class EntityRepository {
     {
         $request = $this->processFields($request, $resource);
         $model = $this->getModel($resource);
-        $entity = (new $model)->forceCreate($request->except('_token'));
+        $entity = (new $model)->forceCreate($this->filterRequest($request, $resource));
         $this->processRelations($request, $resource, $entity);
 
         return $entity;
@@ -47,7 +47,7 @@ class EntityRepository {
         $request = $this->processFields($request, $resource);
         $entity = $this->getById($id, $resource);
         $this->processRelations($request, $resource, $entity);
-        $entity->forceFill($request->except('_token', '_method'));
+        $entity->forceFill($this->filterRequest($request, $resource));
 
         return $entity->save();
     }
@@ -88,6 +88,14 @@ class EntityRepository {
     {
         $relationProcessor = new RelationProcessor($request, $resource, $entity);
         $relationProcessor->processRelations();
+    }
+
+    private function filterRequest(Request $request, LaramanagerResource $resource)
+    {
+        return $request->except(array_merge(
+            ['_token', '_method'],
+            $resource->fields->where('type', 'images')->pluck('slug')->toArray()
+        ));
     }
 
 }
