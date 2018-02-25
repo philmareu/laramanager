@@ -6,6 +6,8 @@
 
 @section('page-content')
 
+    <image-browser-modal v-on:image-selected="setSelectedImage"></image-browser-modal>
+
     <form action="{{ route('admin.' . $resource->slug . '.update', $entity->id) }}" enctype="multipart/form-data" method="POST" class="uk-form uk-form-stacked">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <input type="hidden" name="_method" value="PUT">
