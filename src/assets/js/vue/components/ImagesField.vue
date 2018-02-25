@@ -2,7 +2,7 @@
     <div class="uk-child-width-1-4@s" uk-grid>
         <div v-for="image in images" @click="removeImage(image)">
             <img :src="imageUrl('image-browser', image.filename)" alt="">
-            <input type="hidden" :name="field.slug" v-model="image.id">
+            <input type="hidden" :name="[ field.slug + '[]' ]" v-model="image.id">
         </div>
 
         <a href="#" @click.prevent="openBrowser">Select</a>
