@@ -15,7 +15,9 @@
         props: [
             'field',
             'selectedImage',
-            'activeField'
+            'activeField',
+            'old',
+            'entityImages'
         ],
 
         data: function () {
@@ -35,6 +37,20 @@
                 this.images = _.filter(this.images, function(item) {
                     return item.id !== image.id;
                 });
+            },
+            loadImages: function (ids) {
+
+                let v = this;
+
+                _.each(ids, function(id) {
+                    axios.get('/admin/images/' + id)
+                        .then(response => {
+                            v.images.push(response.data);
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        })
+                })
             }
         },
 
@@ -45,8 +61,14 @@
         },
 
         mounted: function () {
-            console.log('Field:');
-            console.log(this.field);
+
+            console.log(this.entityImages);
+
+            if(this.old !== null) {
+                this.loadImages(this.old);
+            } else if(this.entityImages !== null) {
+                this.images = this.entityImages;
+            }
         }
 
     }

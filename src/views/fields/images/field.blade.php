@@ -22,6 +22,10 @@
     {{--<button type="button" class="uk-button opens-image-browser" data-limit="3"><i class="uk-icon-photo"></i> Browse</button>--}}
 {{--</div>--}}
 
+
 <images-field :field="{{ $field }}"
              :selected-image="selectedImage"
-             :active-field="activeField" v-on:open-browser="openBrowser"></images-field>
+             :active-field="activeField":errors="{{ $errors }}"
+             :old="{{ is_null(old($field->slug)) ? 'null' : json_encode(old($field->slug)) }}"
+             :entity-images="{{ isset($entity) && $entity->{$field->data['method']} ? $entity->{$field->data['method']} : 'null' }}"
+             v-on:open-browser="openBrowser"></images-field>

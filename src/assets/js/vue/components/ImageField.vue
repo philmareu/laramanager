@@ -18,7 +18,8 @@
             'selectedImage',
             'activeField',
             'errors',
-            'old'
+            'old',
+            'entityImage'
         ],
 
         data: function () {
@@ -39,6 +40,16 @@
             },
             hasErrors: function () {
                 return this.errors[this.field.slug] !== undefined;
+            },
+            loadImage: function (id) {
+                axios.get('/admin/images/' + id)
+                    .then(response => {
+                        console.log(response);
+                        this.image = response.data;
+                    })
+                    .catch(error => {
+
+                    })
             }
         },
 
@@ -49,17 +60,13 @@
         },
 
         mounted: function () {
-            console.log(this.old);
+
+            console.log(this.entityImage);
 
             if(this.old !== null) {
-                axios.get('/admin/images/' + this.old)
-                    .then(response => {
-                        console.log(response);
-                        this.image = response.data;
-                    })
-                    .catch(error => {
-
-                    })
+                this.loadImage(this.old);
+            } else if(this.entityImage !== null) {
+                this.image = this.entityImage;
             }
         }
 
