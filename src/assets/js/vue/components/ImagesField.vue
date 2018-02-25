@@ -15,7 +15,7 @@
         props: [
             'field',
             'selectedImage',
-            'activeField',
+            'activeFieldId',
             'old',
             'entityImages'
         ],
@@ -56,7 +56,7 @@
 
         watch: {
             selectedImage: function (image, oldImage) {
-                if(this.activeField === this.field.id) this.images.push(image);
+                if(this.activeFieldId === this.field.id) this.images.push(image);
             }
         },
 
