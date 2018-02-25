@@ -70,7 +70,6 @@ const app = new Vue({
             this.selectedImage = image;
         },
         openBrowser: function (fieldId) {
-            console.log(fieldId);
             this.activeField = fieldId;
             UIkit.offcanvas('#offcanvas-image-browser').toggle();
         }
