@@ -6,6 +6,8 @@
 
 @section('page-content')
 
+    <image-browser-modal v-on:image-selected="setSelectedImage"></image-browser-modal>
+
 	<h2>Add {{ $object->title }} object</h2>
 
     <form action="{{ url('admin/' . $resource->slug . '/object/' . $entity->id . '/' . $object->id) }}" method="POST" class="uk-form uk-form-stacked">

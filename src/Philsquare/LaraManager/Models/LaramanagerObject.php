@@ -22,14 +22,14 @@ class LaramanagerObject extends Model {
         return isset($data['data'][$key]) ? $data['data'][$key] : '';
     }
 
-    public function file($key)
+    public function image($key)
     {
         $id = $this->data($key);
 
         return LaramanagerImage::find($id);
     }
 
-    public function files($key)
+    public function images($key)
     {
         $ids = $this->data($key);
 
