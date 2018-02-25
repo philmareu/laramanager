@@ -6,7 +6,7 @@
         <div class="uk-placeholder">
             <div class="uk-grid uk-grid-small uk-sortable images-container" data-uk-sortable>
                 <div class="uk-width-1-2 uk-margin-bottom">
-                    <div v-for="image in images">
+                    <div v-for="image in images" @click="removeImage(image)">
                         <img :src="imageUrl('image-browser', image.filename)" alt="">
                         <input type="hidden" :name="[ 'data[' + name + '][]' ]" :value="image.id">
                     </div>
@@ -29,8 +29,14 @@
             'selectedImage',
             'activeFieldId',
             'object',
-            'images'
+            'objectImages'
         ],
+
+        data: function () {
+            return {
+                images: []
+            }
+        },
 
         methods: {
             openBrowser: function () {
@@ -53,7 +59,7 @@
         },
 
         mounted: function () {
-            console.log(this.object);
+            this.images = this.objectImages;
         }
     }
 </script>
