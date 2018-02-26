@@ -30,13 +30,13 @@
             @if(method_exists($entity, 'objects'))
                 <h2>Objects</h2>
 
-                <div  uk-sortable="handle: .uk-accordion-title">
-                    <ul uk-accordion>
-                        @foreach($entity->objects as $object)
-                            <li>
-                                <a class="uk-accordion-title" href="#"><span uk-icon="icon: move;" class="uk-margin-small-right"></span>{{ $object->title }} - {{ $object->pivot->label }}</a>
-                                <div class="uk-accordion-content">
-                                    <div id="object-{{ $object->pivot->id }}">
+                <div id="resource-objects" uk-sortable>
+                    @foreach($entity->objects as $object)
+                        <div data-laramanager-objectable-id="{{ $object->pivot->id }}" class="object">
+                            <button class="uk-button uk-button-default uk-width-1-1 uk-text-left uk-margin" type="button" uk-toggle="target: #toggle-object-{{ $object->id }}"><span uk-icon="icon: move;" class="uk-margin-small-right"></span>{{ $object->title }} - {{ $object->pivot->label }}</button>
+                            <div id="toggle-object-{{ $object->id }}" hidden>
+                                <div class="uk-placeholder">
+                                    <div id="object-{{ $object->pivot->id }}" class="uk-margin">
                                         <div class="admin-objects">
                                             @if(view()->exists('vendor.laramanager.objects.' . $object->slug . '.display'))
                                                 @include('vendor.laramanager.objects.' . $object->slug . '.display')
@@ -46,37 +46,11 @@
                                         </div>
                                     </div>
 
-                                    <a href="{{ url('admin/' . $resource->slug . '/object/' . $entity->id . '/' . $object->pivot->id . '/edit') }}" class="uk-float-rigdht"><span uk-icon="icon: pencil;"></span> Edit</a>
+                                    <a href="{{ url('admin/' . $resource->slug . '/object/' . $entity->id . '/' . $object->pivot->id . '/edit') }}" class="uk-button uk-button-default uk-width-1-1 uk-margin"><span uk-icon="icon: pencil;"></span> Edit</a>
                                 </div>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-
-                <div class="uk-accordion" data-uk-accordion="{showfirst: false}">
-
-                    <div id="objects" class="uk-sortable" data-uk-sortable>
-
-                        @foreach($entity->objects as $object)
-                            <div class="uk-panel uk-panel-box uk-panel-box-secondary uk-margin-bottom object" data-laramanager-objectable-id="{{ $object->pivot->id }}">
-                                <h3 class="uk-accordion-title uk-panel-title">
-                                    <i class="uk-icon-bars"></i> {{ $object->title }} - {{ $object->pivot->label }}
-                                </h3>
-                                <div class="uk-accordion-content uk-margin-top uk-margin-bottom">
-                                    <div id="object-{{ $object->pivot->id }}">
-                                        <div class="admin-objects">
-                                            @if(view()->exists('vendor.laramanager.objects.' . $object->slug . '.display'))
-                                                @include('vendor.laramanager.objects.' . $object->slug . '.display')
-                                            @else
-                                                @include('laramanager::objects.core.' . $object->slug . '.display')
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="{{ url('admin/' . $resource->slug . '/object/' . $entity->id . '/' . $object->pivot->id . '/edit') }}" class="uk-float-rigdht"><span uk-icon="icon: pencil;"></span> Edit</a>
                             </div>
-                        @endforeach
-                    </div>
+                        </div>
+                    @endforeach
                 </div>
 
                 <div class="uk-inline">
@@ -97,8 +71,26 @@
 
     <script>
 
-        var id = "{{ $entity->id }}";
-        var resource = "{{ $resource->slug }}";
+        let id = "{{ $entity->id }}";
+        let resource = {!! $resource !!};
+
+        UIkit.util.on('#resource-objects', 'stop', function (event, component) {
+            let ids = [];
+
+            $('.object').each(function(index) {
+                let object = $(this);
+                ids.push(object.attr('data-laramanager-objectable-id'));
+            });
+            
+            $.ajax({
+                url: SITE_URL + '/admin/' + resource.id + '/objects/reorder',
+                type: 'PUT',
+                data: {ids: ids.slice(0, ids.length - 1), _token: csrf},
+                success: function(response) {
+                    console.log('reordered');
+                }
+            });
+        });
 
         // Form confirmation
         $('a.confirm').on('click', function(e){
@@ -120,24 +112,6 @@
                     }
                 });
             }
-        });
-
-        $('#objects').on('change.uk.sortable', function(event, object, element, action) {
-            var ids = [];
-
-            $('.object').each(function(index) {
-                var object = $(this);
-                ids.push(object.attr('data-laramanager-objectable-id'));
-            });
-
-            $.ajax({
-                url: SITE_URL + '/admin/' + resource + '/objects/reorder',
-                type: 'PUT',
-                data: {ids: ids, _token: csrf},
-                success: function(response) {
-                    console.log('reordered');
-                }
-            });
         });
     </script>
 

@@ -4,9 +4,9 @@
 
 @else
 
-    <div class="uk-grid uk-margin-bottom" data-uk-grid>
+    <div class="uk-grid" data-uk-grid>
         @foreach($object->images('file_ids') as $image)
-            <div class="uk-width-1-2 uk-width-medium-1-3 uk-width-large-1-4 uk-margin-large-bottom">
+            <div class="uk-width-1-2 uk-width-1-4@s">
                 <a href="{{ url('images/original/' . $image->filename) }}" data-uk-lightbox="{group:'post'}">
                     <img src="{{ url('images/image-browser/' . $image->filename) }}" alt="{{ $image->alt }}">
                 </a>
