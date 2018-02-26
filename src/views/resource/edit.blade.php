@@ -25,8 +25,6 @@
 
     </form>
 
-    @include('laramanager::browser.modal')
-
 @endsection
 
 @push('scripts-last')

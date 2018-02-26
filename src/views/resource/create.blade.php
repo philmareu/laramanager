@@ -21,13 +21,13 @@
 
         @endforeach
 
+        <textarea name="stuff" id="html-editor" cols="30" rows="10"></textarea>
+
         <div class="uk-form-row">
             <button type="submit" class="uk-button uk-button-primary uk-width-1-1 uk-width-medium-1-3 uk-width-large-1-6">Save</button>
         </div>
 
     </form>
-
-    @include('laramanager::browser.modal')
 
 @endsection
 
