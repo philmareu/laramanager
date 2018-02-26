@@ -54,7 +54,7 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers', 'middlew
         Route::post('{resource}/object/{resourceId}/{objects}', 'ResourceObjectsController@store');
         Route::get('{resource}/object/{resourceId}/{id}/edit', 'ResourceObjectsController@edit');
         Route::put('{resource}/object/{resourceId}/{id}', 'ResourceObjectsController@update');
-        Route::put('{resource}/object/reorder', 'ResourceObjectsController@reorder');
+        Route::put('{resource}/objects/reorder', 'ResourceObjectsController@reorder');
         Route::delete('{resource}/object/{id}', ['before' => 'ajax', 'uses' => 'ResourceObjectsController@destroy']);
 
         Route::get('resources/fields/getOptions/{type}', 'ResourceFieldController@getOptions');
