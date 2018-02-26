@@ -4,7 +4,7 @@
 
 @else
 
-    <div class="uk-form-row">
+    <div class="uk-margin">
 
         <span class="errors">{{ $errors->first($field['name']) }}</span>
 
