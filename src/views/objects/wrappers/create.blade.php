@@ -33,9 +33,6 @@
         </div>
     </form>
 
-    @include('laramanager::browser.modal')
-
-
 @endsection
 
 @push('scripts-last')
@@ -45,7 +42,5 @@
     @elseif(view()->exists('laramanager::objects.core.' . $object->slug . '/scripts'))
         @include('laramanager::objects.core.' . $object->slug . '/scripts')
     @endif
-
-    @include('laramanager::browser.scripts')
 
 @endpush

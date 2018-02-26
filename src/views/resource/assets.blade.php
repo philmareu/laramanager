@@ -20,5 +20,3 @@
     @endif
 
 @endforeach
-
-@include('laramanager::browser.scripts')
