@@ -9,7 +9,7 @@
         </div>
         <div class="uk-width-1-1 uk-width-5-6@s" id="primary-content-area">
 
-            <div class="title-bar uk-container uk-margin-bottom">
+            <div class="uk-container">
                 <div class="uk-grid uk-grid-collapse uk-flex-middle">
                     <div class="uk-width-1-2">
                         <h1 class="title">@yield('title')</h1>
@@ -20,7 +20,7 @@
                 </div>
             </div>
 
-            <div class="uk-container uk-padding" id="secondary-content-area">
+            <div class="uk-container">
                 @include('laramanager::partials.alerts.default')
 
                 @yield('page-content')

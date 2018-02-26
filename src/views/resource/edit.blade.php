@@ -18,9 +18,9 @@
 
         @endforeach
 
-        <div class="uk-form-row">
-            <button type="submit" class="uk-button uk-button-primary uk-width-1-1 uk-width-medium-1-3 uk-width-large-1-6">Save</button>
-            <a href="{{ route('admin.' . $resource->slug . '.show', $entity->id) }}" type="submit" class="uk-button uk-button uk-width-1-1 uk-width-medium-1-3 uk-width-large-1-6">Back</a>
+        <div class="uk-margin">
+            <button type="submit" class="uk-button uk-button-primary uk-button-small">Save</button>
+            <a href="{{ route('admin.' . $resource->slug . '.show', $entity->id) }}" type="submit" class="uk-button uk-button-small uk-button-default">Back</a>
         </div>
 
     </form>

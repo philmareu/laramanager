@@ -6,27 +6,25 @@
 
 @section('page-content')
 
-    <div class="uk-grid">
-        <div class="uk-width-1-2">
+    <div uk-grid>
+        <div class="uk-width-1-2@s">
             <h2>Primary Field Information</h2>
-            <div class="uk-panel uk-panel-box uk-panel-box-primary uk-margin-bottom">
-                @foreach($resource->fields as $key => $field)
-                    <div class="uk-margin-bottom">
-                        <div class="label uk-text-bold uk-margin-small-bottom">{{ $field->title }}</div>
-                        @include('laramanager::fields.' . $field->type . '.display')
-                    </div>
-                @endforeach
+            @foreach($resource->fields as $key => $field)
+                <div class="uk-placeholder">
+                    <div class="uk-form-label">{{ $field->title }}</div>
+                    @include('laramanager::fields.' . $field->type . '.display')
+                </div>
+            @endforeach
 
-                <form action="{{ url('admin/' . $resource->slug . '/' . $entity->id) }}" method="POST">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <input type="hidden" name="_method" value="DELETE">
+            <form action="{{ url('admin/' . $resource->slug . '/' . $entity->id) }}" method="POST">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="_method" value="DELETE">
 
-                    <a href="{{ URL::to('admin/' . $resource->slug . '/' . $entity->id . '/edit') }}" class="uk-button uk-button-primary">Edit</a>
-                    <a href="#" title="Are you sure? This will delete all related objects." class="uk-button uk-button-danger confirm">Delete</a>
-                </form>
-            </div>
+                <a href="{{ URL::to('admin/' . $resource->slug . '/' . $entity->id . '/edit') }}" class="uk-button uk-button-primary uk-button-small">Edit</a>
+                <a href="#" title="Are you sure? This will delete all related objects." class="uk-button uk-button-danger uk-button-small confirm">Delete</a>
+            </form>
         </div>
-        <div class="uk-width-1-2">
+        <div class="uk-width-1-2@s">
             @if(method_exists($entity, 'objects'))
                 <h2>Objects</h2>
 

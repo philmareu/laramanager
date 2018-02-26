@@ -4,10 +4,6 @@
     {{ $resource->title or 'Create' }}
 @endsection
 
-@section('head')
-
-@endsection
-
 @section('page-content')
 
     <image-browser-modal v-on:image-selected="setSelectedImage"></image-browser-modal>
