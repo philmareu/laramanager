@@ -57,6 +57,7 @@ Vue.component('image-field', require('./vue/components/ImageField.vue'));
 Vue.component('images-field', require('./vue/components/ImagesField.vue'));
 Vue.component('image-browser-modal', require('./vue/components/ImageBrowserModal.vue'));
 Vue.component('object-images-field', require('./vue/components/ObjectImagesField.vue'));
+Vue.component('ckeditor-image-browser', require('./vue/components/CKEditorImageBrower.vue'));
 
 const app = new Vue({
     el: '#app',

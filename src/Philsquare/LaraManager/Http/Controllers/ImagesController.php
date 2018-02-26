@@ -109,7 +109,7 @@ class ImagesController extends Controller {
      *
      * @param UploadImageRequest $request
      * @return \Illuminate\Http\JsonResponse
-     * @throws \Exception
+     * @throws \Exceptioni
      * @throws \Throwable
      */
     public function store(UploadImageRequest $request)
