@@ -15,6 +15,13 @@ class CreateDefaultNavigationLinks extends Migration
     public function up()
     {
         LaramanagerNavigationLink::forceCreate([
+            'title' => 'Dashboard',
+            'uri' => 'admin/dashboard',
+            'ordinal' => 0,
+            'laramanager_navigation_section_id' => 1
+        ]);
+
+        LaramanagerNavigationLink::forceCreate([
             'title' => 'Images',
             'uri' => 'admin/images',
             'ordinal' => 0,
