@@ -21,8 +21,8 @@
 
         @endforeach
 
-        <div class="uk-form-row">
-            <button type="submit" class="uk-button uk-button-primary uk-width-1-1 uk-width-medium-1-3 uk-width-large-1-6">Save</button>
+        <div class="uk-margin">
+            <button type="submit" class="uk-button uk-button-primary uk-button-small">Save</button>
         </div>
 
     </form>

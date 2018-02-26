@@ -1,12 +1,16 @@
 <template>
     <div>
+        <label :for="field.slug" class="uk-form-label" v-text="field.title"></label>
         <p v-if="hasErrors()" class="uk-text-danger" v-text="this.errors[this.field.slug][0]"></p>
-        <div v-if="image !== null" @click="removeImage">
-            <img :src="imageUrl('image-browser', image.filename)" alt="">
-            <input type="hidden" :name="field.slug" v-model="image.id">
+
+        <div class="uk-placeholder">
+            <div v-if="image !== null" @click="removeImage">
+                <img :src="imageUrl('image-browser', image.filename)" alt="">
+                <input type="hidden" :name="field.slug" v-model="image.id">
+            </div>
         </div>
 
-        <a href="#" @click.prevent="openBrowser">Select</a>
+        <a href="#" @click.prevent="openBrowser" class="uk-button uk-button-small uk-button-default">Select</a>
     </div>
 </template>
 

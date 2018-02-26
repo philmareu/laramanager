@@ -1,11 +1,18 @@
 <template>
-    <div class="uk-child-width-1-4@s" uk-grid>
-        <div v-for="image in images" @click="removeImage(image)">
-            <img :src="imageUrl('image-browser', image.filename)" alt="">
-            <input type="hidden" :name="[ field.slug + '[]' ]" v-model="image.id">
+    <div>
+        <label :for="field.slug" class="uk-form-label" v-text="field.title"></label>
+        <p v-if="hasErrors()" class="uk-text-danger" v-text="this.errors[this.field.slug][0]"></p>
+
+        <div class="uk-placeholder">
+            <div class="uk-child-width-1-6@s" uk-grid>
+                <div v-for="image in images" @click="removeImage(image)">
+                    <img :src="imageUrl('image-browser', image.filename)" alt="">
+                    <input type="hidden" :name="[ field.slug + '[]' ]" v-model="image.id">
+                </div>
+            </div>
         </div>
 
-        <a href="#" @click.prevent="openBrowser">Select</a>
+        <a href="#" @click.prevent="openBrowser" class="uk-button uk-button-small uk-button-default">Select</a>
     </div>
 </template>
 
@@ -16,6 +23,7 @@
             'field',
             'selectedImage',
             'activeFieldId',
+            'errors',
             'old',
             'entityImages'
         ],
@@ -37,6 +45,9 @@
                 this.images = _.filter(this.images, function(item) {
                     return item.id !== image.id;
                 });
+            },
+            hasErrors: function () {
+                return this.errors[this.field.slug] !== undefined;
             },
             loadImages: function (ids) {
 
