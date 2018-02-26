@@ -1,62 +1,77 @@
 @extends('laramanager::layouts.sub.default')
 
 @section('title')
-    {{ $resource->title . ' > View' }}
+    {{ $resource->title }}
+@endsection
+
+@section('actions')
+    <form action="{{ url('admin/' . $resource->slug . '/' . $entity->id) }}" method="POST">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        <input type="hidden" name="_method" value="DELETE">
+
+        <a href="#" title="Are you sure? This will delete all related objects." class="uk-button uk-button-danger uk-button-small confirm">Delete</a>
+    </form>
 @endsection
 
 @section('page-content')
 
     <div uk-grid>
         <div class="uk-width-1-2@s">
-            <h2>Primary Field Information</h2>
-            @foreach($resource->fields as $key => $field)
-                <div class="uk-placeholder">
-                    <div class="uk-form-label">{{ $field->title }}</div>
-                    @include('laramanager::fields.' . $field->type . '.display')
+
+            <div class="uk-card uk-card-default uk-card-small">
+                <div class="uk-card-header">
+                    <h3 class="uk-card-title">Default Fields <a href="{{ URL::to('admin/' . $resource->slug . '/' . $entity->id . '/edit') }}" class="uk-button uk-button-primary uk-button-small uk-float-right">Edit</a>
+                    </h3>
                 </div>
-            @endforeach
-
-            <form action="{{ url('admin/' . $resource->slug . '/' . $entity->id) }}" method="POST">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <input type="hidden" name="_method" value="DELETE">
-
-                <a href="{{ URL::to('admin/' . $resource->slug . '/' . $entity->id . '/edit') }}" class="uk-button uk-button-primary uk-button-small">Edit</a>
-                <a href="#" title="Are you sure? This will delete all related objects." class="uk-button uk-button-danger uk-button-small confirm">Delete</a>
-            </form>
-        </div>
-        <div class="uk-width-1-2@s">
-            @if(method_exists($entity, 'objects'))
-                <h2>Objects</h2>
-
-                <div id="resource-objects" uk-sortable>
-                    @foreach($entity->objects as $object)
-                        <div data-laramanager-objectable-id="{{ $object->pivot->id }}" class="object">
-                            <button class="uk-button uk-button-default uk-width-1-1 uk-text-left uk-margin" type="button" uk-toggle="target: #toggle-object-{{ $object->id }}"><span uk-icon="icon: move;" class="uk-margin-small-right"></span>{{ $object->title }} - {{ $object->pivot->label }}</button>
-                            <div id="toggle-object-{{ $object->id }}" hidden>
-                                <div class="uk-placeholder">
-                                    <div id="object-{{ $object->pivot->id }}" class="uk-margin">
-                                        <div class="admin-objects">
-                                            @if(view()->exists('vendor.laramanager.objects.' . $object->slug . '.display'))
-                                                @include('vendor.laramanager.objects.' . $object->slug . '.display')
-                                            @else
-                                                @include('laramanager::objects.core.' . $object->slug . '.display')
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                    <a href="{{ url('admin/' . $resource->slug . '/object/' . $entity->id . '/' . $object->pivot->id . '/edit') }}" class="uk-button uk-button-default uk-width-1-1 uk-margin"><span uk-icon="icon: pencil;"></span> Edit</a>
-                                </div>
-                            </div>
+                <div class="uk-card-body">
+                    @foreach($resource->fields as $key => $field)
+                        <div class="uk-placeholder">
+                            <div class="uk-form-label">{{ $field->title }}</div>
+                            @include('laramanager::fields.' . $field->type . '.display')
                         </div>
                     @endforeach
                 </div>
+            </div>
+        </div>
+        <div class="uk-width-1-2@s">
+            @if(method_exists($entity, 'objects'))
+                <div class="uk-card uk-card-default uk-card-small">
+                    <div class="uk-card-header">
+                        <h3 class="uk-card-title">Objects</h3>
+                    </div>
 
-                <div class="uk-inline">
-                    <button class="uk-button uk-button-default" type="button">Add Object</button>
-                    <div uk-dropdown="mode: click">
-                        @foreach($objects as $object)
-                            <li><a href="{{ url('admin/' . $resource->slug . '/object/' . $entity->id . '/' . $object->id . '/create') }}">{{ $object->title }}</a></li>
-                        @endforeach
+                    <div class="uk-card-body">
+                        <div id="resource-objects" uk-sortable>
+                            @foreach($entity->objects as $object)
+                                <div data-laramanager-objectable-id="{{ $object->pivot->id }}" class="object">
+                                    <button class="uk-button uk-button-default uk-width-1-1 uk-text-left uk-margin" type="button" uk-toggle="target: #toggle-object-{{ $object->id }}"><span uk-icon="icon: move;" class="uk-margin-small-right"></span>{{ $object->title }} - {{ $object->pivot->label }}</button>
+                                    <div id="toggle-object-{{ $object->id }}" hidden>
+                                        <div class="uk-placeholder">
+                                            <div id="object-{{ $object->pivot->id }}" class="uk-margin">
+                                                <div class="admin-objects">
+                                                    @if(view()->exists('vendor.laramanager.objects.' . $object->slug . '.display'))
+                                                        @include('vendor.laramanager.objects.' . $object->slug . '.display')
+                                                    @else
+                                                        @include('laramanager::objects.core.' . $object->slug . '.display')
+                                                    @endif
+                                                </div>
+                                            </div>
+
+                                            <a href="{{ url('admin/' . $resource->slug . '/object/' . $entity->id . '/' . $object->pivot->id . '/edit') }}" class="uk-button uk-button-default uk-width-1-1 uk-margin"><span uk-icon="icon: pencil;"></span> Edit</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+
+                        <div class="uk-inline">
+                            <button class="uk-button uk-button-default" type="button">Add Object</button>
+                            <div uk-dropdown="mode: click">
+                                @foreach($objects as $object)
+                                    <li><a href="{{ url('admin/' . $resource->slug . '/object/' . $entity->id . '/' . $object->id . '/create') }}">{{ $object->title }}</a></li>
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
                 </div>
             @endif

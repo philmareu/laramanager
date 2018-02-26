@@ -1,4 +1,4 @@
-<div class="uk-padding-small uk-text-center">
+<div class="uk-padding-small uk-text-center uk-light">
     <h3>{{ config('app.name') }}</h3>
     <div>
         {{ Auth::user()->name }}<br>

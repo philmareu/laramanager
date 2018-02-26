@@ -9,9 +9,14 @@
 |
 */
 
+@color-1: #E2591E;
+@color-2: #7D8180;
 //@text-default-color:
 @text-dark-color: #1a1a1a;
 @text-dark-hover-color: #000;
+@text-lightest-color: #FFF;
+@text-lighter-color: #f5f5f5;
+@text-light-color: #ebebeb;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,12 +25,25 @@
 |
 */
 
+//Base
+@base-body-background:                          @color-2;
+@base-body-font-family:                         "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+@base-body-font-weight:                         300;
+//@base-body-color:                               #5C4E46;
+
+
+//@base-heading-color: #232323;
+
+@base-heading-font-family:                      "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+@base-heading-font-weight:                      500;
+
+
 // Navbar
-@nav-default-item-color:                        @text-dark-color;
-@nav-default-item-hover-color:                  @text-dark-hover-color;
+@nav-default-item-color:                        @text-lighter-color;
+@nav-default-item-hover-color:                  @text-light-color;
 @nav-default-item-active-color:                 @global-emphasis-color;
-@nav-default-sublist-item-color:                @text-dark-color;
-@nav-default-sublist-item-hover-color:          @base-body-color;
+@nav-default-sublist-item-color:                @text-lighter-color;
+@nav-default-sublist-item-hover-color:          @text-light-color;
 @nav-sublist-padding-left:                      30px;
 
 /*
@@ -36,7 +54,7 @@
 */
 
 .background-gradient-primary {
-  background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+  background: linear-gradient(141deg, @color-1 0%, darken(@color-1, 20%) 100%);
 }
 
 .li-padding {
