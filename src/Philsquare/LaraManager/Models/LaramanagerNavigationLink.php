@@ -16,7 +16,7 @@ class LaramanagerNavigationLink extends Model
 
     public function section()
     {
-        return $this->belongsTo(LaramanagerNavigationSection::class)->orderBy('ordinal');
+        return $this->belongsTo(LaramanagerNavigationSection::class, 'laramanager_navigation_section_id')->orderBy('ordinal');
     }
 
     public function wildcardUris() : array
