@@ -62,7 +62,7 @@
         $(function() {
 
             $('#data-table').DataTable({
-                "pageLength": 1,
+                "pageLength": 50,
                 "order": [[orderColumn, orderDirection]]
             });
 
