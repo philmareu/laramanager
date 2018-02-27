@@ -4,34 +4,29 @@
     Settings
 @endsection
 
-@section('page-content')
+@section('breadcrumbs')
+    <li><span>@yield('title')</span></li>
+@endsection
 
-    <div class="uk-overflow-container">
-        <table id="data-table" class="stripe row-border">
-            <thead>
-            <tr>
-                <td>Title</td>
-                <td>Slug</td>
-                <td>Value</td>
-                <td>&nbsp;</td>
-            </tr>
-            </thead>
+@section('table-headers')
+    <td>Title</td>
+    <td>Slug</td>
+    <td>Value</td>
+    <td>&nbsp;</td>
+@endsection
 
-            <tbody>
-            @foreach($settings as $setting)
-                <tr>
-                    <td>{{ $setting->title }}</td>
-                    <td>{{ $setting->slug }}</td>
-                    <td>{{ $setting->value }}</td>
+@section('table-body')
+    @foreach($settings as $setting)
+        <tr>
+            <td>{{ $setting->title }}</td>
+            <td>{{ $setting->slug }}</td>
+            <td>{{ $setting->value }}</td>
 
-                    <td width="50">
-                        <a href="{{ route('admin.settings.edit', $setting->id) }}"><span uk-icon="icon: pencil;"></span></a>
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
-    </div>
+            <td width="50">
+                <a href="{{ route('admin.settings.edit', $setting->id) }}"><span uk-icon="icon: pencil;"></span></a>
+            </td>
+        </tr>
+    @endforeach
 
 @endsection
 

@@ -1,7 +1,12 @@
-@extends('laramanager::layouts.sub.default')
+@extends('laramanager::layouts.sub.blank')
 
 @section('title')
-    {{ $resource->title }}
+    {{ $resource->id }}
+@endsection
+
+@section('breadcrumbs')
+    <li><a href="{{ route('admin.' . $resource->slug . '.index') }}">{{ $resource->title }}</a></li>
+    <li><span>{{ $entity->id }}</span></li>
 @endsection
 
 @section('actions')

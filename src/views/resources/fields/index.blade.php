@@ -1,46 +1,46 @@
 @extends('laramanager::layouts.sub.table')
 
 @section('title')
-    {{ $resource->title }} Fields
+    Fields
+@endsection
+
+@section('breadcrumbs')
+    <li><a href="{{ route('admin.resources.index') }}">Resources</a></li>
+    <li class="uk-disabled"><a>{{ $resource->title }}</a></li>
+    <li><span>@yield('title')</span></li>
 @endsection
 
 @section('actions')
-    <a href="{{ url('admin/resources/' . $resource->id . '/fields/create') }}" class="uk-float-right"><i class="uk-icon-plus"></i> Add</a>
+    <a href="{{ url('admin/resources/' . $resource->id . '/fields/create') }}" class="uk-button uk-button-small uk-button-primary">Create Field</a>
 @endsection
 
-@section('table')
+@section('table-headers')
+    <td>Title</td>
+    <td>Slug (column name)</td>
+    <td>Type</td>
+    <td>&nbsp;</td>
+@endsection
 
-    <table id="data-table" class="stripe row-border">
-        <thead>
+@section('table-body')
+
+    @foreach($resource->fields as $field)
         <tr>
-            <td>Title</td>
-            <td>Slug (column name)</td>
-            <td>Type</td>
-            <td>&nbsp;</td>
-        </tr>
-        </thead>
+            <td>{{ $field->title }}</td>
+            <td>{{ $field->slug }}</td>
+            <td>{{ $field->type }}</td>
 
-        <tbody>
-        @foreach($resource->fields as $field)
-            <tr>
-                <td>{{ $field->title }}</td>
-                <td>{{ $field->slug }}</td>
-                <td>{{ $field->type }}</td>
-
-                <td width="50">
-                    <div class="uk-grid uk-grid-medium">
-                        <div class="uk-width-1-2">
-                            <a href="{{ url('admin/resources/' . $resource->id . '/fields/' . $field->id . '/edit') }}"><span uk-icon="icon: pencil;"></span></a>
-                        </div>
-                        <div class="uk-width-1-2">
-                            <a href="#" class="uk-text-danger delete" data-field-id="{{ $field->id }}"><i class="uk-icon-trash"></i></a>
-                        </div>
+            <td width="50">
+                <div class="uk-grid uk-grid-medium">
+                    <div class="uk-width-1-2">
+                        <a href="{{ url('admin/resources/' . $resource->id . '/fields/' . $field->id . '/edit') }}"><span uk-icon="icon: pencil;"></span></a>
                     </div>
-                </td>
-            </tr>
-        @endforeach
-        </tbody>
-    </table>
+                    <div class="uk-width-1-2">
+                        <a href="#" class="uk-text-danger delete" data-field-id="{{ $field->id }}"><i class="uk-icon-trash"></i></a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    @endforeach
 
 @endsection
 

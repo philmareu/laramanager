@@ -23,17 +23,7 @@
             </div>
 
             <div class="uk-container">
-                @include('laramanager::partials.alerts.default')
-
-                <div class="uk-card uk-card-default uk-card-small">
-                    <div class="uk-card-header">
-                        <h3 class="uk-card-title">@yield('title')</h3>
-                    </div>
-
-                    <div class="uk-card-body">
-                        @yield('page-content')
-                    </div>
-                </div>
+                @yield('page-content')
             </div>
         </div>
     </div>

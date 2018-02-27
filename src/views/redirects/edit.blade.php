@@ -1,7 +1,13 @@
 @extends('laramanager::layouts.sub.default')
 
 @section('title')
-    Edit Redirect
+    {{ $redirect->id }}
+@endsection
+
+@section('breadcrumbs')
+    <li><a href="{{ route('admin.redirects.index') }}">Redirects</a></li>
+    <li class="uk-disabled"><a>Edit</a></li>
+    <li><span>@yield('title')</span></li>
 @endsection
 
 @section('page-content')
@@ -14,9 +20,7 @@
         @include('laramanager::partials.elements.form.text', ['field' => ['name' => 'to', 'value' => $redirect->to]])
         @include('laramanager::partials.elements.form.select', ['field' => ['name' => 'type', 'options' => ['301' => '301 Permanent', '302' => '302 Temporary'], 'value' => $redirect->type]])
 
-        <div class="uk-form-row">
-            <button type="submit" class="uk-button uk-button-primary uk-width-1-1 uk-width-medium-1-3 uk-width-large-1-6">Update</button>
-        </div>
+        @include('laramanager::partials.elements.buttons.submit', ['submitText' => 'Update'])
 
     </form>
 

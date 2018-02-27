@@ -4,46 +4,40 @@
     Redirects
 @endsection
 
-@section('actions')
-    <a href="{{ route('admin.redirects.create') }}" class="uk-float-right"><i class="uk-icon-plus"></i> Add</a>
+@section('breadcrumbs')
+    <li><span>@yield('title')</span></li>
 @endsection
 
-@section('table')
+@section('actions')
+    <a href="{{ route('admin.redirects.create') }}" class="uk-button uk-button-small uk-button-primary">Create</a>
+@endsection
 
-    <div class="uk-overflow-container">
-        <table id="data-table" class="stripe row-border">
-            <thead>
-            <tr>
-                <td>From</td>
-                <td>To</td>
-                <td>Type</td>
-                <td>&nbsp;</td>
-            </tr>
-            </thead>
+@section('table-headers')
+    <td>From</td>
+    <td>To</td>
+    <td>Type</td>
+    <td>&nbsp;</td>
+@endsection
 
-            <tbody>
-            @foreach($redirects as $redirect)
-                <tr>
-                    <td>{{ $redirect->from }}</td>
-                    <td>{{ $redirect->to }}</td>
-                    <td>{{ $redirect->type }}</td>
+@section('table-body')
+    @foreach($redirects as $redirect)
+        <tr>
+            <td>{{ $redirect->from }}</td>
+            <td>{{ $redirect->to }}</td>
+            <td>{{ $redirect->type }}</td>
 
-                    <td width="50">
-                        <div class="uk-grid uk-grid-medium">
-                            <div class="uk-width-1-2">
-                                <a href="{{ route('admin.redirects.edit', $redirect->id) }}"><span uk-icon="icon: pencil;"></span></a>
-                            </div>
-                            <div class="uk-width-1-2">
-                                <a href="#" class="uk-text-danger delete" data-resource-id="{{ $redirect->id }}"><i class="uk-icon-trash"></i></a>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
-    </div>
-
+            <td width="50">
+                <div class="uk-grid uk-grid-medium">
+                    <div class="uk-width-1-2">
+                        <a href="{{ route('admin.redirects.edit', $redirect->id) }}"><span uk-icon="icon: pencil;"></span></a>
+                    </div>
+                    <div class="uk-width-1-2">
+                        <a href="#" class="uk-text-danger delete" data-resource-id="{{ $redirect->id }}"><i class="uk-icon-trash"></i></a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    @endforeach
 @endsection
 
 @section('table-settings')

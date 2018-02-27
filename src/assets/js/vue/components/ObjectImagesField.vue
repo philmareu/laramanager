@@ -4,17 +4,15 @@
         <label :for="[ 'data[' + name + '][]' ]" class="uk-form-label" v-text="label"></label>
 
         <div class="uk-placeholder">
-            <div class="uk-grid uk-grid-small uk-sortable images-container" data-uk-sortable>
-                <div class="uk-width-1-2 uk-width-1-4@s">
-                    <div v-for="image in images" @click="removeImage(image)">
-                        <img :src="imageUrl('image-browser', image.filename)" alt="">
-                        <input type="hidden" :name="[ 'data[' + name + '][]' ]" :value="image.id">
-                    </div>
+            <div class="uk-child-width-1-6@s" uk-grid>
+                <div v-for="image in images" @click="removeImage(image)">
+                    <img :src="imageUrl('image-browser', image.filename)" alt="">
+                    <input type="hidden" :name="[ 'data[' + name + '][]' ]" :value="image.id">
                 </div>
             </div>
         </div>
 
-        <a href="#" @click.prevent="openBrowser">Select</a>
+        <a href="#" @click.prevent="openBrowser" class="uk-button uk-button-default uk-button-small">Select</a>
 
         <!--Do we need this????-->
         <input type="hidden" name="images_field_name" value="[ 'data[' + name + ']' ]">

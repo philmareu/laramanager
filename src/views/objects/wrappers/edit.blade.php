@@ -1,8 +1,20 @@
 @extends('laramanager::layouts.sub.default')
 
 @section('title')
-    Edit Object
-@stop
+    Edit
+@endsection
+
+@section('breadcrumbs')
+    <li><a href="{{ route('admin.' . $resource->slug . '.index') }}">{{ $resource->title }}</a></li>
+    <li><a href="{{ route('admin.' . $resource->slug . '.show', $entity->id) }}">{{ $entity->id }}</a></li>
+    <li class="uk-disabled"><a>Objects</a></li>
+    <li class="uk-disabled"><a>{{ $object->id }}</a></li>
+    <li><span>@yield('title')</span></li>
+@endsection
+
+@section('actions')
+    <a href="{{ url('admin/' . $resource->slug . '/' . $entity->id) }}" class="uk-button uk-button-small uk-button-primary">Cancel</a>
+@endsection
 
 @section('page-content')
 
@@ -20,16 +32,7 @@
             @include('laramanager::objects.core.' . $object->slug . '.fields')
         @endif
 
-        <div class="uk-form-row">
-            <div class="uk-grid uk-flex uk-flex-middle">
-                <div class="uk-width-1-2 uk-width-medium-1-4">
-                    @include('laramanager::partials.elements.form.submit')
-                </div>
-                <div class="uk-width-1-2 uk-width-medium-1-4">
-                    <a href="{{ url('admin/' . $resource->slug . '/' . $entity->id) }}">Cancel</a>
-                </div>
-            </div>
-        </div>
+        @include('laramanager::partials.elements.buttons.submit', ['submitText' => 'Update'])
     </form>
 
 @endsection

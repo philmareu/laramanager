@@ -1,35 +1,32 @@
 @extends('laramanager::layouts.sub.default')
 
 @section('title')
-    {{ $resource->title or 'Create' }}
+    Create
+@endsection
+
+@section('breadcrumbs')
+    <li><a href="{{ route('admin.' . $resource->slug . '.index') }}">{{ $resource->title }}</a></li>
+    <li><span>Create</span></li>
 @endsection
 
 @section('page-content')
 
     <image-browser-modal v-on:image-selected="setSelectedImage"></image-browser-modal>
 
-    <div class="uk-card uk-card-default uk-card-small">
-        <div class="uk-card-header">
-            <h3 class="uk-card-title">Create {{ str_singular($resource->title) }}</h3>
+    <form action="{{ route('admin.' . $resource->slug . '.store') }}" enctype="multipart/form-data" method="POST" class="uk-form uk-form-stacked">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+        @foreach($resource->fields as $field)
+
+            @include('laramanager::fields.' . $field->type . '.field', compact('field'))
+
+        @endforeach
+
+        <div class="uk-margin">
+            <button type="submit" class="uk-button uk-button-primary uk-button-small">Save</button>
         </div>
 
-        <div class="uk-card-body">
-            <form action="{{ route('admin.' . $resource->slug . '.store') }}" enctype="multipart/form-data" method="POST" class="uk-form uk-form-stacked">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-                @foreach($resource->fields as $field)
-
-                    @include('laramanager::fields.' . $field->type . '.field', compact('field'))
-
-                @endforeach
-
-                <div class="uk-margin">
-                    <button type="submit" class="uk-button uk-button-primary uk-button-small">Save</button>
-                </div>
-
-            </form>
-        </div>
-    </div>
+    </form>
 
 @endsection
 

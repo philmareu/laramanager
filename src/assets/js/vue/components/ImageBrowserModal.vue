@@ -6,12 +6,14 @@
 
             <image-upload v-on:image-uploaded="updateGallery"></image-upload>
 
-            <div v-for="image in images" class="uk-margin">
-                <img :src="imageUrl('image-browser', image.filename)" :alt="image.alt"
-                     :data-laramanager-image-id="image.id"
-                     :data-laramanager-filename="image.filename"
-                     @click.prevent="imageSelected(image)"
-                     class="unselected-image">
+            <div class="uk-child-width-1-2" uk-grid>
+                <div v-for="image in images" class="uk-margin">
+                    <img :src="imageUrl('image-browser', image.filename)" :alt="image.alt"
+                         :data-laramanager-image-id="image.id"
+                         :data-laramanager-filename="image.filename"
+                         @click.prevent="imageSelected(image)"
+                         class="unselected-image">
+                </div>
             </div>
         </div>
     </div>

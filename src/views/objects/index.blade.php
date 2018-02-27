@@ -4,39 +4,33 @@
     Objects
 @endsection
 
-@section('actions')
-    <a href="{{ route('admin.objects.create') }}" class="uk-float-right"><span uk-icon="icon: plus;"></span>Add</a>
+@section('breadcrumbs')
+    <li><span>@yield('title')</span></li>
 @endsection
 
-@section('table')
+@section('actions')
+    <a href="{{ route('admin.objects.create') }}" class="uk-button uk-button-primary uk-button-small">Create</a>
+@endsection
 
-    <div class="uk-overflow-container">
-        <table id="data-table" class="stripe row-border">
-            <thead>
-            <tr>
-                <td>Title</td>
-                <td>Slug</td>
-                <td>Description</td>
-                <td>&nbsp;</td>
-            </tr>
-            </thead>
+@section('table-headers')
+    <td>Title</td>
+    <td>Slug</td>
+    <td>Description</td>
+    <td>&nbsp;</td>
+@endsection
 
-            <tbody>
-            @foreach($objects as $object)
-                <tr>
-                    <td>{{ $object->title }}</td>
-                    <td>{{ $object->slug }}</td>
-                    <td>{{ $object->description }}</td>
+@section('table-body')
+    @foreach($objects as $object)
+        <tr>
+            <td>{{ $object->title }}</td>
+            <td>{{ $object->slug }}</td>
+            <td>{{ $object->description }}</td>
 
-                    <td width="50">
-                        <a href="{{ route('admin.objects.edit', $object->id) }}"><span uk-icon="icon: pencil;"></span></a>
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
-    </div>
-
+            <td width="50">
+                <a href="{{ route('admin.objects.edit', $object->id) }}"><span uk-icon="icon: pencil;"></span></a>
+            </td>
+        </tr>
+    @endforeach
 @endsection
 
 @section('table-settings')

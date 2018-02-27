@@ -1,53 +1,48 @@
 @extends('laramanager::layouts.sub.table')
 
 @section('title')
-    Resources
+    {{ $resource->title }}
 @endsection
 
-@section('table-name')
-    {{ $resource->title }}
+@section('breadcrumbs')
+    <li><span>Pages</span></li>
 @endsection
 
 @section('actions')
     <a href="{{ route('admin.' . $resource->slug . '.create') }}" class="uk-button uk-button-small uk-button-primary">Create</a>
 @endsection
 
-@section('table')
+@section('table-headers')
+    <td>ID</td>
 
-    <div class="uk-overflow-container">
-        <table id="data-table" class="stripe row-border uk-table uk-table-small uk-table-striped">
-            <thead>
-                <tr>
-                    @each('laramanager::resource.index.thead', $resource->listedFields, 'field')
+    @each('laramanager::resource.index.thead', $resource->listedFields, 'field')
 
-                    <td>&nbsp;</td>
-                </tr>
-            </thead>
+    <td>&nbsp;</td>
+@endsection
 
-            <tbody>
-            @foreach($entities as $entity)
-                <tr>
-                    @foreach($resource->listedFields as $field)
-                        <td>
-                            @include('laramanager::fields.' . $field->type . '.display')
-                        </td>
-                    @endforeach
+@section('table-body')
 
-                    <td width="50">
-                        <div class="uk-grid uk-grid-medium">
-                            <div class="uk-width-1-2">
-                                <a href="{{ route('admin.' . $resource->slug . '.show', $entity->id) }}"><span uk-icon="icon: pencil;"></span></a>
-                            </div>
-                            <div class="uk-width-1-2">
-                                <a href="#" class="uk-text-danger delete" data-resource-id="{{ $entity->id }}"><span uk-icon="icon: trash;"></span></a>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
+    @foreach($entities as $entity)
+        <tr>
+            <td>{{ $entity->id }}</td>
+            @foreach($resource->listedFields as $field)
+                <td>
+                    @include('laramanager::fields.' . $field->type . '.display')
+                </td>
             @endforeach
-            </tbody>
-        </table>
-    </div>
+
+            <td width="50">
+                <div class="uk-grid uk-grid-medium">
+                    <div class="uk-width-1-2">
+                        <a href="{{ route('admin.' . $resource->slug . '.show', $entity->id) }}"><span uk-icon="icon: pencil;"></span></a>
+                    </div>
+                    <div class="uk-width-1-2">
+                        <a href="#" class="uk-text-danger delete" data-resource-id="{{ $entity->id }}"><span uk-icon="icon: trash;"></span></a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    @endforeach
 
 @endsection
 

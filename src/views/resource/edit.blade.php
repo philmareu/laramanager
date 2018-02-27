@@ -4,6 +4,16 @@
     Edit
 @endsection
 
+@section('breadcrumbs')
+    <li><a href="{{ route('admin.' . $resource->slug . '.index') }}">{{ $resource->title }}</a></li>
+    <li><a href="{{ route('admin.' . $resource->slug . '.show', $entity->id) }}">{{ $entity->id }}</a></li>
+    <li><span>@yield('title')</span></li>
+@endsection
+
+@section('actions')
+    <a href="{{ route('admin.' . $resource->slug . '.show', $entity->id) }}" class="uk-button uk-button-small uk-button-primary">Back</a>
+@endsection
+
 @section('page-content')
 
     <image-browser-modal v-on:image-selected="setSelectedImage"></image-browser-modal>
@@ -19,8 +29,7 @@
         @endforeach
 
         <div class="uk-margin">
-            <button type="submit" class="uk-button uk-button-primary uk-button-small">Save</button>
-            <a href="{{ route('admin.' . $resource->slug . '.show', $entity->id) }}" type="submit" class="uk-button uk-button-small uk-button-default">Back</a>
+            @include('laramanager::partials.elements.buttons.submit', ['submitText' => 'Update'])
         </div>
 
     </form>

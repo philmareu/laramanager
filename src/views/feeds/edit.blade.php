@@ -1,7 +1,13 @@
 @extends('laramanager::layouts.sub.default')
 
 @section('title')
-    Edit Object
+    {{ $feed->title }}
+@endsection
+
+@section('breadcrumbs')
+    <li><a href="{{ route('admin.feeds.index') }}">Feeds</a></li>
+    <li class="uk-disabled"><a>Edit</a></li>
+    <li><span>@yield('title')</span></li>
 @endsection
 
 @section('page-content')
@@ -19,9 +25,7 @@
         @include('laramanager::partials.elements.form.text', ['field' => ['name' => 'copyright', 'value' => $feed->copyright]])
         @include('laramanager::partials.elements.form.text', ['field' => ['name' => 'ttl', 'value' => $feed->ttl]])
 
-        <div class="uk-form-row">
-            <button type="submit" class="uk-button uk-button-primary uk-width-1-1 uk-width-medium-1-3 uk-width-large-1-6">Update</button>
-        </div>
+        @include('laramanager::partials.elements.buttons.submit', ['submitText' => 'Update'])
 
     </form>
 

@@ -1,7 +1,12 @@
 @extends('laramanager::layouts.sub.default')
 
 @section('title')
-    Create Feed
+    Create
+@endsection
+
+@section('breadcrumbs')
+    <li><a href="{{ route('admin.users.index') }}">Users</a></li>
+    <li><span>@yield('title')</span></li>
 @endsection
 
 @section('page-content')
@@ -21,9 +26,7 @@
         @include('laramanager::partials.elements.form.password', ['field' => ['name' => 'password']])
         @include('laramanager::partials.elements.form.checkbox', ['field' => ['name' => 'is_admin', 'checked' => false]])
 
-        <div class="uk-form-row">
-            <button type="submit" class="uk-button uk-button-primary uk-width-1-1 uk-width-medium-1-3 uk-width-large-1-6">Save</button>
-        </div>
+        @include('laramanager::partials.elements.buttons.submit')
 
     </form>
 
