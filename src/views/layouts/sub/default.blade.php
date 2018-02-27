@@ -3,7 +3,7 @@
 @section('content')
     <div class="uk-grid uk-grid-collapse">
         <div class="uk-width-1-6 uk-visible@s">
-            <div class="uk-height-1-1 background-gradient-primary" id="sidebar" uk-sticky>
+            <div class="uk-height-1-1 background-gradient-primary uk-overflow-auto" id="sidebar" uk-sticky>
                 @include('laramanager::navigations.primary.index')
             </div>
         </div>
