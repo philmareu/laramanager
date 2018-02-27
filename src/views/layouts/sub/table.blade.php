@@ -2,7 +2,7 @@
 
 @section('default-content')
 
-    <div class="uk-overflow-container">
+    <div class="uk-overflow-auto">
         <table id="data-table" class="stripe row-border uk-table uk-table-small uk-table-striped">
             <thead>
             <tr>

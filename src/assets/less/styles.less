@@ -129,15 +129,22 @@ table.dataTable {
 .dataTables_wrapper {
 
   .dataTables_length {
-    float: left;
+
+
+    @media (min-width: @breakpoint-small) {
+      float: left;
+    }
   }
 
   .dataTables_filter {
-    float: right;
-    text-align: right;
 
     input {
       margin-left: 0.5em;
+    }
+
+    @media (min-width: @breakpoint-small) {
+      float: right;
+      text-align: right;
     }
   }
 
