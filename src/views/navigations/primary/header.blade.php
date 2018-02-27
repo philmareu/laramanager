@@ -1,5 +1,5 @@
 <div class="uk-padding-small uk-text-center uk-light">
-    <h3>{{ config('app.name') }}</h3>
+    <h3><a href="{{ url('/') }}" class="uk-link-reset" target="_blank">{{ config('app.name') }}</a></h3>
     <div>
         {{ Auth::user()->name }}<br>
         <a href="#"
