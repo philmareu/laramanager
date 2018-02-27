@@ -49,10 +49,12 @@ class NavigationSectionsController
         return redirect()->route('admin.laramanager-navigation-sections.edit', $sectionId)->with('success', 'Section updated');
     }
 
-    public function delete(LaramanagerNavigationSection $section)
+    public function destroy($sectionId)
     {
-        $section->delete();
+        if($sectionId <= 4) return response()->json(['status' => 'failed', 'message' => 'Core sections can not be deleted.']);
 
-        return redirect()->route('admin.laramanager-navigation-sections.index')->with('success', 'Section deleted');
+        $this->navigationSection->find($sectionId)->delete();
+
+        return response()->json(['status' => 'ok']);
     }
 }

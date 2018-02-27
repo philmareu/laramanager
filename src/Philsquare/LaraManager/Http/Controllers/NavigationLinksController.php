@@ -2,7 +2,6 @@
 
 namespace Philsquare\LaraManager\Http\Controllers;
 
-
 use Philsquare\LaraManager\Http\Requests\StoreNavigationLinkRequest;
 use Philsquare\LaraManager\Http\Requests\UpdateNavigationLinkRequest;
 use Philsquare\LaraManager\Models\LaramanagerNavigationLink;
@@ -54,10 +53,12 @@ class NavigationLinksController
         return redirect()->route('admin.laramanager-navigation-links.edit', $navigationLinkId)->with('success', 'Link updated');
     }
 
-    public function delete(LaramanagerNavigationLink $navigationLink)
+    public function destroy($navigationLinkId)
     {
-        $navigationLink->delete();
+        if($navigationLinkId <= 10) return response()->json(['status' => 'failed', 'message' => 'Core links can not be deleted.']);
 
-        return redirect()->route('admin.laramanager-navigation-links.index')->with('success', 'Link deleted');
+        $this->navigationLink->find($navigationLinkId)->delete();
+
+        return response()->json(['status' => 'ok']);
     }
 }

@@ -27,7 +27,14 @@
             <td>{{ $section->ordinal }}</td>
 
             <td width="50">
-                <a href="{{ route('admin.laramanager-navigation-sections.edit', $section->id) }}"><span uk-icon="icon: pencil;"></span></a>
+                <div class="uk-grid uk-grid-medium">
+                    <div class="uk-width-1-2">
+                        <a href="{{ route('admin.laramanager-navigation-sections.edit', $section->id) }}"><span uk-icon="icon: pencil;"></span></a>
+                    </div>
+                    <div class="uk-width-1-2">
+                        <a href="#" class="uk-text-danger delete" data-section-id="{{ $section->id }}"><span uk-icon="icon: trash;"></span></a>
+                    </div>
+                </div>
             </td>
         </tr>
     @endforeach
@@ -43,6 +50,33 @@
                 "order": [[0, 'asc']]
             });
 
+        });
+
+        $('table').on('click', '.delete', function(event) {
+            let r = confirm("Are you sure? This will also delete the links in this section.");
+
+            event.preventDefault();
+
+            if (r === true) {
+                let element = $(this);
+                let id = element.attr('data-section-id');
+                let td = element.parents('td');
+                let row = element.parents('tr');
+
+                $.ajax({
+                    url: SITE_URL + '/admin/laramanager-navigation-sections/' + id,
+                    type: 'POST',
+                    data: {_method: 'DELETE', _token: csrf},
+                    success: function(response) {
+                        if(response.status === 'ok') {
+                            row.addClass('uk-text-muted');
+                            td.html('Deleted');
+                        } else {
+                            alert(response.message);
+                        }
+                    }
+                });
+            }
         });
 
     </script>
