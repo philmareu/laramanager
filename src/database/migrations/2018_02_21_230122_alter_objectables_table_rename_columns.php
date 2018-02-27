@@ -13,11 +13,14 @@ class AlterObjectablesTableRenameColumns extends Migration
      */
     public function up()
     {
-        Schema::table('laramanager_objectables', function (Blueprint $table) {
-            $table->renameColumn('object_id', 'laramanager_object_id');
-            $table->renameColumn('objectable_id', 'laramanager_objectable_id');
-            $table->renameColumn('objectable_type', 'laramanager_objectable_type');
-        });
+        if(Schema::hasColumn('laramanager_objectables', 'object_id'))
+        {
+            Schema::table('laramanager_objectables', function (Blueprint $table) {
+                $table->renameColumn('object_id', 'laramanager_object_id');
+                $table->renameColumn('objectable_id', 'laramanager_objectable_id');
+                $table->renameColumn('objectable_type', 'laramanager_objectable_type');
+            });
+        }
     }
 
     /**
@@ -27,10 +30,13 @@ class AlterObjectablesTableRenameColumns extends Migration
      */
     public function down()
     {
-        Schema::table('laramanager_objectables', function (Blueprint $table) {
-            $table->renameColumn('laramanager_object_id', 'object_id');
-            $table->renameColumn('laramanager_objectable_id', 'objectable_id');
-            $table->renameColumn('laramanager_objectable_type', 'objectable_type');
-        });
+        if(Schema::hasColumn('laramanager_objectables', 'laramanager_object_id'))
+        {
+            Schema::table('laramanager_objectables', function (Blueprint $table) {
+                $table->renameColumn('laramanager_object_id', 'object_id');
+                $table->renameColumn('laramanager_objectable_id', 'objectable_id');
+                $table->renameColumn('laramanager_objectable_type', 'objectable_type');
+            });
+        }
     }
 }
