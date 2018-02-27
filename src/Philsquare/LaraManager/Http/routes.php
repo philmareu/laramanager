@@ -66,7 +66,8 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers', 'middlew
         Route::delete('resources/{resources}/fields/{fields}', 'ResourceFieldController@destroy');
         Route::resource('resources', 'ResourceManagerController');
 
-        Route::resource('laramanager-navigation-links', 'NavigationController');
+        Route::resource('laramanager-navigation-sections', 'NavigationSectionsController');
+        Route::resource('laramanager-navigation-links', 'NavigationLinksController');
         Route::resource('objects', 'ObjectsController');
         Route::resource('settings', 'SettingsController');
     });

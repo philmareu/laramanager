@@ -5,7 +5,7 @@
 @endsection
 
 @section('breadcrumbs')
-    <li><a href="{{ route('admin.laramanager-navigation-links.index') }}">Navigation</a></li>
+    <li><a href="{{ route('admin.laramanager-navigation-links.index') }}">Navigation Links</a></li>
     <li><span>@yield('title')</span></li>
 @endsection
 

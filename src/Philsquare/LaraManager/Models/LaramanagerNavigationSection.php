@@ -9,6 +9,7 @@ class LaramanagerNavigationSection extends Model
 {
     protected $fillable = [
         'title',
+        'icon',
         'ordinal'
     ];
 

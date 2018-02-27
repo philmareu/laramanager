@@ -5,14 +5,14 @@
 @endsection
 
 @section('breadcrumbs')
-    <li><a href="{{ route('admin.laramanager-navigation-links.index') }}">Navigation</a></li>
+    <li><a href="{{ route('admin.laramanager-navigation-links.index') }}">Navigation Links</a></li>
     <li class="uk-disabled"><a>Edit</a></li>
     <li><span>@yield('title')</span></li>
 @endsection
 
 @section('page-content')
 
-    <form action="{{ route('admin.laramanager-navigation-links.update', $link->id) }}" enctype="multipart/form-data" method="POST" class="uk-form uk-form-stacked">
+    <form action="{{ route('admin.laramanager-navigation-links.update', $link->id) }}" method="POST" class="uk-form uk-form-stacked">
         {{ csrf_field() }}
         {{ method_field('PUT') }}
 

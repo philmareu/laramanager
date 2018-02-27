@@ -8,7 +8,7 @@ use Philsquare\LaraManager\Http\Requests\UpdateNavigationLinkRequest;
 use Philsquare\LaraManager\Models\LaramanagerNavigationLink;
 use Philsquare\LaraManager\Models\LaramanagerNavigationSection;
 
-class NavigationController
+class NavigationLinksController
 {
     protected $navigationSection;
 
@@ -22,13 +22,13 @@ class NavigationController
 
     public function index()
     {
-        return view('laramanager::navigations.admin.index')
+        return view('laramanager::navigations.admin.links.index')
             ->withLinks($this->navigationLink->with('section')->get());
     }
 
     public function create()
     {
-        return view('laramanager::navigations.admin.create')
+        return view('laramanager::navigations.admin.links.create')
             ->withSections($this->navigationSection->all());
     }
 
@@ -42,7 +42,7 @@ class NavigationController
     public function edit($navigationLinkId)
     {
 
-        return view('laramanager::navigations.admin.edit')
+        return view('laramanager::navigations.admin.links.edit')
             ->withLink($this->navigationLink->find($navigationLinkId)->load('section'))
             ->withSections($this->navigationSection->all());
     }
@@ -51,7 +51,7 @@ class NavigationController
     {
         $this->navigationLink->find($navigationLinkId)->update($request->all());
 
-        return redirect()->route('admin.laramanager-navigation-links.index')->with('success', 'Link updated');
+        return redirect()->route('admin.laramanager-navigation-links.edit', $navigationLinkId)->with('success', 'Link updated');
     }
 
     public function delete(LaramanagerNavigationLink $navigationLink)

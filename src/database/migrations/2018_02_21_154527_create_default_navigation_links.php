@@ -36,9 +36,16 @@ class CreateDefaultNavigationLinks extends Migration
         ]);
 
         LaramanagerNavigationLink::forceCreate([
-            'title' => 'Admin Navigation',
-            'uri' => 'admin/laramanager-navigation-links',
+            'title' => 'Navigation Sections',
+            'uri' => 'admin/laramanager-navigation-sections',
             'ordinal' => 10,
+            'laramanager_navigation_section_id' => 4
+        ]);
+
+        LaramanagerNavigationLink::forceCreate([
+            'title' => 'Navigation Links',
+            'uri' => 'admin/laramanager-navigation-links',
+            'ordinal' => 15,
             'laramanager_navigation_section_id' => 4
         ]);
 
