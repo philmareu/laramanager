@@ -24,7 +24,7 @@
 
     @yield('head')
 </head>
-<body>
+<body class="@yield('body-class')">
     <div id="app" class="uk-offcanvas-content">
         @yield('content')
     </div>

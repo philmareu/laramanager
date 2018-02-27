@@ -1,11 +1,15 @@
 @extends('laramanager::layouts.master')
 
+@section('body-class')
+    auth background-gradient-primary uk-height-viewport
+@endsection
+
 @section('content')
 
     <div class="uk-container uk-padding uk-text-center uk-width-1-1 uk-width-1-3@s">
 
         <div class="title uk-margin">
-            <p class="uk-text-center">LaraManager by <a href="http://philsquare.com">Philsquare</a></p>
+            <p class="uk-text-center">LaraManager by <a href="http://philsquare.com" class="uk-light">Philsquare</a></p>
         </div>
 
         @if(session()->has('success'))

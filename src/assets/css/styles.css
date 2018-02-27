@@ -12886,6 +12886,9 @@ iframe.uk-cover {
 .background-gradient-primary {
   background: linear-gradient(141deg, #E2591E 0%, #883512 100%);
 }
+.background-texture-primary {
+  background-image: url('../images/bg-primary.png');
+}
 .li-padding {
   padding: 5px 0 5px 50px;
 }
