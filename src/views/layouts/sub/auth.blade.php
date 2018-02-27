@@ -34,7 +34,7 @@
 
             <div class="uk-card-body">
 
-                @yield('page-content')
+                @yield('auth-content')
 
             </div>
 

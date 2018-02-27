@@ -14,7 +14,7 @@
     <a href="{{ route('admin.' . $resource->slug . '.show', $entity->id) }}" class="uk-button uk-button-small uk-button-primary">Back</a>
 @endsection
 
-@section('page-content')
+@section('default-content')
 
     <image-browser-modal v-on:image-selected="setSelectedImage"></image-browser-modal>
 

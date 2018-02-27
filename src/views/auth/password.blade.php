@@ -4,7 +4,7 @@
     Request Password Link
 @endsection
 
-@section('page-content')
+@section('auth-content')
 
     <form class="uk-form uk-text-left" role="form" method="POST" action="{{ url('admin/password/email') }}">
         {{ csrf_field() }}

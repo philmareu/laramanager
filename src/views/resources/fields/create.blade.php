@@ -11,7 +11,7 @@
     <li><span>@yield('title')</span></li>
 @endsection
 
-@section('page-content')
+@section('default-content')
 
     @if(session()->has('errors'))
         <div class="uk-alert uk-alert-danger" data-uk-alert>

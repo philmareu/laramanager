@@ -4,6 +4,6 @@
 File Browser
 @endsection
 
-@section('content')
+@section('browser-content')
     <ckeditor-image-browser :func-num="{{ $funcNum }}"></ckeditor-image-browser>
 @endsection

@@ -23,7 +23,7 @@
             </div>
 
             <div class="uk-container">
-                @yield('page-content')
+                @yield('blank-content')
             </div>
         </div>
     </div>

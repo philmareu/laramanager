@@ -18,7 +18,7 @@
     </form>
 @endsection
 
-@section('page-content')
+@section('blank-content')
 
     <div uk-grid>
         <div class="uk-width-1-2@s">

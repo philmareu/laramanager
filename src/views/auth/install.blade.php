@@ -4,7 +4,7 @@
     Install
 @endsection
 
-@section('page-content')
+@section('auth-content')
 
     <form class="uk-form uk-form-stacked uk-text-left" role="form" method="POST" action="{{ url('laramanager/install') }}">
         {{ csrf_field() }}

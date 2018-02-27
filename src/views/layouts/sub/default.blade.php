@@ -31,7 +31,7 @@
                     </div>
 
                     <div class="uk-card-body">
-                        @yield('page-content')
+                        @yield('default-content')
                     </div>
                 </div>
             </div>

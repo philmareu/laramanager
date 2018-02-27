@@ -9,7 +9,7 @@
     <li><span>Create</span></li>
 @endsection
 
-@section('page-content')
+@section('default-content')
 
     <image-browser-modal v-on:image-selected="setSelectedImage"></image-browser-modal>
 

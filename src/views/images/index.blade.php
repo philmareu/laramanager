@@ -8,7 +8,7 @@
     <li><span>@yield('title')</span></li>
 @endsection
 
-@section('page-content')
+@section('default-content')
 
     <image-gallery></image-gallery>
 

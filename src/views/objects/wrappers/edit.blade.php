@@ -16,7 +16,7 @@
     <a href="{{ url('admin/' . $resource->slug . '/' . $entity->id) }}" class="uk-button uk-button-small uk-button-primary">Cancel</a>
 @endsection
 
-@section('page-content')
+@section('default-content')
 
     <image-browser-modal v-on:image-selected="setSelectedImage"></image-browser-modal>
 

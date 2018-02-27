@@ -4,7 +4,7 @@
     Reset Password
 @endsection
 
-@section('page-content')
+@section('auth-content')
 
     <form class="uk-form uk-text-left" method="POST" action="{{ url('admin/password/reset') }}">
         {{ csrf_field() }}

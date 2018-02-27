@@ -10,7 +10,7 @@
     <li><span>@yield('title')</span></li>
 @endsection
 
-@section('page-content')
+@section('default-content')
 
     <form action="{{ route('admin.laramanager-navigation-links.update', $link->id) }}" method="POST" class="uk-form uk-form-stacked">
         {{ csrf_field() }}

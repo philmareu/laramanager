@@ -9,7 +9,7 @@
     <li><span>@yield('title')</span></li>
 @endsection
 
-@section('page-content')
+@section('default-content')
 
     <form action="{{ route('admin.objects.store') }}" enctype="multipart/form-data" method="POST" class="uk-form uk-form-stacked">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">

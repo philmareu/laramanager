@@ -9,7 +9,7 @@
     <li><span>@yield('title')</span></li>
 @endsection
 
-@section('page-content')
+@section('default-content')
 
     <div class="uk-alert uk-alert-warning">
         Please note that your model requires the "RssFeedInterface" before you can create the feed.

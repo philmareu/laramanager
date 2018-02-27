@@ -1,6 +1,6 @@
 @extends('laramanager::layouts.sub.default')
 
-@section('page-content')
+@section('default-content')
 
     <div class="uk-overflow-container">
         <table id="data-table" class="stripe row-border uk-table uk-table-small uk-table-striped">
