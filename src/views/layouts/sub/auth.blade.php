@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="uk-container uk-padding uk-text-center uk-width-1-1 uk-width-1-3@s uk-position-center">
+    <div class="uk-container uk-padding uk-text-center uk-width-1-1 uk-width-1-2@s uk-width-1-3@m uk-position-center">
 
         <div class="uk-text-large uk-margin uk-light">{{ config('app.name') }} Admin</div>
 

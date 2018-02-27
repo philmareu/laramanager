@@ -2,12 +2,12 @@
 
 @section('content')
     <div class="uk-grid uk-grid-collapse">
-        <div class="uk-width-1-6 uk-visible@s">
+        <div class="uk-width-1-5@s uk-width-1-6@m  uk-visible@s">
             <div class="uk-height-1-1 background-gradient-primary" id="sidebar" uk-sticky>
                 @include('laramanager::navigations.primary.index')
             </div>
         </div>
-        <div class="uk-width-1-1 uk-width-5-6@s" id="primary-content-area">
+        <div class="uk-width-1-1 uk-width-4-5@s uk-width-5-6@m" id="primary-content-area">
 
             <nav class="uk-navbar-container uk-hidden@s" uk-navbar>
                 <div class="uk-navbar-left">
