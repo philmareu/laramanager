@@ -1,17 +1,21 @@
 @extends('laramanager::layouts.sub.table')
 
 @section('title')
+    Resources
+@endsection
+
+@section('table-name')
     {{ $resource->title }}
 @endsection
 
 @section('actions')
-    <a href="{{ route('admin.' . $resource->slug . '.create') }}" class="uk-float-right"><span uk-icon="icon: plus;" class="uk-margin-small-right"></span>Add</a>
+    <a href="{{ route('admin.' . $resource->slug . '.create') }}" class="uk-button uk-button-small uk-button-primary">Create</a>
 @endsection
 
 @section('table')
 
     <div class="uk-overflow-container">
-        <table id="data-table" class="stripe row-border">
+        <table id="data-table" class="stripe row-border uk-table uk-table-small uk-table-striped">
             <thead>
                 <tr>
                     @each('laramanager::resource.index.thead', $resource->listedFields, 'field')
@@ -56,10 +60,15 @@
         var orderDirection = "{{ $resource->order_direction }}";
 
         $(function() {
+
             $('#data-table').DataTable({
-                "pageLength": 50,
+                "pageLength": 1,
                 "order": [[orderColumn, orderDirection]]
             });
+
+            $('.dataTables_length').addClass('uk-margin');
+            $('select[name="data-table_length"]').addClass('uk-select uk-form-small').css('width', 'auto');
+            $('#data-table_filter').find('input').addClass('uk-input uk-form-small').css('width', 'auto');
 
             $('table').on('click', '.delete', function(event) {
                 var r = confirm("Are you sure?");
