@@ -18,6 +18,7 @@
 @color-lightest-color: #FFF;
 @color-lighter-color: #f5f5f5;
 @color-light-color: #ebebeb;
+@gradient-primary: linear-gradient(141deg, @color-1 0%, darken(@color-1, 20%) 100%);
 
 /*
 |--------------------------------------------------------------------------
@@ -52,7 +53,7 @@
 @base-heading-font-weight:                      500;
 
 
-// Navbar
+// Nav
 @nav-default-item-color:                        @color-lighter-color;
 @nav-default-item-hover-color:                  @color-light-color;
 @nav-default-item-active-color:                 @global-emphasis-color;
@@ -61,9 +62,15 @@
 @nav-sublist-padding-left:                      30px;
 
 // Navbar
-@navbar-background:                             @global-muted-background;
 @navbar-nav-item-height:                        50px;
 @navbar-nav-item-padding-horizontal:            15px;
+@navbar-nav-item-color:                         @nav-default-item-color;
+@navbar-nav-item-hover-color:                   @nav-default-item-hover-color;
+
+// Off-canvas
+@offcanvas-bar-background:                      @gradient-primary;
+@offcanvas-bar-color-mode:                      none;
+@offcanvas-bar-padding-horizontal:              0;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,7 +80,7 @@
 */
 
 .background-gradient-primary {
-  background: linear-gradient(141deg, @color-1 0%, darken(@color-1, 20%) 100%);
+  background: @gradient-primary;
 }
 
 .background-texture-primary {
