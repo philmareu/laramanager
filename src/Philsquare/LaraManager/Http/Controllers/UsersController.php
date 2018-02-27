@@ -46,8 +46,8 @@ class UsersController extends Controller {
     {
         $user = $this->user->fill($request->except('password'));
 
-        if($request->has('password')) $user->password = bcrypt($request->password);
-        if($request->has('is_admin')) $user->is_admin = 1;
+        if($request->filled('password')) $user->password = bcrypt($request->password);
+        if($request->filled('is_admin')) $user->is_admin = 1;
 
         $user->save();
 
@@ -90,8 +90,8 @@ class UsersController extends Controller {
         $user = $this->user->findOrFail($id);
         $user->update($request->except('password'));
 
-        if($request->has('password')) $user->password = bcrypt($request->password);
-        if(! $request->has('is_admin')) $user->is_admin = 0;
+        if($request->filled('password')) $user->password = bcrypt($request->password);
+        if(! $request->filled('is_admin')) $user->is_admin = 0;
 
         $user->save();
 

@@ -22,7 +22,7 @@ class UpdateUserRequest extends Request {
         return [
             'name' => 'required|max:255',
             'email' => 'required|max:255|unique:users,email,' . $this->segment(3),
-            'password' => 'max:255',
+            'password' => 'nullable|string|min:6',
             'is_admin' => 'boolean'
         ];
     }
