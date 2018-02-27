@@ -54,11 +54,11 @@ class LaraManagerServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__ . '/../../../assets/' => public_path('vendor/laramanager/'),
-        ], 'assets');
+        ], 'laramanager-assets');
 
         $this->publishes([
             __DIR__ . '/../../../database/migrations/' => database_path('migrations')
-        ], 'migrations');
+        ], 'laramanager-migrations');
     }
 
     private function setViewComposers()
