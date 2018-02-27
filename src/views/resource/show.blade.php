@@ -115,17 +115,17 @@
 
             e.preventDefault();
 
-            var removemsg	= $(this).attr('title');
+            let removemsg = $(this).attr('title');
 
             if (confirm(removemsg))
             {
                 $.ajax({
-                    url: SITE_URL + '/admin/' + resource + '/' + id,
+                    url: SITE_URL + '/admin/' + resource.slug + '/' + id,
                     type: 'POST',
                     data: {_method: 'DELETE', _token: csrf},
                     success: function(response) {
-                        if(response.status == 'ok') {
-                            window.location = SITE_URL + '/admin/' + resource;
+                        if(response.status === 'ok') {
+                            window.location = SITE_URL + '/admin/' + resource.slug;
                         }
                     }
                 });

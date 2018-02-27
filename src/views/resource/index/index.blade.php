@@ -50,9 +50,9 @@
 
     <script>
 
-        var resource = "{{ $resource->slug }}";
-        var orderColumn = "{{ $resource->order_column }}";
-        var orderDirection = "{{ $resource->order_direction }}";
+        let resource = "{{ $resource->slug }}";
+        let orderColumn = "{{ $resource->order_column }}";
+        let orderDirection = "{{ $resource->order_direction }}";
 
         $(function() {
 
@@ -66,22 +66,22 @@
             $('#data-table_filter').find('input').addClass('uk-input uk-form-small').css('width', 'auto');
 
             $('table').on('click', '.delete', function(event) {
-                var r = confirm("Are you sure?");
+                let r = confirm("Are you sure?");
 
                 event.preventDefault();
 
-                if (r == true) {
-                    var element = $(this);
-                    var id = element.attr('data-resource-id');
-                    var td = element.parents('td');
-                    var row = element.parents('tr');
+                if (r === true) {
+                    let element = $(this);
+                    let id = element.attr('data-resource-id');
+                    let td = element.parents('td');
+                    let row = element.parents('tr');
 
                     $.ajax({
                         url: SITE_URL + '/admin/' + resource + '/' + id,
                         type: 'POST',
                         data: {_method: 'DELETE', _token: csrf},
                         success: function(response) {
-                            if(response.status == 'ok') {
+                            if(response.status === 'ok') {
                                 row.addClass('uk-text-muted');
                                 td.html('Deleted');
                             }
