@@ -8,7 +8,7 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers', 'middlew
 {
     Route::get('admin/login', 'Auth\LoginController@showLoginForm');
     Route::post('admin/login', 'Auth\LoginController@login');
-    Route::get('admin/logout', 'Auth\LoginController@logout');
+    Route::post('admin/logout', 'Auth\LoginController@logout');
     Route::get('admin/password/email', 'Auth\ForgotPasswordController@showLinkRequestForm');
     Route::post('admin/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
     Route::get('admin/password/reset/{token}', 'Auth\PasswordController@getReset');
