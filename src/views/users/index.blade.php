@@ -24,7 +24,7 @@
         <tr>
             <td>{{ $user->name }}</td>
             <td>{{ $user->email }}</td>
-            <td>{!! $user->is_admin ? '<i class="uk-icon-check"></i>' : '' !!}</td>
+            <td>{!! $user->is_admin ? '<span uk-icon="icon: check;"></span>' : '' !!}</td>
 
             <td width="50">
                 <div class="uk-grid uk-grid-medium">
