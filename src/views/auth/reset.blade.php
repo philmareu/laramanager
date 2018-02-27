@@ -10,14 +10,12 @@
         {{ csrf_field() }}
         <input type="hidden" name="token" value="{{ $token }}">
 
-        <div class="uk-margin">
-            <div class="uk-text-danger">
-                {{ $errors->first('email') }}
-            </div>
-            <div class="uk-inline uk-width-1-1">
-                <span class="uk-form-icon" uk-icon="icon: mail"></span>
-                <input class="uk-input" type="email" name="email" placeholder="Email" value="{{ old('email') }}">
-            </div>
+        <div class="uk-text-danger">
+            {{ $errors->first('email') }}
+        </div>
+        <div class="uk-inline uk-width-1-1">
+            <span class="uk-form-icon" uk-icon="icon: mail"></span>
+            <input class="uk-input" type="email" name="email" placeholder="Email" value="{{ old('email') }}">
         </div>
 
         <div class="uk-margin">

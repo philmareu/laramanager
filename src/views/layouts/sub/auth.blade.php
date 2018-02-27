@@ -5,12 +5,9 @@
 @endsection
 
 @section('content')
+    <div class="uk-container uk-padding uk-text-center uk-width-1-1 uk-width-1-3@s uk-position-center">
 
-    <div class="uk-container uk-padding uk-text-center uk-width-1-1 uk-width-1-3@s">
-
-        <div class="title uk-margin">
-            <p class="uk-text-center">LaraManager by <a href="http://philsquare.com" class="uk-light">Philsquare</a></p>
-        </div>
+        <div class="uk-text-large uk-margin uk-light">{{ config('app.name') }} Admin</div>
 
         @if(session()->has('success'))
             <div class="uk-alert uk-alert-success" data-uk-alert>
@@ -42,6 +39,8 @@
             </div>
 
         </div>
+
+        <div class="uk-light uk-margin">LaraManager by <a href="http://philsquare.com" class="uk-link-muted">Philsquare</a></div>
 
     </div>
 @endsection
