@@ -9,7 +9,16 @@
         </div>
         <div class="uk-width-1-1 uk-width-5-6@s" id="primary-content-area">
 
-            <div class="uk-card uk-card-default uk-card-small uk-card-body uk-margin-medium">
+            <nav class="uk-navbar-container uk-hidden@s" uk-navbar>
+                <div class="uk-navbar-left">
+                    <a class="uk-navbar-toggle" uk-navbar-toggle-icon href="#offcanvas-navigation" uk-toggle></a>
+                    <div class="uk-navbar-item">
+                        <div>{{ config('app.name') }}</div>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="uk-card uk-card-default uk-card-small uk-card-body uk-margin-medium uk-margin-remove-top">
                 <div class="uk-grid uk-grid-collapse uk-flex-middle">
                     <div class="uk-width-1-2">
                         <ul class="uk-breadcrumb">
@@ -23,6 +32,8 @@
             </div>
 
             <div class="uk-container">
+                @include('laramanager::partials.alerts.default')
+
                 @yield('blank-content')
             </div>
         </div>

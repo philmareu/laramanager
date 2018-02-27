@@ -4183,11 +4183,11 @@ ul.uk-nav-sub {
   /* 2 */
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  height: 80px;
+  height: 50px;
   padding: 0 15px;
   /* 3 */
   font-size: 0.875rem;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
   /* 4 */
   text-decoration: none;
 }
@@ -8645,7 +8645,7 @@ iframe.uk-cover {
  */
 .uk-logo {
   font-size: 1.5rem;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #371714;
   /* 1 */
   text-decoration: none;

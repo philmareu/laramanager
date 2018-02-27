@@ -1,40 +1,13 @@
-@extends('laramanager::layouts.master')
+@extends('laramanager::layouts.sub.blank')
 
-@section('content')
-    <div class="uk-grid uk-grid-collapse">
-        <div class="uk-width-1-6 uk-visible@s">
-            <div class="uk-height-1-1 background-gradient-primary uk-overflow-auto" id="sidebar" uk-sticky>
-                @include('laramanager::navigations.primary.index')
-            </div>
+@section('blank-content')
+    <div class="uk-card uk-card-default uk-card-small">
+        <div class="uk-card-header">
+            <h3 class="uk-card-title">@yield('title')</h3>
         </div>
-        <div class="uk-width-1-1 uk-width-5-6@s" id="primary-content-area">
 
-            <div class="uk-card uk-card-default uk-card-small uk-card-body uk-margin-medium">
-                <div class="uk-grid uk-grid-collapse uk-flex-middle">
-                    <div class="uk-width-1-2">
-                        <ul class="uk-breadcrumb">
-                            @yield('breadcrumbs')
-                        </ul>
-                    </div>
-                    <div class="uk-width-1-2 uk-text-right">
-                        @yield('actions')
-                    </div>
-                </div>
-            </div>
-
-            <div class="uk-container">
-                @include('laramanager::partials.alerts.default')
-
-                <div class="uk-card uk-card-default uk-card-small">
-                    <div class="uk-card-header">
-                        <h3 class="uk-card-title">@yield('title')</h3>
-                    </div>
-
-                    <div class="uk-card-body">
-                        @yield('default-content')
-                    </div>
-                </div>
-            </div>
+        <div class="uk-card-body">
+            @yield('default-content')
         </div>
     </div>
 @endsection
