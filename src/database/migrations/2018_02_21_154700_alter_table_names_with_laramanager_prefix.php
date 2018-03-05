@@ -27,7 +27,7 @@ class AlterTableNamesWithLaramanagerPrefix extends Migration
         foreach ($this->legacyTableNames as $tableName)
         {
             if(Schema::hasTable($tableName)) {
-                Schema::rename($tableName, $tableName . '_feeds');
+                Schema::rename($tableName, 'laramanager_' . $tableName);
             }
         }
     }
