@@ -16,7 +16,7 @@ Route::group(['namespace' => 'Philsquare\LaraManager\Http\Controllers', 'middlew
     Route::get('laramanager/install', 'Auth\InstallController@showInstallForm');
     Route::post('laramanager/install', 'Auth\InstallController@processInstall');
 
-    if(Schema::hasTable('redirects'))
+    if(Schema::hasTable('laramanager_redirects'))
     {
         foreach(LaramanagerRedirect::all() as $redirect)
         {
