@@ -1,3 +1,3 @@
 @if($entity->{$field->slug})
-    <i class="uk-icon-check"></i> {!! isset($field['label']) ? $field['label'] : ucwords(str_replace('_', ' ', $field['name'])) !!}
+    <span uk-icon="icon: check;"></span> {!! isset($field['label']) ? $field['label'] : ucwords(str_replace('_', ' ', $field['name'])) !!}
 @endif

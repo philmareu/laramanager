@@ -1,10 +1,18 @@
-@extends('laramanager::layouts.default')
+@extends('laramanager::layouts.sub.default')
 
 @section('title')
-    Edit Field for {{ $resource->title }}
+    {{ $field->title }}
 @endsection
 
-@section('content')
+@section('breadcrumbs')
+    <li><a href="{{ route('admin.resources.index') }}">Resources</a></li>
+    <li class="uk-disabled"><a>{{ $resource->title }}</a></li>
+    <li><a href="{{ url('admin/resources/' . $resource->id . '/fields') }}">Fields</a></li>
+    <li class="uk-disabled"><a>Edit</a></li>
+    <li><span>@yield('title')</span></li>
+@endsection
+
+@section('default-content')
 
     @if(session()->has('errors'))
         <div class="uk-alert uk-alert-danger" data-uk-alert>
@@ -31,15 +39,13 @@
             @endif
         </div>
 
-        <div class="uk-form-row">
-            <button type="submit" class="uk-button uk-button-primary uk-width-1-1 uk-width-medium-1-3 uk-width-large-1-6">Update</button>
-        </div>
+        @include('laramanager::partials.elements.buttons.submit', ['submitText' => 'Update'])
 
     </form>
 
 @endsection
 
-@section('scripts')
+@push('scripts-last')
 
     <script>
         $(function() {
@@ -61,4 +67,4 @@
 
         });
     </script>
-@endsection
+@endpush

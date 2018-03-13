@@ -32,6 +32,6 @@ class CreateResourcesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('laramanager_resources');
+        Schema::dropIfExists('laramanager_resources');
     }
 }

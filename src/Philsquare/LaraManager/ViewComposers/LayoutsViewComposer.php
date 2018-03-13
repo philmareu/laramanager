@@ -1,13 +1,13 @@
 <?php namespace Philsquare\LaraManager\ViewComposers; 
 
 use Illuminate\Contracts\View\View;
-use Philsquare\LaraManager\Models\Setting;
+use Philsquare\LaraManager\Models\LaramanagerSetting;
 
 class LayoutsViewComposer {
 
     protected $setting;
 
-    public function __construct(Setting $setting)
+    public function __construct(LaramanagerSetting $setting)
     {
         $this->setting = $setting;
     }
@@ -22,7 +22,7 @@ class LayoutsViewComposer {
     {
         $settings = $this->setting->all()->pluck('value', 'slug')->all();
 
-        $view->with(compact('settings'));
+        $view->withLaraManagerSettings($settings);
     }
 
 }

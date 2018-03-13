@@ -1,42 +1,26 @@
-@extends('laramanager::layouts.auth')
+@extends('laramanager::layouts.sub.auth')
 
 @section('title')
-    Request Password Reset
+    Request Password Link
 @endsection
 
-@section('content')
+@section('auth-content')
 
-    <div class="uk-width-medium-1-5 uk-vertical-align-middle">
+    <form class="uk-form uk-text-left" role="form" method="POST" action="{{ url('admin/password/email') }}">
+        {{ csrf_field() }}
 
-        @include('laramanager::partials.alerts.default')
-
-        <div id="login-box">
-            <div class="title-bar"><i class="uk-icon-lock"></i> Request Password Reset</div>
-
-            <form class="uk-form uk-text-left" role="form" method="POST" action="{{ url('admin/password/email') }}">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-                <div class="uk-form-row">
-                    <div class="uk-form-controls">
-                        <span class="errors uk-text-danger">{{ $errors->first('email') }}</span>
-                        <div class="uk-form-icon uk-form-controls">
-                            <i class="uk-icon-envelope"></i>
-                            <input type="text" placeholder="Email" name="email" class="uk-form-width-large" value="{{ old('email') }}">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="uk-form-row">
-                    <div class="uk-width-1-1">
-                        @include('laramanager::partials.elements.form.submit', ['value' => 'Send Password Reset Link'])
-                    </div>
-                </div>
-
-                <div class="uk-form-row"><a href="{{ url('admin/login') }}"><i class="uk-icon-arrow-left"></i> Back</a></div>
-
-            </form>
+        <div class="uk-text-danger">
+            {{ $errors->first('email') }}
         </div>
-        <p class="uk-text-center">LaraManager by <a href="http://philsquare.com">Philsquare</a></p>
-    </div>
+        <div class="uk-inline uk-width-1-1">
+            <span class="uk-form-icon" uk-icon="icon: mail"></span>
+            <input class="uk-input" type="email" name="email" placeholder="Email" value="{{ old('email') }}">
+        </div>
+
+        <button class="uk-button uk-button-primary uk-width-1-1 uk-margin" type="submit">Request Reset Link</button>
+
+        <div class="uk-form-row"><a href="{{ url('admin/login') }}"><span uk-icon="icon: arrow-left;" class="uk-margin-small-right"></span>Back</a></div>
+
+    </form>
 
 @endsection

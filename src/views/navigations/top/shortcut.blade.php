@@ -1,1 +1,0 @@
-<li><a href="{{ url('admin/' . $resource->slug . '/create') }}"><i class="uk-icon-plus uk-icon-justify"></i> {{ $resource->title }}</a></li>

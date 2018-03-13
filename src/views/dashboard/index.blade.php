@@ -1,10 +1,14 @@
-@extends('laramanager::layouts.default')
+@extends('laramanager::layouts.sub.default')
 
 @section('title')
     Dashboard
 @endsection
 
-@section('content')
+@section('breadcrumbs')
+    <li><span>@yield('title')</span></li>
+@endsection
+
+@section('default-content')
 
 
 

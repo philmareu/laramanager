@@ -5,15 +5,19 @@ namespace Philsquare\LaraManager\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
-use Philsquare\LaraManager\Models\Resource;
+use Philsquare\LaraManager\Models\LaramanagerNavigationLink;
+use Philsquare\LaraManager\Models\LaramanagerResource;
 
 class ResourceManagerController extends Controller
 {
     protected $resource;
 
-    public function __construct(Resource $resource)
+    protected $navigationLink;
+
+    public function __construct(LaramanagerResource $resource, LaramanagerNavigationLink $navigationLink)
     {
         $this->resource = $resource;
+        $this->navigationLink = $navigationLink;
     }
 
     /**
@@ -52,11 +56,16 @@ class ResourceManagerController extends Controller
             'model' => 'required|model_must_exist|unique:laramanager_resources|max:255',
             'namespace' => 'required|max:255',
             'order_column' => 'required|integer',
-            'order_direction' => 'required|in:asc,desc',
-            'icon' => 'required'
+            'order_direction' => 'required|in:asc,desc'
         ]);
 
-        $resource = $this->resource->create($request->all());
+        $resource = $this->resource->create($request->merge(['icon' => 'n/a'])->all());
+
+        $this->navigationLink->create([
+            'title' => $resource->title,
+            'uri' => 'admin/' . $resource->slug,
+            'laramanager_navigation_section_id' => 2
+        ]);
 
         return redirect('admin/resources/' . $resource->id . '/fields');
     }
@@ -102,8 +111,7 @@ class ResourceManagerController extends Controller
             'model' => 'required|unique:laramanager_resources,title,' . $resourceId . '|max:255',
             'namespace' => 'required|max:255',
             'order_column' => 'required|integer',
-            'order_direction' => 'required|in:asc,desc',
-            'icon' => 'required'
+            'order_direction' => 'required|in:asc,desc'
         ]);
 
         $resource->update($request->all());

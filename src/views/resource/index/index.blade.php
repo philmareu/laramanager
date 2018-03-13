@@ -1,89 +1,87 @@
-@extends('laramanager::layouts.default')
-
-@section('head')
-    <link href="{{ asset("vendor/laramanager/css/datatables.css") }}" rel="stylesheet" media="screen">
-@endsection
+@extends('laramanager::layouts.sub.table')
 
 @section('title')
     {{ $resource->title }}
 @endsection
 
+@section('breadcrumbs')
+    <li><span>Pages</span></li>
+@endsection
+
 @section('actions')
-    <a href="{{ route('admin.' . $resource->slug . '.create') }}" class="uk-float-right"><i class="uk-icon-plus"></i> Add</a>
+    <a href="{{ route('admin.' . $resource->slug . '.create') }}" class="uk-button uk-button-small uk-button-primary">Create</a>
 @endsection
 
-@section('content')
+@section('table-headers')
+    <td>ID</td>
 
-    <div class="uk-overflow-container">
-        <table id="data-table" class="stripe row-border">
-            <thead>
-                <tr>
-                    @each('laramanager::resource.index.thead', $resource->listedFields, 'field')
+    @each('laramanager::resource.index.thead', $resource->listedFields, 'field')
 
-                    <td>&nbsp;</td>
-                </tr>
-            </thead>
+    <td>&nbsp;</td>
+@endsection
 
-            <tbody>
-            @foreach($entities as $entity)
-                <tr>
-                    @foreach($resource->listedFields as $field)
-                        <td>
-                            @include('laramanager::fields.' . $field->type . '.display')
-                        </td>
-                    @endforeach
+@section('table-body')
 
-                    <td width="50">
-                        <div class="uk-grid uk-grid-medium">
-                            <div class="uk-width-1-2">
-                                <a href="{{ route('admin.' . $resource->slug . '.show', $entity->id) }}"><i class="uk-icon-pencil"></i></a>
-                            </div>
-                            <div class="uk-width-1-2">
-                                <a href="#" class="uk-text-danger delete" data-resource-id="{{ $entity->id }}"><i class="uk-icon-trash"></i></a>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
+    @foreach($entities as $entity)
+        <tr>
+            <td>{{ $entity->id }}</td>
+            @foreach($resource->listedFields as $field)
+                <td>
+                    @include('laramanager::fields.' . $field->type . '.display')
+                </td>
             @endforeach
-            </tbody>
-        </table>
-    </div>
+
+            <td width="50">
+                <div class="uk-grid uk-grid-medium">
+                    <div class="uk-width-1-2">
+                        <a href="{{ route('admin.' . $resource->slug . '.show', $entity->id) }}"><span uk-icon="icon: pencil;"></span></a>
+                    </div>
+                    <div class="uk-width-1-2">
+                        <a href="#" class="uk-text-danger delete" data-resource-id="{{ $entity->id }}"><span uk-icon="icon: trash;"></span></a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    @endforeach
 
 @endsection
 
-@section('scripts')
-
-    <script src="{{ asset('vendor/laramanager/js/datatables.js') }}"></script>
+@section('table-settings')
 
     <script>
 
-        var resource = "{{ $resource->slug }}";
-        var orderColumn = "{{ $resource->order_column }}";
-        var orderDirection = "{{ $resource->order_direction }}";
+        let resource = "{{ $resource->slug }}";
+        let orderColumn = "{{ $resource->order_column }}";
+        let orderDirection = "{{ $resource->order_direction }}";
 
         $(function() {
+
             $('#data-table').DataTable({
                 "pageLength": 50,
                 "order": [[orderColumn, orderDirection]]
             });
 
+            $('.dataTables_length').addClass('uk-margin');
+            $('select[name="data-table_length"]').addClass('uk-select uk-form-small').css('width', 'auto');
+            $('#data-table_filter').find('input').addClass('uk-input uk-form-small').css('width', 'auto');
+
             $('table').on('click', '.delete', function(event) {
-                var r = confirm("Are you sure?");
+                let r = confirm("Are you sure?");
 
                 event.preventDefault();
 
-                if (r == true) {
-                    var element = $(this);
-                    var id = element.attr('data-resource-id');
-                    var td = element.parents('td');
-                    var row = element.parents('tr');
+                if (r === true) {
+                    let element = $(this);
+                    let id = element.attr('data-resource-id');
+                    let td = element.parents('td');
+                    let row = element.parents('tr');
 
                     $.ajax({
                         url: SITE_URL + '/admin/' + resource + '/' + id,
                         type: 'POST',
                         data: {_method: 'DELETE', _token: csrf},
                         success: function(response) {
-                            if(response.status == 'ok') {
+                            if(response.status === 'ok') {
                                 row.addClass('uk-text-muted');
                                 td.html('Deleted');
                             }

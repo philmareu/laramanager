@@ -3,8 +3,8 @@
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Philsquare\LaraManager\Models\Image;
-use Philsquare\LaraManager\Models\Resource;
+use Philsquare\LaraManager\Models\LaramanagerImage;
+use Philsquare\LaraManager\Models\LaramanagerResource;
 use Philsquare\LaraManager\Models\User;
 use Philsquare\LaraManager\Repositories\ImageRepository;
 

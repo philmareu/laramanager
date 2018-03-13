@@ -1,12 +1,13 @@
-<?php namespace Philsquare\LaraManager\Http\Controllers; 
+<?php namespace Philsquare\LaraManager\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Philsquare\LaraManager\Form\FormProcessor;
 use Philsquare\LaraManager\Form\Uploader;
 use Philsquare\LaraManager\Http\Requests\UpdateImageRequest;
 use Philsquare\LaraManager\Http\Requests\UploadImageRequest;
-use Philsquare\LaraManager\Models\Image;
+use Philsquare\LaraManager\Models\LaramanagerImage;
 use Philsquare\LaraManager\Repositories\ImageRepository;
 
 class ImagesController extends Controller {
@@ -47,32 +48,11 @@ class ImagesController extends Controller {
      */
     public function index(Request $request)
     {
-        $images = $this->imageRepository->getPaginated();
+        $images = $this->imageRepository->getPaginated(25);
 
-        if($request->ajax()) return $this->jsonResponse([
-            'images' => view('laramanager::browser.images', compact('images'))->render()
-        ]);
+        if($request->ajax()) return $images;
 
         return view('laramanager::images.index', compact('images'));
-    }
-
-    /**
-     * Respond with the edit image form
-     *
-     * @param $imageId
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \Exception
-     * @throws \Throwable
-     */
-    public function edit($imageId)
-    {
-        $image = $this->imageRepository->getById($imageId);
-
-        return $this->jsonResponse([
-            'html' => [
-                'form' => view('laramanager::images.edit', compact('image'))->render()
-            ]
-        ]);
     }
 
     /**
@@ -106,6 +86,11 @@ class ImagesController extends Controller {
         return view('laramanager::images.index', compact('images'));
     }
 
+    public function show($imageId)
+    {
+        return $this->imageRepository->getById($imageId);
+    }
+
     /**
      * Show image browser in the WYSIWYG editor
      *
@@ -124,29 +109,14 @@ class ImagesController extends Controller {
      *
      * @param UploadImageRequest $request
      * @return \Illuminate\Http\JsonResponse
-     * @throws \Exception
+     * @throws \Exceptioni
      * @throws \Throwable
      */
-    public function upload(UploadImageRequest $request)
+    public function store(UploadImageRequest $request)
     {
         $upload = $this->uploader->upload($request->file('image'), storage_path('app/laramanager/images'));
 
-        $image = $this->imageRepository->create($upload->toArray());
-
-        return $this->jsonResponse(array_merge([
-            'html' => view('laramanager::' . $request->get('view'), compact('image'))->render(),
-            ], $image->toArray()));
-    }
-
-    /**
-     * Helper for converting array data into json responses
-     *
-     * @param $output
-     * @return \Illuminate\Http\JsonResponse
-     */
-    private function jsonResponse($output)
-    {
-        return response()->json($output);
+        return $this->imageRepository->create($upload->toArray());
     }
 
 }

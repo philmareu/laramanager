@@ -1,56 +1,44 @@
-@extends('laramanager::layouts.auth')
+@extends('laramanager::layouts.sub.auth')
 
 @section('title')
     Reset Password
 @endsection
 
-@section('content')
+@section('auth-content')
 
-    <div class="uk-width-medium-1-5 uk-vertical-align-middle">
-        <div id="login-box">
-            <div class="title-bar"><i class="uk-icon-lock"></i> Reset Password</div>
-            <form class="uk-form uk-text-left" method="POST" action="{{ url('admin/password/reset') }}">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <input type="hidden" name="token" value="{{ $token }}">
+    <form class="uk-form uk-text-left" method="POST" action="{{ url('admin/password/reset') }}">
+        {{ csrf_field() }}
+        <input type="hidden" name="token" value="{{ $token }}">
 
-                <div class="uk-form-row">
-                    <div class="uk-form-controls">
-                        <span class="errors uk-text-danger">{{ $errors->first('email') }}</span>
-                        <div class="uk-form-icon uk-form-controls">
-                            <i class="uk-icon-envelope"></i>
-                            <input type="text" placeholder="Email" name="email" class="uk-form-width-large" value="{{ old('email') }}">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="uk-form-row">
-                    <div class="uk-form-controls">
-                        <span class="errors uk-text-danger">{{ $errors->first('password') }}</span>
-                        <div class="uk-form-icon uk-form-controls">
-                            <i class="uk-icon-lock"></i>
-                            <input type="password" placeholder="Password" name="password" class="uk-form-width-large">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="uk-form-row">
-                    <div class="uk-form-controls">
-                        <span class="errors uk-text-danger">{{ $errors->first('password') }}</span>
-                        <div class="uk-form-icon uk-form-controls">
-                            <i class="uk-icon-lock"></i>
-                            <input type="password" placeholder="Confirm Password" name="password_confirmation" class="uk-form-width-large">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="uk-form-row">
-                    <div class="uk-width-1-1">
-                        @include('laramanager::partials.elements.form.submit', ['value' => 'Reset Password'])
-                    </div>
-                </div>
-            </form>
+        <div class="uk-text-danger">
+            {{ $errors->first('email') }}
         </div>
-        <p class="uk-text-center">LaraManager by <a href="http://philsquare.com">Philsquare</a></p>
-    </div>
+        <div class="uk-inline uk-width-1-1">
+            <span class="uk-form-icon" uk-icon="icon: mail"></span>
+            <input class="uk-input" type="email" name="email" placeholder="Email" value="{{ old('email') }}">
+        </div>
+
+        <div class="uk-margin">
+            <div class="uk-text-danger">
+                {{ $errors->first('password') }}
+            </div>
+            <div class="uk-inline uk-width-1-1">
+                <span class="uk-form-icon" uk-icon="icon: lock"></span>
+                <input class="uk-input" type="password" name="password" placeholder="Password">
+            </div>
+        </div>
+
+        <div class="uk-margin">
+            <div class="uk-text-danger">
+                {{ $errors->first('password_confirmation') }}
+            </div>
+            <div class="uk-inline uk-width-1-1">
+                <span class="uk-form-icon" uk-icon="icon: lock"></span>
+                <input class="uk-input" type="password" name="password_confirmation" placeholder="Confirm password">
+            </div>
+        </div>
+
+        <button class="uk-button uk-button-primary uk-width-1-1" type="submit">Reset Password</button>
+    </form>
 
 @endsection

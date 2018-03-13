@@ -2,7 +2,7 @@
 
 @section('field')
 
-    <select name="{{ $field['name'] }}">
+    <select name="{{ $field['name'] }}" class="uk-select">
         @foreach($field['options'] as $id => $title)
             @if(isset($field['value']) && $id == $field['value'])
                 <option value="{{ $id }}" selected>{{ $title }}</option>

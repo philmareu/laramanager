@@ -19,9 +19,9 @@ class CreateResourceFieldsTable extends Migration
             $table->string('slug');
             $table->string('type');
             $table->string('validation');
-            $table->boolean('list')->default(0)->change();
-            $table->boolean('is_unique')->default(0)->change();
-            $table->text('data')->nullable()->change();
+            $table->boolean('list')->default(0);
+            $table->boolean('is_unique')->default(0);
+            $table->text('data')->nullable();
             $table->timestamps();
 
             $table->foreign('resource_id')->references('id')->on('laramanager_resources')->onUpdate('cascade')->onDelete('cascade');
@@ -35,6 +35,6 @@ class CreateResourceFieldsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('laramanager_resource_fields');
+        Schema::dropIfExists('laramanager_resource_fields');
     }
 }

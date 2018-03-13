@@ -20,9 +20,6 @@ class LaraManagerServiceProvider extends ServiceProvider
     {
         $this->loadRoutesFrom(__DIR__ . '/../Http/routes.php');
 
-        $router->middleware('admin', \Philsquare\LaraManager\Http\Middleware\AdminMiddleware::class);
-        $router->middleware('guest.admin', \Philsquare\LaraManager\Http\Middleware\RedirectIfAuthenticated::class);
-
         $this->loadViewsFrom(__DIR__.'/../../../views', 'laramanager');
 
         $this->assetsToPublish();
@@ -45,6 +42,9 @@ class LaraManagerServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app['router']->aliasMiddleware('admin', \Philsquare\LaraManager\Http\Middleware\AdminMiddleware::class);
+        $this->app['router']->aliasMiddleware('guest.admin', \Philsquare\LaraManager\Http\Middleware\RedirectIfAuthenticated::class);
+
         $this->mergeConfigFrom(__DIR__.'/../../../config/imagecache/templates.php', 'imagecache.templates');
         $this->mergeConfigFrom(__DIR__.'/../../../config/imagecache/paths.php', 'imagecache.paths');
         config(['imagecache.route' => 'images']);
@@ -53,22 +53,18 @@ class LaraManagerServiceProvider extends ServiceProvider
     private function assetsToPublish()
     {
         $this->publishes([
-            __DIR__. '/../../../config/config.php' => config_path('laramanager.php'),
-        ]);
-
-        $this->publishes([
             __DIR__ . '/../../../assets/' => public_path('vendor/laramanager/'),
-        ], 'public');
+        ], 'laramanager-assets');
 
         $this->publishes([
             __DIR__ . '/../../../database/migrations/' => database_path('migrations')
-        ], 'migrations');
+        ], 'laramanager-migrations');
     }
 
     private function setViewComposers()
     {
         view()->composer('laramanager::navigations.top.index', 'Philsquare\LaraManager\ViewComposers\NavigationComposer');
         view()->composer('laramanager::navigations.primary.*', 'Philsquare\LaraManager\ViewComposers\NavigationComposer');
-        view()->composer('laramanager::layouts.*', 'Philsquare\LaraManager\ViewComposers\LayoutsViewComposer');
+        view()->composer('*', 'Philsquare\LaraManager\ViewComposers\LayoutsViewComposer');
     }
 }

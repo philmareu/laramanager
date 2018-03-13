@@ -46,7 +46,24 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
+        if($this->noAdminExists()) return redirect('laramanager/install');
+
         return view('laramanager::auth.login');
+    }
+
+    /**
+     * Log the user out of the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        return redirect('/admin/login');
     }
 
     /**
@@ -58,5 +75,12 @@ class LoginController extends Controller
     protected function credentials(Request $request)
     {
         return array_merge($request->only($this->username(), 'password'), ['is_admin' => 1]);
+    }
+
+    private function noAdminExists()
+    {
+        $userModel = config('auth.providers.users.model');
+
+        return $userModel::where('is_admin', 1)->count() === 0;
     }
 }

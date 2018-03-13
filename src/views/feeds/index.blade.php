@@ -1,56 +1,44 @@
-@extends('laramanager::layouts.default')
-
-@section('head')
-    <link href="{{ asset("vendor/laramanager/css/datatables.css") }}" rel="stylesheet" media="screen">
-@endsection
+@extends('laramanager::layouts.sub.table')
 
 @section('title')
     Feeds
 @endsection
 
+@section('breadcrumbs')
+    <li><span>@yield('title')</span></li>
+@endsection
+
 @section('actions')
-    <a href="{{ route('admin.feeds.create') }}" class="uk-float-right"><i class="uk-icon-plus"></i> Add</a>
+    <a href="{{ route('admin.feeds.create') }}" class="uk-button uk-button-small uk-button-primary">Create</a>
 @endsection
 
-@section('content')
-
-    <div class="uk-overflow-container">
-        <table id="data-table" class="stripe row-border">
-            <thead>
-            <tr>
-                <td>Title</td>
-                <td>Slug</td>
-                <td>&nbsp;</td>
-            </tr>
-            </thead>
-
-            <tbody>
-            @foreach($feeds as $feed)
-                <tr>
-                    <td>{{ $feed->title }}</td>
-                    <td>{{ $feed->slug }}</td>
-
-                    <td width="50">
-                        <div class="uk-grid uk-grid-medium">
-                            <div class="uk-width-1-2">
-                                <a href="{{ route('admin.feeds.edit', $feed->id) }}"><i class="uk-icon-pencil"></i></a>
-                            </div>
-                            <div class="uk-width-1-2">
-                                <a href="#" class="uk-text-danger delete" data-resource-id="{{ $feed->id }}"><i class="uk-icon-trash"></i></a>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
-    </div>
-
+@section('table-headers')
+    <td>Title</td>
+    <td>Slug</td>
+    <td>&nbsp;</td>
 @endsection
 
-@section('scripts')
+@section('table-body')
+    @foreach($feeds as $feed)
+        <tr>
+            <td>{{ $feed->title }}</td>
+            <td>{{ $feed->slug }}</td>
 
-    <script src="{{ asset('vendor/laramanager/js/datatables.js') }}"></script>
+            <td width="50">
+                <div class="uk-grid uk-grid-medium">
+                    <div class="uk-width-1-2">
+                        <a href="{{ route('admin.feeds.edit', $feed->id) }}"><span uk-icon="icon: pencil;"></span></a>
+                    </div>
+                    <div class="uk-width-1-2">
+                        <a href="#" class="uk-text-danger delete" data-resource-id="{{ $feed->id }}"><span uk-icon="icon: trash;"></span></a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    @endforeach
+@endsection
+
+@section('table-settings')
 
     <script>
 

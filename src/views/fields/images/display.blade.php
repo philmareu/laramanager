@@ -1,4 +1,4 @@
-<div id="images" class="uk-grid uk-grid-small">
+<div id="images" class="uk-child-width-1-2 uk-child-width-1-4@s" uk-grid>
     @foreach($entity->{$field->data['method']} as $image)
         @include('laramanager::browser.image', ['image' => $image])
     @endforeach

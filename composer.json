@@ -20,6 +20,14 @@
   "require": {
     "intervention/image": "~2.2",
     "intervention/imagecache": "~2.3",
-    "suin/php-rss-writer": "^1.4"
+    "suin/php-rss-writer": "^1.4",
+    "doctrine/dbal": "^2.5"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Philsquare\\LaraManager\\Providers\\LaraManagerServiceProvider"
+      ]
+    }
   }
 }

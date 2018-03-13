@@ -16,7 +16,7 @@ class CreateFilesTable extends Migration
             $table->increments('id');
             $table->string('filename', 110);
             $table->string('title');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->string('original_filename');
             $table->string('alt');
             $table->unsignedInteger('size')->nullable();
@@ -31,6 +31,6 @@ class CreateFilesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('laramanager_images');
+        Schema::dropIfExists('laramanager_images');
     }
 }

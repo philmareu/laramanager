@@ -4,15 +4,15 @@ namespace Philsquare\LaraManager\Repositories;
 
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
-use Philsquare\LaraManager\Models\Image;
+use Philsquare\LaraManager\Models\LaramanagerImage;
 
 class ImageRepository {
 
     protected $model;
 
-    public function __construct()
+    public function __construct(LaramanagerImage $laramanagerImage)
     {
-        $this->model = new Image;
+        $this->model = $laramanagerImage;
     }
 
     public function create($attributes)
@@ -25,9 +25,9 @@ class ImageRepository {
         return $this->model->whereId($id)->first();
     }
 
-    public function getPaginated()
+    public function getPaginated($limit = 100)
     {
-        return $this->model->latest()->paginate(100);
+        return $this->model->latest()->paginate($limit);
     }
 
     public function search($term)

@@ -1,4 +1,7 @@
 <script>
-
-    UIkit.datepicker('#date', { weekstart:0, format:'YYYY-MM-DD' });
+    $('#date').datepicker({
+        zIndex: 2000,
+        autoHide: true,
+        format: 'yyyy-mm-dd'
+    })
 </script>

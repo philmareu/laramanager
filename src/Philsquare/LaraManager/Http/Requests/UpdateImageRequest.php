@@ -22,9 +22,9 @@ class UpdateImageRequest extends Request {
         $id = $this->segment(3);
 
         return [
-            'title' => 'max:255',
-            'alt' => 'max:255',
-            'description' => 'max:255',
+            'title' => 'required|max:255',
+            'alt' => 'nullable|max:255',
+            'description' => 'nullable|max:255',
             'original_filename' => 'max:255',
             'filename' => "required|unique_filename:$id|max:110|unique:laramanager_images,filename,$id"
         ];
