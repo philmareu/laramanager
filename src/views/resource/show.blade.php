@@ -49,8 +49,8 @@
                         <div id="resource-objects" uk-sortable>
                             @foreach($entity->objects as $object)
                                 <div data-laramanager-objectable-id="{{ $object->pivot->id }}" class="object">
-                                    <button class="uk-button uk-button-default uk-width-1-1 uk-text-left uk-margin" type="button" uk-toggle="target: #toggle-object-{{ $object->id }}"><span uk-icon="icon: move;" class="uk-margin-small-right"></span>{{ $object->title }} - {{ $object->pivot->label }}</button>
-                                    <div id="toggle-object-{{ $object->id }}" hidden>
+                                    <button class="uk-button uk-button-default uk-width-1-1 uk-text-left uk-margin" type="button" uk-toggle="target: #toggle-object-{{ $object->pivot->id }}"><span uk-icon="icon: move;" class="uk-margin-small-right"></span>{{ $object->title }} - {{ $object->pivot->label }}</button>
+                                    <div id="toggle-object-{{ $object->pivot->id }}" hidden>
                                         <div class="uk-placeholder">
                                             <div id="object-{{ $object->pivot->id }}" class="uk-margin">
                                                 <div class="admin-objects">

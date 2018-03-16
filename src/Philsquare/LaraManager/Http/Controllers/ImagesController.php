@@ -48,7 +48,7 @@ class ImagesController extends Controller {
      */
     public function index(Request $request)
     {
-        $images = $this->imageRepository->getPaginated(25);
+        $images = $this->imageRepository->getPaginated($request->get('limit', 50));
 
         if($request->ajax()) return $images;
 
