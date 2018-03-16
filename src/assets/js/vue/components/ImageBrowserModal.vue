@@ -39,7 +39,7 @@
 
         methods: {
             updateGallery: function (image) {
-                this.resources.unshift(image);
+                this.images.unshift(image);
             },
             imageSelected: function (image) {
                 this.$emit('image-selected', image);
