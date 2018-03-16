@@ -4,7 +4,7 @@
         <p v-if="hasErrors()" class="uk-text-danger" v-text="this.errors[this.field.slug][0]"></p>
 
         <div class="uk-placeholder">
-            <div class="uk-child-width-1-6@s" uk-grid>
+            <div class="uk-child-width-1-6@s" uk-grid uk-sortable>
                 <div v-for="image in images" @click="removeImage(image)">
                     <img :src="imageUrl('image-browser', image.filename)" alt="">
                     <input type="hidden" :name="[ field.slug + '[]' ]" v-model="image.id">
