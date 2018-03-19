@@ -1,4 +1,4 @@
-@extends('laramanager::layouts.sub.browser')
+@extends('laramanager::layouts.admin.browser')
 
 @section('title')
 File Browser

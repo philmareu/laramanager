@@ -63,8 +63,6 @@ class LaraManagerServiceProvider extends ServiceProvider
 
     private function setViewComposers()
     {
-        view()->composer('laramanager::navigations.top.index', 'Philsquare\LaraManager\ViewComposers\NavigationComposer');
-        view()->composer('laramanager::navigations.primary.*', 'Philsquare\LaraManager\ViewComposers\NavigationComposer');
-        view()->composer('*', 'Philsquare\LaraManager\ViewComposers\LayoutsViewComposer');
+        view()->composer('laramanager::navigations.primary.items', 'Philsquare\LaraManager\ViewComposers\NavigationComposer');
     }
 }

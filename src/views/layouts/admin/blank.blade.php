@@ -1,4 +1,4 @@
-@extends('laramanager::layouts.master')
+@extends('laramanager::layouts.admin.master')
 
 @section('content')
     <div class="uk-grid uk-grid-collapse">

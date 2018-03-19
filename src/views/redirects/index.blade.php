@@ -1,4 +1,4 @@
-@extends('laramanager::layouts.sub.table')
+@extends('laramanager::layouts.admin.table')
 
 @section('title')
     Redirects
