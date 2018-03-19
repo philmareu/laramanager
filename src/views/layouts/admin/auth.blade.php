@@ -1,6 +1,6 @@
-@extends('laramanager::layouts.master')
+@extends('laramanager::layouts.admin.master')
 
-@section('body-class')
+@section('body-classes')
     auth background-gradient-primary uk-height-viewport
 @endsection
 

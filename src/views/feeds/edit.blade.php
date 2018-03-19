@@ -1,4 +1,4 @@
-@extends('laramanager::layouts.sub.default')
+@extends('laramanager::layouts.admin.default')
 
 @section('title')
     {{ $feed->title }}

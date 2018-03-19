@@ -1,4 +1,4 @@
-@extends('laramanager::layouts.sub.blank')
+@extends('laramanager::layouts.admin.blank')
 
 @section('title')
     {{ $resource->id }}

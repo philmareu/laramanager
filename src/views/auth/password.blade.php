@@ -1,4 +1,4 @@
-@extends('laramanager::layouts.sub.auth')
+@extends('laramanager::layouts.admin.auth')
 
 @section('title')
     Request Password Link

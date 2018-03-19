@@ -1,4 +1,4 @@
-@extends('laramanager::layouts.sub.blank')
+@extends('laramanager::layouts.admin.blank')
 
 @section('blank-content')
     <div class="uk-card uk-card-default uk-card-small">
