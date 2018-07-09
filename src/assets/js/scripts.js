@@ -1,7 +1,7 @@
 
 window._ = require('lodash');
 
-window.SITE_URL = document.head.querySelector('meta[name="site-url"]');
+window.SITE_URL = document.head.querySelector('meta[name="site-url"]').content;
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support

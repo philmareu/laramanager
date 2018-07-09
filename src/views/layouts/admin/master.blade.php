@@ -7,7 +7,7 @@
 @endpush
 
 @section('body')
-    <div id="@yield('app-id')" class="uk-offcanvas-content">
+    <div id="app" class="uk-offcanvas-content">
         @yield('content')
     </div>
 
