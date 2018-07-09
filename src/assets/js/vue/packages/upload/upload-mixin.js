@@ -21,7 +21,7 @@ module.exports = {
 
                 url: vm.uploadUrl,
                 multiple: vm.multiple,
-                params : {"_token" : window.Laravel.csrfToken},
+                params : {"_token" : window.token},
                 name: vm.fileName,
                 allow : this.allow,
                 dataType: 'json',
