@@ -20,6 +20,7 @@ class ResourceFieldController extends Controller {
         'select' => 'Select',
         'date' => 'Date',
         'relational' => 'Relational',
+        'markdown' => 'Markdown'
 //        'html' => 'HTML'
     ];
 
