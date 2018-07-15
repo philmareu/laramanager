@@ -7,20 +7,20 @@
         <a class="uk-button uk-button-default uk-button-small" href="#modal-markdown-{{ $field->id }}" uk-toggle>Edit</a>
 
         <div id="modal-markdown-{{ $field->id }}" class="uk-modal-full" uk-modal>
-            <div class="uk-modal-dialog">
+            <div class="uk-modal-dialog" uk-height-viewport>
                 <div class="uk-modal-header">
                     <button class="uk-align-right uk-button uk-button-primary uk-button-small uk-modal-close" type="button">Done</button>
                 </div>
-                <div class="uk-modal-body" uk-overflow-auto>
+                <div class="uk-modal-body">
                     <div class="uk-grid-collapse uk-child-width-1-2@s" uk-grid>
-                        <div class="uk-padding" id="modal-full2">
+                        <div class="uk-padding">
 
                         <textarea name="{{ $field->slug }}"
                                   id="markdown-{{ $field->id }}"
                                   class="field-markdown"
                                   rows="4">{{ isset($entity) ? $entity->{$field->slug} : null }}</textarea>
                         </div>
-                        <div id="parsed-markdown-{{ $field->id }}" class="uk-padding" uk-height-viewport></div>
+                        <div id="parsed-markdown-{{ $field->id }}" class="uk-padding"></div>
                     </div>
                 </div>
             </div>
