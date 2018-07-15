@@ -13,14 +13,14 @@
                 </div>
                 <div class="uk-modal-body">
                     <div class="uk-grid-collapse uk-child-width-1-2@s" uk-grid>
-                        <div class="uk-padding">
+                        <div>
 
                         <textarea name="{{ $field->slug }}"
                                   id="markdown-{{ $field->id }}"
                                   class="field-markdown"
                                   rows="4">{{ isset($entity) ? $entity->{$field->slug} : null }}</textarea>
                         </div>
-                        <div id="parsed-markdown-{{ $field->id }}" class="uk-padding"></div>
+                        <div id="parsed-markdown-{{ $field->id }}"></div>
                     </div>
                 </div>
             </div>
