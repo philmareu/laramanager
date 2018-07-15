@@ -7,6 +7,7 @@
         })
 
         editor.focus()
+        document.getElementById('parsed-markdown-{{ $field->id }}').innerHTML = marked(editor.getValue());
 
         editor.on('change', function(event) {
             document.getElementById('parsed-markdown-{{ $field->id }}').innerHTML = marked(editor.getValue());
