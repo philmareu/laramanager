@@ -1,6 +1,6 @@
-<a class="uk-button uk-button-default" href="#modal-full" uk-toggle>Open</a>
+<a class="uk-button uk-button-default" href="#modal-markdown-{{ $field->id }}" uk-toggle>Open</a>
 
-<div id="modal-full" class="uk-modal-full" uk-modal>
+<div id="modal-markdown-{{ $field->id }}" class="uk-modal-full" uk-modal>
     <div class="uk-modal-dialog">
         <button class="uk-modal-close-full uk-close-large" type="button" uk-close></button>
         <div class="uk-grid-collapse uk-child-width-1-2@s" uk-grid>
