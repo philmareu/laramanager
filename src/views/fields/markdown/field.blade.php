@@ -1,22 +1,27 @@
-<a class="uk-button uk-button-default" href="#modal-markdown-{{ $field->id }}" uk-toggle>Open</a>
+<div class="uk-margin">
+    <label for="{{ $field->slug }}" class="uk-form-label">{{ $field->title }}</label>
 
-<div id="modal-markdown-{{ $field->id }}" class="uk-modal-full" uk-modal>
-    <div class="uk-modal-dialog">
-        <button class="uk-modal-close-full uk-close-large" type="button" uk-close></button>
-        <div class="uk-grid-collapse uk-child-width-1-2@s" uk-grid>
-            <div class="uk-padding" id="modal-full2">
-                @include('laramanager::partials.elements.form.textarea', [
-                    'field' => [
-                        'name' => $field->slug,
-                        'class' => 'field-markdown',
-                        'id' => 'markdown-' . $field->id,
-                        'value' => isset($entity) ? $entity->{$field->slug} : null
-                    ]
-                ])
+    <span class="uk-text-small uk-text-danger">{{ $errors->first($field->slug) }}</span>
+
+    <div class="uk-form-controls">
+        <a class="uk-button uk-button-default uk-button-small" href="#modal-markdown-{{ $field->id }}" uk-toggle>Edit</a>
+
+        <div id="modal-markdown-{{ $field->id }}" class="uk-modal-full" uk-modal>
+            <div class="uk-modal-dialog">
+                <button class="uk-modal-close-full uk-close-large" type="button" uk-close></button>
+                <div class="uk-grid-collapse uk-child-width-1-2@s" uk-grid>
+                    <div class="uk-padding" id="modal-full2">
+
+                        <textarea name="{{ $field->slug }}"
+                                  id="markdown-{{ $field->id }}"
+                                  class="field-markdown"
+                                  rows="4">{{ isset($entity) ? $entity->{$field->slug} : null }}</textarea>
+                    </div>
+                    <div id="parsed-markdown-{{ $field->id }}" class="uk-padding" uk-height-viewport></div>
+                </div>
             </div>
-            <div id="parsed-markdown-{{ $field->id }}" class="uk-padding" uk-height-viewport></div>
         </div>
+
+        <input type="hidden" id="markdown-value-{{ $field->id }}" name="{{ $field->slug }}" value="{{ isset($entity) ? $entity->{$field->slug} : null }}">
     </div>
 </div>
-
-<input type="hidden" id="markdown-value-{{ $field->id }}" name="{{ $field->slug }}" value="{{ isset($entity) ? $entity->{$field->slug} : null }}">
