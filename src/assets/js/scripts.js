@@ -23,6 +23,29 @@ import Icons from 'uikit/dist/js/uikit-icons';
 UIkit.use(Icons);
 
 window.datepicker = require('@fengyuanchen/datepicker');
+window.codemirror = require('codemirror');
+require('codemirror/mode/markdown/markdown');
+require('codemirror/mode/gfm/gfm');
+require('codemirror/mode/javascript/javascript');
+require('codemirror/mode/php/php');
+require('codemirror/mode/xml/xml');
+
+window.hljs = require('highlight.js');
+
+window.marked = require('marked');
+window.marked.setOptions({
+    highlight: function(code) {
+        return require('highlight.js').highlightAuto(code).value;
+    },
+    pedantic: false,
+    gfm: true,
+    tables: true,
+    breaks: false,
+    sanitize: false,
+    smartLists: true,
+    smartypants: false,
+    xhtml: false
+});
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
