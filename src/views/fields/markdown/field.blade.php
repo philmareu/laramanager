@@ -8,16 +8,20 @@
 
         <div id="modal-markdown-{{ $field->id }}" class="uk-modal-full" uk-modal>
             <div class="uk-modal-dialog">
-                <button class="uk-modal-close-full uk-close-large" type="button" uk-close></button>
-                <div class="uk-grid-collapse uk-child-width-1-2@s" uk-grid>
-                    <div class="uk-padding" id="modal-full2">
+                <div class="uk-modal-header">
+                    <button class="uk-align-right uk-button uk-button-primary uk-button-small uk-modal-close" type="button">Done</button>
+                </div>
+                <div class="uk-modal-body" uk-overflow-auto>
+                    <div class="uk-grid-collapse uk-child-width-1-2@s" uk-grid>
+                        <div class="uk-padding" id="modal-full2">
 
                         <textarea name="{{ $field->slug }}"
                                   id="markdown-{{ $field->id }}"
                                   class="field-markdown"
                                   rows="4">{{ isset($entity) ? $entity->{$field->slug} : null }}</textarea>
+                        </div>
+                        <div id="parsed-markdown-{{ $field->id }}" class="uk-padding" uk-height-viewport></div>
                     </div>
-                    <div id="parsed-markdown-{{ $field->id }}" class="uk-padding" uk-height-viewport></div>
                 </div>
             </div>
         </div>
