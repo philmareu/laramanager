@@ -30,6 +30,23 @@ require('codemirror/mode/javascript/javascript');
 require('codemirror/mode/php/php');
 require('codemirror/mode/xml/xml');
 
+window.hljs = require('highlight.js');
+
+window.marked = require('marked');
+window.marked.setOptions({
+    highlight: function(code) {
+        return require('highlight.js').highlightAuto(code).value;
+    },
+    pedantic: false,
+    gfm: true,
+    tables: true,
+    breaks: false,
+    sanitize: false,
+    smartLists: true,
+    smartypants: false,
+    xhtml: false
+});
+
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the

@@ -1,9 +1,17 @@
+@push('scripts-last')
 <script>
-    _.forEach(document.getElementsByClassName('field-markdown'), function(field) {
-        codemirror.fromTextArea(field, {
-            mode: 'gfm',
-            theme: "default",
-            extraKeys: {"Enter": "newlineAndIndentContinueMarkdownList"}
-        })
+    let editor = codemirror.fromTextArea(document.getElementById('markdown-{{ $field->id }}'), {
+        mode: 'gfm',
+        theme: "default"
+    })
+
+    editor.on('change', function(event) {
+        document.getElementById('parsed-markdown-{{ $field->id }}').innerHTML = marked(editor.getValue());
+        document.getElementById('markdown-value-{{ $field->id }}').value = editor.getValue();
+    })
+
+    UIkit.util.on('#modal-full', 'beforeshow', function () {
+
     });
 </script>
+@endpush
