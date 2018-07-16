@@ -12,7 +12,7 @@
                     <button class="uk-align-right uk-button uk-button-primary uk-button-small uk-modal-close" type="button">Done</button>
                 </div>
                 <div class="uk-modal-body">
-                    <div class="uk-grid-collapse uk-child-width-1-2@s" uk-grid>
+                    <div class="uk-grid uk-child-width-1-2@s" uk-grid>
                         <div>
 
                         <textarea name="{{ $field->slug }}"
