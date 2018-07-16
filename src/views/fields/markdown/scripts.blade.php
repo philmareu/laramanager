@@ -4,6 +4,7 @@
         let editor = codemirror.fromTextArea(document.getElementById('markdown-{{ $field->id }}'), {
             mode: 'gfm',
             theme: "default",
+            lineWrapping: true,
         })
 
         editor.focus()
