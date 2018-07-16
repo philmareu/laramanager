@@ -7,7 +7,7 @@
         <a class="uk-button uk-button-default uk-button-small" href="#modal-markdown-{{ $field->id }}" uk-toggle>Edit</a>
 
         <div id="modal-markdown-{{ $field->id }}" class="uk-modal-full" uk-modal>
-            <div class="uk-modal-dialog" uk-height-viewport>
+            <div class="uk-modal-dialog" uk-height-viewport uk-overflow-auto>
                 <div class="uk-modal-header">
                     <button class="uk-align-right uk-button uk-button-primary uk-button-small uk-modal-close" type="button">Done</button>
                 </div>
