@@ -13,7 +13,7 @@
                 </div>
                 <div class="uk-modal-body uk-height-viewport">
                     <div class="uk-grid uk-child-width-1-2@s" uk-grid>
-                        <div>
+                        <div v-pre>
 
                         <textarea name="{{ $field->slug }}"
                                   id="markdown-{{ $field->id }}"
@@ -25,6 +25,8 @@
             </div>
         </div>
 
-        <input type="hidden" id="markdown-value-{{ $field->id }}" name="{{ $field->slug }}" value="{{ isset($entity) ? $entity->{$field->slug} : null }}">
+        <div v-pre>
+            <input type="hidden" id="markdown-value-{{ $field->id }}" name="{{ $field->slug }}" value="{{ isset($entity) ? $entity->{$field->slug} : null }}">
+        </div>
     </div>
 </div>
