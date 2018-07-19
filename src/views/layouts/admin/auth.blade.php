@@ -40,7 +40,7 @@
 
         </div>
 
-        <div class="uk-light uk-margin">LaraManager by <a href="http://philsquare.com" class="uk-link-muted">Philsquare</a></div>
+        <div class="uk-light uk-margin">LaraManager by <a href="http://philsquare.com" class="uk-link-muted">PhilMareu</a></div>
 
     </div>
 @endsection

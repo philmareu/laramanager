@@ -6,14 +6,14 @@
   "license": "MIT",
   "authors": [
     {
-      "name": "Philsquare LLC",
-      "email": "hello@philsquare.com",
-      "homepage": "http://philsquare.com"
+      "name": "Phil Mareu",
+      "email": "philmareu@gmail.com",
+      "homepage": "http://philmareu.com"
     }
   ],
   "autoload": {
     "psr-4": {
-      "Philsquare\\LaraManager\\": "src/Philsquare/LaraManager"
+      "PhilMareu\\LaraManager\\": "src/PhilMareu/LaraManager"
     }
   },
   "minimum-stability": "stable",
@@ -32,7 +32,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Philsquare\\LaraManager\\Providers\\LaraManagerServiceProvider"
+        "PhilMareu\\LaraManager\\Providers\\LaraManagerServiceProvider"
       ]
     }
   }
