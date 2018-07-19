@@ -1,9 +1,9 @@
-<?php namespace PhilMareu\LaraManager\Http\Controllers;
+<?php namespace PhilMareu\Laramanager\Http\Controllers;
 
 use Illuminate\Support\Facades\Storage;
-use PhilMareu\LaraManager\Http\Requests\CreateObjectRequest;
-use PhilMareu\LaraManager\Http\Requests\UpdateObjectRequest;
-use PhilMareu\LaraManager\Models\LaramanagerObject;
+use PhilMareu\Laramanager\Http\Requests\CreateObjectRequest;
+use PhilMareu\Laramanager\Http\Requests\UpdateObjectRequest;
+use PhilMareu\Laramanager\Models\LaramanagerObject;
 
 class ObjectsController extends Controller {
 

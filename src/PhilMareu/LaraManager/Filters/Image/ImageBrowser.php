@@ -1,6 +1,6 @@
 <?php
 
-namespace PhilMareu\LaraManager\Filters\Image;
+namespace PhilMareu\Laramanager\Filters\Image;
 
 use Intervention\Image\Filters\FilterInterface;
 use Intervention\Image\Image;

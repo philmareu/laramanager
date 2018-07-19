@@ -1,9 +1,9 @@
-<?php namespace PhilMareu\LaraManager\Http\Controllers;
+<?php namespace PhilMareu\Laramanager\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
-use PhilMareu\LaraManager\Models\LaramanagerResource;
-use PhilMareu\LaraManager\Models\LaramanagerResourceField;
+use PhilMareu\Laramanager\Models\LaramanagerResource;
+use PhilMareu\Laramanager\Models\LaramanagerResourceField;
 
 class ResourceFieldController extends Controller {
 

@@ -1,14 +1,14 @@
-<?php namespace PhilMareu\LaraManager\Http\Controllers;
+<?php namespace PhilMareu\Laramanager\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
-use PhilMareu\LaraManager\Form\FormProcessor;
-use PhilMareu\LaraManager\Form\Uploader;
-use PhilMareu\LaraManager\Http\Requests\UpdateImageRequest;
-use PhilMareu\LaraManager\Http\Requests\UploadImageRequest;
-use PhilMareu\LaraManager\Models\LaramanagerImage;
-use PhilMareu\LaraManager\Repositories\ImageRepository;
+use PhilMareu\Laramanager\Form\FormProcessor;
+use PhilMareu\Laramanager\Form\Uploader;
+use PhilMareu\Laramanager\Http\Requests\UpdateImageRequest;
+use PhilMareu\Laramanager\Http\Requests\UploadImageRequest;
+use PhilMareu\Laramanager\Models\LaramanagerImage;
+use PhilMareu\Laramanager\Repositories\ImageRepository;
 
 class ImagesController extends Controller {
 

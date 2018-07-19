@@ -1,13 +1,13 @@
 <?php
 
-namespace PhilMareu\LaraManager\Http\Controllers\Auth;
+namespace PhilMareu\Laramanager\Http\Controllers\Auth;
 
 
 use Illuminate\Support\Facades\Auth;
-use PhilMareu\LaraManager\Http\Controllers\Controller;
-use PhilMareu\LaraManager\Http\Requests\SubmitInstallSettingsRequest;
-use PhilMareu\LaraManager\Models\LaramanagerObject;
-use PhilMareu\LaraManager\Models\LaramanagerSetting;
+use PhilMareu\Laramanager\Http\Controllers\Controller;
+use PhilMareu\Laramanager\Http\Requests\SubmitInstallSettingsRequest;
+use PhilMareu\Laramanager\Models\LaramanagerObject;
+use PhilMareu\Laramanager\Models\LaramanagerSetting;
 
 class InstallController extends Controller
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace PhilMareu\LaraManager\Database;
+namespace PhilMareu\Laramanager\Database;
 
-use PhilMareu\LaraManager\Models\LaramanagerObject;
+use PhilMareu\Laramanager\Models\LaramanagerObject;
 
 trait Objectable {
 

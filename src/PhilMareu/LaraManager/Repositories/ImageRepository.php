@@ -1,10 +1,10 @@
 <?php
 
-namespace PhilMareu\LaraManager\Repositories;
+namespace PhilMareu\Laramanager\Repositories;
 
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
-use PhilMareu\LaraManager\Models\LaramanagerImage;
+use PhilMareu\Laramanager\Models\LaramanagerImage;
 
 class ImageRepository {
 

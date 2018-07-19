@@ -1,10 +1,10 @@
 <?php
 
-namespace PhilMareu\LaraManager\Validators;
+namespace PhilMareu\Laramanager\Validators;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use PhilMareu\LaraManager\Repositories\ImageRepository;
+use PhilMareu\Laramanager\Repositories\ImageRepository;
 
 class UniqueFilenameValidator
 {

@@ -1,11 +1,11 @@
-<?php namespace PhilMareu\LaraManager\Http\Controllers;
+<?php namespace PhilMareu\Laramanager\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use PhilMareu\LaraManager\Models\File;
-use PhilMareu\LaraManager\Models\LaramanagerObject;
-use PhilMareu\LaraManager\Repositories\EntityRepository;
-use PhilMareu\LaraManager\Repositories\ResourceRepository;
+use PhilMareu\Laramanager\Models\File;
+use PhilMareu\Laramanager\Models\LaramanagerObject;
+use PhilMareu\Laramanager\Repositories\EntityRepository;
+use PhilMareu\Laramanager\Repositories\ResourceRepository;
 
 class ResourceObjectsController extends Controller {
 

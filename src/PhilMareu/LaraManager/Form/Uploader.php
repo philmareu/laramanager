@@ -1,6 +1,6 @@
 <?php
 
-namespace PhilMareu\LaraManager\Form;
+namespace PhilMareu\Laramanager\Form;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Request;

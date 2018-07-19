@@ -1,4 +1,4 @@
-<?php namespace PhilMareu\LaraManager\Http\Requests;
+<?php namespace PhilMareu\Laramanager\Http\Requests;
 
 class UploadImageRequest extends Request {
 

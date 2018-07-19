@@ -1,8 +1,8 @@
-<?php namespace PhilMareu\LaraManager\Http\Controllers;
+<?php namespace PhilMareu\Laramanager\Http\Controllers;
 
 use Illuminate\Http\Request;
-use PhilMareu\LaraManager\Http\Requests\CreateUserRequest;
-use PhilMareu\LaraManager\Http\Requests\UpdateUserRequest;
+use PhilMareu\Laramanager\Http\Requests\CreateUserRequest;
+use PhilMareu\Laramanager\Http\Requests\UpdateUserRequest;
 
 class UsersController extends Controller {
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace PhilMareu\LaraManager\Http\Controllers;
+namespace PhilMareu\Laramanager\Http\Controllers;
 
-use PhilMareu\LaraManager\Http\Requests\CreateFeedRequest;
-use PhilMareu\LaraManager\Http\Requests\UpdateFeedRequest;
-use PhilMareu\LaraManager\Models\LaramanagerFeed as FeedModel;
+use PhilMareu\Laramanager\Http\Requests\CreateFeedRequest;
+use PhilMareu\Laramanager\Http\Requests\UpdateFeedRequest;
+use PhilMareu\Laramanager\Models\LaramanagerFeed as FeedModel;
 use Suin\RSSWriter\Channel;
 use Suin\RSSWriter\Feed;
 use Suin\RSSWriter\Item;

@@ -1,6 +1,6 @@
 <?php
 
-namespace PhilMareu\LaraManager\Providers;
+namespace PhilMareu\Laramanager\Providers;
 
 //use Illuminate\Contracts\Config\Repository as Config;
 use Illuminate\Routing\Router;
@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 use Suin\RSSWriter\Feed;
 
-class LaraManagerServiceProvider extends ServiceProvider
+class LaramanagerServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
@@ -28,8 +28,8 @@ class LaraManagerServiceProvider extends ServiceProvider
 
         $this->loadTranslationsFrom(__DIR__.'/../../../lang', 'laramanager');
 
-        Validator::extend('unique_filename', 'PhilMareu\LaraManager\Validators\UniqueFilenameValidator@validate');
-        Validator::extend('model_must_exist', 'PhilMareu\LaraManager\Validators\ModelMustExistValidator@validate');
+        Validator::extend('unique_filename', 'PhilMareu\Laramanager\Validators\UniqueFilenameValidator@validate');
+        Validator::extend('model_must_exist', 'PhilMareu\Laramanager\Validators\ModelMustExistValidator@validate');
         Validator::replacer('model_must_exist', function($message, $attribute, $rule, $parameters) {
             return trans('laramanager::validation.model_must_exist');
         });
@@ -42,8 +42,8 @@ class LaraManagerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app['router']->aliasMiddleware('admin', \PhilMareu\LaraManager\Http\Middleware\AdminMiddleware::class);
-        $this->app['router']->aliasMiddleware('guest.admin', \PhilMareu\LaraManager\Http\Middleware\RedirectIfAuthenticated::class);
+        $this->app['router']->aliasMiddleware('admin', \PhilMareu\Laramanager\Http\Middleware\AdminMiddleware::class);
+        $this->app['router']->aliasMiddleware('guest.admin', \PhilMareu\Laramanager\Http\Middleware\RedirectIfAuthenticated::class);
 
         $this->mergeConfigFrom(__DIR__.'/../../../config/imagecache/templates.php', 'imagecache.templates');
         $this->mergeConfigFrom(__DIR__.'/../../../config/imagecache/paths.php', 'imagecache.paths');
@@ -63,6 +63,6 @@ class LaraManagerServiceProvider extends ServiceProvider
 
     private function setViewComposers()
     {
-        view()->composer('laramanager::navigations.primary.items', 'PhilMareu\LaraManager\ViewComposers\NavigationComposer');
+        view()->composer('laramanager::navigations.primary.items', 'PhilMareu\Laramanager\ViewComposers\NavigationComposer');
     }
 }

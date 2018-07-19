@@ -1,9 +1,9 @@
-<?php namespace PhilMareu\LaraManager\Http\Controllers;
+<?php namespace PhilMareu\Laramanager\Http\Controllers;
 
 use Illuminate\Http\Request;
-use PhilMareu\LaraManager\Http\Requests\CreateRedirectRequest;
-use PhilMareu\LaraManager\Http\Requests\UpdateRedirectRequest;
-use PhilMareu\LaraManager\Models\LaramanagerRedirect;
+use PhilMareu\Laramanager\Http\Requests\CreateRedirectRequest;
+use PhilMareu\Laramanager\Http\Requests\UpdateRedirectRequest;
+use PhilMareu\Laramanager\Models\LaramanagerRedirect;
 
 class RedirectsController extends Controller {
 

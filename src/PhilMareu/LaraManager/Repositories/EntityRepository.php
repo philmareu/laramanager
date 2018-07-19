@@ -1,9 +1,9 @@
-<?php namespace PhilMareu\LaraManager\Repositories;
+<?php namespace PhilMareu\Laramanager\Repositories;
 
 use Illuminate\Http\Request;
-use PhilMareu\LaraManager\Fields\FieldProcessor;
-use PhilMareu\LaraManager\Fields\RelationProcessor;
-use PhilMareu\LaraManager\Models\LaramanagerResource;
+use PhilMareu\Laramanager\Fields\FieldProcessor;
+use PhilMareu\Laramanager\Fields\RelationProcessor;
+use PhilMareu\Laramanager\Models\LaramanagerResource;
 
 class EntityRepository {
 

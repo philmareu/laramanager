@@ -1,6 +1,6 @@
-<?php namespace PhilMareu\LaraManager\Repositories;
+<?php namespace PhilMareu\Laramanager\Repositories;
 
-use PhilMareu\LaraManager\Models\LaramanagerResource;
+use PhilMareu\Laramanager\Models\LaramanagerResource;
 
 class ResourceRepository {
 

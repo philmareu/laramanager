@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use PhilMareu\LaraManager\Models\LaramanagerNavigationLink;
-use PhilMareu\LaraManager\Models\LaramanagerResource;
+use PhilMareu\Laramanager\Models\LaramanagerNavigationLink;
+use PhilMareu\Laramanager\Models\LaramanagerResource;
 
 class CreateResourceNavigationLinks extends Migration
 {

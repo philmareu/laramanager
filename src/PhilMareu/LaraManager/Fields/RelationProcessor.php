@@ -1,8 +1,8 @@
-<?php namespace PhilMareu\LaraManager\Fields;
+<?php namespace PhilMareu\Laramanager\Fields;
 
 use Illuminate\Http\Request;
-use PhilMareu\LaraManager\Models\LaramanagerImage;
-use PhilMareu\LaraManager\Models\LaramanagerResource;
+use PhilMareu\Laramanager\Models\LaramanagerImage;
+use PhilMareu\Laramanager\Models\LaramanagerResource;
 
 class RelationProcessor {
 

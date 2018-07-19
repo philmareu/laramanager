@@ -1,6 +1,6 @@
 <?php
 
-namespace PhilMareu\LaraManager\Contracts;
+namespace PhilMareu\Laramanager\Contracts;
 
 
 interface RssFeedInterface {

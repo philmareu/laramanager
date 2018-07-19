@@ -1,9 +1,9 @@
 <?php
 
-namespace PhilMareu\LaraManager\Fields;
+namespace PhilMareu\Laramanager\Fields;
 
 use Illuminate\Http\Request;
-use PhilMareu\LaraManager\Models\LaramanagerResource;
+use PhilMareu\Laramanager\Models\LaramanagerResource;
 
 class FieldProcessor {
 

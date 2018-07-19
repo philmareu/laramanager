@@ -1,6 +1,6 @@
 <?php
 
-namespace PhilMareu\LaraManager\Http\Requests;
+namespace PhilMareu\Laramanager\Http\Requests;
 
 
 class SubmitInstallSettingsRequest extends Request

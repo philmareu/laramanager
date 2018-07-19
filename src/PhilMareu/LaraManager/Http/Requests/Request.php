@@ -1,6 +1,6 @@
 <?php
 
-namespace PhilMareu\LaraManager\Http\Requests;
+namespace PhilMareu\Laramanager\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

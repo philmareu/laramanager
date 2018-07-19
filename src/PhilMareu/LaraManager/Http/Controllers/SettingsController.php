@@ -1,8 +1,8 @@
-<?php namespace PhilMareu\LaraManager\Http\Controllers;
+<?php namespace PhilMareu\Laramanager\Http\Controllers;
 
-use PhilMareu\LaraManager\Http\Requests\CreateSettingRequest;
-use PhilMareu\LaraManager\Http\Requests\UpdateSettingRequest;
-use PhilMareu\LaraManager\Models\LaramanagerSetting;
+use PhilMareu\Laramanager\Http\Requests\CreateSettingRequest;
+use PhilMareu\Laramanager\Http\Requests\UpdateSettingRequest;
+use PhilMareu\Laramanager\Models\LaramanagerSetting;
 
 class SettingsController extends Controller {
 

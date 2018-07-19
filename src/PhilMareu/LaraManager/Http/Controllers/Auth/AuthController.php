@@ -1,13 +1,13 @@
 <?php
 
-namespace PhilMareu\LaraManager\Http\Controllers\Auth;
+namespace PhilMareu\Laramanager\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
 
 use Illuminate\Foundation\Auth\ThrottlesLogins;
-use PhilMareu\LaraManager\Http\Controllers\Controller;
+use PhilMareu\Laramanager\Http\Controllers\Controller;
 
 class AuthController extends Controller
 {

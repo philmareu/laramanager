@@ -1,6 +1,6 @@
 <?php
 
-namespace PhilMareu\LaraManager\Validators;
+namespace PhilMareu\Laramanager\Validators;
 
 use Illuminate\Http\Request;
 

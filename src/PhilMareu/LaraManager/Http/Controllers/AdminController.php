@@ -1,6 +1,6 @@
 <?php
 
-namespace PhilMareu\LaraManager\Http\Controllers;
+namespace PhilMareu\Laramanager\Http\Controllers;
 
 class AdminController extends Controller {
 

@@ -1,14 +1,14 @@
 <?php
 
-namespace PhilMareu\LaraManager\ViewComposers;
+namespace PhilMareu\Laramanager\ViewComposers;
 
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use PhilMareu\LaraManager\Models\LaramanagerNavigationSection;
-use PhilMareu\LaraManager\Models\LaramanagerResource;
-use PhilMareu\LaraManager\Models\LaramanagerSetting;
+use PhilMareu\Laramanager\Models\LaramanagerNavigationSection;
+use PhilMareu\Laramanager\Models\LaramanagerResource;
+use PhilMareu\Laramanager\Models\LaramanagerSetting;
 
 class NavigationComposer
 {

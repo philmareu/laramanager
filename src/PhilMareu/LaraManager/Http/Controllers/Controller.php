@@ -1,6 +1,6 @@
 <?php
 
-namespace PhilMareu\LaraManager\Http\Controllers;
+namespace PhilMareu\Laramanager\Http\Controllers;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;

@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use PhilMareu\LaraManager\Models\LaramanagerNavigationSection;
+use PhilMareu\Laramanager\Models\LaramanagerNavigationSection;
 
 class CreateDefaultNavigationSections extends Migration
 {

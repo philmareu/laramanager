@@ -1,6 +1,6 @@
 <?php
 
-namespace PhilMareu\LaraManager\Http\Middleware;
+namespace PhilMareu\Laramanager\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;

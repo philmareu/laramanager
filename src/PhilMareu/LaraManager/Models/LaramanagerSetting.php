@@ -1,4 +1,4 @@
-<?php namespace PhilMareu\LaraManager\Models;
+<?php namespace PhilMareu\Laramanager\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

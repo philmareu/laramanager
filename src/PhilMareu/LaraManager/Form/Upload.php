@@ -1,4 +1,4 @@
-<?php namespace PhilMareu\LaraManager\Form;
+<?php namespace PhilMareu\Laramanager\Form;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Facades\Storage;

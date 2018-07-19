@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Schema;
-use PhilMareu\LaraManager\Models\LaramanagerRedirect;
-use PhilMareu\LaraManager\Models\LaramanagerResource;
+use PhilMareu\Laramanager\Models\LaramanagerRedirect;
+use PhilMareu\Laramanager\Models\LaramanagerResource;
 
-Route::group(['namespace' => 'PhilMareu\LaraManager\Http\Controllers', 'middleware' => 'web'], function()
+Route::group(['namespace' => 'PhilMareu\Laramanager\Http\Controllers', 'middleware' => 'web'], function()
 {
     Route::get('admin/login', 'Auth\LoginController@showLoginForm');
     Route::post('admin/login', 'Auth\LoginController@login');

@@ -1,18 +1,18 @@
 <?php
 
-namespace PhilMareu\LaraManager\Http\Controllers;
+namespace PhilMareu\Laramanager\Http\Controllers;
 
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-use PhilMareu\LaraManager\Form\FormProcessor;
-use PhilMareu\LaraManager\Fields\FieldProcessor;
-use PhilMareu\LaraManager\Models\File;
-use PhilMareu\LaraManager\Models\LaramanagerObject;
-use PhilMareu\LaraManager\Models\LaramanagerResource;
-use PhilMareu\LaraManager\Repositories\EntityRepository;
-use PhilMareu\LaraManager\Repositories\ResourceRepository;
+use PhilMareu\Laramanager\Form\FormProcessor;
+use PhilMareu\Laramanager\Fields\FieldProcessor;
+use PhilMareu\Laramanager\Models\File;
+use PhilMareu\Laramanager\Models\LaramanagerObject;
+use PhilMareu\Laramanager\Models\LaramanagerResource;
+use PhilMareu\Laramanager\Repositories\EntityRepository;
+use PhilMareu\Laramanager\Repositories\ResourceRepository;
 
 class ResourcesController extends Controller
 {

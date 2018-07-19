@@ -1,11 +1,11 @@
 <?php
 
-namespace PhilMareu\LaraManager\Http\Controllers\Auth;
+namespace PhilMareu\Laramanager\Http\Controllers\Auth;
 
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use PhilMareu\LaraManager\Http\Controllers\Controller;
+use PhilMareu\Laramanager\Http\Controllers\Controller;
 
 class LoginController extends Controller
 {

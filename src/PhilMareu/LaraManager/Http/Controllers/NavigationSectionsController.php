@@ -1,11 +1,11 @@
 <?php
 
-namespace PhilMareu\LaraManager\Http\Controllers;
+namespace PhilMareu\Laramanager\Http\Controllers;
 
 
-use PhilMareu\LaraManager\Http\Requests\StoreNavigationSectionRequest;
-use PhilMareu\LaraManager\Http\Requests\UpdateNavigationSectionRequest;
-use PhilMareu\LaraManager\Models\LaramanagerNavigationSection;
+use PhilMareu\Laramanager\Http\Requests\StoreNavigationSectionRequest;
+use PhilMareu\Laramanager\Http\Requests\UpdateNavigationSectionRequest;
+use PhilMareu\Laramanager\Models\LaramanagerNavigationSection;
 
 class NavigationSectionsController
 {

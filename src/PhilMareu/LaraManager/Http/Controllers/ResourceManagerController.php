@@ -1,12 +1,12 @@
 <?php
 
-namespace PhilMareu\LaraManager\Http\Controllers;
+namespace PhilMareu\Laramanager\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
-use PhilMareu\LaraManager\Models\LaramanagerNavigationLink;
-use PhilMareu\LaraManager\Models\LaramanagerResource;
+use PhilMareu\Laramanager\Models\LaramanagerNavigationLink;
+use PhilMareu\Laramanager\Models\LaramanagerResource;
 
 class ResourceManagerController extends Controller
 {
