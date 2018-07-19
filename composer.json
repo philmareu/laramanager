@@ -2,18 +2,18 @@
   "name": "philsquare/laramanager",
   "description": "Manager for Laravel applications",
   "keywords": ["laravel","admin"],
-  "homepage": "https://github.com/philsquare/LaraManager",
+  "homepage": "https://github.com/philsquare/Laramanager",
   "license": "MIT",
   "authors": [
     {
-      "name": "Philsquare LLC",
-      "email": "hello@philsquare.com",
-      "homepage": "http://philsquare.com"
+      "name": "Phil Mareu",
+      "email": "philmareu@gmail.com",
+      "homepage": "http://philmareu.com"
     }
   ],
   "autoload": {
     "psr-4": {
-      "Philsquare\\LaraManager\\": "src/Philsquare/LaraManager"
+      "PhilMareu\\Laramanager\\": "src/PhilMareu/Laramanager"
     }
   },
   "minimum-stability": "stable",
@@ -32,7 +32,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Philsquare\\LaraManager\\Providers\\LaraManagerServiceProvider"
+        "PhilMareu\\Laramanager\\Providers\\LaramanagerServiceProvider"
       ]
     }
   }

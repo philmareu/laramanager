@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'image-browser' => \Philsquare\LaraManager\Filters\Image\ImageBrowser::class
+    'image-browser' => \PhilMareu\Laramanager\Filters\Image\ImageBrowser::class
 ];

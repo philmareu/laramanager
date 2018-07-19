@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Philsquare\LaraManager\Models\LaramanagerSetting;
+use PhilMareu\Laramanager\Models\LaramanagerSetting;
 
 class CreateSettingsTable extends Migration
 {
