@@ -1,8 +1,8 @@
 {
-  "name": "philsquare/laramanager",
-  "description": "Manager for Laravel applications",
+  "name": "philmareu/laramanager",
+  "description": "Admin tool for Laravel applications",
   "keywords": ["laravel","admin"],
-  "homepage": "https://github.com/philsquare/Laramanager",
+  "homepage": "https://github.com/philmareu/laramanager",
   "license": "MIT",
   "authors": [
     {
