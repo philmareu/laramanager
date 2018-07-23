@@ -15,7 +15,7 @@
 @section('table-headers')
     <td>ID</td>
 
-    @each('laramanager::resource.index.thead', $resource->listedFields, 'field')
+    @each('laramanager::entries.index.thead', $resource->listedFields, 'field')
 
     <td>&nbsp;</td>
 @endsection
