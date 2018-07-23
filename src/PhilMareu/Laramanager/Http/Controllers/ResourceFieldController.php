@@ -2,34 +2,21 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
+use PhilMareu\Laramanager\Models\LaramanagerFieldType;
 use PhilMareu\Laramanager\Models\LaramanagerResource;
 use PhilMareu\Laramanager\Models\LaramanagerResourceField;
 
 class ResourceFieldController extends Controller {
 
-    protected $fields = [
-        'text' => 'Text',
-        'email' => 'Email',
-        'slug' => 'Slug',
-        'password' => 'Password',
-        'image' => 'Image',
-        'images' => 'Images',
-        'checkbox' => 'Checkbox',
-        'textarea' => 'Textarea',
-        'wysiwyg' => 'WYSIWYG',
-        'select' => 'Select',
-        'date' => 'Date',
-        'relational' => 'Relational',
-        'markdown' => 'Markdown'
-//        'html' => 'HTML'
-    ];
+    protected $fieldTypes;
 
     protected $resource;
 
     protected $resourceField;
 
-    public function __construct(LaramanagerResource $resource, LaramanagerResourceField $resourceField)
+    public function __construct(LaramanagerFieldType $fieldType, LaramanagerResource $resource, LaramanagerResourceField $resourceField)
     {
+        $this->fieldTypes = $fieldType->where('active', 1)->orderBy('title')->get();
         $this->resource = $resource;
         $this->resourceField = $resourceField;
     }
@@ -55,7 +42,7 @@ class ResourceFieldController extends Controller {
     {
         $resource = $this->resource->find($resourceId);
 
-        return view('laramanager::resources.fields.create', ['resource' => $resource, 'fields' => $this->getFields()]);
+        return view('laramanager::resources.fields.create', ['resource' => $resource, 'fieldTypes' => $this->fieldTypes]);
     }
 
     /**
@@ -109,7 +96,7 @@ class ResourceFieldController extends Controller {
 
         return view('laramanager::resources.fields.edit', [
             'resource' => $resource,
-            'fields' => $this->getFields(),
+            'fields' => $this->fieldTypes,
             'field' => $field
         ]);
     }
@@ -176,10 +163,4 @@ class ResourceFieldController extends Controller {
 
         return $attributes;
     }
-
-    private function getFields()
-    {
-        return array_sort($this->fields);
-    }
-
 }
