@@ -70,7 +70,7 @@ class RssFeedsController extends Controller
     {
         $feedData = $this->feed->where('slug', $type)->firstOrFail();
         $model = $feedData->model;
-        $entities = $model::getFeedItems();
+        $entries = $model::getFeedItems();
 
         $feed = new Feed;
 
@@ -84,16 +84,16 @@ class RssFeedsController extends Controller
             ->ttl($feedData->ttl)
             ->appendTo($feed);
 
-        foreach($entities as $entity)
+        foreach($entries as $entry)
         {
             $item = new Item;
             $item
-                ->title($entity->itemTitle())
-                ->description($entity->itemDescription())
-                ->contentEncoded($entity->itemContent())
-                ->url($entity->itemUrl())
-                ->guid($entity->itemUrl(), true)
-                ->pubDate($entity->itemPubDate())
+                ->title($entry->itemTitle())
+                ->description($entry->itemDescription())
+                ->contentEncoded($entry->itemContent())
+                ->url($entry->itemUrl())
+                ->guid($entry->itemUrl(), true)
+                ->pubDate($entry->itemPubDate())
                 ->appendTo($channel);
         }
 

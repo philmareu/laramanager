@@ -1,1 +1,1 @@
-{!! $entity->{$field->slug} !!}
+{!! $entry->{$field->slug} !!}

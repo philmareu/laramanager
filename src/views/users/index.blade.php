@@ -70,7 +70,7 @@
                     $.ajax({
                         url: SITE_URL + '/admin/' + resource + '/' + id,
                         type: 'POST',
-                        data: {_method: 'DELETE', _token: csrf},
+                        data: {_method: 'DELETE', _token: token},
                         success: function(response) {
                             if(response.status == 'ok') {
                                 row.addClass('uk-text-muted');

@@ -1,1 +1,1 @@
-@include('laramanager::partials.elements.form.checkbox', ['field' => ['name' => $field->slug, 'checked' => isset($entity) ? $entity->{$field->slug} : 0]])
+@include('laramanager::partials.elements.form.checkbox', ['field' => ['name' => $field->slug, 'checked' => isset($entry) ? $entry->{$field->slug} : 0]])

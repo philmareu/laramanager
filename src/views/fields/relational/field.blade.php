@@ -2,6 +2,6 @@
     'field' => [
         'name' => $field->slug,
         'options' => $options[$field->slug],
-        'value' => isset($entity) ? $entity->{$field->slug} : null
+        'value' => isset($entry) ? $entry->{$field->slug} : null
         ]
     ])

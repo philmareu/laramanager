@@ -2,6 +2,6 @@
     'field' => [
         'name' => $field->slug,
         'options' => $field->selectArray(),
-        'value' => isset($entity) ? $entity->{$field->slug} : null
+        'value' => isset($entry) ? $entry->{$field->slug} : null
         ]
     ])

@@ -2,34 +2,22 @@
 
 namespace PhilMareu\Laramanager\Http\Controllers;
 
-
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
-use PhilMareu\Laramanager\Form\FormProcessor;
-use PhilMareu\Laramanager\Fields\FieldProcessor;
-use PhilMareu\Laramanager\Models\File;
-use PhilMareu\Laramanager\Models\LaramanagerObject;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Schema;
+use PhilMareu\Laramanager\Models\LaramanagerNavigationLink;
 use PhilMareu\Laramanager\Models\LaramanagerResource;
-use PhilMareu\Laramanager\Repositories\EntityRepository;
-use PhilMareu\Laramanager\Repositories\ResourceRepository;
 
 class ResourcesController extends Controller
 {
-    protected $slug;
-
     protected $resource;
 
-    protected $resourceRepository;
+    protected $navigationLink;
 
-    protected $entityRepository;
-
-    public function __construct(Request $request, ResourceRepository $resourceRepository, EntityRepository $entityRepository)
+    public function __construct(LaramanagerResource $resource, LaramanagerNavigationLink $navigationLink)
     {
-        $this->slug = $request->segment(2);
-        $this->resource = $resourceRepository->getBySlug($this->slug);
-        $this->resourceRepository = $resourceRepository;
-        $this->entityRepository = $entityRepository;
+        $this->resource = $resource;
+        $this->navigationLink = $navigationLink;
     }
 
     /**
@@ -39,9 +27,9 @@ class ResourcesController extends Controller
      */
     public function index()
     {
-        return view('laramanager::resource.index.index')
-            ->with('resource', $this->resource)
-            ->with('entities', $this->entityRepository->getList($this->resource));
+        $resources = $this->resource->all();
+
+        return view('laramanager::resources.index', compact('resources'));
     }
 
     /**
@@ -51,15 +39,7 @@ class ResourcesController extends Controller
      */
     public function create()
     {
-        $options = $this->resource->fields->filter(function($field) {
-            return $field->type == 'relational';
-        })->reduce(function($options, $field) {
-            return array_merge($options, [$field->slug => $this->entityRepository->getFieldOptions($field)]);
-        }, []);
-
-        return view('laramanager::resource.create')
-            ->with('resource', $this->resource)
-            ->with('options', $options);
+        return view('laramanager::resources.create');
     }
 
     /**
@@ -70,10 +50,24 @@ class ResourcesController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, $this->validationRules($this->resource));
-        $entity = $this->entityRepository->create($request, $this->resource);
+        $this->validate($request, [
+            'title' => 'required|unique:laramanager_resources|max:255',
+            'slug' => 'required|unique:laramanager_resources|max:255',
+            'model' => 'required|model_must_exist|unique:laramanager_resources|max:255',
+            'namespace' => 'required|max:255',
+            'order_column' => 'required|integer',
+            'order_direction' => 'required|in:asc,desc'
+        ]);
 
-        return redirect('admin/' . $this->resource->slug)->with('success', 'Added');
+        $resource = $this->resource->create($request->merge(['icon' => 'n/a'])->all());
+
+        $this->navigationLink->create([
+            'title' => $resource->title,
+            'uri' => 'admin/' . $resource->slug,
+            'laramanager_navigation_section_id' => 2
+        ]);
+
+        return redirect('admin/resources/' . $resource->id . '/fields');
     }
 
     /**
@@ -84,12 +78,7 @@ class ResourcesController extends Controller
      */
     public function show($id)
     {
-        $entity = $this->entityRepository->getById($id, $this->resource);
-
-        return view('laramanager::resource.show')
-            ->with('resource', $this->resource)
-            ->with('entity', $entity)
-            ->with('objects', LaramanagerObject::all());
+        //
     }
 
     /**
@@ -98,20 +87,11 @@ class ResourcesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($resourceId)
     {
-        $entity = $this->entityRepository->getById($id, $this->resource);
+        $resource = $this->resource->find($resourceId);
 
-        $options = $this->resource->fields->filter(function($field) {
-            return $field->type == 'relational';
-        })->reduce(function($options, $field) {
-            return array_merge($options, [$field->slug => $this->entityRepository->getFieldOptions($field)]);
-        }, []);
-
-        return view('laramanager::resource.edit')
-            ->with('resource', $this->resource)
-            ->with('entity', $entity)
-            ->with('options', $options);
+        return view('laramanager::resources.edit', compact('resource'));
     }
 
     /**
@@ -121,14 +101,22 @@ class ResourcesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $resourceId)
     {
-        $entity = $this->entityRepository->getById($id, $this->resource);
-        $this->validate($request, $this->validationRules($this->resource, $entity));
+        $resource = $this->resource->find($resourceId);
 
-        $this->entityRepository->update($id, $request, $this->resource);
+        $this->validate($request, [
+            'title' => 'required|unique:laramanager_resources,title,' . $resourceId . '|max:255',
+            'slug' => 'required|unique:laramanager_resources,title,' . $resourceId . '|max:255',
+            'model' => 'required|unique:laramanager_resources,title,' . $resourceId . '|max:255',
+            'namespace' => 'required|max:255',
+            'order_column' => 'required|integer',
+            'order_direction' => 'required|in:asc,desc'
+        ]);
 
-        return redirect()->back()->with('success', 'Updated');
+        $resource->update($request->all());
+
+        return redirect()->back()->with('success', 'Resource updated');
     }
 
     /**
@@ -139,26 +127,13 @@ class ResourcesController extends Controller
      */
     public function destroy($id)
     {
-        $this->entityRepository->delete($id, $this->resource);
-
-        return response()->json(['status' => 'ok']);
+        //
     }
 
-    private function validationRules($resource, $entity = null)
+    public function fields($resourceId)
     {
-        return $resource->fields->reduce(function($rules, $field) use ($resource, $entity) {
-            $rule = $field->validation;
+        $resource = $this->resource->with('fields')->where('id', $resourceId);
 
-            if($field->is_unique)
-            {
-                $rule .= '|unique:' . $resource->slug . ',' . $field->slug;
-
-                if($entity) $rule .=  ',' . $entity->id;
-            }
-
-            if($field->is_required) $rule .= '|required';
-
-            return array_merge($rules, [$field->slug => $rule]);
-        }, []);
+        return view('resources.fields.index', compact('resource'));
     }
 }

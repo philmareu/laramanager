@@ -1,3 +1,3 @@
-@if($entity->{$field->data['method']})
-    {{ $entity->{$field->data['method']}->{$field->data['title']} }}
+@if($entry->{$field->data['method']})
+    {{ $entry->{$field->data['method']}->{$field->data['title']} }}
 @endif
