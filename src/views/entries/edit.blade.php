@@ -38,6 +38,6 @@
 
 @push('scripts-last')
 
-    @include('laramanager::resource.assets')
+    @include('laramanager::entries.assets')
 
 @endpush
