@@ -69,6 +69,7 @@ Route::group(['namespace' => 'PhilMareu\Laramanager\Http\Controllers', 'middlewa
         Route::resource('laramanager-navigation-sections', 'NavigationSectionsController');
         Route::resource('laramanager-navigation-links', 'NavigationLinksController');
         Route::resource('objects', 'ObjectsController');
+        Route::resource('field-types', 'FieldTypesController');
         Route::resource('settings', 'SettingsController');
     });
 });
