@@ -46,7 +46,7 @@ Route::group(['namespace' => 'PhilMareu\Laramanager\Http\Controllers', 'middlewa
         {
             foreach(LaramanagerResource::all() as $resource)
             {
-                Route::resource($resource->slug, 'ResourcesController');
+                Route::resource($resource->slug, 'EntriesController');
             }
         }
 
@@ -64,7 +64,7 @@ Route::group(['namespace' => 'PhilMareu\Laramanager\Http\Controllers', 'middlewa
         Route::get('resources/{resources}/fields/create', 'ResourceFieldController@create');
         Route::post('resources/{resources}/fields/create', 'ResourceFieldController@store');
         Route::delete('resources/{resources}/fields/{fields}', 'ResourceFieldController@destroy');
-        Route::resource('resources', 'ResourceManagerController');
+        Route::resource('resources', 'ResourcesController');
 
         Route::resource('laramanager-navigation-sections', 'NavigationSectionsController');
         Route::resource('laramanager-navigation-links', 'NavigationLinksController');
