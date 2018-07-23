@@ -88,7 +88,7 @@ class EntriesController extends Controller
 
         return view('laramanager::resource.show')
             ->with('resource', $this->resource)
-            ->with('entity', $entry)
+            ->with('entry', $entry)
             ->with('objects', LaramanagerObject::all());
     }
 
@@ -110,7 +110,7 @@ class EntriesController extends Controller
 
         return view('laramanager::resource.edit')
             ->with('resource', $this->resource)
-            ->with('entity', $entry)
+            ->with('entry', $entry)
             ->with('options', $options);
     }
 

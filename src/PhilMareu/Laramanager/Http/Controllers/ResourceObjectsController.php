@@ -25,7 +25,7 @@ class ResourceObjectsController extends Controller {
         $entry = $this->entriesRepository->getById($entryId, $resource);
         $object = LaramanagerObject::find($objectId);
 
-        return view('laramanager::objects.wrappers.create', compact('object', 'resource', 'entity'));
+        return view('laramanager::objects.wrappers.create', compact('object', 'resource', 'entry'));
     }
 
     public function store(Request $request, $resourceSlug, $entryId, $objectId)
@@ -46,7 +46,7 @@ class ResourceObjectsController extends Controller {
 
         $object = $entry->objects()->where('laramanager_objectables.id', $objectableId)->first();
 
-        return view('laramanager::objects.wrappers.edit', compact('object', 'resource', 'entity'));
+        return view('laramanager::objects.wrappers.edit', compact('object', 'resource', 'entry'));
     }
 
     public function update(Request $request, $resourceSlug, $entry, $objectableId)
