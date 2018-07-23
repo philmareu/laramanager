@@ -103,7 +103,7 @@
             $.ajax({
                 url: SITE_URL + '/admin/' + resource.id + '/objects/reorder',
                 type: 'PUT',
-                data: {ids: ids.slice(0, ids.length - 1), _token: csrf},
+                data: {ids: ids.slice(0, ids.length - 1), _token: token},
                 success: function(response) {
                     console.log('reordered');
                 }
@@ -122,7 +122,7 @@
                 $.ajax({
                     url: SITE_URL + '/admin/' + resource.slug + '/' + id,
                     type: 'POST',
-                    data: {_method: 'DELETE', _token: csrf},
+                    data: {_method: 'DELETE', _token: token},
                     success: function(response) {
                         if(response.status === 'ok') {
                             window.location = SITE_URL + '/admin/' + resource.slug;
