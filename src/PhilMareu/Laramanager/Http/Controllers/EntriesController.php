@@ -39,7 +39,7 @@ class EntriesController extends Controller
      */
     public function index()
     {
-        return view('laramanager::entires.index.index')
+        return view('laramanager::entries.index.index')
             ->with('resource', $this->resource)
             ->with('entries', $this->entriesRepository->getList($this->resource));
     }
@@ -57,7 +57,7 @@ class EntriesController extends Controller
             return array_merge($options, [$field->slug => $this->entriesRepository->getFieldOptions($field)]);
         }, []);
 
-        return view('laramanager::entires.create')
+        return view('laramanager::entries.create')
             ->with('resource', $this->resource)
             ->with('options', $options);
     }
@@ -86,7 +86,7 @@ class EntriesController extends Controller
     {
         $entry = $this->entriesRepository->getById($id, $this->resource);
 
-        return view('laramanager::entires.show')
+        return view('laramanager::entries.show')
             ->with('resource', $this->resource)
             ->with('entry', $entry)
             ->with('objects', LaramanagerObject::all());
@@ -108,7 +108,7 @@ class EntriesController extends Controller
             return array_merge($options, [$field->slug => $this->entriesRepository->getFieldOptions($field)]);
         }, []);
 
-        return view('laramanager::entires.edit')
+        return view('laramanager::entries.edit')
             ->with('resource', $this->resource)
             ->with('entry', $entry)
             ->with('options', $options);
