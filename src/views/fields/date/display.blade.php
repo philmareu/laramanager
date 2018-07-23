@@ -1,1 +1,1 @@
-{{ $entity->{$field->slug}->format('M d, Y') }}
+{{ $entry->{$field->slug}->format('M d, Y') }}

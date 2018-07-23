@@ -6,11 +6,11 @@
 
 @section('breadcrumbs')
     <li><a href="{{ route('admin.' . $resource->slug . '.index') }}">{{ $resource->title }}</a></li>
-    <li><span>{{ $entity->id }}</span></li>
+    <li><span>{{ $entry->id }}</span></li>
 @endsection
 
 @section('actions')
-    <form action="{{ url('admin/' . $resource->slug . '/' . $entity->id) }}" method="POST">
+    <form action="{{ url('admin/' . $resource->slug . '/' . $entry->id) }}" method="POST">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <input type="hidden" name="_method" value="DELETE">
 
@@ -25,7 +25,7 @@
 
             <div class="uk-card uk-card-default uk-card-small">
                 <div class="uk-card-header">
-                    <h3 class="uk-card-title">Default Fields <a href="{{ URL::to('admin/' . $resource->slug . '/' . $entity->id . '/edit') }}" class="uk-button uk-button-primary uk-button-small uk-float-right">Edit</a>
+                    <h3 class="uk-card-title">Default Fields <a href="{{ URL::to('admin/' . $resource->slug . '/' . $entry->id . '/edit') }}" class="uk-button uk-button-primary uk-button-small uk-float-right">Edit</a>
                     </h3>
                 </div>
                 <div class="uk-card-body">
@@ -39,7 +39,7 @@
             </div>
         </div>
         <div class="uk-width-1-2@s">
-            @if(method_exists($entity, 'objects'))
+            @if(method_exists($entry, 'objects'))
                 <div class="uk-card uk-card-default uk-card-small">
                     <div class="uk-card-header">
                         <h3 class="uk-card-title">Objects</h3>
@@ -47,7 +47,7 @@
 
                     <div class="uk-card-body">
                         <div id="resource-objects" uk-sortable>
-                            @foreach($entity->objects as $object)
+                            @foreach($entry->objects as $object)
                                 <div data-laramanager-objectable-id="{{ $object->pivot->id }}" class="object">
                                     <button class="uk-button uk-button-default uk-width-1-1 uk-text-left uk-margin" type="button" uk-toggle="target: #toggle-object-{{ $object->pivot->id }}"><span uk-icon="icon: move;" class="uk-margin-small-right"></span>{{ $object->title }} - {{ $object->pivot->label }}</button>
                                     <div id="toggle-object-{{ $object->pivot->id }}" hidden>
@@ -62,7 +62,7 @@
                                                 </div>
                                             </div>
 
-                                            <a href="{{ url('admin/' . $resource->slug . '/object/' . $entity->id . '/' . $object->pivot->id . '/edit') }}" class="uk-button uk-button-default uk-width-1-1 uk-margin"><span uk-icon="icon: pencil;"></span> Edit</a>
+                                            <a href="{{ url('admin/' . $resource->slug . '/object/' . $entry->id . '/' . $object->pivot->id . '/edit') }}" class="uk-button uk-button-default uk-width-1-1 uk-margin"><span uk-icon="icon: pencil;"></span> Edit</a>
                                         </div>
                                     </div>
                                 </div>
@@ -73,7 +73,7 @@
                             <button class="uk-button uk-button-default" type="button">Add Object</button>
                             <div uk-dropdown="mode: click">
                                 @foreach($objects as $object)
-                                    <li><a href="{{ url('admin/' . $resource->slug . '/object/' . $entity->id . '/' . $object->id . '/create') }}">{{ $object->title }}</a></li>
+                                    <li><a href="{{ url('admin/' . $resource->slug . '/object/' . $entry->id . '/' . $object->id . '/create') }}">{{ $object->title }}</a></li>
                                 @endforeach
                             </div>
                         </div>
@@ -89,7 +89,7 @@
 
     <script>
 
-        let id = "{{ $entity->id }}";
+        let id = "{{ $entry->id }}";
         let resource = {!! $resource !!};
 
         UIkit.util.on('#resource-objects', 'stop', function (event, component) {

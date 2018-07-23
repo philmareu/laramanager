@@ -1,3 +1,3 @@
-@if($entity->{$field->data['method']})
-    @include('laramanager::browser.image', ['image' => $entity->{$field->data['method']}])
+@if($entry->{$field->data['method']})
+    @include('laramanager::browser.image', ['image' => $entry->{$field->data['method']}])
 @endif

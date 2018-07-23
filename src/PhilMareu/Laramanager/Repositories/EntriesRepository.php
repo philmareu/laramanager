@@ -5,7 +5,7 @@ use PhilMareu\Laramanager\Fields\FieldProcessor;
 use PhilMareu\Laramanager\Fields\RelationProcessor;
 use PhilMareu\Laramanager\Models\LaramanagerResource;
 
-class EntityRepository {
+class EntriesRepository {
 
     public function getById($id, $resource)
     {
@@ -36,20 +36,20 @@ class EntityRepository {
     {
         $request = $this->processFields($request, $resource);
         $model = $this->getModel($resource);
-        $entity = (new $model)->forceCreate($this->filterRequest($request, $resource));
-        $this->processRelations($request, $resource, $entity);
+        $entry = (new $model)->forceCreate($this->filterRequest($request, $resource));
+        $this->processRelations($request, $resource, $entry);
 
-        return $entity;
+        return $entry;
     }
 
     public function update($id, Request $request, LaramanagerResource $resource)
     {
         $request = $this->processFields($request, $resource);
-        $entity = $this->getById($id, $resource);
-        $this->processRelations($request, $resource, $entity);
-        $entity->forceFill($this->filterRequest($request, $resource));
+        $entry = $this->getById($id, $resource);
+        $this->processRelations($request, $resource, $entry);
+        $entry->forceFill($this->filterRequest($request, $resource));
 
-        return $entity->save();
+        return $entry->save();
     }
 
     public function delete($id, $resource)
@@ -84,9 +84,9 @@ class EntityRepository {
         return $request;
     }
 
-    private function processRelations(Request $request, LaramanagerResource $resource, $entity)
+    private function processRelations(Request $request, LaramanagerResource $resource, $entry)
     {
-        $relationProcessor = new RelationProcessor($request, $resource, $entity);
+        $relationProcessor = new RelationProcessor($request, $resource, $entry);
         $relationProcessor->processRelations();
     }
 

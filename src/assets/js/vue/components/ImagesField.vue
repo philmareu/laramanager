@@ -25,7 +25,7 @@
             'activeFieldId',
             'errors',
             'old',
-            'entityImages'
+            'entryImages'
         ],
 
         data: function () {
@@ -73,12 +73,12 @@
 
         mounted: function () {
 
-            console.log(this.entityImages);
+            console.log(this.entryImages);
 
             if(this.old !== null) {
                 this.loadImages(this.old);
-            } else if(this.entityImages !== null) {
-                this.images = this.entityImages;
+            } else if(this.entryImages !== null) {
+                this.images = this.entryImages;
             }
         }
 

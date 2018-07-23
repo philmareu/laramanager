@@ -17,7 +17,7 @@
 
                         <textarea name="{{ $field->slug }}"
                                   id="markdown-{{ $field->id }}"
-                                  class="field-markdown">{{ isset($entity) ? $entity->{$field->slug} : null }}</textarea>
+                                  class="field-markdown">{{ isset($entry) ? $entry->{$field->slug} : null }}</textarea>
                         </div>
                         <div id="parsed-markdown-{{ $field->id }}"></div>
                     </div>
@@ -26,7 +26,7 @@
         </div>
 
         <div v-pre>
-            <input type="hidden" id="markdown-value-{{ $field->id }}" name="{{ $field->slug }}" value="{{ isset($entity) ? $entity->{$field->slug} : null }}">
+            <input type="hidden" id="markdown-value-{{ $field->id }}" name="{{ $field->slug }}" value="{{ isset($entry) ? $entry->{$field->slug} : null }}">
         </div>
     </div>
 </div>

@@ -22,9 +22,9 @@
 
 @section('table-body')
 
-    @foreach($entities as $entity)
+    @foreach($entries as $entry)
         <tr>
-            <td>{{ $entity->id }}</td>
+            <td>{{ $entry->id }}</td>
             @foreach($resource->listedFields as $field)
                 <td>
                     @include('laramanager::fields.' . $field->type . '.display')
@@ -34,10 +34,10 @@
             <td width="50">
                 <div class="uk-grid uk-grid-medium">
                     <div class="uk-width-1-2">
-                        <a href="{{ route('admin.' . $resource->slug . '.show', $entity->id) }}"><span uk-icon="icon: pencil;"></span></a>
+                        <a href="{{ route('admin.' . $resource->slug . '.show', $entry->id) }}"><span uk-icon="icon: pencil;"></span></a>
                     </div>
                     <div class="uk-width-1-2">
-                        <a href="#" class="uk-text-danger delete" data-resource-id="{{ $entity->id }}"><span uk-icon="icon: trash;"></span></a>
+                        <a href="#" class="uk-text-danger delete" data-resource-id="{{ $entry->id }}"><span uk-icon="icon: trash;"></span></a>
                     </div>
                 </div>
             </td>

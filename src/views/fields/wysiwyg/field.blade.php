@@ -1,1 +1,1 @@
-@include('laramanager::partials.elements.form.wysiwyg', ['field' => ['name' => $field->slug, 'id' => 'editor', 'value' => isset($entity) ? $entity->{$field->slug} : null]])
+@include('laramanager::partials.elements.form.wysiwyg', ['field' => ['name' => $field->slug, 'id' => 'editor', 'value' => isset($entry) ? $entry->{$field->slug} : null]])

@@ -8,14 +8,14 @@ class RelationProcessor {
 
     protected $request;
 
-    protected $entity;
+    protected $entry;
 
     protected $resource;
 
-    public function __construct(Request $request, LaramanagerResource $resource, $entity)
+    public function __construct(Request $request, LaramanagerResource $resource, $entry)
     {
         $this->request = $request;
-        $this->entity = $entity;
+        $this->entry = $entry;
         $this->resource = $resource;
     }
 
@@ -43,7 +43,7 @@ class RelationProcessor {
                 $entries[$imageId] = ['ordinal' => $key];
             }
 
-            $this->entity->{$field->data['method']}()->sync($entries);
+            $this->entry->{$field->data['method']}()->sync($entries);
         }
     }
 }
