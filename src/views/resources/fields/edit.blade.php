@@ -30,8 +30,7 @@
         @include('laramanager::partials.elements.form.slug', ['field' => ['name' => 'validation', 'value' => $field->validation]])
         @include('laramanager::partials.elements.form.checkbox', ['field' => ['name' => 'is_unique', 'checked' => $field->is_unique]])
         @include('laramanager::partials.elements.form.checkbox', ['field' => ['name' => 'list', 'checked' => $field->list]])
-
-        @include('laramanager::partials.elements.form.select', ['field' => ['name' => 'type', 'options' => $fields, 'id' => 'type', 'value' => $field->type]])
+        @include('laramanager::partials.elements.form.select', ['field' => ['name' => 'field_type_id', 'options' => $fieldTypes->pluck('title', 'id'), 'id' => 'type', 'value' => $field->fieldType->id]])
 
         <div id="options" class="uk-form-row">
             @if(view()->exists('laramanager::fields.' . $field->type . '.options'))

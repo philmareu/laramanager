@@ -61,13 +61,17 @@ class ResourceFieldController extends Controller {
             'validation' => 'required',
             'is_unique' => 'boolean',
             'is_required' => 'boolean',
-            'type' => 'required|not_in:0',
+            'field_type_id' => 'required|in:' . $this->fieldTypes->implode('id', ','),
             'data' => 'array'
         ]);
 
         $attributes = $this->serializeData($request);
 
-        $resource->fields()->create($attributes);
+        $resource = $resource->fields()->make($attributes);
+        $resource->fieldType()->associate(
+            $this->fieldTypes->where('id', $request->field_type_id)->first()
+        );
+        $resource->save();
 
         return redirect('admin/resources/' . $resourceId . '/fields')->with('success', 'Field added');
     }
@@ -96,8 +100,8 @@ class ResourceFieldController extends Controller {
 
         return view('laramanager::resources.fields.edit', [
             'resource' => $resource,
-            'fields' => $this->fieldTypes,
-            'field' => $field
+            'fieldTypes' => $this->fieldTypes,
+            'field' => $field,
         ]);
     }
 
@@ -118,13 +122,18 @@ class ResourceFieldController extends Controller {
             'validation' => '',
             'is_unique' => 'boolean',
             'is_required' => 'boolean',
-            'type' => 'required|not_in:0',
+            'field_type_id' => 'required|in:' . $this->fieldTypes->implode('id', ','),
             'data' => 'array'
         ]);
 
         $attributes = $this->serializeData($request);
         $attributes['is_unique'] = $request->has('is_unique') ? 1 : 0;
         $attributes['list'] = $request->has('list') ? 1 : 0;
+
+        $field->fieldType()->associate(
+            $this->fieldTypes->where('id', $request->field_type_id)->first()
+        );
+        $field->save();
 
         $field->update($attributes);
 

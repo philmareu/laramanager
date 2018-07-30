@@ -27,7 +27,7 @@
         <tr>
             <td>{{ $field->title }}</td>
             <td>{{ $field->slug }}</td>
-            <td>{{ $field->type }}</td>
+            <td>{{ $field->fieldType->title }}</td>
 
             <td width="50">
                 <div class="uk-grid uk-grid-medium">

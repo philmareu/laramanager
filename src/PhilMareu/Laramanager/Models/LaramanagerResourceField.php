@@ -9,7 +9,6 @@ class LaramanagerResourceField extends Model {
     protected $fillable = [
         'title',
         'slug',
-        'type',
         'validation',
         'is_required',
         'is_unique',
