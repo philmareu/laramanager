@@ -16,6 +16,7 @@
     <td>Title</td>
     <td>Slug</td>
     <td>Class</td>
+    <td>Views</td>
     <td>Active</td>
     <td>&nbsp;</td>
 @endsection
@@ -26,6 +27,7 @@
             <td>{{ $fieldType->title }}</td>
             <td>{{ $fieldType->slug }}</td>
             <td>{{ $fieldType->class }}</td>
+            <td>{{ $fieldType->views }}</td>
             <td>{{ $fieldType->active }}</td>
 
             <td width="50">

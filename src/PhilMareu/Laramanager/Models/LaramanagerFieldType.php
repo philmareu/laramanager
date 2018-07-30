@@ -11,6 +11,7 @@ class LaramanagerFieldType extends Model
         'title',
         'slug',
         'class',
+        'views',
         'active'
     ];
 

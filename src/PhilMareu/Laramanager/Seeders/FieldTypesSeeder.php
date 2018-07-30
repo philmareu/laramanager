@@ -13,6 +13,7 @@ class FieldTypesSeeder extends Seeder
             'title' => 'Text',
             'slug' => 'text',
             'class' => 'PhilMareu\Laramanager\FieldTypes\TextFieldType',
+            'views' => 'laramanager::field_types',
             'active' => 1
         ],
         [
@@ -20,6 +21,7 @@ class FieldTypesSeeder extends Seeder
             'title' => 'Email',
             'slug' => 'email',
             'class' => 'PhilMareu\Laramanager\FieldTypes\EmailFieldType',
+            'views' => 'laramanager::field_types',
             'active' => 1
         ],
         [
@@ -27,6 +29,7 @@ class FieldTypesSeeder extends Seeder
             'title' => 'Slug',
             'slug' => 'slug',
             'class' => 'PhilMareu\Laramanager\FieldTypes\SlugFieldType',
+            'views' => 'laramanager::field_types',
             'active' => 1
         ],
         [
@@ -34,6 +37,7 @@ class FieldTypesSeeder extends Seeder
             'title' => 'Password',
             'slug' => 'password',
             'class' => 'PhilMareu\Laramanager\FieldTypes\PasswordFieldType',
+            'views' => 'laramanager::field_types',
             'active' => 1
         ],
         [
@@ -41,6 +45,7 @@ class FieldTypesSeeder extends Seeder
             'title' => 'Image',
             'slug' => 'image',
             'class' => 'PhilMareu\Laramanager\FieldTypes\ImageFieldType',
+            'views' => 'laramanager::field_types',
             'active' => 1
         ],
         [
@@ -48,6 +53,7 @@ class FieldTypesSeeder extends Seeder
             'title' => 'Images',
             'slug' => 'images',
             'class' => 'PhilMareu\Laramanager\FieldTypes\ImagesFieldType',
+            'views' => 'laramanager::field_types',
             'active' => 1
         ],
         [
@@ -55,6 +61,7 @@ class FieldTypesSeeder extends Seeder
             'title' => 'Checkbox',
             'slug' => 'checkbox',
             'class' => 'PhilMareu\Laramanager\FieldTypes\CheckboxFieldType',
+            'views' => 'laramanager::field_types',
             'active' => 1
         ],
         [
@@ -62,6 +69,7 @@ class FieldTypesSeeder extends Seeder
             'title' => 'Textarea',
             'slug' => 'textarea',
             'class' => 'PhilMareu\Laramanager\FieldTypes\TextareaFieldType',
+            'views' => 'laramanager::field_types',
             'active' => 1
         ],
         [
@@ -69,6 +77,7 @@ class FieldTypesSeeder extends Seeder
             'title' => 'CKEditor',
             'slug' => 'ckeditor',
             'class' => 'PhilMareu\Laramanager\FieldTypes\CKEditorFieldType',
+            'views' => 'laramanager::field_types',
             'active' => 1
         ],
         [
@@ -76,6 +85,7 @@ class FieldTypesSeeder extends Seeder
             'title' => 'Select',
             'slug' => 'select',
             'class' => 'PhilMareu\Laramanager\FieldTypes\SelectFieldType',
+            'views' => 'laramanager::field_types',
             'active' => 1
         ],
         [
@@ -83,6 +93,7 @@ class FieldTypesSeeder extends Seeder
             'title' => 'Date',
             'slug' => 'date',
             'class' => 'PhilMareu\Laramanager\FieldTypes\DateFieldType',
+            'views' => 'laramanager::field_types',
             'active' => 1
         ],
         [
@@ -90,6 +101,7 @@ class FieldTypesSeeder extends Seeder
             'title' => 'Relational',
             'slug' => 'relational',
             'class' => 'PhilMareu\Laramanager\FieldTypes\RelationalFieldType',
+            'views' => 'laramanager::field_types',
             'active' => 1
         ],
         [
@@ -97,6 +109,7 @@ class FieldTypesSeeder extends Seeder
             'title' => 'Markdown',
             'slug' => 'markdown',
             'class' => 'PhilMareu\Laramanager\FieldTypes\MarkdownFieldType',
+            'views' => 'laramanager::field_types',
             'active' => 1
         ]
     ];

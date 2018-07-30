@@ -19,6 +19,7 @@
         @include('laramanager::partials.elements.form.text', ['field' => ['name' => 'title', 'id' => 'title', 'value' => $fieldType->title]])
         @include('laramanager::partials.elements.form.slug', ['field' => ['name' => 'slug', 'id' => 'slug', 'target' => 'title', 'value' => $fieldType->slug]])
         @include('laramanager::partials.elements.form.text', ['field' => ['name' => 'class', 'value' => $fieldType->class]])
+        @include('laramanager::partials.elements.form.text', ['field' => ['name' => 'views', 'value' => $fieldType->views]])
         @include('laramanager::partials.elements.form.checkbox', ['field' => ['name' => 'active', 'checked' => $fieldType->active]])
 
         @include('laramanager::partials.elements.buttons.submit', ['submitText' => 'Update'])

@@ -18,6 +18,7 @@ class CreateLaramanagerFieldTypesTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->string('class');
+            $table->string('views');
             $table->boolean('active');
             $table->timestamps();
         });
