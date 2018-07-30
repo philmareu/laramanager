@@ -13,4 +13,9 @@ class LaramanagerFieldType extends Model
         'class',
         'active'
     ];
+
+    public function fields()
+    {
+        return $this->belongsToMany(LaramanagerResourceField::class);
+    }
 }

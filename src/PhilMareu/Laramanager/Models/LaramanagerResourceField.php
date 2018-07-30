@@ -22,6 +22,11 @@ class LaramanagerResourceField extends Model {
         return $this->belongsTo(LaramanagerResource::class);
     }
 
+    public function fieldType()
+    {
+        return $this->belongsTo(LaramanagerFieldType::class, 'laramanager_field_type_id');
+    }
+
     public function selectArray()
     {
         $data = $this->data['options'];

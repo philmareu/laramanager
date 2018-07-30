@@ -3,11 +3,13 @@
 namespace PhilMareu\Laramanager\Http\Controllers\Auth;
 
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use PhilMareu\Laramanager\Http\Controllers\Controller;
 use PhilMareu\Laramanager\Http\Requests\SubmitInstallSettingsRequest;
 use PhilMareu\Laramanager\Models\LaramanagerObject;
 use PhilMareu\Laramanager\Models\LaramanagerSetting;
+use PhilMareu\Laramanager\Seeders\FieldTypesSeeder;
 
 class InstallController extends Controller
 {
@@ -59,6 +61,8 @@ class InstallController extends Controller
             'value' => config('app.name'),
             'is_core' => 1
         ]);
+
+        Artisan::call('db:seed', ['--class' => FieldTypesSeeder::class]);
 
         Auth::login($user);
 

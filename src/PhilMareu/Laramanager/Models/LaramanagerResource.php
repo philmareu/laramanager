@@ -25,5 +25,4 @@ class LaramanagerResource extends Model {
     {
         return $this->hasMany(LaramanagerResourceField::class, 'resource_id')->where('list', 1);
     }
-
 }
