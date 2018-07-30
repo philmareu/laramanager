@@ -32,7 +32,7 @@
                     @foreach($resource->fields as $key => $field)
                         <div class="uk-placeholder">
                             <div class="uk-form-label">{{ $field->title }}</div>
-                            @include('laramanager::fields.' . $field->type . '.display')
+                            @include($field->fieldType->getViewPath('display'))
                         </div>
                     @endforeach
                 </div>
