@@ -3,7 +3,7 @@
 namespace PhilMareu\Laramanager\FieldTypes;
 
 
-class SlugFieldType
+class SlugFieldType extends FieldType
 {
 
 }

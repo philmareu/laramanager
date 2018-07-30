@@ -3,7 +3,7 @@
 namespace PhilMareu\Laramanager\FieldTypes;
 
 
-class RelationalFieldType
+class RelationalFieldType extends FieldType
 {
 
 }

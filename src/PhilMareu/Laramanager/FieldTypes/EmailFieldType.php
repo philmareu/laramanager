@@ -3,7 +3,7 @@
 namespace PhilMareu\Laramanager\FieldTypes;
 
 
-class EmailFieldType
+class EmailFieldType extends FieldType
 {
 
 }

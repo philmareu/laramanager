@@ -3,7 +3,7 @@
 namespace PhilMareu\Laramanager\FieldTypes;
 
 
-class MarkdownFieldType
+class MarkdownFieldType extends FieldType
 {
 
 }

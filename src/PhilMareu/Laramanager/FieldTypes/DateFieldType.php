@@ -3,7 +3,7 @@
 namespace PhilMareu\Laramanager\FieldTypes;
 
 
-class DateFieldType
+class DateFieldType extends FieldType
 {
 
 }

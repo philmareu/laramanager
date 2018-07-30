@@ -3,7 +3,7 @@
 namespace PhilMareu\Laramanager\FieldTypes;
 
 
-class CKEditorFieldType
+class CKEditorFieldType extends FieldType
 {
 
 }

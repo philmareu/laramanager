@@ -3,7 +3,7 @@
 namespace PhilMareu\Laramanager\FieldTypes;
 
 
-class ImageFieldType
+class ImageFieldType extends FieldType
 {
 
 }

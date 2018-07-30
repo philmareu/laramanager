@@ -3,7 +3,7 @@
 namespace PhilMareu\Laramanager\FieldTypes;
 
 
-class TextareaFieldType
+class TextareaFieldType extends FieldType
 {
 
 }
