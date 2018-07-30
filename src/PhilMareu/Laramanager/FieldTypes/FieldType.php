@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 abstract class FieldType
 {
+    public $filter = false;
+
     /**
      * The name of the relationship to eager load.
      *
@@ -23,15 +25,6 @@ abstract class FieldType
 
     public function relations(Request $request, $field, $entry)
     {
-        if($request->filled($field->slug))
-        {
-            $entries = [];
-            foreach($request->get($field->slug) as $key => $imageId)
-            {
-                $entries[$imageId] = ['ordinal' => $key];
-            }
-
-            $entry->{$field->data['method']}()->sync($entries);
-        }
+        return $entry;
     }
 }

@@ -95,10 +95,13 @@ class EntriesRepository {
 
     private function filterRequest(Request $request, LaramanagerResource $resource)
     {
-        return $request->except(array_merge(
-            ['_token', '_method'],
-            $resource->fields->where('type', 'images')->pluck('slug')->toArray()
-        ));
+        $filter = $resource->fields->filter(function($field) {
+            return $field->fieldType->getClass()->filter;
+        })->map(function ($field) {
+            return $field->slug;
+        })->merge(['_token', '_method'])->all();
+
+        return $request->except($filter);
     }
 
 }
