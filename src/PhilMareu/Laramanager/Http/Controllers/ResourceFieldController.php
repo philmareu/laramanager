@@ -155,13 +155,11 @@ class ResourceFieldController extends Controller {
         return response()->json(['status' => 'ok']);
     }
 
-    public function getOptions($type)
+    public function getOptions($fieldTypeId)
     {
-        $view = '';
+        $fieldType = $this->fieldTypes->where('id', $fieldTypeId)->first();
 
-        if(view()->exists('laramanager::fields.' . $type . '.options')) $view = view('laramanager::fields.' . $type . '.options')->render();
-
-        return response()->json(['data' => ['html' => $view]]);
+        return response()->json(['data' => ['html' => $fieldType->getOptionView()]]);
     }
 
     public function serializeData(Request $request)

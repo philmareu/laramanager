@@ -51,15 +51,8 @@ class EntriesController extends Controller
      */
     public function create()
     {
-        $options = $this->resource->fields->filter(function($field) {
-            return $field->type == 'relational';
-        })->reduce(function($options, $field) {
-            return array_merge($options, [$field->slug => $this->entriesRepository->getFieldOptions($field)]);
-        }, []);
-
         return view('laramanager::entries.create')
-            ->with('resource', $this->resource)
-            ->with('options', $options);
+            ->with('resource', $this->resource);
     }
 
     /**

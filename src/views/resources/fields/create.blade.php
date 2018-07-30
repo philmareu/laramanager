@@ -45,12 +45,12 @@
     <script>
         $(function() {
 
-            $('select[name="type"]').on('change', function(event) {
+            $('select[name="field_type_id"]').on('change', function(event) {
 
-                var type = event.target.value;
+                let fieldTypeId = event.target.value;
 
                 $.ajax({
-                    url: SITE_URL + '/admin/resources/fields/getOptions/' + type,
+                    url: SITE_URL + '/admin/resources/fields/getOptions/' + fieldTypeId,
                     type: 'GET',
                     success: function(response) {
                         $('#options').html(response.data.html);

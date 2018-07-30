@@ -18,7 +18,7 @@
 
         @foreach($resource->fields as $field)
 
-            @include('laramanager::fields.' . $field->type . '.field', compact('field'))
+            @include($field->fieldType->getViewPath('field'), ['field' => $field])
 
         @endforeach
 

@@ -99,7 +99,7 @@
                 let object = $(this);
                 ids.push(object.attr('data-laramanager-objectable-id'));
             });
-            
+
             $.ajax({
                 url: SITE_URL + '/admin/' + resource.id + '/objects/reorder',
                 type: 'PUT',

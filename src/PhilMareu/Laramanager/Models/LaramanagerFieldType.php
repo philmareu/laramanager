@@ -19,4 +19,21 @@ class LaramanagerFieldType extends Model
     {
         return $this->belongsToMany(LaramanagerResourceField::class);
     }
+
+    public function getOptionView()
+    {
+        if(view()->exists($this->getViewPath('options'))) return view($this->getViewPath('options'))->render();
+
+        return '';
+    }
+
+    public function getClass()
+    {
+        return (new $this->class);
+    }
+
+    public function getViewPath($name)
+    {
+        return "{$this->views}.{$this->slug}.$name";
+    }
 }
