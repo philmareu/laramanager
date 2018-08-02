@@ -1,11 +1,9 @@
-@if($resource->fields->contains('type', 'wysiwyg'))
-    <script src="{{ asset('vendor/laramanager/js/ckeditor/ckeditor.js') }}"></script>
-@endif
+<script src="{{ asset('vendor/laramanager/js/ckeditor/ckeditor.js') }}"></script>
 
 @foreach($resource->fields as $field)
 
-    @if(view()->exists('laramanager::fields.' . $field->type . '.scripts'))
-        @include('laramanager::fields.' . $field->type . '.scripts', (array) $field)
+    @if(view()->exists($field->fieldType->getViewPath('scripts')))
+        @include($field->fieldType->getViewPath('scripts'), (array) $field)
     @endif
 
 @endforeach

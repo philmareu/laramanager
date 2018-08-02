@@ -1,5 +1,8 @@
 @push('scripts-last')
 <script>
+
+    console.log('testing');
+
     UIkit.util.on('#modal-markdown-{{ $field->id }}', 'show', function () {
         let editor = codemirror.fromTextArea(document.getElementById('markdown-{{ $field->id }}'), {
             mode: 'gfm',

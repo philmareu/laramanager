@@ -93,7 +93,7 @@ const app = new Vue({
         selectedImage: null,
         activeFieldId: null
     },
-    
+
     methods: {
         setSelectedImage: function (image) {
             this.selectedImage = image;
