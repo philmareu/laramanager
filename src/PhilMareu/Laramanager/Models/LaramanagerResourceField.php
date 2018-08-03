@@ -3,6 +3,7 @@
 namespace PhilMareu\Laramanager\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use PhilMareu\Laramanager\FieldTypes\FieldType;
 
 class LaramanagerResourceField extends Model {
 
@@ -24,6 +25,26 @@ class LaramanagerResourceField extends Model {
     public function fieldType()
     {
         return $this->belongsTo(LaramanagerFieldType::class, 'laramanager_field_type_id');
+    }
+
+    /**
+     * A shorthand for grabbing the related field type.
+     *
+     * @return LaramanagerFieldType
+     */
+    public function getTypeAttribute()
+    {
+        return $this->fieldType;
+    }
+
+    /**
+     * Return the related field type class.
+     * 
+     * @return FieldType
+     */
+    public function getTypeClassAttribute()
+    {
+        return $this->fieldType->getClass();
     }
 
     public function getDataAttribute($value)
