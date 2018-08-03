@@ -99,9 +99,9 @@ class EntriesRepository {
             return $field->fieldType->getClass()->filter;
         })->map(function ($field) {
             return $field->slug;
-        })->merge(['_token', '_method'])->all();
+        })->all();
 
-        return $request->except($filter);
+        return $request->except(array_merge($filter, ['_method', '_token']));
     }
 
 }
