@@ -16,7 +16,7 @@ class PopulateFieldTypesTable extends Migration
      */
     public function up()
     {
-        Artisan::call('db:seed', ['--class' => FieldTypesSeeder::class]);
+        Artisan::call('db:seed', ['--class' => FieldTypesSeeder::class, '--force' => true]);
     }
 
     /**
