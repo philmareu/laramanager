@@ -30,12 +30,11 @@
         @include('laramanager::partials.elements.form.slug', ['field' => ['name' => 'validation', 'value' => $field->validation]])
         @include('laramanager::partials.elements.form.checkbox', ['field' => ['name' => 'is_unique', 'checked' => $field->is_unique]])
         @include('laramanager::partials.elements.form.checkbox', ['field' => ['name' => 'list', 'checked' => $field->list]])
-
-        @include('laramanager::partials.elements.form.select', ['field' => ['name' => 'type', 'options' => $fields, 'id' => 'type', 'value' => $field->type]])
+        @include('laramanager::partials.elements.form.select', ['field' => ['name' => 'field_type_id', 'options' => $fieldTypes->pluck('title', 'id'), 'id' => 'type', 'value' => $field->fieldType->id]])
 
         <div id="options" class="uk-form-row">
-            @if(view()->exists('laramanager::fields.' . $field->type . '.options'))
-                @include('laramanager::fields.' . $field->type . '.options')
+            @if(view()->exists($field->type->getViewPath('options')))
+                @include($field->type->getViewPath('options'))
             @endif
         </div>
 
@@ -50,12 +49,12 @@
     <script>
         $(function() {
 
-            $('select[name="type"]').on('change', function(event) {
+            $('select[name="field_type_id"]').on('change', function(event) {
 
-                var type = event.target.value;
+                let fieldTypeId = event.target.value;
 
                 $.ajax({
-                    url: SITE_URL + '/admin/resources/fields/getOptions/' + type,
+                    url: SITE_URL + '/admin/resources/fields/getOptions/' + fieldTypeId,
                     type: 'GET',
                     success: function(response) {
                         $('#options').html(response.data.html);
@@ -67,4 +66,5 @@
 
         });
     </script>
+
 @endpush

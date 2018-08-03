@@ -3,6 +3,7 @@
 namespace PhilMareu\Laramanager\Providers;
 
 //use Illuminate\Contracts\Config\Repository as Config;
+use Faker\Factory;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Validator;

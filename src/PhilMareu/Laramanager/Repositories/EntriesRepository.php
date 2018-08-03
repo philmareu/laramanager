@@ -21,15 +21,13 @@ class EntriesRepository {
             return $field->slug;
         })->all();
 
-        $eagerLoad = $resource->listedFields->filter(function($field) {
-            return $field->type == 'relational';
-        })->map(function($field, $key) {
-            return $field->data['method'];
-        })->all();
+        $eagerLoad = $resource->listedFields->map(function($field) {
+            return $field->fieldType->getClass()->eagerLoad();
+        })->flatten()->all();
 
         $model = $this->getModel($resource);
 
-        return $model::with($eagerLoad)->select(array_merge(['id'], $selects))->get();
+        return $model::with(empty($eagerLoad) ? [] : $eagerLoad)->select(array_merge(['id'], $selects))->get();
     }
 
     public function create(Request $request, LaramanagerResource $resource)
@@ -79,23 +77,31 @@ class EntriesRepository {
      */
     private function processFields(Request $request, LaramanagerResource $resource)
     {
-        $fieldProcessor = new FieldProcessor($request, $resource);
-        $request = $fieldProcessor->processAttributes();
+        foreach($resource->fields as $field)
+        {
+            $request = $field->fieldType->getClass()->mutate($request, $field->slug);
+        }
+
         return $request;
     }
 
     private function processRelations(Request $request, LaramanagerResource $resource, $entry)
     {
-        $relationProcessor = new RelationProcessor($request, $resource, $entry);
-        $relationProcessor->processRelations();
+        foreach($resource->fields as $field)
+        {
+            $field->fieldType->getClass()->relations($request, $field, $entry);
+        }
     }
 
     private function filterRequest(Request $request, LaramanagerResource $resource)
     {
-        return $request->except(array_merge(
-            ['_token', '_method'],
-            $resource->fields->where('type', 'images')->pluck('slug')->toArray()
-        ));
+        $filter = $resource->fields->filter(function($field) {
+            return $field->fieldType->getClass()->filter;
+        })->map(function ($field) {
+            return $field->slug;
+        })->all();
+
+        return $request->except(array_merge($filter, ['_method', '_token']));
     }
 
 }

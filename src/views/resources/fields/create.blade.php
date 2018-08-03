@@ -28,7 +28,7 @@
         @include('laramanager::partials.elements.form.slug', ['field' => ['name' => 'validation']])
         @include('laramanager::partials.elements.form.checkbox', ['field' => ['name' => 'is_unique', 'checked' => false]])
         @include('laramanager::partials.elements.form.checkbox', ['field' => ['name' => 'list', 'checked' => false]])
-        @include('laramanager::partials.elements.form.select', ['field' => ['name' => 'type', 'options' => $fields, 'id' => 'type']])
+        @include('laramanager::partials.elements.form.select', ['field' => ['name' => 'field_type_id', 'options' => $fieldTypes->pluck('title', 'id'), 'id' => 'type']])
 
         <div id="options" class="uk-form-row">
 
@@ -45,12 +45,12 @@
     <script>
         $(function() {
 
-            $('select[name="type"]').on('change', function(event) {
+            $('select[name="field_type_id"]').on('change', function(event) {
 
-                var type = event.target.value;
+                let fieldTypeId = event.target.value;
 
                 $.ajax({
-                    url: SITE_URL + '/admin/resources/fields/getOptions/' + type,
+                    url: SITE_URL + '/admin/resources/fields/getOptions/' + fieldTypeId,
                     type: 'GET',
                     success: function(response) {
                         $('#options').html(response.data.html);

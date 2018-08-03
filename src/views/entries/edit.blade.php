@@ -24,7 +24,7 @@
 
         @foreach($resource->fields as $field)
 
-            @include('laramanager::fields.' . $field->type . '.field', ['field' => $field, 'entry' => $entry])
+            @include($field->fieldType->getViewPath('field'), ['field' => $field, 'entry' => $entry])
 
         @endforeach
 

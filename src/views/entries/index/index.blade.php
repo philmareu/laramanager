@@ -27,7 +27,7 @@
             <td>{{ $entry->id }}</td>
             @foreach($resource->listedFields as $field)
                 <td>
-                    @include('laramanager::fields.' . $field->type . '.display')
+                    @include($field->fieldType->getViewPath('display'))
                 </td>
             @endforeach
 

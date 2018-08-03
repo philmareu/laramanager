@@ -3,13 +3,13 @@
 namespace PhilMareu\Laramanager\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use PhilMareu\Laramanager\FieldTypes\FieldType;
 
 class LaramanagerResourceField extends Model {
 
     protected $fillable = [
         'title',
         'slug',
-        'type',
         'validation',
         'is_required',
         'is_unique',
@@ -22,19 +22,29 @@ class LaramanagerResourceField extends Model {
         return $this->belongsTo(LaramanagerResource::class);
     }
 
-    public function selectArray()
+    public function fieldType()
     {
-        $data = $this->data['options'];
+        return $this->belongsTo(LaramanagerFieldType::class, 'laramanager_field_type_id');
+    }
 
-        $options = [];
-        foreach(explode('|', $data) as $row)
-        {
-            $option = explode(':', $row);
+    /**
+     * A shorthand for grabbing the related field type.
+     *
+     * @return LaramanagerFieldType
+     */
+    public function getTypeAttribute()
+    {
+        return $this->fieldType;
+    }
 
-            $options[$option[0]] = $option[1];
-        }
-
-        return $options;
+    /**
+     * Return the related field type class.
+     *
+     * @return FieldType
+     */
+    public function getTypeClassAttribute()
+    {
+        return $this->fieldType->getClass();
     }
 
     public function getDataAttribute($value)

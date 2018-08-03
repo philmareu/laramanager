@@ -2,34 +2,21 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
+use PhilMareu\Laramanager\Models\LaramanagerFieldType;
 use PhilMareu\Laramanager\Models\LaramanagerResource;
 use PhilMareu\Laramanager\Models\LaramanagerResourceField;
 
 class ResourceFieldController extends Controller {
 
-    protected $fields = [
-        'text' => 'Text',
-        'email' => 'Email',
-        'slug' => 'Slug',
-        'password' => 'Password',
-        'image' => 'Image',
-        'images' => 'Images',
-        'checkbox' => 'Checkbox',
-        'textarea' => 'Textarea',
-        'wysiwyg' => 'WYSIWYG',
-        'select' => 'Select',
-        'date' => 'Date',
-        'relational' => 'Relational',
-        'markdown' => 'Markdown'
-//        'html' => 'HTML'
-    ];
+    protected $fieldTypes;
 
     protected $resource;
 
     protected $resourceField;
 
-    public function __construct(LaramanagerResource $resource, LaramanagerResourceField $resourceField)
+    public function __construct(LaramanagerFieldType $fieldType, LaramanagerResource $resource, LaramanagerResourceField $resourceField)
     {
+        $this->fieldTypes = $fieldType->where('active', 1)->orderBy('title')->get();
         $this->resource = $resource;
         $this->resourceField = $resourceField;
     }
@@ -55,7 +42,7 @@ class ResourceFieldController extends Controller {
     {
         $resource = $this->resource->find($resourceId);
 
-        return view('laramanager::resources.fields.create', ['resource' => $resource, 'fields' => $this->getFields()]);
+        return view('laramanager::resources.fields.create', ['resource' => $resource, 'fieldTypes' => $this->fieldTypes]);
     }
 
     /**
@@ -74,13 +61,17 @@ class ResourceFieldController extends Controller {
             'validation' => 'required',
             'is_unique' => 'boolean',
             'is_required' => 'boolean',
-            'type' => 'required|not_in:0',
+            'field_type_id' => 'required|in:' . $this->fieldTypes->implode('id', ','),
             'data' => 'array'
         ]);
 
         $attributes = $this->serializeData($request);
 
-        $resource->fields()->create($attributes);
+        $resource = $resource->fields()->make($attributes);
+        $resource->fieldType()->associate(
+            $this->fieldTypes->where('id', $request->field_type_id)->first()
+        );
+        $resource->save();
 
         return redirect('admin/resources/' . $resourceId . '/fields')->with('success', 'Field added');
     }
@@ -109,8 +100,8 @@ class ResourceFieldController extends Controller {
 
         return view('laramanager::resources.fields.edit', [
             'resource' => $resource,
-            'fields' => $this->getFields(),
-            'field' => $field
+            'fieldTypes' => $this->fieldTypes,
+            'field' => $field,
         ]);
     }
 
@@ -131,13 +122,18 @@ class ResourceFieldController extends Controller {
             'validation' => '',
             'is_unique' => 'boolean',
             'is_required' => 'boolean',
-            'type' => 'required|not_in:0',
+            'field_type_id' => 'required|in:' . $this->fieldTypes->implode('id', ','),
             'data' => 'array'
         ]);
 
         $attributes = $this->serializeData($request);
         $attributes['is_unique'] = $request->has('is_unique') ? 1 : 0;
         $attributes['list'] = $request->has('list') ? 1 : 0;
+
+        $field->fieldType()->associate(
+            $this->fieldTypes->where('id', $request->field_type_id)->first()
+        );
+        $field->save();
 
         $field->update($attributes);
 
@@ -159,13 +155,11 @@ class ResourceFieldController extends Controller {
         return response()->json(['status' => 'ok']);
     }
 
-    public function getOptions($type)
+    public function getOptions($fieldTypeId)
     {
-        $view = '';
+        $fieldType = $this->fieldTypes->where('id', $fieldTypeId)->first();
 
-        if(view()->exists('laramanager::fields.' . $type . '.options')) $view = view('laramanager::fields.' . $type . '.options')->render();
-
-        return response()->json(['data' => ['html' => $view]]);
+        return response()->json(['data' => ['html' => $fieldType->getOptionView()]]);
     }
 
     public function serializeData(Request $request)
@@ -176,10 +170,4 @@ class ResourceFieldController extends Controller {
 
         return $attributes;
     }
-
-    private function getFields()
-    {
-        return array_sort($this->fields);
-    }
-
 }
