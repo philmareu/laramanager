@@ -33,8 +33,8 @@
         @include('laramanager::partials.elements.form.select', ['field' => ['name' => 'field_type_id', 'options' => $fieldTypes->pluck('title', 'id'), 'id' => 'type', 'value' => $field->fieldType->id]])
 
         <div id="options" class="uk-form-row">
-            @if(view()->exists('laramanager::fields.' . $field->type . '.options'))
-                @include('laramanager::fields.' . $field->type . '.options')
+            @if(view()->exists($field->type->getViewPath('options')))
+                @include($field->type->getViewPath('options'))
             @endif
         </div>
 

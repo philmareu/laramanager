@@ -39,7 +39,7 @@ class LaramanagerResourceField extends Model {
 
     /**
      * Return the related field type class.
-     * 
+     *
      * @return FieldType
      */
     public function getTypeClassAttribute()
