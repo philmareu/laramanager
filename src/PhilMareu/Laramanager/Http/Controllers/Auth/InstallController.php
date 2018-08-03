@@ -61,9 +61,7 @@ class InstallController extends Controller
             'value' => config('app.name'),
             'is_core' => 1
         ]);
-
-        Artisan::call('db:seed', ['--class' => FieldTypesSeeder::class]);
-
+        
         Auth::login($user);
 
         return redirect('admin');
