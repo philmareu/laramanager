@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 use PhilMareu\Laramanager\Models\LaramanagerFieldType;
 use PhilMareu\Laramanager\Seeders\FieldTypesSeeder;
 
-class PopulateFieldTypesTable extends Migration
+class SeedFieldTypes extends Migration
 {
     /**
      * Run the migrations.

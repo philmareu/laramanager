@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use PhilMareu\Laramanager\Models\LaramanagerNavigationSection;
 
-class CreateDefaultNavigationSections extends Migration
+class SeedNavigationSections extends Migration
 {
     /**
      * Run the migrations.

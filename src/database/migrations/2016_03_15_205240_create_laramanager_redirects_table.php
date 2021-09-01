@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateObjectsTable extends Migration
+class CreateLaramanagerRedirectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,11 @@ class CreateObjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('laramanager_objects', function (Blueprint $table) {
+        Schema::create('laramanager_redirects', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title', 40);
-            $table->string('slug', 50);
-            $table->string('description');
+            $table->string('from');
+            $table->string('to');
+            $table->unsignedMediumInteger('type');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateObjectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('laramanager_objects');
+        Schema::dropIfExists('laramanager_redirects');
     }
 }

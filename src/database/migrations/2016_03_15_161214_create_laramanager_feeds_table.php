@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateResourcesTable extends Migration
+class CreateLaramanagerFeedsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,16 @@ class CreateResourcesTable extends Migration
      */
     public function up()
     {
-        Schema::create('laramanager_resources', function (Blueprint $table) {
+        Schema::create('laramanager_feeds', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
+            $table->string('description');
+            $table->string('url');
             $table->string('slug');
-            $table->string('namespace');
             $table->string('model');
-            $table->unsignedTinyInteger('order_column');
-            $table->enum('order_direction', ['asc', 'desc']);
-            $table->string('icon', 50);
+            $table->string('language')->nullable();
+            $table->string('copyright')->nullable();
+            $table->unsignedInteger('ttl')->default(720);
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ class CreateResourcesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('laramanager_resources');
+        Schema::dropIfExists('laramanager_feeds');
     }
 }

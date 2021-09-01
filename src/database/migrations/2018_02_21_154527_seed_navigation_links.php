@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use PhilMareu\Laramanager\Models\LaramanagerNavigationLink;
 
-class CreateDefaultNavigationLinks extends Migration
+class SeedNavigationLinks extends Migration
 {
     /**
      * Run the migrations.
@@ -53,6 +53,13 @@ class CreateDefaultNavigationLinks extends Migration
             'title' => 'Resources',
             'uri' => 'admin/resources',
             'ordinal' => 20,
+            'laramanager_navigation_section_id' => 4
+        ]);
+
+        LaramanagerNavigationLink::forceCreate([
+            'title' => 'Field Types',
+            'uri' => 'admin/field-types',
+            'ordinal' => 25,
             'laramanager_navigation_section_id' => 4
         ]);
 

@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 use PhilMareu\Laramanager\Models\LaramanagerObject;
 use PhilMareu\Laramanager\Seeders\LaramanagerObjectsSeeder;
 
-class LaramanagerPopulateObjectsTable extends Migration
+class SeedObjectsTable extends Migration
 {
     /**
      * Run the migrations.
