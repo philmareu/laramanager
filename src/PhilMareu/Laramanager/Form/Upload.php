@@ -2,6 +2,7 @@
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class Upload implements Arrayable {
@@ -67,7 +68,7 @@ class Upload implements Arrayable {
      */
     private function generateFilename()
     {
-        $filename = str_random(100) . "." . $this->extension;
+        $filename = Str::random(100) . "." . $this->extension;
 
         if(Storage::exists($this->folder . '/' . $filename))
         {
