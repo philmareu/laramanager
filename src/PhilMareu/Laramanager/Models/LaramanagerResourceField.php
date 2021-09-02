@@ -24,7 +24,7 @@ class LaramanagerResourceField extends Model {
 
     public function fieldType()
     {
-        return $this->belongsTo(LaramanagerFieldType::class, 'laramanager_field_type_id');
+        return $this->belongsTo(LaramanagerFieldType::class, 'field_type_id');
     }
 
     /**
