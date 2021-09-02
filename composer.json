@@ -18,8 +18,11 @@
   },
   "minimum-stability": "stable",
   "require": {
-    "intervention/image": "~2.2",
-    "intervention/imagecache": "~2.3",
+    "php": "^7.3|^8.0",
+    "intervention/image": "^2.0",
+    "intervention/imagecache": "^2.0",
+    "illuminate/support": "^7.0|^8.0",
+    "laravel/ui": "^2.0|^3.0",
     "suin/php-rss-writer": "^1.4",
     "doctrine/dbal": "^2.5"
   },
