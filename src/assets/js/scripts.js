@@ -1,27 +1,14 @@
-
-window._ = require('lodash');
-
 window.SITE_URL = document.head.querySelector('meta[name="site-url"]').content;
-
-/**
- * We'll load jQuery and the Bootstrap jQuery plugin which provides support
- * for JavaScript based Bootstrap features such as modals and tabs. This
- * code may be modified to fit the specific needs of your application.
- */
 
 try {
     window.$ = window.jQuery = require('jquery');
 } catch (e) {}
 
-/**
- * Load UIkit
- */
 window.UIkit = require('uikit');
-
 import Icons from 'uikit/dist/js/uikit-icons';
-
 UIkit.use(Icons);
 
+window._ = require('lodash');
 window.datepicker = require('js-datepicker');
 window.codemirror = require('codemirror');
 require('codemirror/mode/markdown/markdown');
@@ -29,9 +16,7 @@ require('codemirror/mode/gfm/gfm');
 require('codemirror/mode/javascript/javascript');
 require('codemirror/mode/php/php');
 require('codemirror/mode/xml/xml');
-
 window.hljs = require('highlight.js');
-
 window.marked = require('marked');
 window.marked.setOptions({
     highlight: function(code) {
