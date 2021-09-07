@@ -72,9 +72,6 @@
         },
 
         mounted: function () {
-
-            console.log(this.entryImages);
-
             if(this.old !== null) {
                 this.loadImages(this.old);
             } else if(this.entryImages !== null) {

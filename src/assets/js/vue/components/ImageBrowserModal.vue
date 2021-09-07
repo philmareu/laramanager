@@ -6,7 +6,7 @@
 
             <image-upload v-on:image-uploaded="updateGallery"></image-upload>
 
-            <div v-if="loading === false"  class="uk-child-width-1-2 uk-grid-small" uk-grid>
+            <div v-if="!loading" class="uk-child-width-1-2 uk-grid-small" uk-grid>
                 <div v-for="(image, index) in images" class="uk-margin-small">
                     <img :src="imageUrl('image-browser', image.filename)" :alt="image.alt"
                          :data-laramanager-image-id="image.id"
@@ -17,7 +17,9 @@
             </div>
 
             <div v-if="loading" class="uk-padding-large uk-text-center">
-                <div uk-spinner></div>
+                <div>
+                    <div uk-spinner></div>
+                </div>
             </div>
 
             <div v-if="pagination != null">
