@@ -24,6 +24,7 @@
     "datatables.net": "^1.10.25",
     "datatables.net-dt": "^1.1.0",
     "highlight.js": "^11.2.0",
+    "js-datepicker": "^5.18.0",
     "marked": "^3.0.2",
     "uikit": "^3.7.2",
     "vue": "^3.2.7"

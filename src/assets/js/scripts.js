@@ -22,7 +22,7 @@ import Icons from 'uikit/dist/js/uikit-icons';
 
 UIkit.use(Icons);
 
-// window.datepicker = require('@fengyuanchen/datepicker');
+window.datepicker = require('js-datepicker');
 window.codemirror = require('codemirror');
 require('codemirror/mode/markdown/markdown');
 require('codemirror/mode/gfm/gfm');
