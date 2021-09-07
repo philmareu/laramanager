@@ -1,7 +1,7 @@
 {
     "/src/assets/js/scripts.min.js": "/src/assets/js/scripts.min.js",
-    "/src/assets/css/styles.css": "/src/assets/css/styles.css",
     "/src/assets/js/datatables.js": "/src/assets/js/datatables.js",
+    "/src/assets/images/favicon.ico": "/src/assets/images/favicon.ico",
     "/src/assets/images/sort_asc_disabled.png": "/src/assets/images/sort_asc_disabled.png",
     "/src/assets/images/sort_asc.png": "/src/assets/images/sort_asc.png",
     "/src/assets/images/sort_both.png": "/src/assets/images/sort_both.png",

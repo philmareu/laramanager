@@ -22,7 +22,7 @@ import Icons from 'uikit/dist/js/uikit-icons';
 
 UIkit.use(Icons);
 
-window.datepicker = require('@fengyuanchen/datepicker');
+// window.datepicker = require('@fengyuanchen/datepicker');
 window.codemirror = require('codemirror');
 require('codemirror/mode/markdown/markdown');
 require('codemirror/mode/gfm/gfm');
@@ -73,18 +73,17 @@ if (token) {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
-window.Vue = require('vue');
+import Vue from 'vue'
 
 /**
  * Vue components
  */
-
-Vue.component('image-gallery', require('./vue/components/ImageGallery.vue'));
-Vue.component('image-field', require('./vue/components/ImageField.vue'));
-Vue.component('images-field', require('./vue/components/ImagesField.vue'));
-Vue.component('image-browser-modal', require('./vue/components/ImageBrowserModal.vue'));
-Vue.component('object-images-field', require('./vue/components/ObjectImagesField.vue'));
-Vue.component('ckeditor-image-browser', require('./vue/components/CKEditorImageBrower.vue'));
+Vue.component('image-gallery', require('./vue/components/ImageGallery.vue').default);
+Vue.component('image-field', require('./vue/components/ImageField.vue').default);
+Vue.component('images-field', require('./vue/components/ImagesField.vue').default);
+Vue.component('image-browser-modal', require('./vue/components/ImageBrowserModal.vue').default);
+Vue.component('object-images-field', require('./vue/components/ObjectImagesField.vue').default);
+Vue.component('ckeditor-image-browser', require('./vue/components/CKEditorImageBrower.vue').default);
 
 const app = new Vue({
     el: '#app',
@@ -282,4 +281,3 @@ const app = new Vue({
     };
 
 })(window, jQuery);
-
