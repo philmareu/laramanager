@@ -31,15 +31,9 @@
                 </td>
             @endforeach
 
-            <td width="50">
-                <div class="uk-grid uk-grid-medium">
-                    <div class="uk-width-1-2">
-                        <a href="{{ route('admin.' . $resource->slug . '.show', $entry->id) }}"><span uk-icon="icon: pencil;"></span></a>
-                    </div>
-                    <div class="uk-width-1-2">
-                        <a href="#" class="uk-text-danger delete" data-resource-id="{{ $entry->id }}"><span uk-icon="icon: trash;"></span></a>
-                    </div>
-                </div>
+            <td width="75">
+                <a href="{{ route('admin.' . $resource->slug . '.show', $entry->id) }}" class="uk-margin-small-right"><span uk-icon="icon: pencil;"></span></a>
+                <a href="#" class="uk-text-danger delete" data-resource-id="{{ $entry->id }}"><span uk-icon="icon: trash;"></span></a>
             </td>
         </tr>
     @endforeach
