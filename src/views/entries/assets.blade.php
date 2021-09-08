@@ -1,4 +1,4 @@
-<script src="{{ asset('vendor/laramanager/js/ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('vendor/laramanager/js/ckeditor.min.js') }}"></script>
 
 @foreach($resource->fields as $field)
 

@@ -10,7 +10,7 @@
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "devDependencies": {
-    "@vue/compiler-sfc": "^3.2.9",
+    "@vue/compiler-sfc": "^3.2.10",
     "cross-env": "^7.0.3",
     "jquery": "^3.6.0",
     "laravel-mix": "^6.0.29",
@@ -19,14 +19,15 @@
     "lodash": "^4.17.21"
   },
   "dependencies": {
-    "axios": "^0.21.1",
+    "@ckeditor/ckeditor5-build-classic": "^29.2.0",
+    "axios": "^0.21.4",
     "codemirror": "^5.62.3",
-    "datatables.net": "^1.10.25",
-    "datatables.net-dt": "^1.1.0",
+    "datatables.net": "^1.11.1",
+    "datatables.net-dt": "^1.11.1",
     "highlight.js": "^11.2.0",
     "js-datepicker": "^5.18.0",
     "marked": "^3.0.2",
     "uikit": "^3.7.2",
-    "vue": "^3.2.7"
+    "vue": "^3.2.10"
   }
 }

@@ -46,7 +46,6 @@
                 "pageLength": 50,
                 "order": [[1, 'asc']]
             });
-
         });
 
     </script>

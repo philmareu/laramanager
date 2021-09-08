@@ -1,9 +1,20 @@
 <script>
     var id = "editor";
 
-    CKEDITOR.replace(id, {
-        customConfig: '/vendor/laramanager/js/ckeditor.js',
-        filebrowserImageBrowseUrl: SITE_URL + '/admin/images/browser',
-    });
+    console.log(ckeditor)
+
+    ckeditor
+        .create( document.querySelector( '#editor' ) )
+        .then( editor => {
+            console.log( editor );
+        } )
+        .catch( error => {
+            console.error( error );
+        } );
+
+    // CKEDITOR.replace(id, {
+    //     customConfig: '/vendor/laramanager/js/ckeditor.js',
+    //     filebrowserImageBrowseUrl: SITE_URL + '/admin/images/browser',
+    // });
 
 </script>
