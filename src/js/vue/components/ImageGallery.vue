@@ -69,6 +69,8 @@
                 </div>
                 <div class="uk-width-1-3">
                     <img :src="imageUrl('original', resource.filename)" :alt="resource.alt" v-if="resource.filename !== null">
+
+                    <p class="uk-text-break"><span v-text="imageUrl('original', resource.filename)"></span></p>
                 </div>
             </div>
         </form-modal>
