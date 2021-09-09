@@ -8,8 +8,6 @@ window.UIkit = require('uikit')
 import Icons from 'uikit/dist/js/uikit-icons'
 UIkit.use(Icons);
 
-// require('@ckeditor/ckeditor5-build-classic')
-
 window._ = require('lodash')
 window.datepicker = require('js-datepicker')
 window.codemirror = require('codemirror')
@@ -38,26 +36,17 @@ window.axios = require('axios')
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 window.token = document.head.querySelector('meta[name="csrf-token"]').content
 
-import Vue from 'vue'
+import { createApp } from 'vue';
 
-/**
- * Vue components
- */
-Vue.component('image-gallery', require('./vue/components/ImageGallery.vue').default)
-Vue.component('image-field', require('./vue/components/ImageField.vue').default)
-Vue.component('images-field', require('./vue/components/ImagesField.vue').default)
-Vue.component('image-browser-modal', require('./vue/components/ImageBrowserModal.vue').default)
-Vue.component('object-images-field', require('./vue/components/ObjectImagesField.vue').default)
-Vue.component('ckeditor-image-browser', require('./vue/components/CKEditorImageBrower.vue').default)
-
-const app = new Vue({
+const app = createApp({
     el: '#app',
-    data: {
-        siteUrl: SITE_URL,
-        selectedImage: null,
-        activeFieldId: null
+    data() {
+        return {
+            siteUrl: SITE_URL,
+            selectedImage: null,
+            activeFieldId: null
+        }
     },
-
     methods: {
         setSelectedImage: function (image) {
             this.selectedImage = image;
@@ -67,13 +56,22 @@ const app = new Vue({
             UIkit.offcanvas('#offcanvas-image-browser').toggle();
         }
     }
-});
+})
+    .component('image-gallery', require('./vue/components/ImageGallery.vue').default)
+    .component('image-field', require('./vue/components/ImageField.vue').default)
+    .component('images-field', require('./vue/components/ImagesField.vue').default)
+    .component('image-browser-modal', require('./vue/components/ImageBrowserModal.vue').default)
+    .component('object-images-field', require('./vue/components/ObjectImagesField.vue').default)
+    .component('ckeditor-image-browser', require('./vue/components/CKEditorImageBrower.vue').default)
+    .mount('#app');
 
 /*
  * jQuery Slugify plugin v1.0
  *
  * Copyright 2012, Ryun Shofner <ryun@humboldtweb.com>
  * Dual licensed under the MIT or GPL Version 2 licenses.
+ *
+ * Modified 2021
  *
  * Depends:
  *	jquery

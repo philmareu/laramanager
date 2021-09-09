@@ -1,4 +1,4 @@
-let mix = require('laravel-mix');
+const mix = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -12,10 +12,19 @@ let mix = require('laravel-mix');
  */
 
 mix.options({ processCssUrls: false });
-
-mix.js('src/assets/js/scripts.js', 'src/assets/js/scripts.min.js');
-
-mix.less('src/assets/less/styles.less', '../Laramanager/src/assets/css/styles.css');
-
-mix.copy('node_modules/datatables.net/js/jquery.dataTables.js', 'src/assets/js/datatables.js');
-mix.copy('node_modules/datatables.net-dt/images/*', 'src/assets/images/');
+mix.js(
+    'src/js/scripts.js',
+    'src/assets/js/scripts.min.js'
+).vue({ version: 3});
+// mix.less(
+//     'src/less/styles.less',
+//     'src/assets/css/styles.css'
+// );
+// mix.copy(
+//     'node_modules/datatables.net/js/jquery.dataTables.js',
+//     'src/assets/js/datatables.js'
+// );
+// mix.copy(
+//     'node_modules/datatables.net-dt/images/*',
+//     'src/assets/images/'
+// );
