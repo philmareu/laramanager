@@ -25,7 +25,8 @@
     "laravel/ui": "^2.0|^3.0",
     "suin/php-rss-writer": "^1.4",
     "doctrine/dbal": "^2.5",
-    "erusev/parsedown": "^1.7"
+    "erusev/parsedown": "^1.7",
+    "illuminate/database": "^8.60"
   },
   "require-dev": {
     "filp/whoops": "~2.0",
