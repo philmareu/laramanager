@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -13,12 +14,12 @@ class CreateLaramanagerObjectablesTable extends Migration
     public function up()
     {
         Schema::create('laramanager_objectables', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('laramanager_object_id');
-            $table->unsignedInteger('laramanager_objectable_id');
+            $table->id();
+            $table->unsignedBigInteger('laramanager_object_id');
+            $table->unsignedBigInteger('laramanager_objectable_id');
             $table->string('laramanager_objectable_type');
             $table->string('label');
-            $table->tinyInteger('ordinal');
+            $table->unsignedTinyInteger('ordinal');
             $table->text('data');
             $table->timestamps();
         });

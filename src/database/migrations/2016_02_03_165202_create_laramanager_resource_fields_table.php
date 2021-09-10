@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -13,28 +14,18 @@ class CreateLaramanagerResourceFieldsTable extends Migration
     public function up()
     {
         Schema::create('laramanager_resource_fields', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('resource_id');
+            $table->id();
+            $table->foreignId('resource_id')
+                ->constrained('laramanager_resources');
             $table->string('title');
             $table->string('slug');
-            $table->unsignedInteger('field_type_id');
+            $table->foreignId('field_type_id')
+                ->constrained('laramanager_field_types');
             $table->string('validation');
             $table->boolean('list')->default(0);
             $table->boolean('is_unique')->default(0);
             $table->text('data')->nullable();
             $table->timestamps();
-
-            $table->foreign('resource_id')
-                ->references('id')
-                ->on('laramanager_resources')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-
-            $table->foreign('field_type_id')
-                ->references('id')
-                ->on('laramanager_field_types')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
         });
     }
 

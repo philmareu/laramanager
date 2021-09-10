@@ -1,11 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use PhilMareu\Laramanager\Models\LaramanagerFieldType;
 use PhilMareu\Laramanager\Seeders\FieldTypesSeeder;
+use PhilMareu\Laramanager\Models\LaramanagerFieldType;
 
 class SeedFieldTypes extends Migration
 {

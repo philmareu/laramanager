@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -13,7 +14,7 @@ class CreateLaramanagerRedirectsTable extends Migration
     public function up()
     {
         Schema::create('laramanager_redirects', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('from');
             $table->string('to');
             $table->unsignedMediumInteger('type');

@@ -14,7 +14,7 @@ class CreateLaramanagerFieldTypesTable extends Migration
     public function up()
     {
         Schema::create('laramanager_field_types', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('title');
             $table->string('slug');
             $table->string('class');

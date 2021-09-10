@@ -14,7 +14,7 @@ class CreateLaramanagerNavigationSectionsTable extends Migration
     public function up()
     {
         Schema::create('laramanager_navigation_sections', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('title');
             $table->string('icon');
             $table->unsignedTinyInteger('ordinal')->default(0);

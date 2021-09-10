@@ -1,8 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use PhilMareu\Laramanager\Models\LaramanagerSetting;
 
 class CreateLaramanagerSettingsTable extends Migration
 {
@@ -14,7 +14,7 @@ class CreateLaramanagerSettingsTable extends Migration
     public function up()
     {
         Schema::create('laramanager_settings', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('title');
             $table->text('slug');
             $table->text('description');

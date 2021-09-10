@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -13,7 +14,7 @@ class CreateLaramanagerImagesTable extends Migration
     public function up()
     {
         Schema::create('laramanager_images', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('filename', 110);
             $table->string('title');
             $table->string('description')->nullable();

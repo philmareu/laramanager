@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use PhilMareu\Laramanager\Models\LaramanagerObject;
 use PhilMareu\Laramanager\Seeders\LaramanagerObjectsSeeder;

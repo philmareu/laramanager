@@ -14,14 +14,13 @@ class CreateLaramanagerNavigationLinksTable extends Migration
     public function up()
     {
         Schema::create('laramanager_navigation_links', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('laramanager_navigation_section_id');
+            $table->id();
+            $table->foreignId('laramanager_navigation_section_id')
+                ->constrained();
             $table->string('title');
             $table->unsignedTinyInteger('ordinal')->default(100);
             $table->string('uri');
             $table->timestamps();
-
-            $table->foreign('laramanager_navigation_section_id', 'links_section_id')->references('id')->on('laramanager_navigation_sections')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
