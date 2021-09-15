@@ -34,11 +34,8 @@ class LaramanagerObject extends Model {
         $ids = $this->data($key);
 
         if(! is_array($ids)) return [];
-
-        $idsOrdered = implode(',', $ids);
-
+        
         return LaramanagerImage::whereIn('id', $ids)
-            ->orderByRaw(DB::raw("FIELD(id, $idsOrdered)"))
             ->get();
     }
 
