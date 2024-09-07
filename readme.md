@@ -30,7 +30,7 @@ Finally, visit `/admin` in your project and add your initial admin user.
 
 ## Documentation
 
-Laramanager's documentation is located at [https://laramanager.philmareu.com](https://laramanager.philmareu.com) and the source is available [here](https://github.com/philmareu/laramanager-blog).
+Laramanager's documentation source is available [here](https://github.com/philmareu/laramanager-docs).
 
 ## Contributing
 
